@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Backups xuất từ app (dữ liệu cá nhân — không đẩy lên public repo)
+*-backup.json
+english-defense-backup*.json
+
+# Logs / temp
+*.log
+node_modules/
