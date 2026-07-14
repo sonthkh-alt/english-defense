@@ -16,6 +16,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn từ khởi động → mô phỏng bảo vệ toàn phần, mục tiêu & mốc cuối từng giai đoạn, đánh dấu hoàn thành. |
 | **☀ Buổi học hôm nay** | Checklist khung ngày 65 phút (Nghe 20' · Shadowing 15' · Từ vựng 10' · Nói 15' · Ôn 5'), ghi chú tự lưu, chế độ "ngày bận" giữ 10' lõi. |
 | **▤ Nhật ký & Chuỗi ngày** | Bản đồ nhiệt (heatmap) 26 tuần, nhật ký học tập theo tâm trạng. |
+| **📚 Tài nguyên & Nguồn** | **Gói học đầy đủ 12 tháng** nạp 1 chạm: ~274 từ vựng + 130 câu hỏi + lộ trình 12 tháng theo tuần + kho câu thuyết trình/Q&A + luyện phát âm cho người Việt + nguồn học thuật uy tín. |
 | **? Ngân hàng câu hỏi** | 10 trục câu hỏi bảo vệ cố định, thêm câu + khung trả lời, theo dõi mức thành thạo, prompt AI sinh câu hỏi. |
 | **✎ Sổ tay từ vựng** | Chỉ tiêu 5 từ/ngày, luyện **flashcard** theo hộp Leitner (spaced repetition). |
 | **⛑ Câu cứu nguy** | Bộ câu "chữa cháy" khi chưa nghe rõ câu hỏi, đánh dấu thuộc lòng. |

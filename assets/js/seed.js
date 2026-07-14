@@ -1,5 +1,5 @@
 /* ============================================================
-   seed.js — GÓI KHỞI ĐỘNG THÁNG 1 (dữ liệu học sẵn)
+   seed.js — GÓI HỌC ĐẦY ĐỦ 12 THÁNG (dữ liệu học sẵn)
    ------------------------------------------------------------
    Nguồn tham chiếu (uy tín học thuật):
    • Academic Word List — Averil Coxhead (2000), Victoria University
@@ -38,12 +38,14 @@
     ],
   };
 
-  /* ---------- TỪ VỰNG THÁNG 1 (≈120 từ) ----------
-     3 nhóm: (A) Học thuật/nghiên cứu · (B) Kinh tế cốt lõi ·
-             (C) Quản lý – quản trị công.
-     Cấu trúc: t=term, p=pos, m=nghĩa, e=ví dụ.  */
+  /* ---------- TỪ VỰNG 12 THÁNG (≈275 từ) ----------
+     Nhóm: (A) Học thuật/nghiên cứu · (B) Kinh tế cốt lõi ·
+     (C) Quản lý–quản trị công · (D) Phương pháp & thống kê ·
+     (E) Tài chính công · (F) Quản trị tổ chức · (G) Phát triển &
+     chính sách · (H) Động từ học thuật · (I) Diễn ngôn/luận điểm.
+     t=term, p=pos, m=nghĩa, e=ví dụ. */
   const VOCAB = [
-    // --- (A) Từ học thuật / nghiên cứu (nền AWL) ---
+    // ===== (A) Từ học thuật / nghiên cứu (nền AWL) =====
     { t: "analyze", p: "v.", m: "phân tích", e: "We analyze the data to identify key trends." },
     { t: "approach", p: "n.", m: "cách tiếp cận", e: "This study adopts a quantitative approach." },
     { t: "assess", p: "v.", m: "đánh giá", e: "The model assesses the impact of the policy." },
@@ -77,7 +79,7 @@
     { t: "sample", p: "n.", m: "mẫu (nghiên cứu)", e: "The sample includes 500 households." },
     { t: "reliability", p: "n.", m: "độ tin cậy", e: "We tested the reliability of the survey." },
 
-    // --- (B) Kinh tế cốt lõi (IMF/OECD/World Bank) ---
+    // ===== (B) Kinh tế cốt lõi (IMF/OECD/World Bank) =====
     { t: "allocation", p: "n.", m: "sự phân bổ (nguồn lực)", e: "Efficient allocation of resources is essential." },
     { t: "aggregate", p: "adj./n.", m: "tổng gộp, tổng thể", e: "Aggregate demand fell during the recession." },
     { t: "marginal", p: "adj.", m: "cận biên", e: "Firms produce where marginal cost equals price." },
@@ -121,7 +123,7 @@
     { t: "microeconomic", p: "adj.", m: "(thuộc) kinh tế vi mô", e: "The study uses microeconomic data on firms." },
     { t: "econometric", p: "adj.", m: "(thuộc) kinh tế lượng", e: "We apply an econometric model to the panel." },
 
-    // --- (C) Quản lý – Quản trị công ---
+    // ===== (C) Quản lý – Quản trị công =====
     { t: "governance", p: "n.", m: "quản trị (điều hành)", e: "Good governance improves public services." },
     { t: "accountability", p: "n.", m: "trách nhiệm giải trình", e: "Accountability reduces the risk of corruption." },
     { t: "transparency", p: "n.", m: "sự minh bạch", e: "Budget transparency builds public trust." },
@@ -161,9 +163,182 @@
     { t: "trade-off", p: "n.", m: "sự đánh đổi", e: "There is a trade-off between growth and equity." },
     { t: "feasible", p: "adj.", m: "khả thi", e: "The plan is technically and financially feasible." },
     { t: "scalable", p: "adj.", m: "có thể nhân rộng", e: "The pilot is scalable to the whole province." },
+
+    // ===== (D) Phương pháp & Thống kê =====
+    { t: "regression", p: "n.", m: "hồi quy", e: "We ran a regression of output on investment." },
+    { t: "coefficient", p: "n.", m: "hệ số", e: "The estimated coefficient is positive and large." },
+    { t: "causation", p: "n.", m: "quan hệ nhân quả", e: "Correlation does not imply causation." },
+    { t: "causality", p: "n.", m: "tính nhân quả", e: "Establishing causality is difficult here." },
+    { t: "endogeneity", p: "n.", m: "tính nội sinh", e: "Endogeneity may bias the estimates." },
+    { t: "instrumental variable", p: "n.", m: "biến công cụ", e: "We use rainfall as an instrumental variable." },
+    { t: "control group", p: "n.", m: "nhóm đối chứng", e: "The control group received no treatment." },
+    { t: "treatment effect", p: "n.", m: "hiệu ứng can thiệp", e: "We estimate the average treatment effect." },
+    { t: "randomized", p: "adj.", m: "ngẫu nhiên hóa", e: "A randomized trial tested the program." },
+    { t: "longitudinal", p: "adj.", m: "theo chiều dọc (dài hạn)", e: "A longitudinal study tracks the same firms." },
+    { t: "cross-sectional", p: "adj.", m: "cắt ngang (một thời điểm)", e: "We use cross-sectional survey data." },
+    { t: "panel data", p: "n.", m: "dữ liệu bảng", e: "Panel data follow units over time." },
+    { t: "time series", p: "n.", m: "chuỗi thời gian", e: "We analyze a monthly time series." },
+    { t: "standard deviation", p: "n.", m: "độ lệch chuẩn", e: "The standard deviation measures dispersion." },
+    { t: "confidence interval", p: "n.", m: "khoảng tin cậy", e: "The 95% confidence interval is narrow." },
+    { t: "p-value", p: "n.", m: "giá trị p", e: "The p-value is below the 0.05 threshold." },
+    { t: "null hypothesis", p: "n.", m: "giả thuyết không", e: "We reject the null hypothesis." },
+    { t: "statistical significance", p: "n.", m: "ý nghĩa thống kê", e: "The result reaches statistical significance." },
+    { t: "proxy", p: "n.", m: "biến đại diện", e: "Nighttime lights proxy for local income." },
+    { t: "bias", p: "n.", m: "thiên lệch", e: "Selection bias can distort the findings." },
+    { t: "confounding", p: "n./adj.", m: "yếu tố gây nhiễu", e: "We controlled for confounding variables." },
+    { t: "replication", p: "n.", m: "sự tái lập", e: "Replication strengthens confidence in results." },
+    { t: "triangulation", p: "n.", m: "tam giác hóa (đối chiếu nguồn)", e: "Triangulation combines several data sources." },
+    { t: "saturation", p: "n.", m: "độ bão hòa (dữ liệu)", e: "Interviews continued until data saturation." },
+    { t: "thematic analysis", p: "n.", m: "phân tích chủ đề", e: "We used thematic analysis for the interviews." },
+    { t: "mixed methods", p: "n.", m: "phương pháp hỗn hợp", e: "A mixed-methods design adds depth and breadth." },
+    { t: "case study", p: "n.", m: "nghiên cứu tình huống", e: "The case study examines one province in depth." },
+    { t: "survey", p: "n.", m: "khảo sát", e: "We administered a survey to 400 firms." },
+    { t: "questionnaire", p: "n.", m: "bảng hỏi", e: "The questionnaire had twenty items." },
+    { t: "interview", p: "n.", m: "phỏng vấn", e: "We conducted semi-structured interviews." },
+    { t: "focus group", p: "n.", m: "nhóm tập trung", e: "A focus group explored managers' views." },
+    { t: "primary data", p: "n.", m: "dữ liệu sơ cấp", e: "Primary data came from our own survey." },
+    { t: "secondary data", p: "n.", m: "dữ liệu thứ cấp", e: "Secondary data came from the statistics office." },
+    { t: "sampling", p: "n.", m: "lấy mẫu", e: "We used stratified random sampling." },
+    { t: "stratified sampling", p: "n.", m: "lấy mẫu phân tầng", e: "Stratified sampling ensured regional balance." },
+    { t: "purposive sampling", p: "n.", m: "lấy mẫu có chủ đích", e: "Purposive sampling targeted expert managers." },
+    { t: "generalizability", p: "n.", m: "khả năng tổng quát hóa", e: "Small samples limit generalizability." },
+    { t: "descriptive statistics", p: "n.", m: "thống kê mô tả", e: "Descriptive statistics summarize the sample." },
+    { t: "dependent variable", p: "n.", m: "biến phụ thuộc", e: "The dependent variable is firm profit." },
+    { t: "independent variable", p: "n.", m: "biến độc lập", e: "Training is the key independent variable." },
+
+    // ===== (E) Tài chính công =====
+    { t: "public finance", p: "n.", m: "tài chính công", e: "Public finance studies government revenue and spending." },
+    { t: "fiscal decentralization", p: "n.", m: "phân cấp tài khóa", e: "Fiscal decentralization shifts spending to localities." },
+    { t: "intergovernmental transfer", p: "n.", m: "chuyển giao giữa các cấp ngân sách", e: "Intergovernmental transfers fund poorer provinces." },
+    { t: "public debt", p: "n.", m: "nợ công", e: "Public debt rose to sixty percent of GDP." },
+    { t: "sovereign debt", p: "n.", m: "nợ quốc gia", e: "Sovereign debt markets reacted to the news." },
+    { t: "capital expenditure", p: "n.", m: "chi đầu tư", e: "Capital expenditure funds roads and schools." },
+    { t: "recurrent expenditure", p: "n.", m: "chi thường xuyên", e: "Salaries are recurrent expenditure." },
+    { t: "appropriation", p: "n.", m: "khoản phân bổ ngân sách", e: "The budget appropriation was approved." },
+    { t: "disbursement", p: "n.", m: "giải ngân", e: "Slow disbursement delayed the projects." },
+    { t: "fiscal space", p: "n.", m: "dư địa tài khóa", e: "Low debt gives the country fiscal space." },
+    { t: "debt sustainability", p: "n.", m: "bền vững nợ", e: "Debt sustainability depends on growth and rates." },
+    { t: "austerity", p: "n.", m: "thắt lưng buộc bụng", e: "Austerity reduced public investment." },
+    { t: "stimulus", p: "n.", m: "kích thích (kinh tế)", e: "A fiscal stimulus supported demand." },
+    { t: "countercyclical", p: "adj.", m: "ngược chu kỳ", e: "Countercyclical spending cushions downturns." },
+    { t: "transfer payment", p: "n.", m: "khoản trợ cấp chuyển giao", e: "Pensions are a transfer payment." },
+    { t: "social protection", p: "n.", m: "an sinh xã hội", e: "Social protection shields poor households." },
+    { t: "safety net", p: "n.", m: "lưới an sinh", e: "The safety net caught the newly unemployed." },
+    { t: "means-tested", p: "adj.", m: "xét theo thu nhập/hoàn cảnh", e: "The benefit is means-tested." },
+    { t: "targeting", p: "n.", m: "sự nhắm đối tượng", e: "Better targeting reduced leakage." },
+    { t: "leakage", p: "n.", m: "thất thoát (nguồn lực)", e: "Subsidy leakage benefited non-poor households." },
+    { t: "cost-effectiveness", p: "n.", m: "hiệu quả chi phí", e: "We compared programs by cost-effectiveness." },
+    { t: "value for money", p: "n.", m: "hiệu quả đồng tiền", e: "Audits assess value for money." },
+    { t: "public financial management", p: "n.", m: "quản lý tài chính công", e: "Public financial management improved after reform." },
+    { t: "treasury", p: "n.", m: "kho bạc", e: "The treasury manages the government's cash." },
+    { t: "arrears", p: "n.", m: "nợ đọng, khoản quá hạn", e: "The government cleared its payment arrears." },
+    { t: "contingent liability", p: "n.", m: "nghĩa vụ nợ dự phòng", e: "Guarantees are a contingent liability." },
+    { t: "fiscal rule", p: "n.", m: "quy tắc tài khóa", e: "A fiscal rule caps the annual deficit." },
+    { t: "revenue mobilization", p: "n.", m: "huy động nguồn thu", e: "Revenue mobilization funds public services." },
+    { t: "tax base", p: "n.", m: "cơ sở thuế", e: "Reforms broadened the tax base." },
+    { t: "tax evasion", p: "n.", m: "trốn thuế", e: "Digital records curb tax evasion." },
+    { t: "fiscal consolidation", p: "n.", m: "củng cố tài khóa", e: "Fiscal consolidation lowered the deficit." },
+
+    // ===== (F) Quản trị tổ chức =====
+    { t: "leadership", p: "n.", m: "lãnh đạo", e: "Strong leadership drove the reform." },
+    { t: "coordination", p: "n.", m: "sự phối hợp", e: "Coordination across agencies was weak." },
+    { t: "delegation", p: "n.", m: "sự ủy quyền", e: "Delegation of authority sped up decisions." },
+    { t: "motivation", p: "n.", m: "động lực làm việc", e: "Pay reform improved staff motivation." },
+    { t: "performance management", p: "n.", m: "quản lý hiệu suất", e: "Performance management links pay to results." },
+    { t: "appraisal", p: "n.", m: "đánh giá (nhân sự/dự án)", e: "Annual appraisal informs promotion." },
+    { t: "capacity building", p: "n.", m: "nâng cao năng lực", e: "Training supports capacity building." },
+    { t: "change management", p: "n.", m: "quản lý thay đổi", e: "Change management eased the transition." },
+    { t: "innovation", p: "n.", m: "đổi mới sáng tạo", e: "Innovation raised long-run productivity." },
+    { t: "entrepreneurship", p: "n.", m: "tinh thần khởi nghiệp", e: "Policy can foster entrepreneurship." },
+    { t: "competitiveness", p: "n.", m: "năng lực cạnh tranh", e: "Reforms improved national competitiveness." },
+    { t: "value chain", p: "n.", m: "chuỗi giá trị", e: "Firms moved up the value chain." },
+    { t: "supply chain", p: "n.", m: "chuỗi cung ứng", e: "Supply chain disruptions raised costs." },
+    { t: "operations", p: "n.", m: "vận hành, tác nghiệp", e: "We streamlined day-to-day operations." },
+    { t: "logistics", p: "n.", m: "hậu cần", e: "Better logistics cut delivery times." },
+    { t: "quality assurance", p: "n.", m: "bảo đảm chất lượng", e: "Quality assurance reduced defects." },
+    { t: "best practice", p: "n.", m: "thông lệ tốt", e: "We benchmarked against international best practice." },
+    { t: "standard operating procedure", p: "n.", m: "quy trình chuẩn (SOP)", e: "Staff follow a standard operating procedure." },
+    { t: "workflow", p: "n.", m: "luồng công việc", e: "A digital workflow removed paperwork." },
+    { t: "bottleneck", p: "n.", m: "điểm nghẽn", e: "Approval was the main bottleneck." },
+    { t: "restructuring", p: "n.", m: "tái cơ cấu", e: "Restructuring cut duplicate units." },
+    { t: "outsourcing", p: "n.", m: "thuê ngoài", e: "Outsourcing lowered operating costs." },
+    { t: "organizational culture", p: "n.", m: "văn hóa tổ chức", e: "Organizational culture shapes performance." },
+    { t: "scope", p: "n.", m: "phạm vi", e: "The scope of the study is one sector." },
+
+    // ===== (G) Phát triển & Chính sách =====
+    { t: "sustainable development", p: "n.", m: "phát triển bền vững", e: "The plan promotes sustainable development." },
+    { t: "poverty reduction", p: "n.", m: "giảm nghèo", e: "Growth alone is not enough for poverty reduction." },
+    { t: "inclusive growth", p: "n.", m: "tăng trưởng bao trùm", e: "Inclusive growth benefits all groups." },
+    { t: "human development", p: "n.", m: "phát triển con người", e: "Health and education drive human development." },
+    { t: "impact evaluation", p: "n.", m: "đánh giá tác động", e: "An impact evaluation measured the program's effect." },
+    { t: "cost-benefit analysis", p: "n.", m: "phân tích chi phí – lợi ích", e: "Cost-benefit analysis ranked the projects." },
+    { t: "theory of change", p: "n.", m: "lý thuyết thay đổi", e: "The theory of change links inputs to outcomes." },
+    { t: "baseline", p: "n.", m: "mốc gốc, đường cơ sở", e: "We collected baseline data before the program." },
+    { t: "counterfactual", p: "n.", m: "kịch bản phản thực", e: "The counterfactual is what would happen without the policy." },
+    { t: "spillover", p: "n.", m: "hiệu ứng lan tỏa", e: "The reform had positive spillover effects." },
+    { t: "mainstreaming", p: "n.", m: "lồng ghép (vào chính sách)", e: "Gender mainstreaming shaped the budget." },
+    { t: "scaling up", p: "n.", m: "nhân rộng", e: "Scaling up the pilot requires more funding." },
+    { t: "needs assessment", p: "n.", m: "đánh giá nhu cầu", e: "A needs assessment guided the design." },
+    { t: "gap analysis", p: "n.", m: "phân tích khoảng trống", e: "A gap analysis revealed missing services." },
+    { t: "leverage", p: "v./n.", m: "tận dụng đòn bẩy", e: "Public funds can leverage private investment." },
+    { t: "empowerment", p: "n.", m: "trao quyền", e: "The program focused on women's empowerment." },
+    { t: "resilience", p: "n.", m: "khả năng chống chịu", e: "Diversification builds economic resilience." },
+    { t: "vulnerability", p: "n.", m: "tính dễ bị tổn thương", e: "The index measures household vulnerability." },
+    { t: "disparity", p: "n.", m: "sự chênh lệch", e: "Regional disparities remain large." },
+    { t: "equitable", p: "adj.", m: "công bằng", e: "The reform aims for a more equitable outcome." },
+
+    // ===== (H) Động từ học thuật (để nói khi bảo vệ) =====
+    { t: "argue", p: "v.", m: "lập luận", e: "I argue that the current system is inefficient." },
+    { t: "claim", p: "v.", m: "khẳng định", e: "The paper claims a causal effect." },
+    { t: "contend", p: "v.", m: "cho rằng, biện luận", e: "Some scholars contend the opposite." },
+    { t: "demonstrate", p: "v.", m: "chứng minh", e: "The results demonstrate a clear pattern." },
+    { t: "illustrate", p: "v.", m: "minh họa", e: "This example illustrates the mechanism." },
+    { t: "highlight", p: "v.", m: "làm nổi bật", e: "The findings highlight a policy gap." },
+    { t: "emphasize", p: "v.", m: "nhấn mạnh", e: "I emphasize the role of institutions." },
+    { t: "underscore", p: "v.", m: "nhấn mạnh, tô đậm", e: "The data underscore the need for reform." },
+    { t: "address", p: "v.", m: "giải quyết, đề cập", e: "This study addresses that gap directly." },
+    { t: "examine", p: "v.", m: "xem xét, khảo sát", e: "We examine the effect on small firms." },
+    { t: "investigate", p: "v.", m: "điều tra, nghiên cứu", e: "We investigate why the policy failed." },
+    { t: "explore", p: "v.", m: "khám phá", e: "The thesis explores an under-studied area." },
+    { t: "propose", p: "v.", m: "đề xuất", e: "I propose a new allocation rule." },
+    { t: "recommend", p: "v.", m: "khuyến nghị", e: "We recommend three concrete steps." },
+    { t: "conclude", p: "v.", m: "kết luận", e: "I conclude that the reform was effective." },
+    { t: "summarize", p: "v.", m: "tóm tắt", e: "Let me summarize the main findings." },
+    { t: "elaborate", p: "v.", m: "trình bày kỹ hơn", e: "Let me elaborate on that point." },
+    { t: "clarify", p: "v.", m: "làm rõ", e: "I would like to clarify the assumption." },
+    { t: "justify", p: "v.", m: "biện minh", e: "I can justify this methodological choice." },
+    { t: "synthesize", p: "v.", m: "tổng hợp", e: "The review synthesizes prior findings." },
+    { t: "critique", p: "v.", m: "phê bình, đánh giá", e: "I critique the existing framework." },
+    { t: "contrast", p: "v.", m: "đối chiếu, tương phản", e: "This contrasts with earlier results." },
+    { t: "comprise", p: "v.", m: "bao gồm", e: "The sample comprises five sectors." },
+    { t: "entail", p: "v.", m: "kéo theo, đòi hỏi", e: "The reform entails higher upfront costs." },
+
+    // ===== (I) Diễn ngôn / Luận điểm =====
+    { t: "rationale", p: "n.", m: "lý do căn bản", e: "The rationale for the study is clear." },
+    { t: "premise", p: "n.", m: "tiền đề", e: "The argument rests on one premise." },
+    { t: "inference", p: "n.", m: "suy luận", e: "We draw a causal inference cautiously." },
+    { t: "relevance", p: "n.", m: "tính liên quan", e: "The topic has strong policy relevance." },
+    { t: "coherence", p: "n.", m: "tính mạch lạc", e: "There is coherence between theory and results." },
+    { t: "consistency", p: "n.", m: "tính nhất quán", e: "The findings show internal consistency." },
+    { t: "ambiguity", p: "n.", m: "sự mơ hồ", e: "We removed ambiguity from the definitions." },
+    { t: "nuance", p: "n.", m: "sắc thái tinh tế", e: "The results add nuance to the debate." },
+    { t: "perspective", p: "n.", m: "góc nhìn", e: "This offers a fresh perspective." },
+    { t: "consensus", p: "n.", m: "sự đồng thuận", e: "There is no consensus in the literature." },
+    { t: "discrepancy", p: "n.", m: "sự khác biệt, chênh lệch", e: "A discrepancy appeared between the datasets." },
+    { t: "threshold", p: "n.", m: "ngưỡng", e: "Effects appear above a certain threshold." },
+    { t: "magnitude", p: "n.", m: "độ lớn", e: "The magnitude of the effect is modest." },
+    { t: "trend", p: "n.", m: "xu hướng", e: "There is a clear upward trend." },
+    { t: "pattern", p: "n.", m: "quy luật, khuôn mẫu", e: "The data reveal a consistent pattern." },
+    { t: "norm", p: "n.", m: "chuẩn mực", e: "This became the norm across the sector." },
+    { t: "assumption", p: "n.", m: "giả định", e: "This assumption may not always hold." },
+    { t: "argument", p: "n.", m: "luận điểm", e: "My central argument has three parts." },
+    { t: "significance", p: "n.", m: "ý nghĩa, tầm quan trọng", e: "The practical significance is substantial." },
+    { t: "correlation", p: "n.", m: "sự tương quan", e: "There is a strong positive correlation." },
+    { t: "contribution", p: "n.", m: "đóng góp", e: "The main contribution is methodological." },
+    { t: "limitation", p: "n.", m: "hạn chế", e: "One limitation is the small sample." },
   ];
 
-  /* ---------- NGÂN HÀNG CÂU HỎI (10 trục × 8 câu = 80) ----------
+  /* ---------- NGÂN HÀNG CÂU HỎI (10 trục × 13 = 130) ----------
      q=câu hỏi (EN), v=ý câu hỏi (VI), a=khung trả lời gợi ý (VI). */
   const QUESTIONS = {
     urgency: [
@@ -175,6 +350,11 @@
       { q: "Why has this problem not been solved before?", v: "Vì sao vấn đề chưa được giải quyết trước đây?", a: "Do thiếu dữ liệu / phương pháp / bối cảnh mới thay đổi — bạn khắc phục điều nào." },
       { q: "What makes this the right time to study it?", v: "Vì sao đây là thời điểm phù hợp?", a: "Yếu tố mới: dữ liệu sẵn có, cải cách gần đây, hoặc thay đổi bối cảnh." },
       { q: "What happens if this issue is ignored?", v: "Điều gì xảy ra nếu bỏ qua vấn đề này?", a: "Nêu chi phí/rủi ro rõ ràng khi không hành động — tăng tính cấp thiết." },
+      { q: "How large is the problem in numbers?", v: "Vấn đề lớn cỡ nào (bằng số liệu)?", a: "Đưa 1–2 con số biết nói về quy mô/thiệt hại để định lượng tính cấp thiết." },
+      { q: "Is this a national or a local problem?", v: "Đây là vấn đề quốc gia hay địa phương?", a: "Xác định phạm vi + vì sao cấp đó phù hợp để nghiên cứu." },
+      { q: "How does your topic align with national priorities?", v: "Đề tài gắn với ưu tiên quốc gia thế nào?", a: "Liên hệ chiến lược/kế hoạch phát triển hiện hành." },
+      { q: "What triggered your interest in this problem?", v: "Điều gì khơi gợi bạn quan tâm vấn đề này?", a: "Một quan sát thực tế trong công việc + câu hỏi nó đặt ra." },
+      { q: "Why should the committee care about this study?", v: "Vì sao hội đồng nên quan tâm nghiên cứu này?", a: "Tóm tắt một câu: vấn đề lớn + khoảng trống + lợi ích thực tiễn." },
     ],
     novelty: [
       { q: "What is new compared to previous studies?", v: "Điểm mới so với nghiên cứu trước là gì?", a: "Chỉ rõ 1 đóng góp cốt lõi: dữ liệu mới / phương pháp mới / bối cảnh mới / góc nhìn mới." },
@@ -185,6 +365,11 @@
       { q: "How significant is your contribution?", v: "Đóng góp có ý nghĩa đến mức nào?", a: "Định vị mức độ: lấp khoảng trống hẹp nhưng quan trọng, tránh phóng đại." },
       { q: "What gap in the literature does your study fill?", v: "Lấp khoảng trống nào trong tài liệu?", a: "Nêu khoảng trống cụ thể đã tổng quan và cách bạn lấp." },
       { q: "Why should the committee consider this novel?", v: "Vì sao hội đồng nên xem đây là điểm mới?", a: "Tóm tắt bằng chứng khác biệt + xác nhận chưa ai làm đúng như vậy." },
+      { q: "Does your study confirm or challenge prior findings?", v: "Nghiên cứu xác nhận hay thách thức kết quả trước?", a: "Nói rõ; nếu thách thức, giải thích vì sao kết quả bạn đáng tin." },
+      { q: "What is the one sentence that captures your novelty?", v: "Một câu gói trọn điểm mới của bạn?", a: "Chuẩn bị sẵn 1 câu 'elevator pitch' về đóng góp." },
+      { q: "How generalizable is your new insight?", v: "Hiểu biết mới có tổng quát đến đâu?", a: "Nêu phạm vi áp dụng hợp lý, tránh khái quát quá mức." },
+      { q: "Did you develop any new tool or measure?", v: "Bạn có tạo công cụ/thước đo mới không?", a: "Nếu có, mô tả ngắn và giá trị của nó cho nghiên cứu sau." },
+      { q: "Why is your approach better than the standard one?", v: "Vì sao cách của bạn tốt hơn cách chuẩn?", a: "Nêu 1–2 ưu thế cụ thể (chính xác hơn/ít giả định hơn/phù hợp bối cảnh hơn)." },
     ],
     framework: [
       { q: "Which theoretical framework did you use, and why?", v: "Bạn dùng khung lý thuyết nào, vì sao?", a: "Nêu tên lý thuyết + lý do phù hợp với câu hỏi nghiên cứu và bối cảnh." },
@@ -195,6 +380,11 @@
       { q: "Is your framework suitable for this context?", v: "Khung có phù hợp bối cảnh này không?", a: "Giải thích vì sao phù hợp; nêu điều chỉnh nếu có." },
       { q: "Which scholars underpin your framework?", v: "Học giả nào nền tảng cho khung của bạn?", a: "Dẫn 2–3 tác giả trụ cột và ý tưởng bạn kế thừa." },
       { q: "How would your results change under a different theory?", v: "Kết quả đổi ra sao nếu dùng lý thuyết khác?", a: "Thảo luận ngắn tính vững của kết luận qua lăng kính khác." },
+      { q: "How did you operationalize your key concept?", v: "Bạn thao tác hóa khái niệm chính thế nào?", a: "Mô tả định nghĩa vận hành + chỉ báo đo lường cụ thể." },
+      { q: "Is your framework descriptive or explanatory?", v: "Khung của bạn mô tả hay giải thích?", a: "Xác định rõ vai trò của khung trong nghiên cứu." },
+      { q: "How does theory inform your hypotheses?", v: "Lý thuyết dẫn tới giả thuyết ra sao?", a: "Trình bày chuỗi: lý thuyết → kỳ vọng → giả thuyết kiểm định." },
+      { q: "Were there concepts you could not measure?", v: "Có khái niệm nào bạn không đo được không?", a: "Thừa nhận + nêu biến đại diện (proxy) đã dùng." },
+      { q: "How does your framework handle context-specific factors?", v: "Khung xử lý yếu tố đặc thù bối cảnh thế nào?", a: "Nêu cách bổ sung/điều chỉnh cho phù hợp thực tế địa phương." },
     ],
     method: [
       { q: "Why did you choose this method?", v: "Vì sao chọn phương pháp này?", a: "Gắn phương pháp với câu hỏi nghiên cứu + loại dữ liệu + tính khả thi." },
@@ -205,6 +395,11 @@
       { q: "Can your method be replicated?", v: "Phương pháp có lặp lại được không?", a: "Khẳng định quy trình minh bạch, dữ liệu/công cụ mô tả đủ để tái lập." },
       { q: "Why this sample and this time period?", v: "Vì sao chọn mẫu và giai đoạn này?", a: "Lý giải tính đại diện + lý do thực tiễn về dữ liệu." },
       { q: "How does your analysis answer your research question?", v: "Phân tích trả lời câu hỏi nghiên cứu ra sao?", a: "Nối từng bước phân tích tới từng câu hỏi/giả thuyết." },
+      { q: "How did you address endogeneity?", v: "Bạn xử lý nội sinh thế nào?", a: "Nêu biến công cụ/thiết kế nhận diện + kiểm định độ vững." },
+      { q: "What software and techniques did you use?", v: "Bạn dùng phần mềm & kỹ thuật gì?", a: "Kể tên công cụ (Stata/R/SPSS…) + mô hình chính đã ước lượng." },
+      { q: "Why did you choose this sample size?", v: "Vì sao chọn cỡ mẫu này?", a: "Biện minh bằng power/độ bão hòa/thông lệ ngành + ràng buộc thực tế." },
+      { q: "How did you pilot your instrument?", v: "Bạn thử nghiệm công cụ khảo sát thế nào?", a: "Mô tả pilot nhỏ + chỉnh sửa trước khi thu chính thức." },
+      { q: "Would another method have given different results?", v: "Phương pháp khác có cho kết quả khác không?", a: "Bàn ngắn về độ nhạy của kết luận với lựa chọn phương pháp." },
     ],
     data: [
       { q: "Where is your data from?", v: "Dữ liệu lấy từ đâu?", a: "Nêu nguồn (cơ quan thống kê/khảo sát tự thu) + độ tin cậy nguồn." },
@@ -215,6 +410,11 @@
       { q: "Were there any ethical concerns in data collection?", v: "Có vấn đề đạo đức khi thu thập không?", a: "Nêu đồng thuận, ẩn danh, phê duyệt đạo đức nếu có." },
       { q: "How current is your data?", v: "Dữ liệu cập nhật đến đâu?", a: "Nêu mốc thời gian + vì sao vẫn phù hợp để kết luận." },
       { q: "Could measurement error affect your results?", v: "Sai số đo lường ảnh hưởng kết quả không?", a: "Thừa nhận khả năng + hướng nó làm lệch kết quả (nếu có)." },
+      { q: "How did you verify data quality?", v: "Bạn kiểm tra chất lượng dữ liệu thế nào?", a: "Nêu bước làm sạch, đối chiếu chéo, kiểm tra logic." },
+      { q: "Did you combine multiple data sources?", v: "Bạn có kết hợp nhiều nguồn dữ liệu không?", a: "Nếu có, giải thích cách ghép nối và bảo đảm nhất quán." },
+      { q: "What is the unit of analysis?", v: "Đơn vị phân tích là gì?", a: "Xác định rõ (cá nhân/hộ/doanh nghiệp/tỉnh) + vì sao phù hợp." },
+      { q: "How did you protect respondents' privacy?", v: "Bạn bảo vệ quyền riêng tư người trả lời thế nào?", a: "Ẩn danh, lưu trữ an toàn, chỉ dùng cho nghiên cứu." },
+      { q: "Could your data be biased toward certain groups?", v: "Dữ liệu có thiên về nhóm nào không?", a: "Đánh giá độ phủ + hệ quả nếu một nhóm bị thiếu đại diện." },
     ],
     findings: [
       { q: "What are your key findings?", v: "Kết quả chính là gì?", a: "Nêu 2–3 phát hiện quan trọng nhất, ngắn gọn, có số liệu." },
@@ -225,6 +425,11 @@
       { q: "What is the practical magnitude of your effect?", v: "Độ lớn thực tế của tác động?", a: "Diễn giải hệ số theo ngôn ngữ đời thực, không chỉ 'có ý nghĩa'." },
       { q: "Could your results be explained by another factor?", v: "Có yếu tố khác giải thích kết quả không?", a: "Nêu biến gây nhiễu tiềm tàng + cách bạn kiểm soát." },
       { q: "What is the single most important takeaway?", v: "Thông điệp quan trọng nhất là gì?", a: "Một câu kết luận cô đọng mà hội đồng cần nhớ." },
+      { q: "Are your results statistically and practically significant?", v: "Kết quả có ý nghĩa thống kê & thực tiễn không?", a: "Phân biệt rõ hai loại ý nghĩa và mức độ mỗi loại." },
+      { q: "Did any result contradict your expectations?", v: "Có kết quả nào trái kỳ vọng không?", a: "Nêu và giải thích trung thực + hàm ý của nó." },
+      { q: "How robust are your findings?", v: "Kết quả vững đến đâu?", a: "Kể các kiểm tra độ vững đã làm và kết quả không đổi ra sao." },
+      { q: "What do your results mean for practitioners?", v: "Kết quả nghĩa gì với người thực hành?", a: "Chuyển phát hiện thành thông điệp hành động cho nhà quản lý." },
+      { q: "How do you explain the mechanism behind your results?", v: "Cơ chế đằng sau kết quả là gì?", a: "Giải thích 'vì sao' xảy ra, không chỉ 'có' quan hệ." },
     ],
     limits: [
       { q: "What are the limitations of your study?", v: "Nghiên cứu có hạn chế gì?", a: "Nêu 2–3 hạn chế thật (dữ liệu/phạm vi/phương pháp) một cách bình tĩnh." },
@@ -235,6 +440,11 @@
       { q: "How would a larger sample change your results?", v: "Mẫu lớn hơn sẽ thay đổi gì?", a: "Bàn về độ chính xác/khả năng phát hiện tác động nhỏ." },
       { q: "Are there threats to internal validity?", v: "Có nguy cơ với giá trị nội tại không?", a: "Nêu nội sinh/đồng thời/chọn mẫu + cách giảm thiểu." },
       { q: "What assumptions might not hold?", v: "Giả định nào có thể không đúng?", a: "Chỉ ra giả định nhạy cảm nhất và hệ quả nếu sai." },
+      { q: "Does your study have external validity?", v: "Nghiên cứu có giá trị ngoại tại không?", a: "Bàn khả năng áp dụng ra ngoài mẫu/bối cảnh nghiên cứu." },
+      { q: "How did the limitations shape your conclusions?", v: "Hạn chế định hình kết luận thế nào?", a: "Nêu chỗ bạn cố ý phát biểu thận trọng vì hạn chế." },
+      { q: "What data would have made your study stronger?", v: "Dữ liệu nào sẽ giúp nghiên cứu mạnh hơn?", a: "Nêu dữ liệu lý tưởng còn thiếu + vì sao chưa có." },
+      { q: "Are you overstating any of your claims?", v: "Bạn có phóng đại khẳng định nào không?", a: "Rà lại và điều chỉnh về mức bằng chứng thực sự cho phép." },
+      { q: "How do you separate correlation from causation here?", v: "Bạn tách tương quan khỏi nhân quả thế nào?", a: "Nêu chiến lược nhận diện + thừa nhận giới hạn nhân quả." },
     ],
     policy: [
       { q: "What are the policy implications?", v: "Hàm ý chính sách là gì?", a: "Chuyển kết quả thành 2–3 khuyến nghị hành động cụ thể." },
@@ -245,6 +455,11 @@
       { q: "How would you measure the success of the policy?", v: "Đo thành công của chính sách thế nào?", a: "Đề xuất chỉ số M&E cụ thể và mốc thời gian." },
       { q: "How does your recommendation fit existing regulation?", v: "Khuyến nghị khớp với quy định hiện hành ra sao?", a: "Chỉ ra điểm tương thích hoặc cần sửa đổi thể chế." },
       { q: "What is the first step you would recommend?", v: "Bước đầu tiên bạn khuyến nghị?", a: "Một hành động ưu tiên, ít tốn kém, tạo đà." },
+      { q: "Who might resist your recommendations, and why?", v: "Ai có thể phản đối, vì sao?", a: "Nhận diện nhóm lợi ích + cách giảm phản kháng." },
+      { q: "How would you fund your proposal?", v: "Bạn tài trợ đề xuất bằng nguồn nào?", a: "Nêu nguồn lực khả thi (ngân sách/tái phân bổ/đối tác)." },
+      { q: "Is your recommendation short-term or long-term?", v: "Khuyến nghị ngắn hạn hay dài hạn?", a: "Phân tầng lộ trình: việc làm ngay và việc cần thời gian." },
+      { q: "How would you convince a skeptical policymaker?", v: "Bạn thuyết phục nhà hoạch định hoài nghi thế nào?", a: "Dựa vào bằng chứng + chi phí thấp của bước thử nghiệm." },
+      { q: "What trade-offs does your recommendation involve?", v: "Khuyến nghị đánh đổi những gì?", a: "Nêu thẳng đánh đổi (VD hiệu quả vs công bằng) và lựa chọn của bạn." },
     ],
     apply: [
       { q: "Can this be applied elsewhere?", v: "Có thể áp dụng nơi khác không?", a: "Nêu điều kiện để chuyển giao + nơi phù hợp nhất." },
@@ -255,6 +470,11 @@
       { q: "What barriers might limit wider adoption?", v: "Rào cản nào cản trở áp dụng rộng?", a: "Nêu rào cản thể chế/chính trị/kỹ thuật và cách vượt." },
       { q: "Have others tried similar approaches?", v: "Đã có ai thử cách tương tự chưa?", a: "Dẫn ví dụ so sánh + bài học rút ra." },
       { q: "Who would you partner with for implementation?", v: "Bạn hợp tác với ai để triển khai?", a: "Nêu đối tác (cơ quan, PPP) và vai trò của họ." },
+      { q: "What would a pilot in a new region look like?", v: "Thí điểm ở vùng mới sẽ ra sao?", a: "Phác thảo thiết kế pilot nhỏ + chỉ số đánh giá." },
+      { q: "How context-dependent are your conclusions?", v: "Kết luận phụ thuộc bối cảnh đến đâu?", a: "Nêu yếu tố bối cảnh then chốt quyết định thành–bại." },
+      { q: "Could the private sector use your findings?", v: "Khu vực tư có dùng được kết quả không?", a: "Chỉ ra ứng dụng cho doanh nghiệp nếu phù hợp." },
+      { q: "What is the minimum setup to reproduce your results?", v: "Cần tối thiểu gì để tái tạo kết quả?", a: "Liệt kê điều kiện tối thiểu về dữ liệu/năng lực." },
+      { q: "How would culture affect transferability?", v: "Yếu tố văn hóa ảnh hưởng khả năng chuyển giao thế nào?", a: "Bàn cách văn hóa/thể chế địa phương làm thay đổi kết quả." },
     ],
     next: [
       { q: "What are the next steps?", v: "Hướng nghiên cứu tiếp theo là gì?", a: "Nêu 2–3 hướng mở rộng logic từ hạn chế hiện tại." },
@@ -265,26 +485,125 @@
       { q: "How would you improve the methodology next time?", v: "Lần tới cải tiến phương pháp thế nào?", a: "Nêu thiết kế mạnh hơn (thực nghiệm, dữ liệu lớn hơn)." },
       { q: "Could this become a longer-term research agenda?", v: "Có thể thành chương trình nghiên cứu dài hạn?", a: "Phác thảo 2–3 giai đoạn nghiên cứu nối tiếp." },
       { q: "What collaboration would strengthen future work?", v: "Hợp tác nào giúp nghiên cứu sau mạnh hơn?", a: "Nêu ngành/đối tác bổ trợ dữ liệu hoặc chuyên môn." },
+      { q: "Do you plan to publish this research?", v: "Bạn có định công bố nghiên cứu này không?", a: "Nêu kế hoạch (tạp chí/hội thảo) và phần sẽ phát triển thêm." },
+      { q: "What is the biggest open question in this field?", v: "Câu hỏi mở lớn nhất của lĩnh vực là gì?", a: "Định vị nghiên cứu của bạn so với câu hỏi lớn đó." },
+      { q: "How would more data change your conclusions?", v: "Nhiều dữ liệu hơn sẽ đổi kết luận thế nào?", a: "Bàn hướng dữ liệu bổ sung củng cố/mở rộng kết luận." },
+      { q: "Could technology change how this problem is studied?", v: "Công nghệ có đổi cách nghiên cứu vấn đề này không?", a: "Nêu dữ liệu lớn/AI/phương pháp mới có thể áp dụng." },
+      { q: "Where do you see this field in ten years?", v: "Bạn thấy lĩnh vực này 10 năm tới ra sao?", a: "Nêu xu hướng + vai trò đóng góp tiếp theo của bạn." },
     ],
   };
 
-  /* ---------- LỘ TRÌNH THÁNG 1 CHI TIẾT (4 tuần) ----------
-     Tuần 1 đã có bản chi tiết theo ngày trong app (mục Tuần 1).
-     Dưới đây là trọng tâm tuần 2–4 của Giai đoạn 1. */
-  const MONTH1_PLAN = [
-    { week: 1, theme: "Chẩn đoán & Khởi động", color: "sky",
-      focus: "Ghi âm mốc gốc, lập sổ tay 10–50 từ, thiết lập công cụ AI, nghe video kinh tế nhập môn.",
-      days: ["Chẩn đoán + ghi âm gốc", "Âm cuối -s/-t/-d/-k/-th", "Nghe câu hỏi mẫu", "Nói 6 câu về đề tài", "Trọng âm từ dài", "Thực chiến voice AI", "Nghỉ chủ động + tổng kết"] },
-    { week: 2, theme: "Âm cuối + Nghe nền", color: "brand",
-      focus: "Nghe 20'/ngày bài giảng nhập môn (MIT OCW/Yale). Luyện nuốt âm cuối. Shadowing 1 phút/ngày. 5 từ/ngày.",
-      days: ["Nghe bài giảng #1 (có phụ đề)", "Nghe lại #1 (không phụ đề) + chép câu", "Cụm phụ âm khó (str-, -nds)", "Shadowing đoạn 1 phút ×5", "Nghe bài mới + 5 từ", "Voice AI: kể về công việc", "Ôn từ tuần + nghe nhẹ"] },
-    { week: 3, theme: "Trọng âm & Shadowing chuyên sâu", color: "violet",
-      focus: "Trọng âm từ dài (e-CO-no-my, ma-na-GE-ment). Shadowing tăng lên 2 phút. Đọc to tài liệu chuyên ngành.",
-      days: ["Trọng âm 10 từ chuyên ngành", "Shadowing 2 phút + ghi âm", "Nghe Q&A hội thảo (LSE) bắt ý", "Đọc to đoạn chuyên ngành", "Nghe + so ghi âm đầu tuần", "Voice AI: 3 câu hỏi đơn giản", "Ôn + nhật ký tuần" ] },
-    { week: 4, theme: "Nghe câu hỏi + Nói về đề tài", color: "amber",
-      focus: "Chuyển trọng tâm sang bắt Ý câu hỏi. Nói liền mạch 5–7 câu về đề tài. Bắt đầu chạm ngân hàng câu hỏi.",
-      days: ["Nghe 5 câu hỏi mẫu nhiều tốc độ", "Viết lại ý câu hỏi bằng tiếng Việt", "Trả lời 3 câu trục 'Tính cấp thiết'", "Nói 7 câu về đề tài (ghi âm)", "Nghe bài giảng + 5 từ", "Mock Q&A ngắn với AI", "Tổng kết tháng 1 + ghi âm so mốc gốc"] },
+  /* ---------- KHO CÂU THUYẾT TRÌNH & HỎI–ĐÁP ----------
+     Ngôn ngữ mẫu để trình bày trôi chảy và xử lý phần vấn đáp. */
+  const PHRASES = [
+    { cat: "Mở đầu bài thuyết trình", icon: "🎬", items: [
+      { en: "Good morning. Thank you for the opportunity to present my research.", vi: "Chào buổi sáng. Cảm ơn cơ hội được trình bày nghiên cứu của tôi." },
+      { en: "Today I will present my study on…", vi: "Hôm nay tôi xin trình bày nghiên cứu về…" },
+      { en: "My presentation is organized into three parts.", vi: "Bài trình bày của tôi gồm ba phần." },
+      { en: "Let me begin with the background and motivation.", vi: "Xin bắt đầu với bối cảnh và lý do nghiên cứu." },
+    ]},
+    { cat: "Chuyển ý (signposting)", icon: "➡", items: [
+      { en: "Let me now turn to the methodology.", vi: "Bây giờ tôi chuyển sang phương pháp." },
+      { en: "This brings me to my main findings.", vi: "Điều này dẫn tôi tới các kết quả chính." },
+      { en: "Building on that point, …", vi: "Tiếp nối ý đó, …" },
+      { en: "Before I conclude, let me highlight one key result.", vi: "Trước khi kết luận, xin nhấn mạnh một kết quả quan trọng." },
+    ]},
+    { cat: "Mô tả số liệu / hình", icon: "📊", items: [
+      { en: "As you can see in this figure, …", vi: "Như quý vị thấy trong hình này, …" },
+      { en: "The data show a clear upward trend.", vi: "Dữ liệu cho thấy một xu hướng tăng rõ rệt." },
+      { en: "This table compares the two groups.", vi: "Bảng này so sánh hai nhóm." },
+      { en: "The difference is both large and statistically significant.", vi: "Khác biệt vừa lớn vừa có ý nghĩa thống kê." },
+    ]},
+    { cat: "Nhấn mạnh & kết luận", icon: "🎯", items: [
+      { en: "It is important to note that…", vi: "Cần lưu ý rằng…" },
+      { en: "The key takeaway is…", vi: "Thông điệp cốt lõi là…" },
+      { en: "To sum up, my study makes three contributions.", vi: "Tóm lại, nghiên cứu của tôi có ba đóng góp." },
+      { en: "In conclusion, the evidence supports…", vi: "Tóm lại, bằng chứng ủng hộ…" },
+    ]},
+    { cat: "Mời và mở phần hỏi đáp", icon: "🙋", items: [
+      { en: "I am now happy to take any questions.", vi: "Tôi xin sẵn sàng nhận câu hỏi." },
+      { en: "Thank you for your question.", vi: "Cảm ơn câu hỏi của thầy/cô." },
+      { en: "That is an excellent point.", vi: "Đó là một điểm rất hay." },
+      { en: "Let me address that in two parts.", vi: "Tôi xin trả lời làm hai ý." },
+    ]},
+    { cat: "Khi chưa nghe rõ / cần thời gian", icon: "⏳", items: [
+      { en: "Could you please rephrase the question?", vi: "Xin thầy/cô nhắc lại câu hỏi được không ạ?" },
+      { en: "If I understand correctly, you are asking about…", vi: "Nếu tôi hiểu đúng, thầy/cô đang hỏi về…" },
+      { en: "May I take a moment to think?", vi: "Cho tôi một chút để suy nghĩ." },
+      { en: "I would like to clarify what you mean by…", vi: "Tôi muốn làm rõ ý thầy/cô về…" },
+    ]},
+    { cat: "Khi không chắc / không có dữ liệu", icon: "🧭", items: [
+      { en: "That is beyond the scope of my study, but my findings suggest…", vi: "Điều đó ngoài phạm vi nghiên cứu, nhưng kết quả của tôi gợi ý…" },
+      { en: "I do not have data on that specific point; however, …", vi: "Tôi không có dữ liệu về điểm cụ thể đó; tuy nhiên, …" },
+      { en: "That is an interesting direction for future research.", vi: "Đó là một hướng thú vị cho nghiên cứu tiếp theo." },
+      { en: "Let me answer what I can and note where evidence is limited.", vi: "Tôi xin trả lời phần có thể và nêu rõ chỗ bằng chứng còn hạn chế." },
+    ]},
+    { cat: "Đồng ý / phản biện lịch sự", icon: "⚖", items: [
+      { en: "I see your point, however the evidence suggests…", vi: "Tôi hiểu ý thầy/cô, tuy nhiên bằng chứng cho thấy…" },
+      { en: "I partly agree; let me explain the nuance.", vi: "Tôi đồng ý một phần; xin giải thích sắc thái." },
+      { en: "That is a fair concern, and I addressed it by…", vi: "Đó là lo ngại hợp lý, và tôi đã xử lý bằng cách…" },
+      { en: "You raise a valid limitation, which I acknowledge.", vi: "Thầy/cô nêu một hạn chế xác đáng mà tôi thừa nhận." },
+    ]},
+    { cat: "Khép lại câu trả lời", icon: "✅", items: [
+      { en: "I hope that answers your question.", vi: "Hy vọng câu trả lời đã thỏa đáng." },
+      { en: "In short, my answer is…", vi: "Nói ngắn gọn, câu trả lời của tôi là…" },
+      { en: "Please let me know if you would like more detail.", vi: "Nếu thầy/cô cần chi tiết hơn, xin cho tôi biết." },
+      { en: "Thank you — that is a point I will develop further.", vi: "Cảm ơn — đó là điểm tôi sẽ phát triển thêm." },
+    ]},
   ];
 
-  global.SEED = { VOCAB, QUESTIONS, MONTH1_PLAN, SOURCES };
+  /* ---------- LUYỆN PHÁT ÂM (khó với người Việt) ---------- */
+  const PRONUNCIATION = [
+    { group: "Âm cuối hay bị nuốt (-s, -t, -d, -k)", note: "Người Việt thường bỏ âm cuối. Phát âm bật nhẹ nhưng rõ.", examples: ["cost", "fact", "trade", "risk", "impact", "result"] },
+    { group: "Âm /θ/ và /ð/ (th)", note: "Đặt lưỡi giữa hai hàm răng. /θ/ vô thanh, /ð/ hữu thanh.", examples: ["theory", "method", "growth", "this", "the", "although"] },
+    { group: "Cụm phụ âm đầu/cuối", note: "Đọc đủ các âm, không thêm nguyên âm chen giữa.", examples: ["strategy", "structure", "spend", "trends", "costs", "risks"] },
+    { group: "Đuôi -ed (/t/, /d/, /ɪd/)", note: "wanted=/ɪd/, based=/t/, allocated=/ɪd/, reformed=/d/.", examples: ["allocated", "based", "reformed", "estimated", "reduced", "targeted"] },
+    { group: "Đuôi -s / số nhiều / ngôi thứ 3", note: "Phát âm /s/, /z/ hoặc /ɪz/ tùy âm trước.", examples: ["costs", "firms", "taxes", "increases", "indicates", "prices"] },
+    { group: "Trọng âm từ dài", note: "Nhấn đúng âm tiết (CHỮ HOA) để dễ hiểu.", examples: ["e-CO-no-my", "ma-NA-ge-ment", "ad-mi-nis-TRA-tion", "de-VE-lop-ment", "sig-NI-fi-cant", "me-tho-DO-lo-gy"] },
+    { group: "Nguyên âm dài / ngắn dễ nhầm", note: "Phân biệt /iː/–/ɪ/, /uː/–/ʊ/ để không đổi nghĩa.", examples: ["reach vs rich", "leave vs live", "pool vs pull"] },
+    { group: "Âm /v/, /z/, /dʒ/ cuối", note: "Rung dây thanh, đừng chuyển thành /f/, /s/, /ch/.", examples: ["achieve", "improve", "analyze", "manage", "advantage", "increase (v.)"] },
+  ];
+
+  /* ---------- LỘ TRÌNH 12 THÁNG (theo tuần) ----------
+     w=tuần trong tháng · mỗi tháng 4 dòng trọng tâm tuần. */
+  const MONTHS_PLAN = [
+    { month: 1, phase: 1, theme: "Âm cuối + Nghe nền + Từ vựng", color: "brand",
+      focus: "Khởi động (tuần 1) rồi vào nền: nghe 20'/ngày, luyện âm cuối, shadowing, 5 từ/ngày.",
+      weeks: ["Chẩn đoán, ghi âm mốc gốc, lập sổ tay 10–50 từ", "Âm cuối -s/-t/-d/-k/-th + nghe bài giảng nhập môn", "Cụm phụ âm + shadowing 1 phút/ngày", "Nghe câu hỏi mẫu + nói 5–6 câu về đề tài"] },
+    { month: 2, phase: 1, theme: "Trọng âm & Shadowing chuyên sâu", color: "brand",
+      focus: "Trọng âm từ dài, shadowing 2 phút, đọc to tài liệu chuyên ngành, 5 từ/ngày.",
+      weeks: ["Trọng âm 10 từ chuyên ngành/tuần", "Shadowing 2 phút + tự ghi âm", "Đọc to đoạn chuyên ngành cho quen thuật ngữ", "Nghe Q&A hội thảo, tập bắt ý"] },
+    { month: 3, phase: 1, theme: "Củng cố nghe + Nói liền mạch", color: "brand",
+      focus: "MỐC GĐ1: nghe hiểu ~50–60% bài giảng nhập môn; nói liền mạch 5–7 câu về lĩnh vực.",
+      weeks: ["Nghe không phụ đề, chép câu", "Nói 7 câu về đề tài (ghi âm, so mốc gốc)", "Ôn 150+ từ đã học bằng flashcard", "Tổng kiểm tra: nghe hiểu % + nói liền mạch"] },
+    { month: 4, phase: 2, theme: "Viết bản thảo thuyết trình", color: "violet",
+      focus: "Viết bản thảo bài thuyết trình bằng tiếng Anh (AI sửa cho dễ nói: câu ngắn, học thuật).",
+      weeks: ["Dàn ý bài thuyết trình (mở–thân–kết)", "Viết phần mở đầu + bối cảnh", "Viết phần phương pháp + kết quả", "Viết phần kết luận + khuyến nghị"] },
+    { month: 5, phase: 2, theme: "Luyện nói bản thảo + Nghe Q&A", color: "violet",
+      focus: "Đọc to → ghi âm → sửa → lặp, tiến tới nói không cầm giấy từng phần. Nghe chuyển sang Q&A.",
+      weeks: ["Đọc to + shadowing chính bản thảo", "Ghi âm từng phần, sửa phát âm", "Nói không giấy phần mở đầu & kết luận", "Nghe phiên Q&A hội thảo, bắt ý câu hỏi"] },
+    { month: 6, phase: 2, theme: "Trình bày 10–15' + Dựng ngân hàng câu hỏi", color: "violet",
+      focus: "MỐC GĐ2: trình bày trôi chảy 10–15' (còn nhìn dàn ý); nghe hiểu câu hỏi đơn giản.",
+      weeks: ["Trình bày toàn bài, bấm giờ", "Sinh ngân hàng câu hỏi (mỗi trục 8–10 câu)", "Luyện nghe từng câu hỏi nhiều tốc độ", "Diễn tập trình bày + 5 câu hỏi đầu tiên"] },
+    { month: 7, phase: 3, theme: "Thuyết trình lưu loát + Mở rộng câu hỏi", color: "amber",
+      focus: "Thuộc và trình bày lưu loát, ít nhìn giấy, đúng thời lượng. Ngân hàng câu hỏi lên 80–100.",
+      weeks: ["Trình bày ít nhìn giấy phần 1–2", "Trình bày ít nhìn giấy phần 3–kết", "Mở rộng ngân hàng câu hỏi đủ 10 trục", "Trả lời từ chuẩn bị: 20 câu quen thuộc"] },
+    { month: 8, phase: 3, theme: "Mock Q&A với AI mỗi ngày", color: "amber",
+      focus: "Mô phỏng hỏi–đáp với AI (voice) hằng ngày; chuyển từ trả lời chuẩn bị sang ứng biến.",
+      weeks: ["Mock Q&A: trục cấp thiết + tính mới", "Mock Q&A: phương pháp + dữ liệu", "Mock Q&A: kết quả + hạn chế", "Mock Q&A: chính sách + ứng dụng + hướng tiếp"] },
+    { month: 9, phase: 3, theme: "Câu cứu nguy thành phản xạ", color: "amber",
+      focus: "MỐC GĐ3: trả lời bình tĩnh, rõ ràng các câu đã lường trước; dùng câu cứu nguy khi bí.",
+      weeks: ["Thuộc lòng 5 câu cứu nguy đến phản xạ", "Luyện diễn lại câu hỏi trước khi trả lời", "Mock Q&A có câu bất ngờ, tập giữ bình tĩnh", "Tự đánh giá: câu nào còn 'đứng hình'"] },
+    { month: 10, phase: 4, theme: "Diễn tập bảo vệ + Hội đồng ảo", color: "accent",
+      focus: "Diễn tập bảo vệ đầy đủ: thuyết trình + hội đồng ảo hỏi câu hóc búa, bất ngờ.",
+      weeks: ["Diễn tập toàn phần lần 1 (AI làm hội đồng)", "Xem lại, sửa chỗ yếu nhất", "Diễn tập toàn phần lần 2, tăng độ khó câu hỏi", "Luyện kiểm soát thời gian trình bày"] },
+    { month: 11, phase: 4, theme: "Người thật đóng giám khảo", color: "accent",
+      focus: "Ưu tiên mời đồng nghiệp/chuyên gia đóng vai giám khảo ≥3–4 buổi. Xử lý câu chưa nghe rõ.",
+      weeks: ["Buổi mô phỏng với người thật #1", "Rút kinh nghiệm + luyện câu hay bị vấp", "Buổi mô phỏng với người thật #2", "Luyện ngôn ngữ cơ thể, giảm run"] },
+    { month: 12, phase: 4, theme: "Mô phỏng toàn phần & Hoàn thiện", color: "accent",
+      focus: "MỐC CUỐI: hoàn thành trọn vẹn ≥2 buổi mô phỏng bảo vệ không 'đứng hình'.",
+      weeks: ["Mô phỏng bảo vệ hoàn chỉnh #1", "Tinh chỉnh phần vấn đáp còn yếu", "Mô phỏng bảo vệ hoàn chỉnh #2", "Nghỉ dưỡng sức, ôn nhẹ, giữ phong độ"] },
+  ];
+
+  global.SEED = { VOCAB, QUESTIONS, MONTHS_PLAN, PHRASES, PRONUNCIATION, SOURCES };
 })(window);
