@@ -44,8 +44,9 @@
      (E) Tài chính công · (F) Quản trị tổ chức · (G) Phát triển &
      chính sách · (H) Động từ học thuật · (I) Diễn ngôn/luận điểm.
      t=term, p=pos, m=nghĩa, e=ví dụ. */
-  const VOCAB = [
-    // ===== (A) Từ học thuật / nghiên cứu (nền AWL) =====
+  // Từ vựng chia 9 nhóm; VOCAB_GROUPS (bên dưới) sắp theo thứ tự học dễ → khó.
+  const VG = {
+    A: [ // (L1) Học thuật & nghiên cứu
     { t: "analyze", p: "v.", m: "phân tích", e: "We analyze the data to identify key trends." },
     { t: "approach", p: "n.", m: "cách tiếp cận", e: "This study adopts a quantitative approach." },
     { t: "assess", p: "v.", m: "đánh giá", e: "The model assesses the impact of the policy." },
@@ -79,7 +80,8 @@
     { t: "sample", p: "n.", m: "mẫu (nghiên cứu)", e: "The sample includes 500 households." },
     { t: "reliability", p: "n.", m: "độ tin cậy", e: "We tested the reliability of the survey." },
 
-    // ===== (B) Kinh tế cốt lõi (IMF/OECD/World Bank) =====
+    ],
+    B: [ // (L1) Kinh tế cốt lõi
     { t: "allocation", p: "n.", m: "sự phân bổ (nguồn lực)", e: "Efficient allocation of resources is essential." },
     { t: "aggregate", p: "adj./n.", m: "tổng gộp, tổng thể", e: "Aggregate demand fell during the recession." },
     { t: "marginal", p: "adj.", m: "cận biên", e: "Firms produce where marginal cost equals price." },
@@ -123,7 +125,8 @@
     { t: "microeconomic", p: "adj.", m: "(thuộc) kinh tế vi mô", e: "The study uses microeconomic data on firms." },
     { t: "econometric", p: "adj.", m: "(thuộc) kinh tế lượng", e: "We apply an econometric model to the panel." },
 
-    // ===== (C) Quản lý – Quản trị công =====
+    ],
+    C: [ // (L2) Quản lý & quản trị công
     { t: "governance", p: "n.", m: "quản trị (điều hành)", e: "Good governance improves public services." },
     { t: "accountability", p: "n.", m: "trách nhiệm giải trình", e: "Accountability reduces the risk of corruption." },
     { t: "transparency", p: "n.", m: "sự minh bạch", e: "Budget transparency builds public trust." },
@@ -164,7 +167,8 @@
     { t: "feasible", p: "adj.", m: "khả thi", e: "The plan is technically and financially feasible." },
     { t: "scalable", p: "adj.", m: "có thể nhân rộng", e: "The pilot is scalable to the whole province." },
 
-    // ===== (D) Phương pháp & Thống kê =====
+    ],
+    D: [ // (L4) Phương pháp & thống kê
     { t: "regression", p: "n.", m: "hồi quy", e: "We ran a regression of output on investment." },
     { t: "coefficient", p: "n.", m: "hệ số", e: "The estimated coefficient is positive and large." },
     { t: "causation", p: "n.", m: "quan hệ nhân quả", e: "Correlation does not imply causation." },
@@ -206,7 +210,8 @@
     { t: "dependent variable", p: "n.", m: "biến phụ thuộc", e: "The dependent variable is firm profit." },
     { t: "independent variable", p: "n.", m: "biến độc lập", e: "Training is the key independent variable." },
 
-    // ===== (E) Tài chính công =====
+    ],
+    E: [ // (L3) Tài chính công
     { t: "public finance", p: "n.", m: "tài chính công", e: "Public finance studies government revenue and spending." },
     { t: "fiscal decentralization", p: "n.", m: "phân cấp tài khóa", e: "Fiscal decentralization shifts spending to localities." },
     { t: "intergovernmental transfer", p: "n.", m: "chuyển giao giữa các cấp ngân sách", e: "Intergovernmental transfers fund poorer provinces." },
@@ -239,7 +244,8 @@
     { t: "tax evasion", p: "n.", m: "trốn thuế", e: "Digital records curb tax evasion." },
     { t: "fiscal consolidation", p: "n.", m: "củng cố tài khóa", e: "Fiscal consolidation lowered the deficit." },
 
-    // ===== (F) Quản trị tổ chức =====
+    ],
+    F: [ // (L2) Quản trị tổ chức
     { t: "leadership", p: "n.", m: "lãnh đạo", e: "Strong leadership drove the reform." },
     { t: "coordination", p: "n.", m: "sự phối hợp", e: "Coordination across agencies was weak." },
     { t: "delegation", p: "n.", m: "sự ủy quyền", e: "Delegation of authority sped up decisions." },
@@ -265,7 +271,8 @@
     { t: "organizational culture", p: "n.", m: "văn hóa tổ chức", e: "Organizational culture shapes performance." },
     { t: "scope", p: "n.", m: "phạm vi", e: "The scope of the study is one sector." },
 
-    // ===== (G) Phát triển & Chính sách =====
+    ],
+    G: [ // (L3) Phát triển & chính sách
     { t: "sustainable development", p: "n.", m: "phát triển bền vững", e: "The plan promotes sustainable development." },
     { t: "poverty reduction", p: "n.", m: "giảm nghèo", e: "Growth alone is not enough for poverty reduction." },
     { t: "inclusive growth", p: "n.", m: "tăng trưởng bao trùm", e: "Inclusive growth benefits all groups." },
@@ -287,7 +294,8 @@
     { t: "disparity", p: "n.", m: "sự chênh lệch", e: "Regional disparities remain large." },
     { t: "equitable", p: "adj.", m: "công bằng", e: "The reform aims for a more equitable outcome." },
 
-    // ===== (H) Động từ học thuật (để nói khi bảo vệ) =====
+    ],
+    H: [ // (L1) Động từ học thuật
     { t: "argue", p: "v.", m: "lập luận", e: "I argue that the current system is inefficient." },
     { t: "claim", p: "v.", m: "khẳng định", e: "The paper claims a causal effect." },
     { t: "contend", p: "v.", m: "cho rằng, biện luận", e: "Some scholars contend the opposite." },
@@ -313,7 +321,8 @@
     { t: "comprise", p: "v.", m: "bao gồm", e: "The sample comprises five sectors." },
     { t: "entail", p: "v.", m: "kéo theo, đòi hỏi", e: "The reform entails higher upfront costs." },
 
-    // ===== (I) Diễn ngôn / Luận điểm =====
+    ],
+    I: [ // (L2) Diễn ngôn & luận điểm
     { t: "rationale", p: "n.", m: "lý do căn bản", e: "The rationale for the study is clear." },
     { t: "premise", p: "n.", m: "tiền đề", e: "The argument rests on one premise." },
     { t: "inference", p: "n.", m: "suy luận", e: "We draw a causal inference cautiously." },
@@ -336,7 +345,42 @@
     { t: "correlation", p: "n.", m: "sự tương quan", e: "There is a strong positive correlation." },
     { t: "contribution", p: "n.", m: "đóng góp", e: "The main contribution is methodological." },
     { t: "limitation", p: "n.", m: "hạn chế", e: "One limitation is the small sample." },
+    ],
+  };
+
+  /* ---------- CẤP ĐỘ HỌC (dễ → khó, bám lộ trình 12 tháng) ---------- */
+  const LEVELS = [
+    { lvl: 1, name: "Nền tảng", desc: "Từ học thuật & kinh tế cơ bản — GĐ1 (tháng 1–3)", color: "accent" },
+    { lvl: 2, name: "Chuyên ngành", desc: "Quản trị, tổ chức, diễn ngôn — GĐ1–2 (tháng 2–5)", color: "brand" },
+    { lvl: 3, name: "Học thuật sâu", desc: "Tài chính công, phát triển & chính sách — GĐ2–3 (tháng 4–8)", color: "violet" },
+    { lvl: 4, name: "Nâng cao", desc: "Phương pháp & thống kê — GĐ3–4 (tháng 7–12)", color: "amber" },
   ];
+
+  // Thứ tự học dễ → khó (quyết định thứ tự gợi ý từ mới mỗi ngày)
+  const VOCAB_GROUPS = [
+    { key: "A", name: "Học thuật & nghiên cứu", lvl: 1, items: VG.A },
+    { key: "B", name: "Kinh tế cốt lõi", lvl: 1, items: VG.B },
+    { key: "H", name: "Động từ học thuật", lvl: 1, items: VG.H },
+    { key: "C", name: "Quản lý & quản trị công", lvl: 2, items: VG.C },
+    { key: "F", name: "Quản trị tổ chức", lvl: 2, items: VG.F },
+    { key: "I", name: "Diễn ngôn & luận điểm", lvl: 2, items: VG.I },
+    { key: "E", name: "Tài chính công", lvl: 3, items: VG.E },
+    { key: "G", name: "Phát triển & chính sách", lvl: 3, items: VG.G },
+    { key: "D", name: "Phương pháp & thống kê", lvl: 4, items: VG.D },
+  ];
+  const VOCAB = [];
+  VOCAB_GROUPS.forEach(function (g) {
+    g.items.forEach(function (it) {
+      VOCAB.push({ t: it.t, p: it.p, m: it.m, e: it.e, lvl: g.lvl, grp: g.key, grpName: g.name });
+    });
+  });
+
+  // Trục câu hỏi cũng phân tầng: dễ chuẩn bị → khó/soi kỹ
+  const AXIS_LEVELS = {
+    urgency: 2, novelty: 2, findings: 2, next: 2,
+    framework: 3, method: 3, policy: 3, apply: 3,
+    data: 4, limits: 4,
+  };
 
   /* ---------- NGÂN HÀNG CÂU HỎI (10 trục × 13 = 130) ----------
      q=câu hỏi (EN), v=ý câu hỏi (VI), a=khung trả lời gợi ý (VI). */
@@ -605,5 +649,5 @@
       weeks: ["Mô phỏng bảo vệ hoàn chỉnh #1", "Tinh chỉnh phần vấn đáp còn yếu", "Mô phỏng bảo vệ hoàn chỉnh #2", "Nghỉ dưỡng sức, ôn nhẹ, giữ phong độ"] },
   ];
 
-  global.SEED = { VOCAB, QUESTIONS, MONTHS_PLAN, PHRASES, PRONUNCIATION, SOURCES };
+  global.SEED = { VOCAB, VOCAB_GROUPS, LEVELS, AXIS_LEVELS, QUESTIONS, MONTHS_PLAN, PHRASES, PRONUNCIATION, SOURCES };
 })(window);

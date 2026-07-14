@@ -16,6 +16,8 @@
         theme: "light",
         topic: "",              // tên đề tài của người dùng
         name: "",
+        speechRate: 0.85,       // tốc độ đọc audio (0.7 chậm … 1.0 chuẩn)
+        voiceURI: "",           // giọng đọc ưa thích (Web Speech API)
       },
       // sessions[yyyy-mm-dd] = { blocks:{listen:true,...}, minutes:Number, note:String }
       sessions: {},
@@ -201,6 +203,7 @@
         id: uid(), term: term.trim(), pos: (pos || "").trim(),
         meaning: (meaning || "").trim(), example: (example || "").trim(),
         created: today(), box: 1, lastReview: null,
+        seeded: false, level: 0, learnedDate: today(),
       };
       state.vocab.unshift(item);
       persist();
@@ -218,10 +221,34 @@
       v.lastReview = today();
       persist();
     },
-    vocabAddedToday() {
+    // Số từ "học/kích hoạt" hôm nay (đếm chỉ tiêu 5 từ/ngày)
+    vocabLearnedToday() {
       const t = today();
-      return state.vocab.filter((v) => v.created === t).length;
+      return state.vocab.filter((v) => v.learnedDate === t || v.created === t).length;
     },
+    // Hàng đợi học: từ đã nạp nhưng CHƯA kích hoạt (giữ nguyên thứ tự dễ→khó)
+    vocabQueue(limit) {
+      const q = state.vocab.filter((v) => v.seeded && !v.learnedDate);
+      return limit ? q.slice(0, limit) : q;
+    },
+    // Cấp độ đang học = cấp của từ đầu hàng đợi
+    currentVocabLevel() {
+      const q = this.vocabQueue();
+      if (!q.length) return null;
+      return q[0].level || 1;
+    },
+    // Kích hoạt 1 từ vào diện đang học (tính vào chỉ tiêu hôm nay)
+    learnVocab(id) {
+      const v = state.vocab.find((x) => x.id === id);
+      if (v && !v.learnedDate) { v.learnedDate = today(); if (!v.box) v.box = 1; persist(); }
+    },
+    learnMany(ids) {
+      let changed = false;
+      const t = today();
+      ids.forEach((id) => { const v = state.vocab.find((x) => x.id === id); if (v && !v.learnedDate) { v.learnedDate = t; if (!v.box) v.box = 1; changed = true; } });
+      if (changed) persist();
+    },
+    vocabIsActive(v) { return !!v.learnedDate || !v.seeded; },
 
     // ----- questions -----
     getQuestions(axisId) { return state.questions[axisId] || []; },
@@ -298,6 +325,8 @@
         state.vocab.push({
           id: uid(), term: term, pos: it.p || "", meaning: it.m || "", example: it.e || "",
           created: "", box: 1, lastReview: null, seeded: true,
+          level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "",
+          learnedDate: null,   // null = còn trong hàng đợi, chưa kích hoạt
         });
         existingTerms.add(term.toLowerCase());
         addedV++;

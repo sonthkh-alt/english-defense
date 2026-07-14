@@ -17,6 +17,21 @@
   }
   function reload() { global.App.render(); }
 
+  // Nút nghe phát âm (Web Speech API). Trả về null nếu trình duyệt không hỗ trợ.
+  function audioBtn(text, opts) {
+    if (!UI.Speech || !UI.Speech.supported) return null;
+    return h("button", {
+      class: "btn btn--ghost btn--sm audio-btn", title: "Nghe phát âm chuẩn",
+      onClick: (e) => { e.preventDefault(); e.stopPropagation(); UI.speak(text, opts); },
+    }, "🔊");
+  }
+  const LEVEL_META = { 1: "accent", 2: "brand", 3: "violet", 4: "amber" };
+  function levelName(lvl) {
+    const S = (typeof SEED !== "undefined") ? SEED.LEVELS : null;
+    const m = S && S.find((x) => x.lvl === lvl);
+    return m ? m.name : "Tự thêm";
+  }
+
   /* ============================================================
      DASHBOARD
      ============================================================ */
@@ -496,7 +511,10 @@
     for (let i = 0; i < 3; i++) masteryDots.appendChild(h("i", { class: i < q.mastery ? "on" : "" }));
 
     const item = h("div", { class: "q-item" }, [
-      h("div", { class: "q-item__en" }, q.en),
+      h("div", { class: "row", style: { gap: "8px", alignItems: "flex-start" } }, [
+        audioBtn(q.en),
+        h("div", { class: "q-item__en flex-1" }, q.en),
+      ]),
       q.vi ? h("div", { class: "q-item__vi" }, "→ " + q.vi) : null,
       q.answer ? h("details", { style: { marginTop: "8px" } }, [
         h("summary", { class: "small", style: { cursor: "pointer", color: "var(--brand)" } }, "Xem khung trả lời"),
@@ -564,70 +582,122 @@
   function vocab() {
     const out = frag([]);
     const all = Store.get().vocab;
-    const addedToday = Store.vocabAddedToday();
+    const learnedToday = Store.vocabLearnedToday();
+    const queue = Store.vocabQueue();
+    const active = all.filter((v) => Store.vocabIsActive(v));
 
     out.appendChild(h("div", { class: "page-head row between wrap" }, [
       h("div", null, [
-        h("span", { class: "eyebrow" }, "Sổ tay thuật ngữ quản lý kinh tế"),
+        h("span", { class: "eyebrow" }, "Sổ tay thuật ngữ · học theo lộ trình"),
         h("h1", null, "Sổ tay từ vựng"),
-        h("p", null, "Mục tiêu 5 từ / ngày. Hôm nay đã thêm " + addedToday + "/5 từ."),
+        h("p", null, "Mục tiêu 5 từ / ngày, đi từ dễ đến khó. Hôm nay đã học " + learnedToday + "/5 từ."),
       ]),
       h("div", { class: "row", style: { gap: "8px" } }, [
-        all.length ? h("button", { class: "btn btn--ghost btn--sm", onClick: startVocabFlash }, "🎴 Luyện flashcard") : null,
+        active.length ? h("button", { class: "btn btn--ghost btn--sm", onClick: startVocabFlash }, "🎴 Luyện flashcard") : null,
         h("button", { class: "btn btn--primary btn--sm", onClick: () => openVocabModal() }, "＋ Thêm từ"),
       ]),
     ]));
 
-    // daily progress
-    out.appendChild(h("div", { class: "card mb-2" }, [
-      h("div", { class: "row between mb-1" }, [
-        h("strong", null, "Chỉ tiêu hôm nay"),
-        h("span", { class: "small muted" }, addedToday + " / 5 từ"),
-      ]),
-      bar(Math.min(100, (addedToday / 5) * 100)),
-      addedToday >= 5 ? h("div", { class: "small mt-1", style: { color: "var(--accent)" } }, "✓ Đã đủ 5 từ hôm nay. Tuyệt!") : null,
-    ]));
+    // ----- Học theo lộ trình hôm nay -----
+    if (!Store.hasSeeded() && !all.length) {
+      out.appendChild(h("div", { class: "callout callout--accent mb-2" }, [
+        h("span", { class: "callout__icon" }, "🎁"),
+        h("div", null, [
+          h("strong", null, "Nạp gói học 12 tháng để bắt đầu. "),
+          "Bộ từ vựng được xếp sẵn từ dễ đến khó theo lộ trình.",
+          h("div", { class: "mt-1" }, [h("button", { class: "btn btn--accent btn--sm", onClick: () => importStarterPack(false) }, "🎁 Nạp gói học 12 tháng")]),
+        ]),
+      ]));
+    } else if (queue.length) {
+      const suggest = queue.slice(0, 5);
+      const curLvl = suggest[0].level || 1;
+      out.appendChild(h("div", { class: "card mb-2", style: { borderLeft: "4px solid var(--" + (LEVEL_META[curLvl] || "brand") + ")" } }, [
+        h("div", { class: "card__head" }, [
+          h("div", { class: "card__icon", style: bgSoft(LEVEL_META[curLvl] || "brand") }, "🎯"),
+          h("h3", null, "Học hôm nay theo lộ trình"),
+          h("span", { class: "badge badge--" + (LEVEL_META[curLvl] || "brand"), style: { marginLeft: "auto" } }, "Cấp " + curLvl + " · " + levelName(curLvl)),
+        ]),
+        h("div", { class: "row between mb-1" }, [
+          h("span", { class: "small muted" }, "Chỉ tiêu hôm nay"),
+          h("span", { class: "small" }, [h("strong", null, learnedToday), " / 5 từ · còn " + queue.length + " từ trong lộ trình"]),
+        ]),
+        bar(Math.min(100, (learnedToday / 5) * 100)),
+        h("div", { class: "mt-2", style: { display: "flex", flexDirection: "column", gap: "8px" } },
+          suggest.map((v) => h("div", { class: "vocab-row", style: { margin: 0 } }, [
+            audioBtn(v.term),
+            h("div", { class: "flex-1", style: { minWidth: 0 } }, [
+              h("div", { class: "row", style: { gap: "7px", alignItems: "baseline" } }, [
+                h("span", { class: "vocab-term" }, v.term),
+                v.pos ? h("span", { class: "vocab-pos" }, v.pos) : null,
+              ]),
+              v.meaning ? h("div", { class: "vocab-mean" }, v.meaning) : null,
+              v.example ? h("div", { class: "vocab-ex" }, "“" + v.example + "”") : null,
+            ]),
+            h("button", { class: "btn btn--accent btn--sm", title: "Đã học từ này", onClick: () => { Store.learnVocab(v.id); toast("+1 từ đã học 🎯", "accent"); reload(); } }, "✓ Học"),
+          ]))),
+        h("div", { class: "row mt-2", style: { gap: "10px" } }, [
+          h("button", { class: "btn btn--primary btn--sm", onClick: () => { Store.learnMany(suggest.map((v) => v.id)); toast("Đã kích hoạt " + suggest.length + " từ vào diện đang học", "accent"); reload(); } }, "✓ Học cả " + suggest.length + " từ"),
+          UI.Speech && UI.Speech.supported ? h("button", { class: "btn btn--ghost btn--sm", onClick: () => speakSequence(suggest.map((v) => v.term)) }, "🔊 Nghe cả 5") : null,
+        ]),
+      ]));
+    } else if (Store.hasSeeded()) {
+      out.appendChild(h("div", { class: "callout callout--accent mb-2" }, [
+        h("span", { class: "callout__icon" }, "🎉"),
+        h("div", null, [h("strong", null, "Bạn đã kích hoạt hết từ trong lộ trình! "), "Giờ tập trung ôn flashcard để nhớ sâu."]),
+      ]));
+    }
 
-    // stats + filter
-    const boxCounts = [1, 2, 3, 4, 5].map((b) => all.filter((v) => (v.box || 1) === b).length);
+    // ----- Bộ lọc: cấp độ + trạng thái -----
     out.appendChild(h("div", { class: "row wrap mb-2", style: { gap: "8px" } }, [
-      filterChip("all", "Tất cả (" + all.length + ")"),
-      filterChip("new", "Mới (hộp 1-2)"),
-      filterChip("learning", "Đang thuộc (3-4)"),
-      filterChip("mastered", "Thành thạo (5)"),
+      filterChip("all", "Đang học (" + active.length + ")"),
+      filterChip("queue", "Trong lộ trình (" + queue.length + ")"),
+      filterChip("mastered", "Thành thạo"),
+      filterChip("l1", "Cấp 1"), filterChip("l2", "Cấp 2"), filterChip("l3", "Cấp 3"), filterChip("l4", "Cấp 4"),
     ]));
 
-    let list = all.slice();
-    if (vocabFilter === "new") list = all.filter((v) => (v.box || 1) <= 2);
-    else if (vocabFilter === "learning") list = all.filter((v) => (v.box || 1) === 3 || (v.box || 1) === 4);
-    else if (vocabFilter === "mastered") list = all.filter((v) => (v.box || 1) >= 5);
+    let list;
+    if (vocabFilter === "queue") list = queue;
+    else if (vocabFilter === "mastered") list = active.filter((v) => (v.box || 1) >= 4);
+    else if (/^l[1-4]$/.test(vocabFilter)) { const lv = +vocabFilter[1]; list = all.filter((v) => (v.level || 0) === lv); }
+    else list = active;
 
     if (!all.length) {
-      out.appendChild(emptyState("✎", "Sổ tay còn trống",
-        "Bắt đầu với 10 từ chuyên ngành cốt lõi. Mỗi từ: nghĩa + 1 câu ví dụ để miệng quen thuật ngữ."));
+      out.appendChild(emptyState("✎", "Sổ tay còn trống", "Nạp gói học 12 tháng hoặc tự thêm từ để bắt đầu."));
     } else if (!list.length) {
       out.appendChild(emptyState("🔍", "Không có từ trong bộ lọc này", null));
     } else {
+      out.appendChild(h("div", { class: "small muted mb-1" }, "Hiển thị " + list.length + " từ"));
       list.forEach((v) => out.appendChild(vocabRow(v)));
     }
     return out;
+  }
+  function speakSequence(words, i) {
+    i = i || 0;
+    if (i >= words.length || !UI.Speech || !UI.Speech.supported) return;
+    UI.speak(words[i]);
+    setTimeout(() => speakSequence(words, i + 1), 1400);
   }
   function filterChip(key, label) {
     return h("button", { class: "chip" + (vocabFilter === key ? " active" : ""), onClick: () => { vocabFilter = key; reload(); } }, label);
   }
   function vocabRow(v) {
     const boxColors = ["", "rose", "amber", "sky", "brand", "accent"];
+    const inQueue = v.seeded && !v.learnedDate;
     return h("div", { class: "vocab-row" }, [
+      audioBtn(v.term),
       h("div", { class: "flex-1", style: { minWidth: 0 } }, [
-        h("div", { class: "row", style: { gap: "8px", alignItems: "baseline" } }, [
+        h("div", { class: "row wrap", style: { gap: "7px", alignItems: "baseline" } }, [
           h("span", { class: "vocab-term" }, v.term),
           v.pos ? h("span", { class: "vocab-pos" }, v.pos) : null,
-          h("span", { class: "badge badge--" + (boxColors[v.box || 1] || "brand"), title: "Hộp Leitner " + (v.box || 1) }, "Hộp " + (v.box || 1)),
+          v.level ? h("span", { class: "badge badge--" + (LEVEL_META[v.level] || "brand"), title: levelName(v.level) }, "C" + v.level) : null,
+          inQueue ? h("span", { class: "badge" }, "trong lộ trình")
+                  : h("span", { class: "badge badge--" + (boxColors[v.box || 1] || "brand"), title: "Hộp Leitner " + (v.box || 1) }, "Hộp " + (v.box || 1)),
         ]),
         v.meaning ? h("div", { class: "vocab-mean" }, v.meaning) : null,
         v.example ? h("div", { class: "vocab-ex" }, "“" + v.example + "”") : null,
       ]),
       h("div", { class: "row", style: { gap: "6px" } }, [
+        inQueue ? h("button", { class: "btn btn--accent btn--sm", title: "Học từ này", onClick: () => { Store.learnVocab(v.id); toast("+1 từ đã học 🎯", "accent"); reload(); } }, "✓ Học") : null,
         h("button", { class: "btn btn--ghost btn--sm", title: "Sửa", onClick: () => openVocabModal(v) }, "✎"),
         h("button", { class: "btn btn--ghost btn--sm", title: "Xoá", onClick: () => {
           confirmDialog({ title: "Xoá từ '" + v.term + "'?", confirmLabel: "Xoá", danger: true,
@@ -665,10 +735,11 @@
   }
 
   function startVocabFlash() {
-    const deck = Store.get().vocab.slice();
+    // chỉ luyện các từ ĐANG HỌC (đã kích hoạt / tự thêm)
+    const deck = Store.get().vocab.filter((v) => Store.vocabIsActive(v));
     // ưu tiên hộp thấp trước
     deck.sort((a, b) => (a.box || 1) - (b.box || 1));
-    if (!deck.length) return;
+    if (!deck.length) { toast("Chưa có từ nào đang học. Hãy 'Học' vài từ trước nhé!"); return; }
     let idx = 0, flipped = false;
 
     const stage = h("div", { class: "flash-stage" });
@@ -683,11 +754,13 @@
       card.appendChild(h("div", { class: "flash-face flash-face--front" }, [
         h("div", { class: "fl-term" }, v.term),
         v.pos ? h("div", { class: "fl-sub" }, v.pos) : null,
+        audioBtn(v.term),
         h("div", { class: "flash-hint" }, "Nhấn để lật · " + (idx + 1) + "/" + deck.length),
       ]));
       card.appendChild(h("div", { class: "flash-face flash-face--back" }, [
         h("div", { style: { fontWeight: 700, fontSize: "18px" } }, v.meaning || "(chưa có nghĩa)"),
         v.example ? h("div", { class: "small", style: { fontStyle: "italic", color: "var(--text-2)" } }, "“" + v.example + "”") : null,
+        v.example ? audioBtn(v.example) : audioBtn(v.term),
         h("div", { class: "flash-hint" }, "Bạn nhớ được không?"),
       ]));
     }
@@ -774,6 +847,7 @@
         h("div", { class: "phrase-vi" }, p.vi),
       ]),
       h("div", { class: "row", style: { gap: "6px" } }, [
+        audioBtn(p.en),
         h("button", {
           class: "btn btn--sm " + (isMastered ? "btn--accent" : "btn--ghost"),
           onClick: () => { Store.toggleRescueMastered(key); reload(); },
@@ -876,9 +950,12 @@
             h("strong", null, grp.cat),
           ]),
           h("div", { style: { display: "flex", flexDirection: "column", gap: "7px" } }, grp.items.map((it) =>
-            h("div", { style: { padding: "8px 11px", background: "var(--surface-2)", borderRadius: "10px", borderLeft: "3px solid var(--accent)" } }, [
-              h("div", { style: { fontWeight: 600, fontSize: "13.5px", fontStyle: "italic" } }, "“" + it.en + "”"),
-              h("div", { class: "small muted", style: { marginTop: "2px" } }, it.vi),
+            h("div", { class: "row", style: { gap: "8px", alignItems: "flex-start", padding: "8px 11px", background: "var(--surface-2)", borderRadius: "10px", borderLeft: "3px solid var(--accent)" } }, [
+              audioBtn(it.en),
+              h("div", { class: "flex-1" }, [
+                h("div", { style: { fontWeight: 600, fontSize: "13.5px", fontStyle: "italic" } }, "“" + it.en + "”"),
+                h("div", { class: "small muted", style: { marginTop: "2px" } }, it.vi),
+              ]),
             ]))),
         ]));
       });
@@ -892,7 +969,9 @@
           h("strong", { style: { fontSize: "14px" } }, pr.group),
           h("div", { class: "small muted", style: { margin: "4px 0 8px" } }, pr.note),
           h("div", { class: "row wrap", style: { gap: "5px" } }, pr.examples.map((ex) =>
-            h("span", { class: "badge badge--sky" }, ex))),
+            h("button", { class: "chip", style: { padding: "4px 10px" }, title: "Nghe phát âm", onClick: () => UI.speak(ex.replace(/-|vs/g, " ")) }, [
+              UI.Speech && UI.Speech.supported ? "🔊 " : "", ex,
+            ]))),
         ])
       )));
     }
@@ -1081,6 +1160,9 @@
         h("div", { class: "small muted mt-1" }, "Toàn bộ số ngày & giai đoạn tính từ ngày này.")]),
     ]));
 
+    // audio settings
+    out.appendChild(audioSettingsCard());
+
     // starter pack
     out.appendChild(h("div", { class: "card mb-2" }, [
       h("h3", { class: "mb-1" }, "Gói học đầy đủ 12 tháng"),
@@ -1136,6 +1218,51 @@
     ]));
     return out;
   }
+  function audioSettingsCard() {
+    const s = Store.settings();
+    const supported = UI.Speech && UI.Speech.supported;
+    const card = h("div", { class: "card mb-2" }, [
+      h("div", { class: "row", style: { gap: "8px", marginBottom: "6px" } }, [
+        h("h3", { class: "mb-0" }, "Audio phát âm"),
+        h("span", { class: "badge badge--" + (supported ? "accent" : "rose"), style: { marginLeft: "auto" } }, supported ? "✓ Hỗ trợ" : "Không hỗ trợ"),
+      ]),
+      h("div", { class: "small muted mb-2" }, supported
+        ? "Nhấn nút 🔊 ở bất kỳ từ/câu tiếng Anh nào để nghe giọng đọc chuẩn. Chọn giọng và tốc độ phù hợp để shadowing."
+        : "Trình duyệt này chưa hỗ trợ đọc audio. Hãy dùng Chrome/Edge/Safari bản mới."),
+    ]);
+    if (!supported) return card;
+
+    // voice select
+    const voices = UI.Speech.englishVoices();
+    const sel = h("select", { class: "select" });
+    sel.appendChild(h("option", { value: "" }, "Tự động (giọng en chuẩn nhất)"));
+    voices.forEach((v) => {
+      const opt = h("option", { value: v.voiceURI }, v.name + " (" + v.lang + ")");
+      if (v.voiceURI === s.voiceURI) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => { Store.setSetting("voiceURI", sel.value); toast("Đã đổi giọng đọc"); });
+
+    // rate select
+    const rates = [[0.7, "Chậm (shadowing)"], [0.85, "Vừa (khuyên dùng)"], [1.0, "Chuẩn"]];
+    const rateRow = h("div", { class: "row wrap", style: { gap: "6px" } });
+    const chips = rates.map(([r, label]) => {
+      const c = h("button", { class: "chip" + (Math.abs((s.speechRate || 0.85) - r) < 0.01 ? " active" : ""), onClick: () => {
+        Store.setSetting("speechRate", r); chips.forEach((x, i) => x.classList.toggle("active", Math.abs(rates[i][0] - r) < 0.01)); toast("Tốc độ: " + label);
+      } }, label);
+      return c;
+    });
+    chips.forEach((c) => rateRow.appendChild(c));
+
+    card.appendChild(h("div", { class: "field" }, [h("label", null, "Giọng đọc"), sel]));
+    card.appendChild(h("div", { class: "field" }, [h("label", null, "Tốc độ đọc"), rateRow]));
+    if (!voices.length) card.appendChild(h("div", { class: "small muted" }, "Danh sách giọng đang tải — thử lại sau vài giây hoặc bấm 🔊 để trình duyệt tải giọng."));
+    card.appendChild(h("div", { class: "row mt-1", style: { gap: "10px" } }, [
+      h("button", { class: "btn btn--ghost btn--sm", onClick: () => UI.speak("This is a sample of the pronunciation voice for your thesis defense.") }, "🔊 Nghe thử"),
+    ]));
+    return card;
+  }
+
   function miniStat(v, label) {
     return h("div", { class: "center" }, [
       h("div", { style: { fontFamily: "var(--font-head)", fontWeight: 800, fontSize: "24px" } }, String(v)),

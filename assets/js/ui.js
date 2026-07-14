@@ -148,5 +148,52 @@
     return d.getDate() + "/" + (d.getMonth() + 1);
   }
 
-  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO };
+  /* ---------- Speech (đọc audio phát âm chuẩn — Web Speech API) ---------- */
+  const Speech = (function () {
+    const synth = global.speechSynthesis;
+    let voices = [];
+    function load() { if (synth) voices = synth.getVoices() || []; }
+    if (synth) {
+      load();
+      if (typeof synth.addEventListener === "function") synth.addEventListener("voiceschanged", load);
+      else if ("onvoiceschanged" in synth) synth.onvoiceschanged = load;
+    }
+    function englishVoices() {
+      if (!voices.length) load();
+      return voices.filter((v) => /^en([-_]|$)/i.test(v.lang));
+    }
+    // Ưu tiên giọng chất lượng cao, chuẩn en-US/en-GB
+    function pickVoice() {
+      const en = englishVoices();
+      if (!en.length) return voices[0] || null;
+      const pref = (global.Store && Store.settings && Store.settings().voiceURI) || "";
+      if (pref) { const f = voices.find((v) => v.voiceURI === pref); if (f) return f; }
+      const wanted = [
+        "Google US English", "Google UK English Female", "Google UK English Male",
+        "Microsoft Aria", "Microsoft Jenny", "Microsoft Michelle", "Microsoft Guy",
+        "Samantha", "Microsoft Zira", "Microsoft David",
+      ];
+      for (const name of wanted) { const f = en.find((v) => v.name && v.name.indexOf(name) !== -1); if (f) return f; }
+      const us = en.find((v) => /en[-_]US/i.test(v.lang)); if (us) return us;
+      return en[0];
+    }
+    function speak(text, opts) {
+      opts = opts || {};
+      if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
+      try {
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(String(text));
+        const v = pickVoice();
+        if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+        const rate = opts.rate != null ? opts.rate
+          : (global.Store && Store.settings && Store.settings().speechRate) || 0.85;
+        u.rate = Math.max(0.5, Math.min(1.2, rate));
+        u.pitch = 1;
+        synth.speak(u);
+      } catch (e) { toast("Không phát được audio"); }
+    }
+    return { supported: !!synth, speak, englishVoices, pickVoice, reload: load };
+  })();
+
+  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
 })(window);

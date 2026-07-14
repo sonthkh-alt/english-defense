@@ -18,13 +18,15 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | **▤ Nhật ký & Chuỗi ngày** | Bản đồ nhiệt (heatmap) 26 tuần, nhật ký học tập theo tâm trạng. |
 | **📚 Tài nguyên & Nguồn** | **Gói học đầy đủ 12 tháng** nạp 1 chạm: ~274 từ vựng + 130 câu hỏi + lộ trình 12 tháng theo tuần + kho câu thuyết trình/Q&A + luyện phát âm cho người Việt + nguồn học thuật uy tín. |
 | **? Ngân hàng câu hỏi** | 10 trục câu hỏi bảo vệ cố định, thêm câu + khung trả lời, theo dõi mức thành thạo, prompt AI sinh câu hỏi. |
-| **✎ Sổ tay từ vựng** | Chỉ tiêu 5 từ/ngày, luyện **flashcard** theo hộp Leitner (spaced repetition). |
+| **✎ Sổ tay từ vựng** | **Học theo lộ trình dễ→khó** (4 cấp độ bám 12 tháng), gợi ý 5 từ/ngày đúng cấp, **audio phát âm chuẩn** (🔊), flashcard hộp Leitner. |
 | **⛑ Câu cứu nguy** | Bộ câu "chữa cháy" khi chưa nghe rõ câu hỏi, đánh dấu thuộc lòng. |
 | **✦ Bộ công cụ AI** | Hướng dẫn dùng AI + prompt mẫu sẵn (hội đồng ảo, sửa văn nói, audio shadowing…). |
 | **▲ Đo tiến bộ** | Nhật ký ghi âm để so sánh theo thời gian, chỉ số khách quan, rủi ro & phương án. |
 | **⚙ Cài đặt** | Đặt ngày bắt đầu, tên đề tài, **sao lưu / khôi phục** dữ liệu (.json), giao diện sáng/tối. |
 
 ### Điểm mạnh thiết kế
+- 🔊 **Audio phát âm chuẩn** (Web Speech API): nghe từ vựng, câu hỏi, câu mẫu; chỉnh giọng en‑US/UK & tốc độ để shadowing.
+- 🧗 **Học bám lộ trình**: từ vựng & câu hỏi phân 4 cấp độ, đi từ dễ đến khó theo đúng 12 tháng; mỗi ngày app gợi ý đúng 5 từ nên học.
 - 🎨 Giao diện hiện đại, **sáng/tối tự động**, responsive (điện thoại + máy tính).
 - 🔒 **Riêng tư tuyệt đối** — dữ liệu không rời khỏi máy bạn (localStorage).
 - ⚡ **Không phụ thuộc thư viện ngoài**, tải tức thì, hoạt động cả khi offline.
