@@ -12,6 +12,7 @@
     questions: { title: "Ngân hàng câu hỏi", render: () => Views.questions() },
     vocab:     { title: "Sổ tay từ vựng", render: () => Views.vocab() },
     rescue:    { title: "Câu cứu nguy", render: () => Views.rescue() },
+    resources: { title: "Tài nguyên & Nguồn", render: () => Views.resources() },
     aitools:   { title: "Bộ công cụ AI", render: () => Views.aitools() },
     progress:  { title: "Đo tiến bộ", render: () => Views.progress() },
     settings:  { title: "Cài đặt", render: () => Views.settings() },

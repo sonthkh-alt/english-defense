@@ -57,6 +57,21 @@
       ]));
     }
 
+    // First-run: gợi ý nạp gói khởi động tháng 1
+    if (!Store.hasSeeded()) {
+      out.appendChild(h("div", { class: "callout callout--accent mb-2" }, [
+        h("span", { class: "callout__icon" }, "🎁"),
+        h("div", null, [
+          h("strong", null, "Nạp sẵn dữ liệu tháng 1 để học ngay. "),
+          "Gói khởi động gồm ~120 từ vựng chuyên ngành (Academic Word List + IMF/OECD/World Bank) và 80 câu hỏi bảo vệ mẫu kèm khung trả lời.",
+          h("div", { class: "row wrap mt-1", style: { gap: "8px" } }, [
+            h("button", { class: "btn btn--accent btn--sm", onClick: () => importStarterPack(false) }, "🎁 Nạp gói khởi động tháng 1"),
+            h("a", { href: "#/resources", class: "btn btn--ghost btn--sm" }, "Xem chi tiết & nguồn →"),
+          ]),
+        ]),
+      ]));
+    }
+
     // Stat tiles
     out.appendChild(h("div", { class: "grid cols-4 mb-2" }, [
       statTile("Chuỗi ngày", streak, "ngày", "🔥", "amber", streak > 0 ? "Giữ lửa mỗi ngày!" : "Học hôm nay để bắt đầu chuỗi"),
@@ -788,6 +803,92 @@
   }
 
   /* ============================================================
+     RESOURCES — tài nguyên nghe + nguồn học thuật + kế hoạch tháng 1
+     ============================================================ */
+  function importStarterPack(silent) {
+    const res = Store.importStarterPack();
+    if (!silent) {
+      toast("Đã nạp " + res.vocab + " từ vựng + " + res.questions + " câu hỏi vào app", "accent");
+    }
+    reload();
+    return res;
+  }
+
+  function resources() {
+    const out = frag([]);
+    const S = (typeof SEED !== "undefined") ? SEED : null;
+    out.appendChild(pageHead("Tài nguyên & Nguồn", "Gói khởi động tháng 1 + kho tài nguyên nghe và nguồn thuật ngữ từ các cơ sở dữ liệu học thuật uy tín.", "Nền tảng chất lượng"));
+
+    // Starter pack
+    const seeded = Store.hasSeeded();
+    const vCount = S ? S.VOCAB.length : 0;
+    let qCount = 0; if (S) Object.values(S.QUESTIONS).forEach((a) => qCount += a.length);
+    out.appendChild(h("div", { class: "card mb-2", style: { borderLeft: "4px solid var(--accent)" } }, [
+      h("div", { class: "card__head" }, [
+        h("div", { class: "card__icon", style: bgSoft("accent") }, "🎁"),
+        h("h3", null, "Gói khởi động tháng 1"),
+        seeded ? h("span", { class: "badge badge--accent", style: { marginLeft: "auto" } }, "✓ Đã nạp") : null,
+      ]),
+      h("div", { class: "small mb-2", style: { color: "var(--text-2)" } },
+        "Nạp sẵn " + vCount + " từ vựng chuyên ngành (Academic Word List + thuật ngữ IMF/OECD/World Bank) và " + qCount + " câu hỏi bảo vệ mẫu (10 trục, kèm khung trả lời). Có thể nạp lại bất cứ lúc nào — hệ thống tự bỏ qua mục đã có."),
+      h("div", { class: "row wrap", style: { gap: "10px" } }, [
+        h("button", { class: "btn " + (seeded ? "btn--ghost" : "btn--primary") + " btn--sm", onClick: () => importStarterPack(false) },
+          seeded ? "↻ Nạp lại / bổ sung" : "🎁 Nạp gói khởi động tháng 1"),
+        h("a", { href: "#/vocab", class: "btn btn--ghost btn--sm" }, "Xem từ vựng →"),
+        h("a", { href: "#/questions", class: "btn btn--ghost btn--sm" }, "Xem câu hỏi →"),
+      ]),
+    ]));
+
+    // Month 1 plan
+    if (S && S.MONTH1_PLAN) {
+      out.appendChild(h("div", { class: "section-title" }, ["Lộ trình tháng 1 chi tiết", h("span", { class: "tag" }, "4 tuần")]));
+      S.MONTH1_PLAN.forEach((w) => {
+        out.appendChild(h("div", { class: "card mb-1", style: { borderLeft: "4px solid var(--" + w.color + ")" } }, [
+          h("div", { class: "row between wrap", style: { marginBottom: "6px" } }, [
+            h("div", { style: { fontWeight: 700 } }, "Tuần " + w.week + " · " + w.theme),
+            h("span", { class: "badge badge--" + w.color }, "GĐ1"),
+          ]),
+          h("div", { class: "small mb-1", style: { color: "var(--text-2)" } }, w.focus),
+          h("div", { class: "row wrap", style: { gap: "6px" } }, w.days.map((d, i) =>
+            h("span", { class: "badge", title: "Ngày " + (i + 1) }, (i + 1) + ". " + d))),
+        ]));
+      });
+    }
+
+    // Resource groups
+    if (S && S.SOURCES) {
+      resourceGroup(out, "🎧 Tài nguyên NGHE (ưu tiên #1)", S.SOURCES.listening, "brand");
+      resourceGroup(out, "📖 Cơ sở dữ liệu thuật ngữ", S.SOURCES.terminology, "sky");
+      resourceGroup(out, "✎ Nguồn từ vựng học thuật", S.SOURCES.vocabulary, "violet");
+    }
+
+    out.appendChild(h("div", { class: "callout callout--amber mt-2" }, [
+      h("span", { class: "callout__icon" }, "🔎"),
+      h("div", null, [
+        h("strong", null, "Cách dùng nguồn nghe: "),
+        "chọn 1 bài ~5 phút, nghe lần 1 CÓ phụ đề, lần 2 KHÔNG phụ đề rồi chép lại câu nghe được. Ưu tiên các phiên có phần HỎI–ĐÁP (Q&A) như LSE để luyện bắt ý câu hỏi.",
+      ]),
+    ]));
+    return out;
+  }
+  function resourceGroup(out, title, items, color) {
+    out.appendChild(h("div", { class: "section-title" }, title));
+    out.appendChild(h("div", { class: "grid cols-2" },
+      (items || []).map((r) => h("a", {
+        class: "card hoverable", href: r.url, target: "_blank", rel: "noopener",
+        style: { textDecoration: "none", color: "inherit", display: "block", borderLeft: "3px solid var(--" + color + ")" },
+      }, [
+        h("div", { class: "row between", style: { marginBottom: "4px" } }, [
+          h("strong", { style: { fontSize: "14px" } }, r.name),
+          h("span", { style: { color: "var(--" + color + ")" } }, "↗"),
+        ]),
+        h("div", { class: "small muted" }, r.note),
+        h("div", { class: "small", style: { color: "var(--text-3)", marginTop: "4px", wordBreak: "break-all" } }, r.url.replace(/^https?:\/\//, "")),
+      ]))
+    ));
+  }
+
+  /* ============================================================
      AI TOOLS
      ============================================================ */
   function aitools() {
@@ -938,6 +1039,19 @@
         h("div", { class: "small muted mt-1" }, "Toàn bộ số ngày & giai đoạn tính từ ngày này.")]),
     ]));
 
+    // starter pack
+    out.appendChild(h("div", { class: "card mb-2" }, [
+      h("h3", { class: "mb-1" }, "Gói khởi động tháng 1"),
+      h("div", { class: "small muted mb-2" }, Store.hasSeeded()
+        ? "Đã nạp gói khởi động. Bạn có thể nạp lại để bổ sung mục còn thiếu (không tạo trùng lặp)."
+        : "Nạp sẵn từ vựng chuyên ngành & câu hỏi bảo vệ mẫu (nguồn: AWL Coxhead, IMF/OECD/World Bank)."),
+      h("div", { class: "row wrap", style: { gap: "10px" } }, [
+        h("button", { class: "btn " + (Store.hasSeeded() ? "btn--ghost" : "btn--primary") + " btn--sm", onClick: () => importStarterPack(false) },
+          Store.hasSeeded() ? "↻ Nạp lại / bổ sung" : "🎁 Nạp gói khởi động"),
+        h("a", { href: "#/resources", class: "btn btn--ghost btn--sm" }, "Xem tài nguyên & nguồn →"),
+      ]),
+    ]));
+
     // backup
     out.appendChild(h("div", { class: "card mb-2" }, [
       h("h3", { class: "mb-1" }, "Sao lưu & Khôi phục dữ liệu"),
@@ -1025,6 +1139,6 @@
   }
 
   global.Views = {
-    dashboard, roadmap, today, journal, questions, vocab, rescue, aitools, progress, settings,
+    dashboard, roadmap, today, journal, questions, vocab, rescue, resources, aitools, progress, settings,
   };
 })(window);

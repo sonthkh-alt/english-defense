@@ -32,6 +32,8 @@
       phaseDone: {},
       // recordings: [{id, date, kind, note}] — nhật ký ghi âm đo tiến bộ
       recordings: [],
+      // đã nạp gói khởi động tháng 1 chưa
+      seeded: false,
     };
   }
 
@@ -62,6 +64,7 @@
     merged.journal = s.journal || [];
     merged.phaseDone = s.phaseDone || {};
     merged.recordings = s.recordings || [];
+    merged.seeded = !!s.seeded;
     merged.schema = SCHEMA;
     return merged;
   }
@@ -280,6 +283,41 @@
       return item;
     },
     deleteRecording(id) { state.recordings = state.recordings.filter((x) => x.id !== id); persist(); },
+
+    // ----- gói khởi động tháng 1 -----
+    hasSeeded() { return !!state.seeded; },
+    // Nạp SEED: bỏ qua từ/câu đã tồn tại (idempotent). Trả về số lượng đã thêm.
+    importStarterPack() {
+      if (typeof SEED === "undefined") return { vocab: 0, questions: 0 };
+      let addedV = 0, addedQ = 0;
+      // vocab — created = "" để không tính vào chỉ tiêu "5 từ hôm nay"
+      const existingTerms = new Set(state.vocab.map((v) => v.term.toLowerCase()));
+      SEED.VOCAB.forEach((it) => {
+        const term = it.t.trim();
+        if (existingTerms.has(term.toLowerCase())) return;
+        state.vocab.push({
+          id: uid(), term: term, pos: it.p || "", meaning: it.m || "", example: it.e || "",
+          created: "", box: 1, lastReview: null, seeded: true,
+        });
+        existingTerms.add(term.toLowerCase());
+        addedV++;
+      });
+      // questions
+      APP_DATA.QUESTION_AXES.forEach((ax) => {
+        const seedList = (SEED.QUESTIONS[ax.id] || []);
+        const arr = state.questions[ax.id] || (state.questions[ax.id] = []);
+        const existingEn = new Set(arr.map((q) => q.en.toLowerCase()));
+        seedList.forEach((sq) => {
+          if (existingEn.has(sq.q.toLowerCase())) return;
+          arr.push({ id: uid(), en: sq.q, vi: sq.v || "", answer: sq.a || "", mastery: 0, seeded: true });
+          existingEn.add(sq.q.toLowerCase());
+          addedQ++;
+        });
+      });
+      state.seeded = true;
+      persist();
+      return { vocab: addedV, questions: addedQ };
+    },
 
     // ----- backup -----
     exportJSON() { return JSON.stringify(state, null, 2); },
