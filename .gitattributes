@@ -1,0 +1,5 @@
+# Chuẩn hoá xuống dòng: dùng LF trong repo, tự chuyển ở máy Windows
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.svg text
