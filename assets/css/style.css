@@ -400,6 +400,19 @@ input, textarea, select { font-family: inherit; }
 }
 [data-theme="dark"] .phase__milestone { color: var(--amber); }
 
+/* ---------- Phase lessons (Roadmap ↔ bài học) ---------- */
+.phase-lessons-wrap { margin-top: 14px; border-top: 1px dashed var(--border); padding-top: 12px; }
+.phase-lessons-summary {
+  cursor: pointer; font-weight: 600; font-size: 13.5px; color: var(--brand);
+  list-style: none; padding: 8px 12px; border-radius: 10px; background: var(--brand-soft);
+  display: flex; align-items: center; gap: 8px; user-select: none;
+}
+.phase-lessons-summary::-webkit-details-marker { display: none; }
+.phase-lessons-summary::before { content: "▸"; transition: transform .2s; }
+details[open] > .phase-lessons-summary::before { transform: rotate(90deg); }
+[data-theme="dark"] .phase-lessons-summary { color: var(--brand-400); }
+.phase-lessons { padding: 14px 4px 4px; }
+
 /* ---------- Heatmap ---------- */
 .heatmap { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 4px; overflow-x: auto; padding-bottom: 6px; }
 .heat-cell { width: 14px; height: 14px; border-radius: 4px; background: var(--surface-3); transition: transform .12s; }

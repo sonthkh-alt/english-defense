@@ -229,11 +229,14 @@
             h("span", null, "🏁"),
             h("div", null, [h("strong", null, "Mốc cuối: "), p.milestone]),
           ]),
-          h("div", { class: "mt-2" }, [
+          // ---- Bài học của giai đoạn (liên kết hướng dẫn ↔ thực hành) ----
+          phaseLessons(p, isCurrent),
+          h("div", { class: "row wrap mt-2", style: { gap: "8px" } }, [
+            isCurrent ? h("a", { href: "#/today", class: "btn btn--primary btn--sm" }, "☀ Vào buổi học hôm nay") : null,
             h("button", {
               class: "btn btn--sm " + (done ? "btn--ghost" : "btn--accent"),
               onClick: () => { Store.togglePhase(p.id); toast(done ? "Đã bỏ đánh dấu" : "Chúc mừng hoàn thành GĐ " + p.id + "! 🎉", done ? null : "accent"); reload(); },
-            }, done ? "↺ Bỏ đánh dấu hoàn thành" : "✓ Đánh dấu hoàn thành giai đoạn"),
+            }, done ? "↺ Bỏ đánh dấu" : "✓ Đánh dấu hoàn thành giai đoạn"),
           ]),
         ]),
       ]);
@@ -241,6 +244,62 @@
     });
     out.appendChild(tl);
     return out;
+  }
+
+  // Panel bài học/buổi học của 1 giai đoạn (mở ra khi nhấn)
+  function phaseLessons(p, isCurrent) {
+    if (typeof LESSONS === "undefined") return null;
+    const listen = LESSONS.listenPool(p.id);
+    const shVideo = LESSONS.shadowVideoPool(p.id);
+    const shSents = LESSONS.shadowPool(p.id);
+    const sp = LESSONS.speakInfo(p.id);
+    const lvls = LESSONS.vocabLevels(p.id);
+    const lvlColor = LESSONS.levelColor(p.id);
+    const months = (typeof SEED !== "undefined" && SEED.MONTHS_PLAN) ? SEED.MONTHS_PLAN.filter((m) => m.phase === p.id) : [];
+
+    // đếm từ vựng theo cấp của giai đoạn
+    let vocabCount = 0;
+    if (typeof SEED !== "undefined") vocabCount = SEED.VOCAB.filter((v) => lvls.indexOf(v.lvl) > -1).length;
+
+    const body = h("div", { class: "phase-lessons" }, [
+      h("div", { class: "row wrap mb-2", style: { gap: "6px" } }, [
+        h("span", { class: "badge badge--" + lvlColor }, "🎧 " + LESSONS.levelLabel(p.id)),
+        h("span", { class: "badge" }, "✎ Từ vựng cấp " + lvls.join("+") + " (" + vocabCount + " từ)"),
+      ]),
+
+      // Các tháng trong giai đoạn
+      months.length ? h("div", { class: "small", style: { fontWeight: 600, margin: "4px 0 6px" } }, "📅 Các tháng:") : null,
+      months.length ? h("div", { class: "row wrap mb-2", style: { gap: "6px" } },
+        months.map((m) => h("a", { href: "#/resources", class: "badge badge--" + m.color, title: m.focus, style: { textDecoration: "none" } }, "Th" + m.month + ": " + m.theme))) : null,
+
+      // Nghe — video theo cấp độ
+      h("div", { class: "small", style: { fontWeight: 600, margin: "6px 0" } }, "🎧 Nguồn NGHE (đúng cấp độ giai đoạn):"),
+      h("div", { style: { display: "flex", flexDirection: "column", gap: "6px" } },
+        listen.map((v) => h("a", {
+          href: v.url, target: "_blank", rel: "noopener",
+          class: "row", style: { gap: "8px", padding: "8px 11px", background: "var(--surface-2)", borderRadius: "10px", textDecoration: "none", color: "inherit", borderLeft: "3px solid var(--" + lvlColor + ")" },
+        }, [
+          h("span", null, v.y ? "▶" : "↗"),
+          h("div", { class: "flex-1" }, [h("div", { style: { fontWeight: 600, fontSize: "13px" } }, v.t), h("div", { class: "small muted" }, v.src + " · " + (v.note || ""))]),
+        ]))),
+
+      // Shadowing
+      h("div", { class: "small", style: { fontWeight: 600, margin: "10px 0 6px" } }, "🗣 Shadowing của giai đoạn:"),
+      h("div", { class: "small muted mb-1" }, "Nhại người thật: " + shVideo.map((v) => v.src).join(", ") + ". Ví dụ câu mẫu:"),
+      h("div", { style: { display: "flex", flexDirection: "column", gap: "4px" } },
+        shSents.slice(0, 3).map((s) => h("div", { class: "row", style: { gap: "7px" } }, [audioBtn(s) || h("span"), h("span", { class: "small", style: { fontStyle: "italic" } }, "“" + s + "”")]))),
+
+      // Nói
+      sp ? h("div", { class: "callout mt-2", style: { padding: "10px 12px" } }, [
+        h("span", { class: "callout__icon" }, "💬"),
+        h("div", { class: "small" }, [h("strong", null, "Nói: "), sp.prompt]),
+      ]) : null,
+    ]);
+
+    return h("details", { class: "phase-lessons-wrap", open: isCurrent ? "" : null }, [
+      h("summary", { class: "phase-lessons-summary" }, "📚 Bài học & buổi học của giai đoạn này"),
+      body,
+    ]);
   }
   function metaCard(icon, label, text, color) {
     return h("div", { class: "card", style: { borderLeft: "4px solid var(--" + color + ")" } }, [
@@ -1490,11 +1549,33 @@
     });
     chips.forEach((c) => rateRow.appendChild(c));
 
-    card.appendChild(h("div", { class: "field" }, [h("label", null, "Giọng đọc"), sel]));
+    card.appendChild(h("div", { class: "field" }, [h("label", null, "Giọng đọc câu (Text-to-Speech)"), sel]));
     card.appendChild(h("div", { class: "field" }, [h("label", null, "Tốc độ đọc"), rateRow]));
-    if (!voices.length) card.appendChild(h("div", { class: "small muted" }, "Danh sách giọng đang tải — thử lại sau vài giây hoặc bấm 🔊 để trình duyệt tải giọng."));
+
+    // Toggle: giọng người thật cho TỪ đơn
+    const humanOn = s.humanAudio !== false;
+    card.appendChild(h("div", { class: "field" }, [
+      h("label", null, "Giọng NGƯỜI THẬT cho từ vựng"),
+      h("div", { class: "row wrap", style: { gap: "8px" } }, [
+        h("button", { class: "chip" + (humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", true); toast("Ưu tiên giọng người bản xứ thật cho từ đơn"); App.render(); } }, "🧑 Người bản xứ thật (khuyên dùng)"),
+        h("button", { class: "chip" + (!humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", false); toast("Dùng giọng máy cho tất cả"); App.render(); } }, "🤖 Giọng máy"),
+      ]),
+      h("div", { class: "small muted mt-1" }, "Bật: từ đơn (VD allocation, deficit) sẽ phát bản thu của người bản xứ thật (nguồn Free Dictionary API — có nhấn nhá tự nhiên). Cụm nhiều từ & câu dùng giọng TTS đã chọn ở trên."),
+    ]));
+
+    // Tự nhận diện trình duyệt
+    const ua = (global.navigator && navigator.userAgent) || "";
+    const isEdge = /Edg\//.test(ua);
+    if (!isEdge && !naturalCount) {
+      card.appendChild(h("div", { class: "small", style: { color: "var(--amber)" } }, "⚠ Đang không dùng Microsoft Edge. Để có giọng CÂU tự nhiên nhất, hãy mở web này bằng Edge."));
+    } else if (isEdge) {
+      card.appendChild(h("div", { class: "small", style: { color: "var(--accent)" } }, "✓ Bạn đang dùng Edge — chọn giọng có chữ (Natural) ở trên để nghe gần như người thật."));
+    }
+
+    if (!voices.length) card.appendChild(h("div", { class: "small muted" }, "Danh sách giọng đang tải — bấm 🔊 để trình duyệt tải giọng, rồi mở lại Cài đặt."));
     card.appendChild(h("div", { class: "row mt-1", style: { gap: "10px" } }, [
-      h("button", { class: "btn btn--ghost btn--sm", onClick: () => UI.speak("This is a sample of the pronunciation voice for your thesis defense.") }, "🔊 Nghe thử"),
+      h("button", { class: "btn btn--ghost btn--sm", onClick: () => UI.speak("Good morning. Thank you for the opportunity to present my research today.") }, "🔊 Nghe thử câu"),
+      h("button", { class: "btn btn--ghost btn--sm", onClick: () => UI.speak("allocation") }, "🧑 Nghe thử từ (người thật)"),
     ]));
     return card;
   }

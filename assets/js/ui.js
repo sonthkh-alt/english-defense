@@ -196,22 +196,72 @@
       if (pref) { const f = voices.find((v) => v.voiceURI === pref); if (f) return f; }
       return rankedVoices()[0];
     }
-    function speak(text, opts) {
+    function humanOn() {
+      return !(global.Store && Store.settings && Store.settings().humanAudio === false);
+    }
+    // ---- Audio NGƯỜI BẢN XỨ THẬT cho TỪ đơn (Free Dictionary API) ----
+    const audioCache = {};
+    function fetchWordAudio(word) {
+      return new Promise((resolve) => {
+        const key = String(word).toLowerCase().trim();
+        if (key in audioCache) return resolve(audioCache[key]);
+        if (/\s/.test(key) || key.length < 2 || typeof fetch === "undefined") { audioCache[key] = null; return resolve(null); }
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(key))
+          .then((r) => (r.ok ? r.json() : null))
+          .then((data) => {
+            let url = null;
+            if (Array.isArray(data)) {
+              for (const entry of data) {
+                for (const ph of (entry.phonetics || [])) {
+                  if (ph && ph.audio) {
+                    let a = ph.audio; if (a.indexOf("//") === 0) a = "https:" + a;
+                    if (/-us\.mp3/i.test(a)) { url = a; break; }
+                    if (!url) url = a;
+                  }
+                }
+                if (url && /-us\.mp3/i.test(url)) break;
+              }
+            }
+            audioCache[key] = url; resolve(url);
+          })
+          .catch(() => { audioCache[key] = null; resolve(null); });
+      });
+    }
+    function playUrl(url) {
+      try { const a = new Audio(url); a.play(); return true; } catch (e) { return false; }
+    }
+    // TTS với NHẤN NHÁ: tách câu theo dấu câu → nhiều utterance → có ngắt nghỉ tự nhiên
+    function ttsSpeak(text, opts) {
       opts = opts || {};
       if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
       try {
         synth.cancel();
-        const u = new SpeechSynthesisUtterance(String(text));
         const v = pickVoice();
-        if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
         const rate = opts.rate != null ? opts.rate
           : (global.Store && Store.settings && Store.settings().speechRate) || 0.85;
-        u.rate = Math.max(0.5, Math.min(1.2, rate));
-        u.pitch = 1;
-        synth.speak(u);
+        const rr = Math.max(0.5, Math.min(1.2, rate));
+        const clauses = String(text).match(/[^,;:.!?—]+[,;:.!?—]?/g) || [String(text)];
+        clauses.forEach((c) => {
+          c = c.trim(); if (!c) return;
+          const u = new SpeechSynthesisUtterance(c);
+          if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+          u.rate = rr; u.pitch = 1.0;
+          synth.speak(u);
+        });
       } catch (e) { toast("Không phát được audio"); }
     }
-    return { supported: !!synth, speak, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
+    // Đầu vào chung: TỪ đơn → thử giọng người thật; CÂU → TTS nhấn nhá
+    function speak(text, opts) {
+      opts = opts || {};
+      const t = String(text).trim();
+      const single = t.length > 1 && !/\s/.test(t);
+      if (single && humanOn() && !opts.ttsOnly && !opts.rate) {
+        fetchWordAudio(t).then((url) => { if (!(url && playUrl(url))) ttsSpeak(t, opts); });
+        return;
+      }
+      ttsSpeak(t, opts);
+    }
+    return { supported: !!synth, speak, ttsSpeak, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
   })();
 
   global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };

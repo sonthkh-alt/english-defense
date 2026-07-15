@@ -18,6 +18,7 @@
         name: "",
         speechRate: 0.85,       // tốc độ đọc audio (0.7 chậm … 1.0 chuẩn)
         voiceURI: "",           // giọng đọc ưa thích (Web Speech API)
+        humanAudio: true,       // ưu tiên audio người bản xứ thật cho từ đơn
       },
       // sessions[yyyy-mm-dd] = { blocks:{listen:true,...}, minutes:Number, note:String }
       sessions: {},

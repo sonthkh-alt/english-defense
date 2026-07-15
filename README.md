@@ -13,7 +13,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | Trang | Chức năng |
 |---|---|
 | **◎ Bảng điều khiển** | Tổng quan: ngày thứ mấy / 365, giai đoạn hiện tại, chuỗi ngày (streak), tổng thời lượng, tiến độ hôm nay bằng vòng tròn động. |
-| **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn từ khởi động → mô phỏng bảo vệ toàn phần, mục tiêu & mốc cuối từng giai đoạn, đánh dấu hoàn thành. |
+| **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn; **nhấn giai đoạn để mở bài học/buổi học của giai đoạn đó**: video đúng cấp độ (dễ→khó), câu shadowing, đề nói, cấp từ vựng, các tháng — liên kết thẳng tới "Buổi học hôm nay". |
 | **☀ Buổi học hôm nay** | **Bài giảng tương tác** cho từng mục (Nghe · Shadowing · Từ vựng · Nói · Ôn): **video học thật nhúng sẵn** (BBC/VOA/CrashCourse/TED/MIT/Yale theo giai đoạn), các bước bắt buộc theo phương pháp sư phạm (pre-listening → nghe có phụ đề → nghe không phụ đề → chép câu). **Chỉ tính hoàn thành khi làm xong từng bước.** |
 | **▤ Nhật ký & Chuỗi ngày** | Bản đồ nhiệt (heatmap) 26 tuần, nhật ký học tập theo tâm trạng. |
 | **📚 Tài nguyên & Nguồn** | **Gói học đầy đủ 12 tháng** nạp 1 chạm: ~274 từ vựng + 130 câu hỏi + lộ trình 12 tháng theo tuần + kho câu thuyết trình/Q&A + luyện phát âm cho người Việt + nguồn học thuật uy tín. |
@@ -25,7 +25,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | **⚙ Cài đặt** | Đặt ngày bắt đầu, tên đề tài, **sao lưu / khôi phục** dữ liệu (.json), giao diện sáng/tối. |
 
 ### Điểm mạnh thiết kế
-- 🔊 **Audio phát âm chuẩn** (Web Speech API): nghe từ vựng, câu hỏi, câu mẫu; tự ưu tiên **giọng neural/tự nhiên** (Natural/Online/Google), chỉnh giọng & tốc độ.
+- 🔊 **Audio phát âm chuẩn**: từ đơn dùng **bản thu người bản xứ thật** (Free Dictionary API) khi có; câu dùng TTS **giọng neural/tự nhiên** (ưu tiên Natural/Online/Google) với **nhấn nhá theo dấu câu**; tự nhận diện Edge để gợi ý giọng gần như người thật.
 - 🎙 **Shadowing 2 chế độ**: nhại **NGƯỜI THẬT** qua video người bản xứ (chuẩn nhất), hoặc câu mẫu giọng máy. Gợi ý dùng Microsoft Edge để có giọng "như người thật" miễn phí.
 - 🧗 **Học bám lộ trình**: từ vựng & câu hỏi phân 4 cấp độ, đi từ dễ đến khó theo đúng 12 tháng; mỗi ngày app gợi ý đúng 5 từ nên học.
 - 🎨 Giao diện hiện đại, **sáng/tối tự động**, responsive (điện thoại + máy tính).

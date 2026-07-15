@@ -23,13 +23,13 @@
 
   // ---- Kho video nghe theo trình độ (xoay theo ngày) ----
   const LISTEN = {
-    beginner: [ // GĐ0–1: chậm, rõ, có phụ đề
+    beginner: [ // GĐ0–1: chậm, rõ, có phụ đề (xếp DỄ nhất trước)
+      { t: "VOA — Economics Report", y: "W7LiPCh5Zlw", src: "VOA Learning English",
+        url: "https://www.youtube.com/playlist?list=PL-uLtPxrK91M-piPjowair8TBVTp-wI3_",
+        note: "DỄ NHẤT: tin kinh tế đọc chậm hơn 1/3 bình thường — hợp để bắt số liệu & thuật ngữ.", mins: 5 },
       { t: "BBC 6 Minute English — Box Set", y: "fcN0BXzK8bg", src: "BBC Learning English",
         url: "https://www.youtube.com/playlist?list=PLcetZ6gSk96-FECmH9l7Vlx5VDigvgZpt",
         note: "Hội thoại ngắn, tốc độ vừa, có phụ đề + giải thích từ vựng. Chuẩn để luyện nghe lấy ý.", mins: 6 },
-      { t: "VOA — Economics Report", y: "W7LiPCh5Zlw", src: "VOA Learning English",
-        url: "https://www.youtube.com/playlist?list=PL-uLtPxrK91M-piPjowair8TBVTp-wI3_",
-        note: "Tin kinh tế đọc chậm hơn 1/3 bình thường — hợp để bắt số liệu & thuật ngữ.", mins: 5 },
       { t: "Crash Course Econ #1 — Intro to Economics", y: "3ez10ADR_gM", src: "CrashCourse",
         url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO",
         note: "Nhập môn kinh tế, hình ảnh minh họa, phụ đề tốt. Nền cho từ vựng chuyên ngành.", mins: 12 },
@@ -212,6 +212,30 @@
       if (typeof APP_DATA === "undefined" || !APP_DATA.RESCUE_PHRASES) return null;
       const r = APP_DATA.RESCUE_PHRASES;
       return r[((day || 1) - 1) % r.length];
+    },
+
+    // ---- Getter cho Roadmap (bài học của từng giai đoạn) ----
+    listenPool(phaseId) { return LISTEN[phaseKey(phaseId)] || []; },
+    shadowVideoPool(phaseId) { return SHADOW_VIDEO[phaseKey(phaseId)] || []; },
+    shadowPool(phaseId) { const k = phaseId <= 1 ? 1 : (phaseId === 2 ? 2 : (phaseId === 3 ? 3 : 4)); return SHADOW[k] || []; },
+    speakInfo(phaseId) { return SPEAK[speakKey(phaseId)]; },
+    // Nhãn cấp độ nghe theo giai đoạn (dễ → khó)
+    levelLabel(phaseId) {
+      const k = phaseKey(phaseId);
+      return k === "beginner" ? "Cơ bản — chậm, rõ, có phụ đề"
+           : k === "inter" ? "Trung cấp — nhanh hơn, học thuật hơn"
+           : "Nâng cao — bài giảng thật + phần Hỏi–đáp";
+    },
+    levelColor(phaseId) {
+      const k = phaseKey(phaseId);
+      return k === "beginner" ? "accent" : (k === "inter" ? "violet" : "amber");
+    },
+    // Các cấp từ vựng trọng tâm của giai đoạn (bám 4 cấp trong SEED.LEVELS)
+    vocabLevels(phaseId) {
+      if (phaseId <= 1) return [1, 2];
+      if (phaseId === 2) return [2, 3];
+      if (phaseId === 3) return [3, 4];
+      return [4];
     },
   };
 
