@@ -151,6 +151,28 @@
     },
   };
 
+  // ---- Video NGƯỜI THẬT để nhại (clip ngắn, giọng rõ, có thể nhúng) ----
+  const SHADOW_VIDEO = {
+    beginner: [
+      { t: "VOA — đọc chậm, rõ (lý tưởng để nhại)", y: "W7LiPCh5Zlw", src: "VOA Learning English",
+        url: "https://www.youtube.com/playlist?list=PL-uLtPxrK91M-piPjowair8TBVTp-wI3_" },
+      { t: "BBC 6 Minute English", y: "fcN0BXzK8bg", src: "BBC Learning English",
+        url: "https://www.youtube.com/playlist?list=PLcetZ6gSk96-FECmH9l7Vlx5VDigvgZpt" },
+    ],
+    inter: [
+      { t: "Crash Course Econ #1 — Intro", y: "3ez10ADR_gM", src: "CrashCourse",
+        url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO" },
+      { t: "Crash Course Econ #3 — Systems & Macro", y: "B43YEW2FvDs", src: "CrashCourse",
+        url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO" },
+    ],
+    advanced: [
+      { t: "Crash Course Econ #5 — Macroeconomics", y: "d8uTB5XorBw", src: "CrashCourse",
+        url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO" },
+      { t: "Crash Course Econ #2 — Trade", y: "NI9TLDIPVcs", src: "CrashCourse",
+        url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO" },
+    ],
+  };
+
   function phaseKey(phaseId) {
     if (phaseId <= 1) return "beginner";
     if (phaseId === 2) return "inter";
@@ -171,6 +193,7 @@
       const k = phaseId <= 1 ? 1 : (phaseId === 2 ? 2 : (phaseId === 3 ? 3 : 4));
       return pick3(SHADOW[k], day);
     },
+    pickShadowVideo(phaseId, day) { return pick(SHADOW_VIDEO[phaseKey(phaseId)], day); },
     pickSpeak(phaseId, day) {
       const sp = SPEAK[speakKey(phaseId)];
       const out = { prompt: sp.prompt, starters: sp.starters, tip: sp.tip };

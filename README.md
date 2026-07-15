@@ -25,7 +25,8 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | **⚙ Cài đặt** | Đặt ngày bắt đầu, tên đề tài, **sao lưu / khôi phục** dữ liệu (.json), giao diện sáng/tối. |
 
 ### Điểm mạnh thiết kế
-- 🔊 **Audio phát âm chuẩn** (Web Speech API): nghe từ vựng, câu hỏi, câu mẫu; chỉnh giọng en‑US/UK & tốc độ để shadowing.
+- 🔊 **Audio phát âm chuẩn** (Web Speech API): nghe từ vựng, câu hỏi, câu mẫu; tự ưu tiên **giọng neural/tự nhiên** (Natural/Online/Google), chỉnh giọng & tốc độ.
+- 🎙 **Shadowing 2 chế độ**: nhại **NGƯỜI THẬT** qua video người bản xứ (chuẩn nhất), hoặc câu mẫu giọng máy. Gợi ý dùng Microsoft Edge để có giọng "như người thật" miễn phí.
 - 🧗 **Học bám lộ trình**: từ vựng & câu hỏi phân 4 cấp độ, đi từ dễ đến khó theo đúng 12 tháng; mỗi ngày app gợi ý đúng 5 từ nên học.
 - 🎨 Giao diện hiện đại, **sáng/tối tự động**, responsive (điện thoại + máy tính).
 - 🔒 **Riêng tư tuyệt đối** — dữ liệu không rời khỏi máy bạn (localStorage).

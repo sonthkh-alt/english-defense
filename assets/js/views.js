@@ -399,22 +399,54 @@
     });
   }
 
-  // BLOCK 2 — SHADOWING
+  // BLOCK 2 — SHADOWING (2 chế độ: giọng máy chuẩn / nhại người thật qua video)
+  let shadowMode = "human"; // mặc định ưu tiên NGƯỜI THẬT
   function lessonShadow(date, phase, day) {
     const block = D.DAILY_BLOCKS[1];
     const sents = LESSONS.pickShadow(phase.id, day);
-    return lessonShell(date, block, "Nghe giọng chuẩn → nhại theo từng câu 5 lần → ghi âm so sánh", () => {
-      const kids = [h("div", { class: "callout mb-2", style: { padding: "10px 13px" } }, [
-        h("span", { class: "callout__icon" }, "🗣"),
-        h("div", { class: "small" }, "Bấm 🔊 nghe mẫu (tốc độ chậm ở Cài đặt), nhại theo 5 lần cho đến khi trôi chảy, rồi tick hoàn thành."),
-      ])];
-      sents.forEach((s, i) => {
-        const btns = [];
-        const b1 = audioBtn(s); if (b1) btns.push(b1);
-        const b2 = audioBtn(s, { rate: 0.6 }); if (b2) { b2.textContent = "🐢"; b2.title = "Nghe chậm (để nhại)"; btns.push(b2); }
-        kids.push(stepRow(date, "shadow", "s" + i, "Câu " + (i + 1) + ": “" + s + "”",
-          btns.length ? h("div", { class: "row", style: { gap: "6px", marginTop: "6px" } }, [btns, h("span", { class: "small muted" }, "🔊 thường · 🐢 chậm")]) : null));
-      });
+    const vid = LESSONS.pickShadowVideo(phase.id, day);
+    return lessonShell(date, block, "Nghe mẫu → nhại từng câu 5 lần → ghi âm so sánh", () => {
+      const kids = [];
+      // chuyển chế độ
+      kids.push(h("div", { class: "row wrap mb-2", style: { gap: "8px" } }, [
+        h("button", { class: "chip" + (shadowMode === "human" ? " active" : ""), onClick: () => { shadowMode = "human"; reload(); } }, "🎙 Nhại NGƯỜI THẬT (video)"),
+        h("button", { class: "chip" + (shadowMode === "model" ? " active" : ""), onClick: () => { shadowMode = "model"; reload(); } }, "🔊 Câu mẫu (giọng máy)"),
+      ]));
+
+      if (shadowMode === "human") {
+        kids.push(h("div", { class: "callout callout--accent mb-2", style: { padding: "10px 13px" } }, [
+          h("span", { class: "callout__icon" }, "🎙"),
+          h("div", { class: "small" }, [
+            h("strong", null, "Chuẩn nhất: nhại người bản xứ thật. "),
+            "Bật phụ đề (CC), nghe 1 câu → tạm dừng → nhại đúng ngữ điệu 5 lần → chuyển câu tiếp. Dùng phím ← để tua lại 5 giây.",
+          ]),
+        ]));
+        if (vid && vid.y) {
+          kids.push(h("div", { class: "video-wrap mb-2" }, [
+            h("iframe", { src: LESSONS.yt(vid.y), title: vid.t, loading: "lazy", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: "" }),
+          ]));
+          kids.push(h("div", { class: "row between wrap mb-2", style: { gap: "8px" } }, [
+            h("div", { class: "small" }, [h("strong", null, vid.t), h("span", { class: "muted" }, " · " + vid.src)]),
+            h("a", { href: vid.url, target: "_blank", rel: "noopener", class: "btn btn--ghost btn--sm" }, "Mở nguồn ↗"),
+          ]));
+        }
+        [0, 1, 2].forEach((i) => kids.push(stepRow(date, "shadow", "s" + i, "Đã nhại đoạn " + (i + 1) + " của người thật (5 lần, đúng ngữ điệu)")));
+      } else {
+        kids.push(h("div", { class: "callout mb-2", style: { padding: "10px 13px" } }, [
+          h("span", { class: "callout__icon" }, "🔊"),
+          h("div", { class: "small" }, [
+            "Bấm 🔊 nghe (chỉnh giọng tự nhiên & tốc độ ở ", h("a", { href: "#/settings" }, "Cài đặt"), "), nhại 5 lần rồi tick. ",
+            h("strong", null, "Mẹo giọng như người thật: mở web bằng Microsoft Edge."),
+          ]),
+        ]));
+        sents.forEach((s, i) => {
+          const btns = [];
+          const b1 = audioBtn(s); if (b1) btns.push(b1);
+          const b2 = audioBtn(s, { rate: 0.6 }); if (b2) { b2.textContent = "🐢"; b2.title = "Nghe chậm (để nhại)"; btns.push(b2); }
+          kids.push(stepRow(date, "shadow", "s" + i, "Câu " + (i + 1) + ": “" + s + "”",
+            btns.length ? h("div", { class: "row", style: { gap: "6px", marginTop: "6px" } }, [btns, h("span", { class: "small muted" }, "🔊 thường · 🐢 chậm")]) : null));
+        });
+      }
       return h("div", { class: "lesson__body" }, kids);
     });
   }
@@ -1415,16 +1447,37 @@
     ]);
     if (!supported) return card;
 
-    // voice select
-    const voices = UI.Speech.englishVoices();
+    // voice select — xếp theo chất lượng, đánh dấu giọng tự nhiên
+    const voices = UI.Speech.rankedVoices();
+    const qLabel = { natural: "⭐ Tự nhiên", enhanced: "◆ Khá", standard: "• Cơ bản" };
+    const naturalCount = voices.filter((v) => UI.Speech.voiceQuality(v) === "natural").length;
     const sel = h("select", { class: "select" });
-    sel.appendChild(h("option", { value: "" }, "Tự động (giọng en chuẩn nhất)"));
+    sel.appendChild(h("option", { value: "" }, "Tự động (chọn giọng tự nhiên nhất)"));
     voices.forEach((v) => {
-      const opt = h("option", { value: v.voiceURI }, v.name + " (" + v.lang + ")");
+      const q = UI.Speech.voiceQuality(v);
+      const opt = h("option", { value: v.voiceURI }, qLabel[q] + " · " + v.name + " (" + v.lang + ")");
       if (v.voiceURI === s.voiceURI) opt.selected = true;
       sel.appendChild(opt);
     });
     sel.addEventListener("change", () => { Store.setSetting("voiceURI", sel.value); toast("Đã đổi giọng đọc"); });
+
+    // cảnh báo nếu chưa có giọng tự nhiên nào
+    if (!naturalCount) {
+      card.appendChild(h("div", { class: "callout callout--amber mb-2", style: { padding: "11px 13px" } }, [
+        h("span", { class: "callout__icon" }, "💡"),
+        h("div", { class: "small" }, [
+          h("strong", null, "Muốn giọng NHƯ NGƯỜI THẬT (miễn phí)? "),
+          "Máy đang chưa có giọng neural. Cách tốt nhất: mở web này bằng ",
+          h("strong", null, "Microsoft Edge"),
+          " — Edge có sẵn giọng ",
+          h("em", null, "\"Microsoft Aria/Ana Online (Natural)\""),
+          " nghe gần như người thật. Hoặc cài giọng tự nhiên trong Windows: Settings → Time & language → Speech → Manage voices → Add.",
+        ]),
+      ]));
+    } else {
+      card.appendChild(h("div", { class: "small", style: { color: "var(--accent)", marginBottom: "8px" } },
+        "✓ Có " + naturalCount + " giọng tự nhiên — đã tự chọn giọng chuẩn nhất cho bạn."));
+    }
 
     // rate select
     const rates = [[0.7, "Chậm (shadowing)"], [0.85, "Vừa (khuyên dùng)"], [1.0, "Chuẩn"]];

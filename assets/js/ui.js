@@ -162,20 +162,39 @@
       if (!voices.length) load();
       return voices.filter((v) => /^en([-_]|$)/i.test(v.lang));
     }
-    // Ưu tiên giọng chất lượng cao, chuẩn en-US/en-GB
+    // Chấm điểm chất lượng giọng — cao = tự nhiên hơn (neural/online/natural)
+    function scoreVoice(v) {
+      const n = (v.name || "") + " " + (v.voiceURI || "");
+      let s = 0;
+      if (/natural/i.test(n)) s += 120;
+      if (/neural/i.test(n)) s += 110;
+      if (/online/i.test(n)) s += 60;   // giọng Microsoft Online = neural
+      if (/google/i.test(n)) s += 55;
+      if (/siri|samantha/i.test(n)) s += 58;
+      if (/\b(aria|jenny|guy|michelle|ana|libby|sonia|ryan|emma|christopher|eric|jane)\b/i.test(n)) s += 35; // tên giọng MS neural
+      if (v.localService === false) s += 25; // giọng đám mây thường tự nhiên hơn
+      if (/en[-_]US/i.test(v.lang)) s += 12;
+      if (/en[-_]GB/i.test(v.lang)) s += 8;
+      if (/microsoft (david|zira|mark|hazel)\b/i.test(n)) s -= 30; // giọng cũ, máy móc
+      return s;
+    }
+    function voiceQuality(v) {
+      const n = (v.name || "") + " " + (v.voiceURI || "");
+      if (/natural|neural|online/i.test(n) || /google|siri/i.test(n) || v.localService === false) return "natural";
+      if (/samantha|aria|jenny|guy|michelle/i.test(n)) return "enhanced";
+      return "standard";
+    }
+    // Danh sách giọng en xếp theo chất lượng giảm dần
+    function rankedVoices() {
+      return englishVoices().slice().sort((a, b) => scoreVoice(b) - scoreVoice(a));
+    }
+    // Ưu tiên giọng tự nhiên nhất (hoặc giọng người dùng đã chọn)
     function pickVoice() {
       const en = englishVoices();
       if (!en.length) return voices[0] || null;
       const pref = (global.Store && Store.settings && Store.settings().voiceURI) || "";
       if (pref) { const f = voices.find((v) => v.voiceURI === pref); if (f) return f; }
-      const wanted = [
-        "Google US English", "Google UK English Female", "Google UK English Male",
-        "Microsoft Aria", "Microsoft Jenny", "Microsoft Michelle", "Microsoft Guy",
-        "Samantha", "Microsoft Zira", "Microsoft David",
-      ];
-      for (const name of wanted) { const f = en.find((v) => v.name && v.name.indexOf(name) !== -1); if (f) return f; }
-      const us = en.find((v) => /en[-_]US/i.test(v.lang)); if (us) return us;
-      return en[0];
+      return rankedVoices()[0];
     }
     function speak(text, opts) {
       opts = opts || {};
@@ -192,7 +211,7 @@
         synth.speak(u);
       } catch (e) { toast("Không phát được audio"); }
     }
-    return { supported: !!synth, speak, englishVoices, pickVoice, reload: load };
+    return { supported: !!synth, speak, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
   })();
 
   global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
