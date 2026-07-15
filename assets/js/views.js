@@ -1550,6 +1550,29 @@
     chips.forEach((c) => rateRow.appendChild(c));
 
     card.appendChild(h("div", { class: "field" }, [h("label", null, "Giọng đọc câu (Text-to-Speech)"), sel]));
+
+    // Trình nghe thử & chọn từng giọng
+    const audition = h("div", { style: { display: "flex", flexDirection: "column", gap: "2px", marginTop: "6px" } });
+    voices.forEach((v) => {
+      const q = UI.Speech.voiceQuality(v);
+      const active = v.voiceURI === s.voiceURI;
+      audition.appendChild(h("div", { class: "row between", style: { padding: "7px 4px", borderBottom: "1px solid var(--border)" } }, [
+        h("div", { class: "flex-1", style: { minWidth: 0 } }, [
+          h("div", { style: { fontSize: "12.5px", fontWeight: 600 } }, qLabel[q] + " · " + v.name),
+          h("div", { class: "small muted" }, v.lang + (v.localService === false ? " · trực tuyến (tự nhiên hơn)" : " · trên máy")),
+        ]),
+        h("div", { class: "row", style: { gap: "6px" } }, [
+          h("button", { class: "btn btn--ghost btn--sm", title: "Nghe thử giọng này", onClick: () => UI.Speech.testVoice(v) }, "▶"),
+          h("button", { class: "btn " + (active ? "btn--accent" : "btn--ghost") + " btn--sm", onClick: () => { Store.setSetting("voiceURI", v.voiceURI); toast("Đã chọn: " + v.name); App.render(); } }, active ? "✓ Đang dùng" : "Chọn"),
+        ]),
+      ]));
+    });
+    card.appendChild(h("details", { style: { marginBottom: "12px" } }, [
+      h("summary", { style: { cursor: "pointer", fontSize: "13px", color: "var(--brand)", padding: "4px 0" } }, "🎧 Nghe thử & chọn từng giọng (" + voices.length + " giọng) — chọn giọng nghe tự nhiên nhất"),
+      audition,
+      h("button", { class: "btn btn--ghost btn--sm mt-1", onClick: () => { UI.Speech.reload(); toast("Đã tải lại danh sách giọng"); App.render(); } }, "🔄 Tải lại danh sách giọng"),
+    ]));
+
     card.appendChild(h("div", { class: "field" }, [h("label", null, "Tốc độ đọc"), rateRow]));
 
     // Toggle: giọng người thật cho TỪ đơn
@@ -1563,13 +1586,26 @@
       h("div", { class: "small muted mt-1" }, "Bật: từ đơn (VD allocation, deficit) sẽ phát bản thu của người bản xứ thật (nguồn Free Dictionary API — có nhấn nhá tự nhiên). Cụm nhiều từ & câu dùng giọng TTS đã chọn ở trên."),
     ]));
 
-    // Tự nhận diện trình duyệt
+    // Tự nhận diện trình duyệt + hướng dẫn riêng
     const ua = (global.navigator && navigator.userAgent) || "";
     const isEdge = /Edg\//.test(ua);
-    if (!isEdge && !naturalCount) {
-      card.appendChild(h("div", { class: "small", style: { color: "var(--amber)" } }, "⚠ Đang không dùng Microsoft Edge. Để có giọng CÂU tự nhiên nhất, hãy mở web này bằng Edge."));
-    } else if (isEdge) {
+    const isChrome = /Chrome\//.test(ua) && !isEdge;
+    const hasGoogle = voices.some((v) => /google/i.test(v.name || ""));
+    if (isEdge) {
       card.appendChild(h("div", { class: "small", style: { color: "var(--accent)" } }, "✓ Bạn đang dùng Edge — chọn giọng có chữ (Natural) ở trên để nghe gần như người thật."));
+    } else if (isChrome) {
+      card.appendChild(h("details", { class: "mb-2", open: "" }, [
+        h("summary", { class: "small", style: { cursor: "pointer", fontWeight: 600, color: "var(--brand)" } }, "🌐 Bạn đang dùng Chrome — cách có giọng như người thật"),
+        h("div", { class: "callout mt-1", style: { padding: "11px 13px", display: "block" } }, [
+          h("div", { class: "small", style: { lineHeight: 1.7 } }, [
+            h("div", null, [h("strong", null, "① Nhanh nhất (miễn phí): "), hasGoogle ? "Chọn giọng “Google US English” ở danh sách trên (đã tự ưu tiên) — giọng mạng, khá tự nhiên." : "Bật internet rồi bấm “🔄 Tải lại danh sách giọng” để Chrome nạp giọng “Google US English” (giọng mạng, tự nhiên hơn giọng máy)."]),
+            h("div", { class: "mt-1" }, [h("strong", null, "② Neural hơn (cài giọng Windows): "), "Mở Windows Settings → Time & language → Speech → Manage voices → Add voices → tải giọng English (Natural). Khởi động lại Chrome → bấm “🔄 Tải lại danh sách giọng”. (Chrome có thể nhận hoặc không, tuỳ máy.)"]),
+            h("div", { class: "mt-1" }, [h("strong", null, "③ Chuẩn nhất — như người thật thật sự: "), "Dùng giọng cloud (ElevenLabs/Azure) bằng API key riêng, hoặc mở web bằng Microsoft Edge (có giọng Aria/Ana Online Natural miễn phí). Nhắn để mình tích hợp giọng cloud vào app."]),
+          ]),
+        ]),
+      ]));
+    } else if (!naturalCount) {
+      card.appendChild(h("div", { class: "small", style: { color: "var(--amber)" } }, "⚠ Để có giọng CÂU tự nhiên nhất, mở web bằng Microsoft Edge hoặc chọn giọng Google ở trên."));
     }
 
     if (!voices.length) card.appendChild(h("div", { class: "small muted" }, "Danh sách giọng đang tải — bấm 🔊 để trình duyệt tải giọng, rồi mở lại Cài đặt."));

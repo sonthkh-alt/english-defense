@@ -261,7 +261,19 @@
       }
       ttsSpeak(t, opts);
     }
-    return { supported: !!synth, speak, ttsSpeak, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
+    // Nghe thử MỘT giọng cụ thể (để chọn trong Cài đặt)
+    function testVoice(voice, text, rate) {
+      if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
+      try {
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(text || "Good morning. Thank you for the opportunity to present my research today.");
+        if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = "en-US"; }
+        u.rate = Math.max(0.5, Math.min(1.2, rate || (global.Store && Store.settings && Store.settings().speechRate) || 0.85));
+        u.pitch = 1.0;
+        synth.speak(u);
+      } catch (e) { toast("Không phát được audio"); }
+    }
+    return { supported: !!synth, speak, ttsSpeak, testVoice, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
   })();
 
   global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
