@@ -127,6 +127,39 @@
 
     // ----- sessions (buổi học) -----
     getSession(date) { return state.sessions[date || today()] || null; },
+    _session(date) {
+      date = date || today();
+      let s = state.sessions[date];
+      if (!s) { s = { blocks: {}, minutes: 0, note: "", steps: {}, texts: {} }; state.sessions[date] = s; }
+      s.blocks = s.blocks || {}; s.steps = s.steps || {}; s.texts = s.texts || {};
+      return s;
+    },
+
+    // ----- bài giảng: theo dõi từng BƯỚC trong mỗi block -----
+    getStep(date, block, key) {
+      const s = state.sessions[date || today()];
+      return !!(s && s.steps && s.steps[block] && s.steps[block][key]);
+    },
+    setStep(date, block, key, val) {
+      const s = this._session(date);
+      s.steps[block] = s.steps[block] || {};
+      s.steps[block][key] = !!val;
+      persist();
+    },
+    setBlockDone(date, id, val) {
+      const s = this._session(date);
+      s.blocks[id] = !!val;
+      persist();
+    },
+    getText(date, key) {
+      const s = state.sessions[date || today()];
+      return (s && s.texts && s.texts[key]) || "";
+    },
+    setText(date, key, val) {
+      const s = this._session(date);
+      s.texts[key] = val;
+      persist();
+    },
     toggleBlock(date, blockId) {
       date = date || today();
       const s = state.sessions[date] || { blocks: {}, minutes: 0, note: "" };

@@ -427,6 +427,29 @@ input, textarea, select { font-family: inherit; }
 .mastery i { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-3); display: block; }
 .mastery i.on { background: var(--accent); }
 
+/* ---------- Lesson (Buổi học hôm nay) ---------- */
+.lesson { transition: border-color .2s; }
+.lesson--done { border-color: var(--accent); background: linear-gradient(0deg, var(--accent-soft), transparent 40%); }
+.lesson__head { display: flex; align-items: flex-start; gap: 12px; }
+.lesson__icon {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  font-size: 18px; flex-shrink: 0; font-weight: 700;
+}
+.lesson__icon.done { background: var(--accent); color: #fff; }
+.lesson__body { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.step {
+  display: flex; align-items: flex-start; gap: 11px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface-2);
+  margin-bottom: 7px; cursor: pointer; transition: .15s;
+}
+.step:hover { border-color: var(--border-strong); }
+.step--done { background: var(--accent-soft); border-color: transparent; }
+.step--done > .check-box { background: var(--accent); border-color: var(--accent); }
+
+/* Video embed (responsive 16:9) */
+.video-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: var(--r-md); overflow: hidden; background: #000; box-shadow: var(--shadow-sm); }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
 /* ---------- Audio button ---------- */
 .audio-btn { padding: 6px 9px; font-size: 14px; line-height: 1; flex-shrink: 0; }
 .audio-btn:hover { background: var(--brand-soft); border-color: var(--brand); }

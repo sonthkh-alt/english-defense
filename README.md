@@ -14,7 +14,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 |---|---|
 | **◎ Bảng điều khiển** | Tổng quan: ngày thứ mấy / 365, giai đoạn hiện tại, chuỗi ngày (streak), tổng thời lượng, tiến độ hôm nay bằng vòng tròn động. |
 | **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn từ khởi động → mô phỏng bảo vệ toàn phần, mục tiêu & mốc cuối từng giai đoạn, đánh dấu hoàn thành. |
-| **☀ Buổi học hôm nay** | Checklist khung ngày 65 phút (Nghe 20' · Shadowing 15' · Từ vựng 10' · Nói 15' · Ôn 5'), ghi chú tự lưu, chế độ "ngày bận" giữ 10' lõi. |
+| **☀ Buổi học hôm nay** | **Bài giảng tương tác** cho từng mục (Nghe · Shadowing · Từ vựng · Nói · Ôn): **video học thật nhúng sẵn** (BBC/VOA/CrashCourse/TED/MIT/Yale theo giai đoạn), các bước bắt buộc theo phương pháp sư phạm (pre-listening → nghe có phụ đề → nghe không phụ đề → chép câu). **Chỉ tính hoàn thành khi làm xong từng bước.** |
 | **▤ Nhật ký & Chuỗi ngày** | Bản đồ nhiệt (heatmap) 26 tuần, nhật ký học tập theo tâm trạng. |
 | **📚 Tài nguyên & Nguồn** | **Gói học đầy đủ 12 tháng** nạp 1 chạm: ~274 từ vựng + 130 câu hỏi + lộ trình 12 tháng theo tuần + kho câu thuyết trình/Q&A + luyện phát âm cho người Việt + nguồn học thuật uy tín. |
 | **? Ngân hàng câu hỏi** | 10 trục câu hỏi bảo vệ cố định, thêm câu + khung trả lời, theo dõi mức thành thạo, prompt AI sinh câu hỏi. |

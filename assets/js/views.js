@@ -185,11 +185,11 @@
     const sess = Store.getSession() || { blocks: {} };
     D.DAILY_BLOCKS.forEach((b) => {
       const on = sess.blocks && sess.blocks[b.id];
-      const chip = h("button", {
-        class: "chip" + (on ? " active" : ""),
-        title: b.title + " · " + b.dur + " phút",
-        onClick: () => { Store.toggleBlock(null, b.id); reload(); },
-      }, [b.icon, " ", b.dur + "'"]);
+      const chip = h("a", {
+        class: "chip" + (on ? " active" : ""), href: "#/today",
+        title: b.title + " · " + b.dur + " phút" + (on ? " · đã xong" : " · mở bài giảng"),
+        style: { textDecoration: "none" },
+      }, [on ? "✓ " : b.icon + " ", b.dur + "'"]);
       wrap.appendChild(chip);
     });
     return wrap;
@@ -255,75 +255,258 @@
   /* ============================================================
      TODAY — buổi học hôm nay (checklist chi tiết)
      ============================================================ */
+  // Định nghĩa các BƯỚC bắt buộc của mỗi block (để tính hoàn thành)
+  const BLOCK_STEPS = {
+    listen: ["pre", "watch1", "watch2", "notes"],
+    shadow: ["s0", "s1", "s2"],
+    vocab: [], // hoàn thành khi học đủ 5 từ (xử lý riêng)
+    speak: ["prep", "record", "review"],
+    review: ["words", "phrase"],
+  };
+
   function today() {
     const out = frag([]);
     const date = Store.today();
     const sess = Store.getSession(date) || { blocks: {}, note: "" };
-    const doneBlocks = D.DAILY_BLOCKS.filter((b) => sess.blocks && sess.blocks[b.id]).length;
+    const phase = Store.currentPhase();
+    const day = Store.dayNumber() || 1;
+    const doneBlocks = D.DAILY_BLOCKS.filter((b) => Store.getSession(date) && Store.getSession(date).blocks && Store.getSession(date).blocks[b.id]).length;
     const pct = Math.round((doneBlocks / D.DAILY_BLOCKS.length) * 100);
     const minPlanned = D.DAILY_BLOCKS.reduce((a, b) => a + b.dur, 0);
-    const minDone = D.DAILY_BLOCKS.reduce((a, b) => a + (sess.blocks && sess.blocks[b.id] ? b.dur : 0), 0);
-    const phase = Store.currentPhase();
 
     out.appendChild(h("div", { class: "page-head row between wrap" }, [
       h("div", null, [
-        h("span", { class: "eyebrow" }, prettyDate(date)),
+        h("span", { class: "eyebrow" }, prettyDate(date) + " · Ngày " + day),
         h("h1", null, "Buổi học hôm nay"),
-        h("p", null, "Khung ngày mẫu 65 phút · Giai đoạn " + phase.id + ": " + phase.name),
+        h("p", null, "Bài giảng theo giai đoạn " + phase.id + ": " + phase.name + " · " + minPlanned + " phút · hoàn thành từng bước để tính xong."),
       ]),
-      ring(pct, { size: 78, sublabel: minDone + "'/" + minPlanned + "'" }),
+      ring(pct, { size: 78, sublabel: doneBlocks + "/" + D.DAILY_BLOCKS.length }),
     ]));
 
-    // checklist
-    const list = h("ul", { class: "check-list" });
-    D.DAILY_BLOCKS.forEach((b) => {
-      const on = sess.blocks && sess.blocks[b.id];
-      list.appendChild(h("li", {
-        class: "check-item" + (on ? " done" : ""),
-        onClick: () => { Store.toggleBlock(date, b.id); reload(); },
-      }, [
-        h("div", { class: "check-box" }, on ? "✓" : ""),
-        h("div", { class: "check-body" }, [
-          h("div", { class: "check-title" }, b.icon + "  " + b.title),
-          h("div", { class: "check-meta" }, b.desc),
-        ]),
-        h("div", { class: "check-dur" }, b.dur + " phút"),
+    if (pct === 100) {
+      out.appendChild(h("div", { class: "callout callout--accent mb-2" }, [
+        h("span", { class: "callout__icon" }, "🎉"),
+        h("div", null, [h("strong", null, "Hoàn thành trọn vẹn buổi học hôm nay! "), "Kỷ luật buổi sáng chính là thứ quyết định. Hẹn gặp ngày mai."]),
       ]));
-    });
-    out.appendChild(list);
+    }
 
-    // busy-day / rest actions
-    out.appendChild(h("div", { class: "row wrap mt-2", style: { gap: "10px" } }, [
-      h("button", { class: "btn btn--ghost btn--sm", onClick: () => {
-        Store.markStudied(date); toast("Đã ghi nhận: ngày bận vẫn giữ lửa 🔥", "accent"); reload();
-      } }, "🔥 Ngày bận — chỉ 10' lõi"),
-      h("button", { class: "btn btn--ghost btn--sm", onClick: () => {
-        D.DAILY_BLOCKS.forEach((b) => { if (!(sess.blocks && sess.blocks[b.id])) Store.toggleBlock(date, b.id); });
-        toast("Hoàn thành cả buổi. Tuyệt vời! 🎉", "accent"); reload();
-      } }, "✓ Đánh dấu hoàn thành cả buổi"),
+    // Các bài giảng
+    out.appendChild(lessonListen(date, phase, day));
+    out.appendChild(lessonShadow(date, phase, day));
+    out.appendChild(lessonVocab(date, phase, day));
+    out.appendChild(lessonSpeak(date, phase, day));
+    out.appendChild(lessonReview(date, phase, day));
+
+    // Ngày bận
+    out.appendChild(h("div", { class: "callout callout--amber mt-2" }, [
+      h("span", { class: "callout__icon" }, "🔥"),
+      h("div", null, [
+        h("strong", null, "Ngày quá bận? "), "Giữ tối thiểu 10 phút lõi (làm xong mục Nghe hoặc Shadowing) để không đứt chuỗi. ",
+        h("button", { class: "btn btn--ghost btn--sm", style: { marginTop: "6px" }, onClick: () => {
+          Store.markStudied(date); toast("Đã ghi nhận ngày bận — giữ lửa 🔥", "accent"); reload();
+        } }, "Đánh dấu 'đã giữ lửa hôm nay'"),
+      ]),
     ]));
-
-    // note
-    out.appendChild(h("div", { class: "section-title" }, "Ghi chú buổi học"));
-    const ta = h("textarea", {
-      class: "textarea", placeholder: "Hôm nay nghe gì? Từ nào khó? Câu hỏi nào luyện? Chỗ nào cần cải thiện…",
-    });
-    ta.value = sess.note || "";
-    let noteTimer;
-    ta.addEventListener("input", () => {
-      clearTimeout(noteTimer);
-      noteTimer = setTimeout(() => { Store.setSessionNote(date, ta.value); }, 500);
-    });
-    out.appendChild(ta);
-    out.appendChild(h("div", { class: "small muted mt-1" }, "💾 Ghi chú tự động lưu."));
-
-    // Phase focus tips
-    out.appendChild(h("div", { class: "section-title" }, ["Trọng tâm giai đoạn này", h("span", { class: "tag" }, phase.months)]));
-    out.appendChild(h("div", { class: "card" }, [
-      h("ul", { class: "phase__goals" }, phase.goals.map((g) => h("li", null, g))),
-    ]));
-
     return out;
+  }
+
+  // ---- Khung 1 bài giảng (block) ----
+  function lessonShell(date, block, meta, bodyFn) {
+    const sess = Store.getSession(date) || { blocks: {} };
+    const done = !!(sess.blocks && sess.blocks[block.id]);
+    const steps = BLOCK_STEPS[block.id] || [];
+    const doneSteps = steps.filter((k) => Store.getStep(date, block.id, k)).length;
+    const head = h("div", { class: "lesson__head" }, [
+      h("div", { class: "lesson__icon" + (done ? " done" : ""), style: done ? null : bgSoft("brand") }, done ? "✓" : block.icon),
+      h("div", { class: "flex-1" }, [
+        h("div", { class: "row", style: { gap: "8px", alignItems: "baseline", flexWrap: "wrap" } }, [
+          h("strong", { style: { fontSize: "15.5px" } }, block.title),
+          h("span", { class: "check-dur" }, block.dur + "'"),
+          done ? h("span", { class: "badge badge--accent" }, "Hoàn thành")
+               : (steps.length ? h("span", { class: "badge" }, doneSteps + "/" + steps.length + " bước") : null),
+        ]),
+        h("div", { class: "small muted", style: { marginTop: "2px" } }, meta),
+      ]),
+    ]);
+    return h("div", { class: "card lesson" + (done ? " lesson--done" : ""), style: { marginBottom: "14px" } }, [head, bodyFn()]);
+  }
+
+  // Dòng 1 bước có checkbox
+  function stepRow(date, block, key, label, extra) {
+    const on = Store.getStep(date, block, key);
+    const requiredKeys = BLOCK_STEPS[block] || [];
+    return h("div", {
+      class: "step" + (on ? " step--done" : ""),
+      onClick: (e) => {
+        if (e.target.closest("a,button,textarea,input,iframe")) return;
+        const nv = !Store.getStep(date, block, key);
+        Store.setStep(date, block, key, nv);
+        Store.setBlockDone(date, block, requiredKeys.every((k) => Store.getStep(date, block, k)));
+        reload();
+      },
+    }, [
+      h("div", { class: "check-box", style: { width: "20px", height: "20px" } }, on ? "✓" : ""),
+      h("div", { class: "flex-1" }, [h("div", { style: { fontSize: "13.5px", fontWeight: 500 } }, label), extra || null]),
+    ]);
+  }
+
+  // BLOCK 1 — NGHE
+  function lessonListen(date, phase, day) {
+    const block = D.DAILY_BLOCKS[0];
+    const v = LESSONS.pickListen(phase.id, day);
+    const queue = Store.vocabQueue(3);
+    return lessonShell(date, block, "Nghe có chủ đích — nguồn: " + v.src, () => {
+      const kids = [];
+      // video / resource
+      if (v.y) {
+        kids.push(h("div", { class: "video-wrap" }, [
+          h("iframe", { src: LESSONS.yt(v.y), title: v.t, loading: "lazy", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: "" }),
+        ]));
+      }
+      kids.push(h("div", { class: "row between wrap", style: { gap: "8px", margin: "10px 0" } }, [
+        h("div", null, [h("strong", null, v.t), h("div", { class: "small muted" }, v.note + (v.mins ? " · ~" + v.mins + " phút" : ""))]),
+        h("a", { href: v.url, target: "_blank", rel: "noopener", class: "btn btn--ghost btn--sm" }, "Mở nguồn ↗"),
+      ]));
+      // step: pre-listening keywords
+      const kw = queue.length ? h("div", { class: "row wrap", style: { gap: "6px", marginTop: "6px" } },
+        queue.map((w) => h("button", { class: "chip", style: { padding: "4px 9px" }, onClick: () => UI.speak(w.term), title: w.meaning }, [
+          UI.Speech && UI.Speech.supported ? "🔊 " : "", w.term,
+        ]))) : h("div", { class: "small muted mt-1" }, "Nạp gói học để có từ khóa gợi ý.");
+      kids.push(stepRow(date, "listen", "pre", "① Xem trước 3 từ khóa (bấm để nghe phát âm)", kw));
+      kids.push(stepRow(date, "listen", "watch1", "② Nghe/xem lần 1 — BẬT phụ đề (CC), nghe lấy Ý CHÍNH"));
+      kids.push(stepRow(date, "listen", "watch2", "③ Nghe lần 2 — TẮT phụ đề, cố bắt được nhiều nhất"));
+      // step: notes (auto-complete when filled)
+      const ta = h("textarea", { class: "textarea", style: { minHeight: "60px", marginTop: "6px" }, placeholder: "Chép lại 3 câu / ý bạn nghe được…" });
+      ta.value = Store.getText(date, "listen_notes");
+      let tmr;
+      ta.addEventListener("input", () => {
+        clearTimeout(tmr);
+        tmr = setTimeout(() => {
+          Store.setText(date, "listen_notes", ta.value);
+          const filled = ta.value.trim().length >= 10;
+          if (filled !== Store.getStep(date, "listen", "notes")) {
+            Store.setStep(date, "listen", "notes", filled);
+            Store.setBlockDone(date, "listen", BLOCK_STEPS.listen.every((k) => Store.getStep(date, "listen", k)));
+            reload();
+          }
+        }, 500);
+      });
+      kids.push(h("div", { class: "step" + (Store.getStep(date, "listen", "notes") ? " step--done" : "") }, [
+        h("div", { class: "check-box", style: { width: "20px", height: "20px" } }, Store.getStep(date, "listen", "notes") ? "✓" : ""),
+        h("div", { class: "flex-1" }, [h("div", { style: { fontSize: "13.5px", fontWeight: 500 } }, "④ Chép lại ≥3 câu nghe được (tự động tính xong khi đã ghi)"), ta]),
+      ]));
+      return h("div", { class: "lesson__body" }, kids);
+    });
+  }
+
+  // BLOCK 2 — SHADOWING
+  function lessonShadow(date, phase, day) {
+    const block = D.DAILY_BLOCKS[1];
+    const sents = LESSONS.pickShadow(phase.id, day);
+    return lessonShell(date, block, "Nghe giọng chuẩn → nhại theo từng câu 5 lần → ghi âm so sánh", () => {
+      const kids = [h("div", { class: "callout mb-2", style: { padding: "10px 13px" } }, [
+        h("span", { class: "callout__icon" }, "🗣"),
+        h("div", { class: "small" }, "Bấm 🔊 nghe mẫu (tốc độ chậm ở Cài đặt), nhại theo 5 lần cho đến khi trôi chảy, rồi tick hoàn thành."),
+      ])];
+      sents.forEach((s, i) => {
+        const btns = [];
+        const b1 = audioBtn(s); if (b1) btns.push(b1);
+        const b2 = audioBtn(s, { rate: 0.6 }); if (b2) { b2.textContent = "🐢"; b2.title = "Nghe chậm (để nhại)"; btns.push(b2); }
+        kids.push(stepRow(date, "shadow", "s" + i, "Câu " + (i + 1) + ": “" + s + "”",
+          btns.length ? h("div", { class: "row", style: { gap: "6px", marginTop: "6px" } }, [btns, h("span", { class: "small muted" }, "🔊 thường · 🐢 chậm")]) : null));
+      });
+      return h("div", { class: "lesson__body" }, kids);
+    });
+  }
+
+  // BLOCK 3 — TỪ VỰNG (tích hợp lộ trình)
+  function lessonVocab(date, phase, day) {
+    const block = D.DAILY_BLOCKS[2];
+    const learnedToday = Store.vocabLearnedToday();
+    const queue = Store.vocabQueue(5);
+    // hoàn thành khi đủ 5 từ hôm nay, hoặc hết hàng đợi
+    const complete = learnedToday >= 5 || (Store.hasSeeded() && Store.vocabQueue().length === 0);
+    const curBlocks = (Store.getSession(date) || {}).blocks || {};
+    if (complete !== !!curBlocks["vocab"]) Store.setBlockDone(date, "vocab", complete);
+    return lessonShell(date, block, "5 từ mới/ngày theo lộ trình — đã học " + learnedToday + "/5 hôm nay", () => {
+      const kids = [];
+      if (!Store.hasSeeded() && !Store.get().vocab.length) {
+        kids.push(h("button", { class: "btn btn--accent btn--sm", onClick: () => importStarterPack(false) }, "🎁 Nạp gói học 12 tháng để bắt đầu"));
+      } else if (queue.length) {
+        queue.forEach((w) => {
+          kids.push(h("div", { class: "step" }, [
+            audioBtn(w.term) || h("span"),
+            h("div", { class: "flex-1", style: { minWidth: 0 } }, [
+              h("div", { class: "row", style: { gap: "6px", alignItems: "baseline" } }, [
+                h("strong", null, w.term), w.pos ? h("span", { class: "vocab-pos" }, w.pos) : null,
+                w.level ? h("span", { class: "badge badge--" + (LEVEL_META[w.level] || "brand") }, "C" + w.level) : null,
+              ]),
+              w.meaning ? h("div", { class: "small muted" }, w.meaning) : null,
+              w.example ? h("div", { class: "vocab-ex" }, "“" + w.example + "”") : null,
+            ]),
+            h("button", { class: "btn btn--accent btn--sm", onClick: () => { Store.learnVocab(w.id); toast("+1 từ đã học 🎯", "accent"); reload(); } }, "✓ Học"),
+          ]));
+        });
+        kids.push(h("button", { class: "btn btn--primary btn--sm mt-1", onClick: () => { Store.learnMany(queue.map((w) => w.id)); toast("Đã học 5 từ hôm nay 🎯", "accent"); reload(); } }, "✓ Học cả " + queue.length + " từ"));
+      } else {
+        kids.push(h("div", { class: "small muted" }, "🎉 Đã kích hoạt hết từ trong lộ trình. Hãy ôn flashcard ở mục Sổ tay từ vựng."));
+      }
+      return h("div", { class: "lesson__body" }, kids);
+    });
+  }
+
+  // BLOCK 4 — NÓI
+  function lessonSpeak(date, phase, day) {
+    const block = D.DAILY_BLOCKS[3];
+    const sp = LESSONS.pickSpeak(phase.id, day);
+    return lessonShell(date, block, "Nói về đề tài / mock Q&A — giai đoạn " + phase.id, () => {
+      const kids = [h("div", { class: "callout mb-2", style: { padding: "11px 13px" } }, [
+        h("span", { class: "callout__icon" }, "💬"),
+        h("div", null, [h("strong", null, sp.prompt), sp.tip ? h("div", { class: "small muted mt-1" }, "Mẹo: " + sp.tip) : null]),
+      ])];
+      if (sp.question) {
+        kids.push(h("div", { class: "card", style: { background: "var(--surface-2)", marginBottom: "10px" } }, [
+          h("div", { class: "row", style: { gap: "8px" } }, [
+            audioBtn(sp.question.en) || h("span"),
+            h("div", { class: "flex-1" }, [
+              h("div", { style: { fontWeight: 600, fontStyle: "italic" } }, "“" + sp.question.en + "”"),
+              h("div", { class: "small muted" }, "→ " + sp.question.vi),
+              sp.question.answer ? h("details", { style: { marginTop: "6px" } }, [
+                h("summary", { class: "small", style: { cursor: "pointer", color: "var(--brand)" } }, "Xem khung trả lời"),
+                h("div", { class: "small mt-1", style: { color: "var(--text-2)" } }, sp.question.answer),
+              ]) : null,
+            ]),
+          ]),
+        ]));
+      }
+      kids.push(h("div", { class: "small", style: { fontWeight: 600, margin: "4px 0" } }, "Câu mẫu gợi ý:"));
+      kids.push(h("div", { style: { display: "flex", flexDirection: "column", gap: "5px", marginBottom: "8px" } },
+        sp.starters.map((st) => h("div", { class: "row", style: { gap: "7px" } }, [audioBtn(st) || h("span"), h("span", { class: "small", style: { fontStyle: "italic" } }, st)]))));
+      kids.push(stepRow(date, "speak", "prep", "① Chuẩn bị ý (gạch đầu dòng trong đầu / ra giấy)"));
+      kids.push(stepRow(date, "speak", "record", "② Ghi âm câu trả lời của bạn (điện thoại/máy tính)"));
+      kids.push(stepRow(date, "speak", "review", "③ Nghe lại & tự chấm: rõ ràng? đúng thời lượng? chỗ nào cần sửa?"));
+      return h("div", { class: "lesson__body" }, kids);
+    });
+  }
+
+  // BLOCK 5 — ÔN NHANH
+  function lessonReview(date, phase, day) {
+    const block = D.DAILY_BLOCKS[4];
+    const learnedToday = Store.get().vocab.filter((v) => v.learnedDate === date);
+    const rescue = LESSONS.pickRescue(day);
+    return lessonShell(date, block, "Điểm lại từ & câu trong ngày", () => {
+      const kids = [];
+      const wordsExtra = learnedToday.length
+        ? h("div", { class: "row wrap", style: { gap: "6px", marginTop: "6px" } },
+            learnedToday.map((w) => h("button", { class: "chip", style: { padding: "4px 9px" }, onClick: () => UI.speak(w.term), title: w.meaning }, [UI.Speech && UI.Speech.supported ? "🔊 " : "", w.term])))
+        : h("div", { class: "small muted mt-1" }, "Chưa học từ nào hôm nay — quay lại mục Từ vựng nhé.");
+      kids.push(stepRow(date, "review", "words", "① Ôn lại " + learnedToday.length + " từ đã học hôm nay", wordsExtra));
+      const phraseExtra = rescue
+        ? h("div", { class: "row", style: { gap: "7px", marginTop: "6px" } }, [audioBtn(rescue.en) || h("span"), h("span", { class: "small", style: { fontStyle: "italic" } }, "“" + rescue.en + "” — " + rescue.vi)])
+        : null;
+      kids.push(stepRow(date, "review", "phrase", "② Đọc to 1 câu cứu nguy đến khi trôi", phraseExtra));
+      return h("div", { class: "lesson__body" }, kids);
+    });
   }
 
   /* ============================================================
