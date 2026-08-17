@@ -14,7 +14,11 @@
 # Kết quả: assets/audio/<key>.wav  +  assets/audio/manifest.json
 # (key khớp fnv1a với ui.js & generate.mjs — app tự nhận diện.)
 # ============================================================
-import os, json, wave
+import os, sys, json
+
+# Bộ cần render: words (chỉ từ vựng) | sentences (câu) | all (mặc định)
+SET = (sys.argv[1] if len(sys.argv) > 1 else "all").lower()
+SET_TYPES = {"words": {"word"}, "sentences": {"example", "question", "phrase", "rescue"}}
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -38,7 +42,9 @@ def write_manifest(keys):
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     items = load_items()
-    print(f"{len(items)} mục cần render → {OUT_DIR}")
+    if SET in SET_TYPES:
+        items = [it for it in items if it.get("type") in SET_TYPES[SET]]
+    print(f"Bộ='{SET}' · {len(items)} mục cần render → {OUT_DIR}")
 
     import torch
     import soundfile as sf
