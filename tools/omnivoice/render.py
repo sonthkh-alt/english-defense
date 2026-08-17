@@ -16,6 +16,13 @@
 # ============================================================
 import os, sys, json
 
+# Windows + Python 3.14 mặc định ghi log bằng cp1252 → ép UTF-8 để in tiếng Việt
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 # Bộ cần render: words (chỉ từ vựng) | sentences (câu) | all (mặc định)
 SET = (sys.argv[1] if len(sys.argv) > 1 else "all").lower()
 SET_TYPES = {"words": {"word"}, "sentences": {"example", "question", "phrase", "rescue"}}
