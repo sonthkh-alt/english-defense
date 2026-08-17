@@ -237,6 +237,23 @@
       const s = this._session(date);
       if (!s.daily60) { s.daily60 = true; s.studied = true; persist(); }
     },
+    // Bài học 60 giây theo NGÀY: học tiếp cho tới khi xong bài của ngày
+    day60(date) { const s = state.sessions[date || today()]; return (s && s.d60) || null; },
+    initDay60(date, wordIds) {
+      const s = this._session(date);
+      if (!s.d60) { s.d60 = { wordIds: wordIds || [], idx: 0, complete: false }; persist(); }
+      return s.d60;
+    },
+    day60Advance(date, total) {
+      const s = this._session(date);
+      if (!s.d60) s.d60 = { wordIds: [], idx: 0, complete: false };
+      s.d60.idx++;
+      if (total && s.d60.idx >= total) s.d60.complete = true;
+      persist();
+      return s.d60;
+    },
+    resetDay60(date) { const s = this._session(date); s.d60 = null; persist(); },
+
     addXp(n) { state.xp = (state.xp || 0) + (n || 0); persist(); },
     xp() { return state.xp || 0; },
     level() { return Math.floor((state.xp || 0) / 100) + 1; },       // 100 XP mỗi cấp

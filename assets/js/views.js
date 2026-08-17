@@ -35,7 +35,6 @@
   /* ============================================================
      DAILY 60 — "Học 60 giây" (màn hình chính, tạo thói quen)
      ============================================================ */
-  let dailyRedo = false;
   function clearNode(el) { el.innerHTML = ""; }
   function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 
@@ -49,9 +48,15 @@
     const hasVocab = Store.get().vocab.length > 0 || Store.hasSeeded();
     if (!hasVocab) { stage.appendChild(dailyLoadCard()); return out; }
 
-    if (Store.isDailyDone(date) && !dailyRedo) renderDailyDone(stage);
-    else startDailySession(stage);
-    dailyRedo = false;
+    const phase = Store.currentPhase();
+    const day = Store.dayNumber() || 1;
+    const cards = buildDayCards(date, phase, day);
+    const total = cards.length;
+    const d = Store.day60(date) || { idx: 0, complete: false };
+    if (!total) { stage.appendChild(dailyLoadCard()); return out; }
+
+    if (d.complete || d.idx >= total) renderDayComplete(stage, total);
+    else startDay60(stage, cards, d.idx, total);
     return out;
   }
 
@@ -84,49 +89,89 @@
     ]);
   }
 
-  // ----- Xây các bước cho vòng 60 giây -----
-  function buildDailySteps() {
-    const phase = Store.currentPhase();
-    const day = Store.dayNumber() || 1;
-    const steps = [];
-    let word = Store.vocabQueue(1)[0];
-    if (!word) {
-      const active = Store.get().vocab.filter((v) => Store.vocabIsActive(v));
-      if (active.length) word = active[(day - 1) % active.length];
-    }
-    if (word) {
-      steps.push({ type: "word", word: word });
-      const others = Store.get().vocab.filter((v) => v.meaning && v.id !== word.id && v.meaning !== word.meaning);
-      if (word.meaning && others.length >= 2) {
-        const opts = shuffle([word.meaning].concat(shuffle(others).slice(0, 2).map((v) => v.meaning)));
-        steps.push({ type: "quiz", word: word, options: opts });
+  // ----- Xây danh sách thẻ CỦA NGÀY (ổn định, học tiếp tới khi xong) -----
+  function buildDayCards(date, phase, day) {
+    let d = Store.day60(date);
+    if (!d) { const ids = Store.vocabQueue(5).map((w) => w.id); d = Store.initDay60(date, ids); }
+    const vocab = Store.get().vocab;
+    const words = (d.wordIds || []).map((id) => vocab.find((v) => v.id === id)).filter(Boolean);
+    const cards = [];
+    words.forEach((w) => cards.push({ type: "word", word: w }));
+    // 2 câu kiểm tra nghe→nghĩa trên 2 từ đầu
+    words.slice(0, 2).forEach((w) => {
+      const others = vocab.filter((v) => v.meaning && v.id !== w.id && v.meaning !== w.meaning);
+      if (w.meaning && others.length >= 2) {
+        const opts = shuffle([w.meaning].concat(shuffle(others).slice(0, 2).map((v) => v.meaning)));
+        cards.push({ type: "quiz", word: w, options: opts });
       }
+    });
+    // 3 câu shadowing (kèm tiếng Việt)
+    (LESSONS.pickShadow(phase.id, day) || []).forEach((s) => cards.push({ type: "shadow", sentence: s }));
+    // 2 câu bảo vệ / cứu nguy theo giai đoạn
+    if (phase.id <= 2) {
+      const r = (typeof APP_DATA !== "undefined" && APP_DATA.RESCUE_PHRASES) || [];
+      [0, 1].forEach((k) => { if (r.length) { const p = r[(day - 1 + k) % r.length]; cards.push({ type: "phrase", phrase: p }); } });
+    } else {
+      const axes = (LESSONS.speakInfo(phase.id) && LESSONS.speakInfo(phase.id).axis) || ["urgency", "novelty"];
+      [0, 1].forEach((k) => {
+        const ax = axes[(day - 1 + k) % axes.length];
+        const list = (typeof SEED !== "undefined" && SEED.QUESTIONS[ax]) || [];
+        if (list.length) { const q = list[(day - 1) % list.length]; cards.push({ type: "question", q: { en: q.q, vi: q.v, answer: q.a } }); }
+      });
     }
-    const sent = (LESSONS.pickShadow(phase.id, day) || [])[0];
-    if (sent) steps.push({ type: "shadow", sentence: sent });
-    if (phase.id <= 2) { const r = LESSONS.pickRescue(day); if (r) steps.push({ type: "phrase", phrase: r }); }
-    else { const sp = LESSONS.pickSpeak(phase.id, day); if (sp && sp.question) steps.push({ type: "question", q: sp.question }); }
-    return steps;
+    return cards;
   }
 
-  function startDailySession(stage) {
-    const steps = buildDailySteps();
-    if (!steps.length) { stage.appendChild(dailyLoadCard()); return; }
-    let i = 0; const total = steps.length; const summary = [];
+  function progressBarNode(done, total) {
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    return h("div", { class: "bar", style: { height: "7px" } }, [h("div", { class: "bar__fill", style: { width: pct + "%" } })]);
+  }
+  function dailyTop(i, total, timerEl) {
+    return h("div", { class: "daily-top" }, [
+      h("div", { style: { flex: 1, marginRight: "12px" } }, [progressBarNode(i, total)]),
+      h("div", { class: "row", style: { gap: "8px", alignItems: "center" } }, [timerEl, h("span", { class: "small muted", style: { whiteSpace: "nowrap" } }, "mục " + (i + 1) + "/" + total)]),
+    ]);
+  }
+
+  // Chạy bài học từ vị trí i, có điểm dừng ~60 giây; tiến độ được lưu
+  function startDay60(stage, cards, startIdx, total) {
+    const date = Store.today();
+    let i = startIdx;
     const now = () => (global.performance && performance.now ? performance.now() : Date.now());
-    const t0 = now();
+    let roundStart = now();
     const timerEl = h("span", { class: "daily-timer" }, "0s");
     let timerId = null;
-    try { timerId = setInterval(() => { timerEl.textContent = Math.round((now() - t0) / 1000) + "s"; }, 1000); } catch (e) {}
+    function startTimer() { try { timerId = setInterval(() => { timerEl.textContent = Math.round((now() - roundStart) / 1000) + "s"; }, 1000); } catch (e) {} }
     function stop() { if (timerId) { try { clearInterval(timerId); } catch (e) {} timerId = null; } }
-    function next(note) { if (note) summary.push(note); i++; if (i >= total) { stop(); finishDaily(stage, summary); } else render(); }
+    startTimer();
+
+    function advance() {
+      Store.day60Advance(date, total);   // idx++ (lưu)
+      Store.setDailyDone(date);          // giữ chuỗi ngay khi làm xong mục đầu
+      i++;
+      if (i >= total) { stop(); finishDay(stage, total); return; }
+      const elapsed = (now() - roundStart) / 1000;
+      if (elapsed >= 55) { stop(); showCheckpoint(); }
+      else render();
+    }
     function render() {
       clearNode(stage);
-      stage.appendChild(h("div", { class: "daily-top" }, [
-        h("div", { class: "daily-dots" }, steps.map((s, k) => h("span", { class: "daily-dot" + (k < i ? " done" : k === i ? " active" : "") }))),
-        h("div", { class: "row", style: { gap: "8px", alignItems: "center" } }, [timerEl, h("span", { class: "small muted" }, "mục " + (i + 1) + "/" + total)]),
+      stage.appendChild(dailyTop(i, total, timerEl));
+      stage.appendChild(cardFor(cards[i], advance));
+    }
+    function showCheckpoint() {
+      clearNode(stage);
+      stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
+        h("div", { class: "daily-burst" }, "⏱"),
+        h("h2", { style: { margin: "6px 0" } }, "Đủ 60 giây rồi!"),
+        h("div", { class: "small muted", style: { marginBottom: "8px" } }, "Bạn đã học " + i + "/" + total + " mục của bài hôm nay."),
+        progressBarNode(i, total),
+        h("div", { class: "small muted", style: { margin: "12px 0" } }, "Học tiếp cho xong bài hôm nay, hay tạm nghỉ? (Tiến độ đã lưu.)"),
+        h("div", { class: "row wrap", style: { gap: "8px", justifyContent: "center" } }, [
+          h("button", { class: "btn btn--primary", onClick: () => { roundStart = now(); startTimer(); render(); } }, "⚡ Học tiếp"),
+          h("button", { class: "btn btn--ghost", onClick: () => renderPause(stage, i, total) }, "Tạm nghỉ"),
+        ]),
       ]));
-      stage.appendChild(cardFor(steps[i], next));
     }
     render();
   }
@@ -179,11 +224,12 @@
       return card;
     }
     if (step.type === "shadow") {
-      const s = step.sentence;
-      const slow = audioBtn(s, { rate: 0.6 }); if (slow) { slow.textContent = "🐢"; slow.title = "Nghe chậm"; }
+      const s = step.sentence; // { en, vi }
+      const slow = audioBtn(s.en, { rate: 0.6 }); if (slow) { slow.textContent = "🐢"; slow.title = "Nghe chậm"; }
       return dailyCard("🗣 Nói theo (shadowing)", "violet", [
-        h("div", { class: "daily-sentence" }, "“" + s + "”"),
-        h("div", { class: "row center", style: { gap: "8px", justifyContent: "center", margin: "12px 0" } }, [bigAudio(s, "Nghe mẫu"), slow]),
+        h("div", { class: "daily-sentence" }, "“" + s.en + "”"),
+        h("div", { class: "daily-sub center", style: { marginTop: "8px" } }, "→ " + s.vi),
+        h("div", { class: "row center", style: { gap: "8px", justifyContent: "center", margin: "14px 0 6px" } }, [bigAudio(s.en, "Nghe mẫu"), slow]),
         h("div", { class: "small muted center" }, "Nghe → nói theo đúng ngữ điệu 2–3 lần."),
       ], "Tôi đã nói theo →", () => { Store.addXp(5); next("Nói theo 1 câu"); });
     }
@@ -207,36 +253,50 @@
     return h("div");
   }
 
-  function finishDaily(stage, summary) {
+  function finishDay(stage, total) {
     const date = Store.today();
-    const wasDone = Store.isDailyDone(date);
     Store.setDailyDone(date);
-    if (!wasDone) Store.addXp(10);
-    renderDailyDone(stage, summary);
+    Store.addXp(15); // thưởng hoàn thành trọn bài hôm nay
+    renderDayComplete(stage, total);
   }
 
-  function renderDailyDone(stage, summary) {
+  function renderDayComplete(stage, total) {
     clearNode(stage);
     const streak = Store.dailyStreakDays();
-    const done = h("div", { class: "daily-card daily-done center" }, [
+    stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
       h("div", { class: "daily-burst" }, "🎉"),
-      h("h2", { style: { margin: "6px 0" } }, "Đủ 60 giây hôm nay!"),
+      h("h2", { style: { margin: "6px 0" } }, "Hoàn thành trọn bài học hôm nay!"),
       h("div", { class: "daily-streakbig" }, ["🔥 ", h("strong", null, String(streak)), " ngày liên tục"]),
-      h("div", { class: "small muted", style: { marginBottom: "14px" } }, "Điểm hiện tại: " + Store.xp() + " XP · Cấp " + Store.level()),
-      summary && summary.length ? h("div", { class: "daily-summary" }, [
-        h("div", { class: "small", style: { fontWeight: 700, marginBottom: "6px" } }, "Hôm nay bạn vừa:"),
-        h("ul", { class: "daily-sum-list" }, summary.map((s) => h("li", null, "✓ " + s))),
-      ]) : h("div", { class: "small muted mb-2" }, "Bạn đã hoàn thành vòng 60 giây hôm nay. Quay lại vào ngày mai để giữ chuỗi!"),
-      h("div", { class: "row wrap", style: { gap: "8px", justifyContent: "center", marginTop: "14px" } }, [
-        h("button", { class: "btn btn--accent btn--sm", onClick: () => { dailyRedo = true; reload(); } }, "⚡ Học thêm 60 giây nữa"),
-        h("a", { class: "btn btn--ghost btn--sm", href: "#/today" }, "📖 Buổi học đầy đủ hôm nay"),
+      h("div", { class: "small muted", style: { marginBottom: "14px" } }, Store.xp() + " XP · Cấp " + Store.level() + " · đã học " + total + " mục hôm nay"),
+      h("div", { class: "callout callout--accent", style: { textAlign: "left", padding: "11px 13px", marginBottom: "12px" } }, [
+        h("span", { class: "callout__icon" }, "🌱"),
+        h("div", { class: "small" }, "Quay lại ngày mai để giữ chuỗi. Còn hứng học? Bấm bên dưới để nhận thêm 5 từ mới cho hôm nay."),
+      ]),
+      h("div", { class: "row wrap", style: { gap: "8px", justifyContent: "center" } }, [
+        h("button", { class: "btn btn--accent btn--sm", onClick: () => { Store.resetDay60(Store.today()); toast("Thêm 5 từ mới cho hôm nay 🎯", "accent"); reload(); } }, "⚡ Học thêm 5 từ nữa"),
+        h("a", { class: "btn btn--ghost btn--sm", href: "#/today" }, "📖 Buổi học đầy đủ"),
         h("a", { class: "btn btn--ghost btn--sm", href: "#/roadmap" }, "🗺 Lộ trình"),
       ]),
       (global.canInstallPWA && global.canInstallPWA()) ? h("div", { class: "mt-2" }, [
-        h("button", { class: "btn btn--ghost btn--sm", onClick: () => global.installPWA() }, "📲 Cài ứng dụng vào máy để mở mỗi ngày"),
+        h("button", { class: "btn btn--ghost btn--sm", onClick: () => global.installPWA() }, "📲 Cài ứng dụng vào máy"),
       ]) : null,
-    ]);
-    stage.appendChild(done);
+    ]));
+  }
+
+  function renderPause(stage, i, total) {
+    clearNode(stage);
+    const streak = Store.dailyStreakDays();
+    stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
+      h("div", { class: "daily-burst" }, "✅"),
+      h("h2", { style: { margin: "6px 0" } }, "Đã giữ lửa hôm nay!"),
+      h("div", { class: "daily-streakbig" }, ["🔥 ", h("strong", null, String(streak)), " ngày"]),
+      h("div", { class: "small muted", style: { margin: "6px 0 12px" } }, "Đã học " + i + "/" + total + " mục · còn " + (total - i) + " mục để hoàn thành bài hôm nay."),
+      progressBarNode(i, total),
+      h("div", { class: "row wrap", style: { gap: "8px", justifyContent: "center", marginTop: "16px" } }, [
+        h("button", { class: "btn btn--primary btn--sm", onClick: () => reload() }, "⚡ Học tiếp ngay"),
+        h("a", { class: "btn btn--ghost btn--sm", href: "#/today" }, "📖 Buổi học đầy đủ"),
+      ]),
+    ]));
   }
 
   /* ============================================================
@@ -493,8 +553,14 @@
       // Shadowing
       h("div", { class: "small", style: { fontWeight: 600, margin: "10px 0 6px" } }, "🗣 Shadowing của giai đoạn:"),
       h("div", { class: "small muted mb-1" }, "Nhại người thật: " + shVideo.map((v) => v.src).join(", ") + ". Ví dụ câu mẫu:"),
-      h("div", { style: { display: "flex", flexDirection: "column", gap: "4px" } },
-        shSents.slice(0, 3).map((s) => h("div", { class: "row", style: { gap: "7px" } }, [audioBtn(s) || h("span"), h("span", { class: "small", style: { fontStyle: "italic" } }, "“" + s + "”")]))),
+      h("div", { style: { display: "flex", flexDirection: "column", gap: "6px" } },
+        shSents.slice(0, 3).map((s) => h("div", { class: "row", style: { gap: "7px", alignItems: "flex-start" } }, [
+          audioBtn(s.en) || h("span"),
+          h("div", null, [
+            h("div", { class: "small", style: { fontStyle: "italic" } }, "“" + s.en + "”"),
+            h("div", { class: "small muted" }, "→ " + s.vi),
+          ]),
+        ]))),
 
       // Nói
       sp ? h("div", { class: "callout mt-2", style: { padding: "10px 12px" } }, [
@@ -707,9 +773,13 @@
         ]));
         sents.forEach((s, i) => {
           const btns = [];
-          const b1 = audioBtn(s); if (b1) btns.push(b1);
-          const b2 = audioBtn(s, { rate: 0.6 }); if (b2) { b2.textContent = "🐢"; b2.title = "Nghe chậm (để nhại)"; btns.push(b2); }
-          kids.push(stepRow(date, "shadow", "s" + i, "Câu " + (i + 1) + ": “" + s + "”",
+          const b1 = audioBtn(s.en); if (b1) btns.push(b1);
+          const b2 = audioBtn(s.en, { rate: 0.6 }); if (b2) { b2.textContent = "🐢"; b2.title = "Nghe chậm (để nhại)"; btns.push(b2); }
+          const label = h("div", null, [
+            h("div", null, "Câu " + (i + 1) + ": “" + s.en + "”"),
+            h("div", { class: "small muted", style: { fontWeight: 400, marginTop: "2px" } }, "→ " + s.vi),
+          ]);
+          kids.push(stepRow(date, "shadow", "s" + i, label,
             btns.length ? h("div", { class: "row", style: { gap: "6px", marginTop: "6px" } }, [btns, h("span", { class: "small muted" }, "🔊 thường · 🐢 chậm")]) : null));
         });
       }
