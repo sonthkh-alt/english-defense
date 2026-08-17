@@ -41,9 +41,12 @@ def load_items():
         return json.load(f)
 
 
-def write_manifest(keys):
+def write_manifest(_keys=None):
+    # Luôn quét TẤT CẢ file .wav trong thư mục → manifest không bao giờ
+    # bỏ sót key của đợt render trước (từ vựng + câu chung một manifest).
+    keys = sorted(f[:-4] for f in os.listdir(OUT_DIR) if f.endswith(".wav"))
     with open(os.path.join(OUT_DIR, "manifest.json"), "w", encoding="utf-8") as f:
-        json.dump({"engine": "omnivoice", "instruct": INSTRUCT, "format": "wav", "keys": sorted(keys)}, f)
+        json.dump({"engine": "omnivoice", "instruct": INSTRUCT, "format": "wav", "keys": keys}, f)
 
 
 def main():
