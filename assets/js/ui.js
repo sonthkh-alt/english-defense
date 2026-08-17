@@ -199,6 +199,31 @@
     function humanOn() {
       return !(global.Store && Store.settings && Store.settings().humanAudio === false);
     }
+    function packOn() {
+      return !(global.Store && Store.settings && Store.settings().omniPack === false);
+    }
+
+    // ---- Gói audio OmniVoice render sẵn (assets/audio/) ----
+    // FNV-1a 32-bit — PHẢI khớp với tools/omnivoice/generate.mjs
+    function fnv1a(str) {
+      let h = 0x811c9dc5;
+      const bytes = new TextEncoder().encode(String(str).trim());
+      for (let i = 0; i < bytes.length; i++) { h ^= bytes[i]; h = Math.imul(h, 0x01000193) >>> 0; }
+      return ("00000000" + h.toString(16)).slice(-8);
+    }
+    let packKeys = null;      // Set các key có sẵn, hoặc null nếu chưa nạp
+    let packLoading = null;
+    function loadPack() {
+      if (packKeys || packLoading || typeof fetch === "undefined") return packLoading || Promise.resolve();
+      packLoading = fetch("assets/audio/manifest.json")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((m) => { packKeys = new Set((m && m.keys) || []); })
+        .catch(() => { packKeys = new Set(); });
+      return packLoading;
+    }
+    function packHas(text) { return packKeys && packKeys.has(fnv1a(text)); }
+    function packPlay(text) { return playUrl("assets/audio/" + fnv1a(text) + ".wav"); }
+    function packCount() { return packKeys ? packKeys.size : 0; }
     // ---- Audio NGƯỜI BẢN XỨ THẬT cho TỪ đơn (Free Dictionary API) ----
     const audioCache = {};
     function fetchWordAudio(word) {
@@ -250,10 +275,16 @@
         });
       } catch (e) { toast("Không phát được audio"); }
     }
-    // Đầu vào chung: TỪ đơn → thử giọng người thật; CÂU → TTS nhấn nhá
+    // Thứ tự ưu tiên: (1) gói OmniVoice render sẵn → (2) giọng người thật
+    // cho từ đơn (Dictionary API) → (3) TTS nhấn nhá.
     function speak(text, opts) {
       opts = opts || {};
       const t = String(text).trim();
+      if (!t) return;
+      if (packOn() && !opts.rate && !opts.ttsOnly) {
+        if (packKeys === null) loadPack();
+        else if (packHas(t) && packPlay(t)) return;
+      }
       const single = t.length > 1 && !/\s/.test(t);
       if (single && humanOn() && !opts.ttsOnly && !opts.rate) {
         fetchWordAudio(t).then((url) => { if (!(url && playUrl(url))) ttsSpeak(t, opts); });
@@ -273,7 +304,8 @@
         synth.speak(u);
       } catch (e) { toast("Không phát được audio"); }
     }
-    return { supported: !!synth, speak, ttsSpeak, testVoice, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, reload: load };
+    loadPack(); // nạp manifest gói audio OmniVoice ngay khi khởi động (nếu có)
+    return { supported: !!synth, speak, ttsSpeak, testVoice, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, loadPack, packHas, packCount, reload: load };
   })();
 
   global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };

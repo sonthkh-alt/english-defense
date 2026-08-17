@@ -11,4 +11,5 @@ english-defense-backup*.json
 
 # Logs / temp
 *.log
+tools/omnivoice/render.log
 node_modules/

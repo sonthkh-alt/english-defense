@@ -26,7 +26,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 | **⚙ Cài đặt** | Đặt ngày bắt đầu, tên đề tài, **sao lưu / khôi phục** dữ liệu (.json), giao diện sáng/tối. |
 
 ### Điểm mạnh thiết kế
-- 🔊 **Audio phát âm chuẩn**: từ đơn dùng **bản thu người bản xứ thật** (Free Dictionary API) khi có; câu dùng TTS **giọng neural/tự nhiên** (ưu tiên Natural/Online/Google) với **nhấn nhá theo dấu câu**; tự nhận diện Edge để gợi ý giọng gần như người thật.
+- 🔊 **Audio phát âm chuẩn** (3 lớp, tự chọn tốt nhất): (1) **gói giọng OmniVoice render sẵn** (TTS 600+ ngôn ngữ của k2-fsa, chất lượng cao, offline) khi có file; (2) **bản thu người bản xứ thật** (Free Dictionary API) cho từ đơn; (3) TTS **giọng neural/tự nhiên** với nhấn nhá. Render gói: xem [tools/omnivoice/](tools/omnivoice/README.md).
 - 🎙 **Shadowing 2 chế độ**: nhại **NGƯỜI THẬT** qua video người bản xứ (chuẩn nhất), hoặc câu mẫu giọng máy. Gợi ý dùng Microsoft Edge để có giọng "như người thật" miễn phí.
 - 🧗 **Học bám lộ trình**: từ vựng & câu hỏi phân 4 cấp độ, đi từ dễ đến khó theo đúng 12 tháng; mỗi ngày app gợi ý đúng 5 từ nên học.
 - 🎨 Giao diện hiện đại, **sáng/tối tự động**, responsive (điện thoại + máy tính).

@@ -1709,10 +1709,22 @@
   function audioSettingsCard() {
     const s = Store.settings();
     const supported = UI.Speech && UI.Speech.supported;
+    const packN = (UI.Speech && UI.Speech.packCount) ? UI.Speech.packCount() : 0;
     const card = h("div", { class: "card mb-2" }, [
       h("div", { class: "row", style: { gap: "8px", marginBottom: "6px" } }, [
         h("h3", { class: "mb-0" }, "Audio phát âm"),
         h("span", { class: "badge badge--" + (supported ? "accent" : "rose"), style: { marginLeft: "auto" } }, supported ? "✓ Hỗ trợ" : "Không hỗ trợ"),
+      ]),
+      // Gói giọng OmniVoice render sẵn
+      h("div", { class: "field", style: { paddingBottom: "12px", borderBottom: "1px solid var(--border)" } }, [
+        h("label", null, "Gói giọng OmniVoice (render sẵn, chất lượng cao)"),
+        h("div", { class: "row wrap", style: { gap: "8px" } }, [
+          h("button", { class: "chip" + (s.omniPack !== false ? " active" : ""), onClick: () => { Store.setSetting("omniPack", true); toast("Ưu tiên gói giọng OmniVoice khi có"); App.render(); } }, "🎙 Bật (khuyên dùng)"),
+          h("button", { class: "chip" + (s.omniPack === false ? " active" : ""), onClick: () => { Store.setSetting("omniPack", false); toast("Tắt gói OmniVoice"); App.render(); } }, "Tắt"),
+        ]),
+        h("div", { class: "small mt-1", style: { color: packN ? "var(--accent)" : "var(--text-3)" } },
+          packN ? ("✓ Đã có " + packN + " audio OmniVoice — phát tự động khi bấm 🔊 (chạy cả offline).")
+                : "Chưa có gói. Render bằng OmniVoice: node tools/omnivoice/generate.mjs (xem tools/omnivoice/README)."),
       ]),
       h("div", { class: "small muted mb-2" }, supported
         ? "Nhấn nút 🔊 ở bất kỳ từ/câu tiếng Anh nào để nghe giọng đọc chuẩn. Chọn giọng và tốc độ phù hợp để shadowing."
