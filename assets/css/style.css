@@ -440,6 +440,70 @@ details[open] > .phase-lessons-summary::before { transform: rotate(90deg); }
 .mastery i { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-3); display: block; }
 .mastery i.on { background: var(--accent); }
 
+/* ---------- Daily 60 ("Học 60 giây") ---------- */
+.nav__link--star { position: relative; }
+.nav__link--star.is-active { background: linear-gradient(90deg, var(--brand-soft), transparent); }
+
+.daily-head { margin-bottom: 18px; }
+.daily-chip {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-full);
+  padding: 7px 13px; box-shadow: var(--shadow-sm);
+}
+.daily-chip strong { font-size: 15px; }
+.xp-bar { height: 8px; border-radius: var(--r-full); background: var(--surface-3); overflow: hidden; margin-top: 12px; }
+.xp-bar__fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--amber), #fcd34d); transition: width .6s var(--ease); }
+
+.daily-stage { max-width: 560px; margin: 0 auto; }
+.daily-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.daily-dots { display: flex; gap: 7px; }
+.daily-dot { width: 28px; height: 6px; border-radius: var(--r-full); background: var(--surface-3); transition: .3s; }
+.daily-dot.active { background: var(--brand); }
+.daily-dot.done { background: var(--accent); }
+.daily-timer { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 13px; color: var(--text-2); background: var(--surface-3); padding: 3px 10px; border-radius: var(--r-full); }
+
+.daily-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md); padding: 26px 24px; animation: dailyIn .35s var(--ease);
+}
+@keyframes dailyIn { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+.daily-tag {
+  display: inline-block; font-size: 12px; font-weight: 700; padding: 5px 12px;
+  border-radius: var(--r-full); margin-bottom: 16px;
+}
+.daily-word { font-family: var(--font-head); font-weight: 800; font-size: 38px; letter-spacing: -.02em; text-align: center; }
+.daily-sub { text-align: center; color: var(--text-3); font-size: 14px; margin-top: 2px; }
+.daily-mean { text-align: center; font-size: 18px; font-weight: 600; margin-top: 12px; }
+.daily-ex { display: flex; align-items: center; gap: 8px; justify-content: center; font-size: 13.5px; font-style: italic; color: var(--text-3); margin-top: 10px; flex-wrap: wrap; }
+.daily-sentence { font-size: 20px; font-weight: 600; text-align: center; line-height: 1.45; font-style: italic; }
+
+.daily-audio {
+  display: inline-flex; align-items: center; gap: 8px; margin: 16px auto 4px; padding: 13px 22px;
+  border-radius: var(--r-full); border: none; background: var(--brand); color: #fff;
+  font-size: 15px; font-weight: 600; box-shadow: 0 8px 20px rgba(79,70,229,.34); transition: .15s;
+}
+.daily-card > .daily-audio { display: flex; }
+.daily-audio:hover { background: var(--brand-600); transform: translateY(-1px); }
+.daily-audio:active { transform: scale(.97); }
+
+.daily-next { margin-top: 22px; padding: 14px; font-size: 15px; border-radius: 14px; }
+
+.daily-opts { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.daily-opt {
+  padding: 14px 16px; border-radius: 14px; border: 2px solid var(--border-strong);
+  background: var(--surface-2); color: var(--text); font-size: 15px; font-weight: 500; text-align: left; transition: .15s;
+}
+.daily-opt:hover { border-color: var(--brand); }
+.daily-opt.correct { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.daily-opt.wrong { border-color: var(--rose); background: var(--rose-soft); color: var(--rose); }
+
+.daily-done { text-align: center; }
+.daily-burst { font-size: 56px; animation: burst .6s var(--ease); }
+@keyframes burst { 0% { transform: scale(0) rotate(-20deg); } 60% { transform: scale(1.25) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
+.daily-streakbig { font-size: 22px; font-weight: 700; margin: 6px 0; }
+.daily-summary { background: var(--surface-2); border-radius: var(--r-md); padding: 14px 16px; text-align: left; max-width: 340px; margin: 0 auto; }
+.daily-sum-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; font-size: 13.5px; color: var(--text-2); }
+
 /* ---------- Lesson (Buổi học hôm nay) ---------- */
 .lesson { transition: border-color .2s; }
 .lesson--done { border-color: var(--accent); background: linear-gradient(0deg, var(--accent-soft), transparent 40%); }

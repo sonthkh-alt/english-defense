@@ -37,6 +37,8 @@
       recordings: [],
       // đã nạp gói khởi động tháng 1 chưa
       seeded: false,
+      // điểm kinh nghiệm (gamification)
+      xp: 0,
     };
   }
 
@@ -68,6 +70,7 @@
     merged.phaseDone = s.phaseDone || {};
     merged.recordings = s.recordings || [];
     merged.seeded = !!s.seeded;
+    merged.xp = s.xp || 0;
     merged.schema = SCHEMA;
     return merged;
   }
@@ -225,6 +228,24 @@
     },
     totalMinutes() {
       return Object.keys(state.sessions).reduce((sum, d) => sum + this.sessionMinutes(d), 0);
+    },
+
+    // ----- Học 60 giây (habit core) + gamification -----
+    isDailyDone(date) { const s = state.sessions[date || today()]; return !!(s && s.daily60); },
+    setDailyDone(date) {
+      const s = this._session(date);
+      if (!s.daily60) { s.daily60 = true; s.studied = true; persist(); }
+    },
+    addXp(n) { state.xp = (state.xp || 0) + (n || 0); persist(); },
+    xp() { return state.xp || 0; },
+    level() { return Math.floor((state.xp || 0) / 100) + 1; },       // 100 XP mỗi cấp
+    xpInLevel() { return (state.xp || 0) % 100; },
+    dailyStreakDays() {
+      // số ngày liên tiếp đã hoàn thành "Học 60 giây"
+      let count = 0; const d = new Date();
+      if (!this.isDailyDone(isoDate(d))) d.setDate(d.getDate() - 1);
+      while (this.isDailyDone(isoDate(d))) { count++; d.setDate(d.getDate() - 1); }
+      return count;
     },
 
     // ----- phases -----

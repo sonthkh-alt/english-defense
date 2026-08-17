@@ -5,6 +5,7 @@
   "use strict";
 
   const ROUTES = {
+    daily:     { title: "Học 60 giây", render: () => Views.daily() },
     dashboard: { title: "Bảng điều khiển", render: () => Views.dashboard() },
     roadmap:   { title: "Lộ trình 12 tháng", render: () => Views.roadmap() },
     today:     { title: "Buổi học hôm nay", render: () => Views.today() },
@@ -24,8 +25,8 @@
 
   function currentRoute() {
     const hash = location.hash.replace(/^#\/?/, "");
-    const name = hash.split("/")[0] || "dashboard";
-    return ROUTES[name] ? name : "dashboard";
+    const name = hash.split("/")[0] || "daily";
+    return ROUTES[name] ? name : "daily";
   }
 
   function render() {
@@ -142,9 +143,27 @@
     // re-render chrome khi state đổi (streak badge realtime)
     Store.onChange(() => updateChrome());
 
-    if (!location.hash) location.hash = "#/dashboard";
+    if (!location.hash) location.hash = "#/daily";
     render();
+    registerPWA();
   }
+
+  // ---- PWA: service worker + nút cài đặt ----
+  let deferredPrompt = null;
+  function registerPWA() {
+    if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    }
+    global.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault(); deferredPrompt = e;
+    });
+  }
+  global.installPWA = function () {
+    if (!deferredPrompt) { UI.toast("Mở menu trình duyệt → 'Cài đặt ứng dụng' / 'Add to Home screen'"); return; }
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.finally(() => { deferredPrompt = null; });
+  };
+  global.canInstallPWA = function () { return !!deferredPrompt; };
 
   global.App = { render, currentRoute };
 

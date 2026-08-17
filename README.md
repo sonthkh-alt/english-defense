@@ -12,6 +12,7 @@ Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần s
 
 | Trang | Chức năng |
 |---|---|
+| **⚡ Học 60 giây** *(màn hình chính)* | Vòng học siêu ngắn mỗi ngày: 1 từ mới (giọng người thật) → nghe chọn nghĩa → nói theo 1 câu → 1 câu bảo vệ. Có **streak, điểm XP, cấp độ, ăn mừng**. Đảm bảo ngày nào cũng học được ngay trong ~60 giây. Cài được như **app (PWA)**, chạy offline. |
 | **◎ Bảng điều khiển** | Tổng quan: ngày thứ mấy / 365, giai đoạn hiện tại, chuỗi ngày (streak), tổng thời lượng, tiến độ hôm nay bằng vòng tròn động. |
 | **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn; **nhấn giai đoạn để mở bài học/buổi học của giai đoạn đó**: video đúng cấp độ (dễ→khó), câu shadowing, đề nói, cấp từ vựng, các tháng — liên kết thẳng tới "Buổi học hôm nay". |
 | **☀ Buổi học hôm nay** | **Bài giảng tương tác** cho từng mục (Nghe · Shadowing · Từ vựng · Nói · Ôn): **video học thật nhúng sẵn** (BBC/VOA/CrashCourse/TED/MIT/Yale theo giai đoạn), các bước bắt buộc theo phương pháp sư phạm (pre-listening → nghe có phụ đề → nghe không phụ đề → chép câu). **Chỉ tính hoàn thành khi làm xong từng bước.** |

@@ -33,6 +33,213 @@
   }
 
   /* ============================================================
+     DAILY 60 — "Học 60 giây" (màn hình chính, tạo thói quen)
+     ============================================================ */
+  let dailyRedo = false;
+  function clearNode(el) { el.innerHTML = ""; }
+  function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  function daily() {
+    const out = frag([]);
+    const date = Store.today();
+    out.appendChild(dailyHeader());
+    const stage = h("div", { class: "daily-stage" });
+    out.appendChild(stage);
+
+    const hasVocab = Store.get().vocab.length > 0 || Store.hasSeeded();
+    if (!hasVocab) { stage.appendChild(dailyLoadCard()); return out; }
+
+    if (Store.isDailyDone(date) && !dailyRedo) renderDailyDone(stage);
+    else startDailySession(stage);
+    dailyRedo = false;
+    return out;
+  }
+
+  function dailyHeader() {
+    const streak = Store.dailyStreakDays();
+    const lvl = Store.level();
+    const xpIn = Store.xpInLevel();
+    const day = Store.dayNumber();
+    return h("div", { class: "daily-head" }, [
+      h("div", { class: "row between wrap", style: { gap: "10px" } }, [
+        h("div", null, [
+          h("span", { class: "eyebrow" }, "Học 60 giây mỗi ngày" + (day ? " · Ngày " + day : "")),
+          h("h1", { style: { fontSize: "27px", margin: "2px 0" } }, "⚡ Chỉ 60 giây, học ngay hôm nay"),
+        ]),
+        h("div", { class: "row", style: { gap: "8px" } }, [
+          h("div", { class: "daily-chip", title: "Chuỗi ngày học 60 giây" }, ["🔥 ", h("strong", null, String(streak)), " ngày"]),
+          h("div", { class: "daily-chip", title: "Cấp độ theo điểm XP" }, ["⭐ ", h("strong", null, "Cấp " + lvl)]),
+        ]),
+      ]),
+      h("div", { class: "xp-bar", title: xpIn + "/100 XP tới cấp sau" }, [h("div", { class: "xp-bar__fill", style: { width: xpIn + "%" } })]),
+    ]);
+  }
+
+  function dailyLoadCard() {
+    return h("div", { class: "daily-card center" }, [
+      h("div", { style: { fontSize: "40px" } }, "🎁"),
+      h("h2", { style: { margin: "8px 0" } }, "Sẵn sàng cho 60 giây đầu tiên?"),
+      h("p", { class: "muted", style: { maxWidth: "40ch", margin: "0 auto 16px" } }, "Nạp gói học 12 tháng (từ vựng, câu, video theo lộ trình) rồi bắt đầu vòng học 60 giây mỗi ngày."),
+      h("button", { class: "btn btn--primary", onClick: () => { importStarterPack(true); toast("Đã nạp gói học. Bắt đầu 60 giây nào!", "accent"); reload(); } }, "🎁 Nạp gói & bắt đầu"),
+    ]);
+  }
+
+  // ----- Xây các bước cho vòng 60 giây -----
+  function buildDailySteps() {
+    const phase = Store.currentPhase();
+    const day = Store.dayNumber() || 1;
+    const steps = [];
+    let word = Store.vocabQueue(1)[0];
+    if (!word) {
+      const active = Store.get().vocab.filter((v) => Store.vocabIsActive(v));
+      if (active.length) word = active[(day - 1) % active.length];
+    }
+    if (word) {
+      steps.push({ type: "word", word: word });
+      const others = Store.get().vocab.filter((v) => v.meaning && v.id !== word.id && v.meaning !== word.meaning);
+      if (word.meaning && others.length >= 2) {
+        const opts = shuffle([word.meaning].concat(shuffle(others).slice(0, 2).map((v) => v.meaning)));
+        steps.push({ type: "quiz", word: word, options: opts });
+      }
+    }
+    const sent = (LESSONS.pickShadow(phase.id, day) || [])[0];
+    if (sent) steps.push({ type: "shadow", sentence: sent });
+    if (phase.id <= 2) { const r = LESSONS.pickRescue(day); if (r) steps.push({ type: "phrase", phrase: r }); }
+    else { const sp = LESSONS.pickSpeak(phase.id, day); if (sp && sp.question) steps.push({ type: "question", q: sp.question }); }
+    return steps;
+  }
+
+  function startDailySession(stage) {
+    const steps = buildDailySteps();
+    if (!steps.length) { stage.appendChild(dailyLoadCard()); return; }
+    let i = 0; const total = steps.length; const summary = [];
+    const now = () => (global.performance && performance.now ? performance.now() : Date.now());
+    const t0 = now();
+    const timerEl = h("span", { class: "daily-timer" }, "0s");
+    let timerId = null;
+    try { timerId = setInterval(() => { timerEl.textContent = Math.round((now() - t0) / 1000) + "s"; }, 1000); } catch (e) {}
+    function stop() { if (timerId) { try { clearInterval(timerId); } catch (e) {} timerId = null; } }
+    function next(note) { if (note) summary.push(note); i++; if (i >= total) { stop(); finishDaily(stage, summary); } else render(); }
+    function render() {
+      clearNode(stage);
+      stage.appendChild(h("div", { class: "daily-top" }, [
+        h("div", { class: "daily-dots" }, steps.map((s, k) => h("span", { class: "daily-dot" + (k < i ? " done" : k === i ? " active" : "") }))),
+        h("div", { class: "row", style: { gap: "8px", alignItems: "center" } }, [timerEl, h("span", { class: "small muted" }, "mục " + (i + 1) + "/" + total)]),
+      ]));
+      stage.appendChild(cardFor(steps[i], next));
+    }
+    render();
+  }
+
+  function bigAudio(text, label) {
+    return h("button", { class: "daily-audio", onClick: () => UI.speak(text) }, ["🔊 ", label || "Nghe phát âm"]);
+  }
+  function dailyCard(tag, tagColor, body, footerLabel, onFooter) {
+    const card = h("div", { class: "daily-card" }, [
+      h("div", { class: "daily-tag", style: bgSoft(tagColor || "brand") }, tag),
+    ]);
+    UI.appendChildren(card, body);
+    if (footerLabel) card.appendChild(h("button", { class: "btn btn--primary btn--block daily-next", onClick: onFooter }, footerLabel));
+    return card;
+  }
+
+  function cardFor(step, next) {
+    if (step.type === "word") {
+      const w = step.word;
+      return dailyCard("✎ Từ mới hôm nay" + (w.level ? " · Cấp " + w.level : ""), LEVEL_META[w.level] || "brand", [
+        h("div", { class: "daily-word" }, w.term),
+        w.pos ? h("div", { class: "daily-sub" }, w.pos) : null,
+        bigAudio(w.term),
+        w.meaning ? h("div", { class: "daily-mean" }, w.meaning) : null,
+        w.example ? h("div", { class: "daily-ex" }, [audioBtn(w.example) || h("span"), h("span", null, "“" + w.example + "”")]) : null,
+      ], "Tôi đã nghe & hiểu →", () => { Store.learnVocab(w.id); Store.addXp(5); next("Học từ mới: " + w.term); });
+    }
+    if (step.type === "quiz") {
+      const w = step.word;
+      const card = h("div", { class: "daily-card" }, [
+        h("div", { class: "daily-tag", style: bgSoft("accent") }, "🎧 Nghe & chọn nghĩa"),
+        h("div", { class: "center mb-2" }, [bigAudio(w.term, "Nghe rồi chọn nghĩa đúng")]),
+        h("div", { class: "daily-sub center", style: { marginBottom: "10px" } }, "“" + w.term + "” nghĩa là gì?"),
+      ]);
+      const optWrap = h("div", { class: "daily-opts" });
+      let answered = false;
+      step.options.forEach((opt) => {
+        const b = h("button", { class: "daily-opt", onClick: () => {
+          if (answered) return; answered = true;
+          const correct = opt === w.meaning;
+          Array.from(optWrap.children || optWrap._children || []).forEach((c) => { if (c.__opt === w.meaning) c.classList.add("correct"); });
+          b.classList.add(correct ? "correct" : "wrong");
+          if (correct) { Store.addXp(5); toast("Chính xác! +5 XP", "accent"); setTimeout(() => next("Nghe–chọn nghĩa: đúng"), 800); }
+          else { toast("Chưa đúng — đáp án đã hiện màu xanh"); const nb = h("button", { class: "btn btn--primary btn--block daily-next", onClick: () => next("Nghe–chọn nghĩa") }, "Tiếp tục →"); card.appendChild(nb); }
+        } }, opt);
+        b.__opt = opt;
+        optWrap.appendChild(b);
+      });
+      card.appendChild(optWrap);
+      return card;
+    }
+    if (step.type === "shadow") {
+      const s = step.sentence;
+      const slow = audioBtn(s, { rate: 0.6 }); if (slow) { slow.textContent = "🐢"; slow.title = "Nghe chậm"; }
+      return dailyCard("🗣 Nói theo (shadowing)", "violet", [
+        h("div", { class: "daily-sentence" }, "“" + s + "”"),
+        h("div", { class: "row center", style: { gap: "8px", justifyContent: "center", margin: "12px 0" } }, [bigAudio(s, "Nghe mẫu"), slow]),
+        h("div", { class: "small muted center" }, "Nghe → nói theo đúng ngữ điệu 2–3 lần."),
+      ], "Tôi đã nói theo →", () => { Store.addXp(5); next("Nói theo 1 câu"); });
+    }
+    if (step.type === "phrase") {
+      const p = step.phrase;
+      return dailyCard("⛑ Câu cứu nguy hôm nay", "amber", [
+        h("div", { class: "daily-sentence" }, "“" + p.en + "”"),
+        h("div", { class: "daily-sub center" }, p.vi),
+        h("div", { class: "center", style: { margin: "10px 0" } }, [bigAudio(p.en, "Nghe & lặp lại")]),
+      ], "Tôi thuộc rồi →", () => { Store.addXp(5); next("Nắm 1 câu cứu nguy"); });
+    }
+    if (step.type === "question") {
+      const q = step.q;
+      return dailyCard("❓ Câu hỏi bảo vệ hôm nay", "rose", [
+        h("div", { class: "daily-sentence" }, "“" + q.en + "”"),
+        h("div", { class: "daily-sub center" }, "→ " + q.vi),
+        h("div", { class: "center", style: { margin: "10px 0" } }, [bigAudio(q.en, "Nghe câu hỏi")]),
+        q.answer ? h("details", { style: { marginTop: "4px" } }, [h("summary", { class: "small center", style: { cursor: "pointer", color: "var(--brand)" } }, "Gợi ý khung trả lời"), h("div", { class: "small mt-1", style: { color: "var(--text-2)" } }, q.answer)]) : null,
+      ], "Tôi trả lời được →", () => { Store.addXp(5); next("Tập trả lời 1 câu hỏi"); });
+    }
+    return h("div");
+  }
+
+  function finishDaily(stage, summary) {
+    const date = Store.today();
+    const wasDone = Store.isDailyDone(date);
+    Store.setDailyDone(date);
+    if (!wasDone) Store.addXp(10);
+    renderDailyDone(stage, summary);
+  }
+
+  function renderDailyDone(stage, summary) {
+    clearNode(stage);
+    const streak = Store.dailyStreakDays();
+    const done = h("div", { class: "daily-card daily-done center" }, [
+      h("div", { class: "daily-burst" }, "🎉"),
+      h("h2", { style: { margin: "6px 0" } }, "Đủ 60 giây hôm nay!"),
+      h("div", { class: "daily-streakbig" }, ["🔥 ", h("strong", null, String(streak)), " ngày liên tục"]),
+      h("div", { class: "small muted", style: { marginBottom: "14px" } }, "Điểm hiện tại: " + Store.xp() + " XP · Cấp " + Store.level()),
+      summary && summary.length ? h("div", { class: "daily-summary" }, [
+        h("div", { class: "small", style: { fontWeight: 700, marginBottom: "6px" } }, "Hôm nay bạn vừa:"),
+        h("ul", { class: "daily-sum-list" }, summary.map((s) => h("li", null, "✓ " + s))),
+      ]) : h("div", { class: "small muted mb-2" }, "Bạn đã hoàn thành vòng 60 giây hôm nay. Quay lại vào ngày mai để giữ chuỗi!"),
+      h("div", { class: "row wrap", style: { gap: "8px", justifyContent: "center", marginTop: "14px" } }, [
+        h("button", { class: "btn btn--accent btn--sm", onClick: () => { dailyRedo = true; reload(); } }, "⚡ Học thêm 60 giây nữa"),
+        h("a", { class: "btn btn--ghost btn--sm", href: "#/today" }, "📖 Buổi học đầy đủ hôm nay"),
+        h("a", { class: "btn btn--ghost btn--sm", href: "#/roadmap" }, "🗺 Lộ trình"),
+      ]),
+      (global.canInstallPWA && global.canInstallPWA()) ? h("div", { class: "mt-2" }, [
+        h("button", { class: "btn btn--ghost btn--sm", onClick: () => global.installPWA() }, "📲 Cài ứng dụng vào máy để mở mỗi ngày"),
+      ]) : null,
+    ]);
+    stage.appendChild(done);
+  }
+
+  /* ============================================================
      DASHBOARD
      ============================================================ */
   function dashboard() {
@@ -1434,6 +1641,13 @@
         h("div", { class: "small muted mt-1" }, "Toàn bộ số ngày & giai đoạn tính từ ngày này.")]),
     ]));
 
+    // PWA install
+    out.appendChild(h("div", { class: "card mb-2" }, [
+      h("h3", { class: "mb-1" }, "Cài ứng dụng vào máy (mở mỗi ngày)"),
+      h("div", { class: "small muted mb-2" }, "Cài như một app thật trên điện thoại/máy tính để mở nhanh mỗi sáng và dùng được cả khi offline. Trên điện thoại: menu trình duyệt → 'Thêm vào màn hình chính'."),
+      h("button", { class: "btn btn--primary btn--sm", onClick: () => global.installPWA && global.installPWA() }, "📲 Cài ứng dụng"),
+    ]));
+
     // audio settings
     out.appendChild(audioSettingsCard());
 
@@ -1661,6 +1875,6 @@
   }
 
   global.Views = {
-    dashboard, roadmap, today, journal, questions, vocab, rescue, resources, aitools, progress, settings,
+    daily, dashboard, roadmap, today, journal, questions, vocab, rescue, resources, aitools, progress, settings,
   };
 })(window);
