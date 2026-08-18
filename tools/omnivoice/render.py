@@ -15,6 +15,7 @@
 # (key khớp fnv1a với ui.js & generate.mjs — app tự nhận diện.)
 # ============================================================
 import os, sys, json
+import numpy as np
 
 # Windows + Python 3.14 mặc định ghi log bằng cp1252 → ép UTF-8 để in tiếng Việt
 try:
@@ -22,6 +23,16 @@ try:
     sys.stderr.reconfigure(encoding="utf-8")
 except Exception:
     pass
+
+# OmniVoice trên CPU đôi khi render TỪ ĐƠN ngắn ra gần như im lặng + 1 tiếng
+# "tách" (nghe thành tiếng kịch). Kiểm tra RMS & thử lại để loại bản hỏng.
+MIN_RMS = 0.025   # dưới mức này coi là hỏng (im lặng/click)
+RETRIES = 5       # số lần thử tối đa mỗi mục
+
+
+def _rms(sig):
+    s = np.asarray(sig, dtype=np.float32)
+    return float(np.sqrt(np.mean(s ** 2))) if len(s) else 0.0
 
 # Bộ cần render: words (chỉ từ vựng) | sentences (câu) | all (mặc định)
 SET = (sys.argv[1] if len(sys.argv) > 1 else "all").lower()
@@ -71,16 +82,30 @@ def main():
         out = os.path.join(OUT_DIR, key + ".wav")
         if os.path.exists(out) and os.path.getsize(out) > 100:
             keys.add(key); skip += 1; continue
-        try:
-            audio = model.generate(text=text, instruct=INSTRUCT)
-            sf.write(out, audio[0], 24000)
-            keys.add(key); made += 1
-            if made % 20 == 0:
-                write_manifest(keys)
-            print(f"[{i}/{len(items)}] OK  {text[:40]}")
-        except Exception as e:
+        # Từ đơn thêm dấu chấm → model phát âm trọn vẹn, tránh cụt/click
+        gen_text = text if it.get("type") != "word" else (text.rstrip(".!?") + ".")
+        best_rms, best_audio = -1.0, None
+        for _ in range(RETRIES):
+            try:
+                audio = model.generate(text=gen_text, instruct=INSTRUCT)
+                sig = np.asarray(audio[0], dtype=np.float32)
+            except Exception as e:
+                print(f"[{i}/{len(items)}] FAIL {text[:40]} — {e}")
+                continue
+            r = _rms(sig)
+            if r > best_rms:
+                best_rms, best_audio = r, sig
+            if r >= MIN_RMS:  # đạt chuẩn thì dừng thử
+                break
+        if best_audio is None:
             fail += 1
-            print(f"[{i}/{len(items)}] FAIL {text[:40]} — {e}")
+            continue
+        sf.write(out, best_audio, 24000)
+        keys.add(key); made += 1
+        if made % 20 == 0:
+            write_manifest(keys)
+        flag = "" if best_rms >= MIN_RMS else "  ⚠ RMS thấp"
+        print(f"[{i}/{len(items)}] OK  {text[:40]}{flag}")
 
     write_manifest(keys)
     print(f"\nXong: tạo mới {made}, bỏ qua {skip}, lỗi {fail}. Tổng manifest: {len(keys)}.")
