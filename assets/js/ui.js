@@ -222,7 +222,7 @@
       return packLoading;
     }
     function packHas(text) { return packKeys && packKeys.has(fnv1a(text)); }
-    function packPlay(text) { return playUrl("assets/audio/" + fnv1a(text) + ".wav"); }
+    function packPlay(text, onFail) { return playUrl("assets/audio/" + fnv1a(text) + ".wav", onFail); }
     function packCount() { return packKeys ? packKeys.size : 0; }
     // ---- Audio NGƯỜI BẢN XỨ THẬT cho TỪ đơn (Free Dictionary API) ----
     const audioCache = {};
@@ -252,28 +252,57 @@
           .catch(() => { audioCache[key] = null; resolve(null); });
       });
     }
-    function playUrl(url) {
-      try { const a = new Audio(url); a.play(); return true; } catch (e) { return false; }
+    // Phát 1 URL audio. play() là bất đồng bộ: nếu file lỗi (404/CORS/rỗng)
+    // sẽ báo lỗi SAU khi hàm trả về → phải bắt qua sự kiện 'error' và
+    // promise.catch để gọi onFail (rơi xuống TTS), tránh im lặng.
+    function playUrl(url, onFail) {
+      try {
+        const a = new Audio();
+        let failed = false;
+        const fail = () => { if (!failed) { failed = true; if (onFail) onFail(); } };
+        a.addEventListener("error", fail);
+        a.src = url;
+        const p = a.play();
+        if (p && typeof p.catch === "function") p.catch(fail);
+        return true;
+      } catch (e) { if (onFail) onFail(); return false; }
     }
     // TTS với NHẤN NHÁ: tách câu theo dấu câu → nhiều utterance → có ngắt nghỉ tự nhiên
     function ttsSpeak(text, opts) {
       opts = opts || {};
       if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
-      try {
-        synth.cancel();
-        const v = pickVoice();
-        const rate = opts.rate != null ? opts.rate
-          : (global.Store && Store.settings && Store.settings().speechRate) || 0.85;
-        const rr = Math.max(0.5, Math.min(1.2, rate));
-        const clauses = String(text).match(/[^,;:.!?—]+[,;:.!?—]?/g) || [String(text)];
-        clauses.forEach((c) => {
-          c = c.trim(); if (!c) return;
-          const u = new SpeechSynthesisUtterance(c);
-          if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
-          u.rate = rr; u.pitch = 1.0;
-          synth.speak(u);
-        });
-      } catch (e) { toast("Không phát được audio"); }
+      const doSpeak = () => {
+        try {
+          synth.cancel();
+          const v = pickVoice();
+          const rate = opts.rate != null ? opts.rate
+            : (global.Store && Store.settings && Store.settings().speechRate) || 0.85;
+          const rr = Math.max(0.5, Math.min(1.2, rate));
+          const clauses = String(text).match(/[^,;:.!?—]+[,;:.!?—]?/g) || [String(text)];
+          clauses.forEach((c) => {
+            c = c.trim(); if (!c) return;
+            const u = new SpeechSynthesisUtterance(c);
+            if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+            u.rate = rr; u.pitch = 1.0;
+            synth.speak(u);
+          });
+          // Chrome đôi khi tự pause synth (tab nền) → gọi resume để không kẹt
+          if (synth.paused && typeof synth.resume === "function") synth.resume();
+        } catch (e) { toast("Không phát được audio"); }
+      };
+      // Chrome: lần gọi đầu getVoices() có thể rỗng → chờ 'voiceschanged'
+      // (hoặc tối đa 250ms) rồi mới đọc, tránh bấm mà không ra tiếng.
+      if (!voices.length) {
+        load();
+        if (!voices.length && typeof synth.addEventListener === "function") {
+          let fired = false;
+          const once = () => { if (fired) return; fired = true; load(); doSpeak(); };
+          synth.addEventListener("voiceschanged", once, { once: true });
+          setTimeout(once, 250);
+          return;
+        }
+      }
+      doSpeak();
     }
     // Thứ tự ưu tiên: (1) gói OmniVoice render sẵn → (2) giọng người thật
     // cho từ đơn (Dictionary API) → (3) TTS nhấn nhá.
@@ -281,16 +310,20 @@
       opts = opts || {};
       const t = String(text).trim();
       if (!t) return;
+      const single = t.length > 1 && !/\s/.test(t);
+      const toTts = () => ttsSpeak(t, opts);
+      // Từ đơn: thử giọng người thật (Dictionary), lỗi → TTS. Còn lại → TTS.
+      const toHumanOrTts = () => {
+        if (single && humanOn() && !opts.ttsOnly && !opts.rate) {
+          fetchWordAudio(t).then((url) => { if (url) playUrl(url, toTts); else toTts(); });
+        } else { toTts(); }
+      };
+      // Ưu tiên gói OmniVoice (chỉ còn CÂU); lỗi phát → rơi xuống human/TTS.
       if (packOn() && !opts.rate && !opts.ttsOnly) {
         if (packKeys === null) loadPack();
-        else if (packHas(t) && packPlay(t)) return;
+        else if (packHas(t)) { packPlay(t, toHumanOrTts); return; }
       }
-      const single = t.length > 1 && !/\s/.test(t);
-      if (single && humanOn() && !opts.ttsOnly && !opts.rate) {
-        fetchWordAudio(t).then((url) => { if (!(url && playUrl(url))) ttsSpeak(t, opts); });
-        return;
-      }
-      ttsSpeak(t, opts);
+      toHumanOrTts();
     }
     // Nghe thử MỘT giọng cụ thể (để chọn trong Cài đặt)
     function testVoice(voice, text, rate) {
