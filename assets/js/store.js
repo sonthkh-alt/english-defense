@@ -6,7 +6,7 @@
   "use strict";
 
   const KEY = "english-defense::v1";
-  const SCHEMA = 1;
+  const SCHEMA = 2;
 
   function defaultState() {
     return {
@@ -18,7 +18,7 @@
         name: "",
         speechRate: 0.85,       // tốc độ đọc audio (0.7 chậm … 1.0 chuẩn)
         voiceURI: "",           // giọng đọc ưa thích (Web Speech API)
-        humanAudio: true,       // ưu tiên audio người bản xứ thật cho từ đơn
+        humanAudio: false,      // mặc định: từ đơn dùng TTS (câu dùng gói OmniVoice). Bật để thử bản thu Dictionary API
         omniPack: true,         // ưu tiên gói audio OmniVoice render sẵn (nếu có)
       },
       // sessions[yyyy-mm-dd] = { blocks:{listen:true,...}, minutes:Number, note:String }
@@ -72,6 +72,10 @@
     merged.recordings = s.recordings || [];
     merged.seeded = !!s.seeded;
     merged.xp = s.xp || 0;
+    // Migrate schema 1→2: đưa từ đơn về TTS mặc định (OmniVoice đọc sai từ
+    // đơn → đã gỡ; Dictionary hiếm có audio). Chỉ ép MỘT lần, sau đó tôn
+    // trọng lựa chọn của người dùng.
+    if ((s.schema || 1) < 2) merged.settings.humanAudio = false;
     merged.schema = SCHEMA;
     return merged;
   }

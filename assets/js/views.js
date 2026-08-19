@@ -1871,15 +1871,15 @@
 
     card.appendChild(h("div", { class: "field" }, [h("label", null, "Tốc độ đọc"), rateRow]));
 
-    // Toggle: giọng người thật cho TỪ đơn
-    const humanOn = s.humanAudio !== false;
+    // Toggle: cách đọc TỪ VỰNG (mặc định TTS)
+    const humanOn = s.humanAudio === true;
     card.appendChild(h("div", { class: "field" }, [
-      h("label", null, "Giọng NGƯỜI THẬT cho từ vựng"),
+      h("label", null, "Giọng đọc TỪ VỰNG (từ đơn)"),
       h("div", { class: "row wrap", style: { gap: "8px" } }, [
-        h("button", { class: "chip" + (humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", true); toast("Ưu tiên giọng người bản xứ thật cho từ đơn"); App.render(); } }, "🧑 Người bản xứ thật (khuyên dùng)"),
-        h("button", { class: "chip" + (!humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", false); toast("Dùng giọng máy cho tất cả"); App.render(); } }, "🤖 Giọng máy"),
+        h("button", { class: "chip" + (!humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", false); toast("Từ đơn dùng giọng TTS (mặc định)"); App.render(); } }, "🤖 Giọng TTS (mặc định)"),
+        h("button", { class: "chip" + (humanOn ? " active" : ""), onClick: () => { Store.setSetting("humanAudio", true); toast("Thử bản thu người bản xứ (nếu có)"); App.render(); } }, "🧑 Thử bản thu người bản xứ"),
       ]),
-      h("div", { class: "small muted mt-1" }, "Bật: từ đơn (VD allocation, deficit) sẽ phát bản thu của người bản xứ thật (nguồn Free Dictionary API — có nhấn nhá tự nhiên). Cụm nhiều từ & câu dùng giọng TTS đã chọn ở trên."),
+      h("div", { class: "small muted mt-1" }, "Mặc định: từ đơn đọc bằng giọng TTS đã chọn ở trên (ổn định, đọc đúng mọi thuật ngữ). Tùy chọn kia sẽ thử tải bản thu người bản xứ từ Free Dictionary API — chỉ có sẵn cho một số ít từ thông dụng, không có thì tự dùng TTS. Câu & câu hỏi luôn dùng gói giọng OmniVoice."),
     ]));
 
     // Tự nhận diện trình duyệt + hướng dẫn riêng
