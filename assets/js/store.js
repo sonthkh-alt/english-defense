@@ -303,9 +303,13 @@
       const t = today();
       return state.vocab.filter((v) => v.learnedDate === t || v.created === t).length;
     },
-    // Hàng đợi học: từ đã nạp nhưng CHƯA kích hoạt (giữ nguyên thứ tự dễ→khó)
+    // Hàng đợi học: từ đã nạp nhưng CHƯA kích hoạt — luôn xếp DỄ → KHÓ
+    // (theo cấp 1→4; cùng cấp thì giữ thứ tự gốc trong gói)
     vocabQueue(limit) {
-      const q = state.vocab.filter((v) => v.seeded && !v.learnedDate);
+      const all = state.vocab.filter((v) => v.seeded && !v.learnedDate);
+      const idx = new Map(all.map((v, i) => [v.id, i]));
+      const q = all.slice().sort((a, b) =>
+        ((a.level || 2) - (b.level || 2)) || (idx.get(a.id) - idx.get(b.id)));
       return limit ? q.slice(0, limit) : q;
     },
     // Cấp độ đang học = cấp của từ đầu hàng đợi
@@ -328,7 +332,14 @@
     vocabIsActive(v) { return !!v.learnedDate || !v.seeded; },
 
     // ----- questions -----
-    getQuestions(axisId) { return state.questions[axisId] || []; },
+    // Trả về theo thứ tự DỄ → KHÓ (áp dụng cả cho câu đã lưu từ trước)
+    getQuestions(axisId) {
+      const arr = state.questions[axisId] || [];
+      if (typeof LESSONS !== "undefined" && LESSONS.sortByDifficulty) {
+        return LESSONS.sortByDifficulty(arr, (q) => q.en || "");
+      }
+      return arr;
+    },
     addQuestion(axisId, { en, vi, answer }) {
       const arr = state.questions[axisId] || (state.questions[axisId] = []);
       const item = { id: uid(), en: en.trim(), vi: (vi || "").trim(), answer: (answer || "").trim(), mastery: 0 };

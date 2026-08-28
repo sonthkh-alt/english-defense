@@ -94,7 +94,11 @@
     let d = Store.day60(date);
     if (!d) { const ids = Store.vocabQueue(5).map((w) => w.id); d = Store.initDay60(date, ids); }
     const vocab = Store.get().vocab;
-    const words = (d.wordIds || []).map((id) => vocab.find((v) => v.id === id)).filter(Boolean);
+    // Thứ tự trong buổi học: DỄ → KHÓ
+    //   1) nhận mặt 5 từ (xếp theo cấp 1→4)  2) kiểm tra nghĩa 2 từ dễ nhất
+    //   3) nói theo 3 câu (tăng dần)          4) câu cứu nguy / câu hỏi (khó nhất)
+    const words = (d.wordIds || []).map((id) => vocab.find((v) => v.id === id)).filter(Boolean)
+      .sort((a, b) => (a.level || 2) - (b.level || 2));
     const cards = [];
     words.forEach((w) => cards.push({ type: "word", word: w }));
     // 2 câu kiểm tra nghe→nghĩa trên 2 từ đầu
@@ -107,17 +111,23 @@
     });
     // 3 câu shadowing (kèm tiếng Việt)
     (LESSONS.pickShadow(phase.id, day) || []).forEach((s) => cards.push({ type: "shadow", sentence: s }));
-    // 2 câu bảo vệ / cứu nguy theo giai đoạn
+    // 2 câu bảo vệ / cứu nguy theo giai đoạn (kho đã xếp dễ→khó; xếp lại cặp
+    // của ngày để câu sau luôn khó hơn câu trước)
+    const byDiff = (arr, getText) => (LESSONS.sortByDifficulty ? LESSONS.sortByDifficulty(arr, getText) : arr);
     if (phase.id <= 2) {
-      const r = (typeof APP_DATA !== "undefined" && APP_DATA.RESCUE_PHRASES) || [];
-      [0, 1].forEach((k) => { if (r.length) { const p = r[(day - 1 + k) % r.length]; cards.push({ type: "phrase", phrase: p }); } });
+      const r = LESSONS.rescuePool ? LESSONS.rescuePool() : ((typeof APP_DATA !== "undefined" && APP_DATA.RESCUE_PHRASES) || []);
+      const picked = [];
+      [0, 1].forEach((k) => { if (r.length) picked.push(r[(day - 1 + k) % r.length]); });
+      byDiff(picked, (p) => p.en || "").forEach((p) => cards.push({ type: "phrase", phrase: p }));
     } else {
       const axes = (LESSONS.speakInfo(phase.id) && LESSONS.speakInfo(phase.id).axis) || ["urgency", "novelty"];
+      const picked = [];
       [0, 1].forEach((k) => {
         const ax = axes[(day - 1 + k) % axes.length];
         const list = (typeof SEED !== "undefined" && SEED.QUESTIONS[ax]) || [];
-        if (list.length) { const q = list[(day - 1) % list.length]; cards.push({ type: "question", q: { en: q.q, vi: q.v, answer: q.a } }); }
+        if (list.length) { const q = list[(day - 1) % list.length]; picked.push({ en: q.q, vi: q.v, answer: q.a }); }
       });
+      byDiff(picked, (q) => q.en || "").forEach((q) => cards.push({ type: "question", q: q }));
     }
     return cards;
   }
@@ -188,6 +198,12 @@
     return card;
   }
 
+  // Nhãn độ khó gắn vào tiêu đề thẻ (để thấy rõ mạch dễ → khó)
+  function diffSuffix(text) {
+    if (typeof LESSONS === "undefined" || !LESSONS.diffLabel) return "";
+    return " · " + LESSONS.diffLabel(text).t;
+  }
+
   function cardFor(step, next) {
     if (step.type === "word") {
       const w = step.word;
@@ -226,7 +242,7 @@
     if (step.type === "shadow") {
       const s = step.sentence; // { en, vi }
       const slow = audioBtn(s.en, { rate: 0.6 }); if (slow) { slow.textContent = "🐢"; slow.title = "Nghe chậm"; }
-      return dailyCard("🗣 Nói theo (shadowing)", "violet", [
+      return dailyCard("🗣 Nói theo (shadowing)" + diffSuffix(s.en), "violet", [
         h("div", { class: "daily-sentence" }, "“" + s.en + "”"),
         h("div", { class: "daily-sub center", style: { marginTop: "8px" } }, "→ " + s.vi),
         h("div", { class: "row center", style: { gap: "8px", justifyContent: "center", margin: "14px 0 6px" } }, [bigAudio(s.en, "Nghe mẫu"), slow]),
@@ -235,7 +251,7 @@
     }
     if (step.type === "phrase") {
       const p = step.phrase;
-      return dailyCard("⛑ Câu cứu nguy hôm nay", "amber", [
+      return dailyCard("⛑ Câu cứu nguy hôm nay" + diffSuffix(p.en), "amber", [
         h("div", { class: "daily-sentence" }, "“" + p.en + "”"),
         h("div", { class: "daily-sub center" }, p.vi),
         h("div", { class: "center", style: { margin: "10px 0" } }, [bigAudio(p.en, "Nghe & lặp lại")]),
@@ -243,7 +259,7 @@
     }
     if (step.type === "question") {
       const q = step.q;
-      return dailyCard("❓ Câu hỏi bảo vệ hôm nay", "rose", [
+      return dailyCard("❓ Câu hỏi bảo vệ hôm nay" + diffSuffix(q.en), "rose", [
         h("div", { class: "daily-sentence" }, "“" + q.en + "”"),
         h("div", { class: "daily-sub center" }, "→ " + q.vi),
         h("div", { class: "center", style: { margin: "10px 0" } }, [bigAudio(q.en, "Nghe câu hỏi")]),
@@ -560,6 +576,7 @@
             h("div", { class: "small", style: { fontStyle: "italic" } }, "“" + s.en + "”"),
             h("div", { class: "small muted" }, "→ " + s.vi),
           ]),
+          LESSONS.diffLabel ? h("span", { class: "badge badge--" + LESSONS.diffLabel(s.en).c, style: { marginLeft: "auto" } }, LESSONS.diffLabel(s.en).t) : null,
         ]))),
 
       // Nói

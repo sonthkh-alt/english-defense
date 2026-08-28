@@ -173,6 +173,73 @@
     ],
   };
 
+  /* ---------- CHẤM ĐỘ KHÓ & XẾP DỄ → KHÓ ----------
+     Mọi kho nội dung (câu shadowing, câu cứu nguy, ngân hàng câu hỏi)
+     đều được xếp theo điểm khó tăng dần, để ngày đầu luôn gặp câu dễ
+     nhất rồi nâng dần. Điểm dựa trên các yếu tố đo được:
+       • số từ                    • số âm tiết trung bình mỗi từ
+       • tỉ lệ từ dài (≥3 âm tiết) • số mệnh đề phụ / dấu ngắt
+       • số thuật ngữ khó (cấp 3–4 trong gói từ vựng)                */
+  function syllables(word) {
+    const w = String(word).toLowerCase().replace(/[^a-z]/g, "");
+    if (!w) return 0;
+    const m = w.match(/[aeiouy]+/g);
+    let n = m ? m.length : 1;
+    if (/e$/.test(w) && n > 1) n--;          // 'e' câm cuối từ
+    return Math.max(1, n);
+  }
+  // Thuật ngữ cấp 3–4 trong gói từ vựng → câu chứa chúng khó hơn
+  let hardTerms = null;
+  function hardTermSet() {
+    if (hardTerms) return hardTerms;
+    hardTerms = new Set();
+    if (typeof SEED !== "undefined" && Array.isArray(SEED.VOCAB)) {
+      SEED.VOCAB.forEach((v) => { if ((v.lvl || 2) >= 3) hardTerms.add(String(v.t).toLowerCase()); });
+    }
+    return hardTerms;
+  }
+  function difficulty(text) {
+    const s = String(text || "").trim();
+    if (!s) return 0;
+    const words = s.split(/\s+/).filter(Boolean);
+    const n = words.length;
+    const syl = words.reduce((a, w) => a + syllables(w), 0);
+    const avgSyl = syl / Math.max(1, n);
+    const longRatio = words.filter((w) => syllables(w) >= 3).length / Math.max(1, n);
+    const clauses = (s.match(/[,;:—]|\b(although|while|whereas|however|unless|because|which|that|if)\b/gi) || []).length;
+    const low = s.toLowerCase();
+    let hard = 0;
+    hardTermSet().forEach((t) => { if (low.indexOf(t) >= 0) hard++; });
+    return Math.round(n * 2.2 + avgSyl * 8 + longRatio * 22 + clauses * 4 + hard * 6);
+  }
+  // So sánh ổn định (điểm khó → độ dài → chữ cái) để thứ tự không đổi giữa các lần tải
+  function byDifficulty(getText) {
+    return (a, b) => {
+      const ta = getText(a), tb = getText(b);
+      return (difficulty(ta) - difficulty(tb)) || (ta.length - tb.length) || (ta < tb ? -1 : ta > tb ? 1 : 0);
+    };
+  }
+  function sortByDifficulty(arr, getText) {
+    return (arr || []).slice().sort(byDifficulty(getText || ((x) => (x && x.en) || String(x))));
+  }
+  // Xếp các trục câu hỏi theo cấp độ (SEED.AXIS_LEVELS) rồi tới tên trục
+  function axesByLevel(axes) {
+    const lv = (typeof SEED !== "undefined" && SEED.AXIS_LEVELS) || {};
+    return (axes || []).slice().sort((a, b) => ((lv[a] || 2) - (lv[b] || 2)) || (a < b ? -1 : a > b ? 1 : 0));
+  }
+  // Xếp TẤT CẢ kho nội dung dễ → khó ngay khi tải trang
+  function sortAllPools() {
+    Object.keys(SHADOW).forEach((k) => { SHADOW[k].sort(byDifficulty((s) => s.en)); });
+    Object.keys(SPEAK).forEach((k) => { if (SPEAK[k].axis) SPEAK[k].axis = axesByLevel(SPEAK[k].axis); });
+    if (typeof APP_DATA !== "undefined" && Array.isArray(APP_DATA.RESCUE_PHRASES)) {
+      APP_DATA.RESCUE_PHRASES.sort(byDifficulty((p) => p.en || ""));
+    }
+    if (typeof SEED !== "undefined" && SEED.QUESTIONS) {
+      Object.keys(SEED.QUESTIONS).forEach((ax) => { SEED.QUESTIONS[ax].sort(byDifficulty((q) => q.q || "")); });
+    }
+  }
+  sortAllPools();
+
   function phaseKey(phaseId) {
     if (phaseId <= 1) return "beginner";
     if (phaseId === 2) return "inter";
@@ -191,7 +258,8 @@
     pickListen(phaseId, day) { return pick(LISTEN[phaseKey(phaseId)], day); },
     pickShadow(phaseId, day) {
       const k = phaseId <= 1 ? 1 : (phaseId === 2 ? 2 : (phaseId === 3 ? 3 : 4));
-      return pick3(SHADOW[k], day);
+      // Kho đã xếp dễ→khó; sắp lại bộ 3 của ngày để luôn tăng dần (kể cả khi xoay vòng)
+      return sortByDifficulty(pick3(SHADOW[k], day), (s) => s.en);
     },
     pickShadowVideo(phaseId, day) { return pick(SHADOW_VIDEO[phaseKey(phaseId)], day); },
     pickSpeak(phaseId, day) {
@@ -236,6 +304,17 @@
       if (phaseId === 2) return [2, 3];
       if (phaseId === 3) return [3, 4];
       return [4];
+    },
+
+    // ---- Công cụ xếp DỄ → KHÓ (dùng chung cho store.js & views.js) ----
+    difficulty,          // chấm điểm khó của một câu/cụm
+    sortByDifficulty,    // sao chép mảng rồi xếp tăng dần
+    axesByLevel,         // xếp trục câu hỏi theo cấp độ
+    rescuePool() { return (typeof APP_DATA !== "undefined" && APP_DATA.RESCUE_PHRASES) || []; },
+    // Nhãn độ khó để hiển thị cho người học
+    diffLabel(text) {
+      const d = difficulty(text);
+      return d < 45 ? { t: "Dễ", c: "accent" } : d < 65 ? { t: "Vừa", c: "violet" } : { t: "Khó", c: "amber" };
     },
   };
 
