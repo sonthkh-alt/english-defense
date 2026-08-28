@@ -1,7 +1,7 @@
 /* Service Worker — English Defense PWA
    Chiến lược: network-first cho HTML/JS/CSS (luôn cập nhật khi online),
    cache fallback để dùng được offline. */
-const CACHE = "english-defense-v2";
+const CACHE = "english-defense-v3";
 const CORE = [
   "./",
   "./index.html",

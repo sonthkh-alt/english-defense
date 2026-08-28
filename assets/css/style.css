@@ -56,6 +56,14 @@
   --font-head: "Lexend", "Be Vietnam Pro", sans-serif;
 
   --ease: cubic-bezier(.22, 1, .36, 1);
+
+  /* Vùng an toàn iPhone (Dynamic Island / thanh Home).
+     env() trả 0 trên máy không có tai thỏ nên dùng chung được mọi thiết bị. */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --tabbar-h: 62px;
 }
 
 [data-theme="dark"] {
@@ -128,7 +136,12 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* ---------- App shell ---------- */
-.app-shell { display: flex; min-height: 100vh; }
+.app-shell { display: flex; min-height: 100vh; min-height: 100dvh; }
+
+/* iOS: chặn nảy trang, chặn tự phóng to chữ khi xoay ngang, bỏ trễ chạm 300ms */
+html { -webkit-text-size-adjust: 100%; }
+body { overscroll-behavior-y: contain; }
+a, button, .btn, .chip, .icon-btn, .nav__link, .tabbar__item { touch-action: manipulation; }
 
 /* ===== Sidebar ===== */
 .sidebar {
@@ -680,3 +693,126 @@ table.tbl tr:hover td { background: var(--surface-2); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ============================================================
+   ĐIỆN THOẠI (tối ưu cho iPhone 14 Pro Max — 430×932pt)
+   - Tôn trọng vùng an toàn: Dynamic Island (trên) & thanh Home (dưới)
+   - Điều hướng đưa xuống đáy màn hình cho vừa tầm ngón cái
+   - Khi đang học: ẩn hết phần không liên quan (chế độ tập trung)
+   ============================================================ */
+
+/* ---------- Thanh tab dưới (chỉ điện thoại) ---------- */
+.tabbar { display: none; }
+
+@media (max-width: 760px) {
+  .tabbar {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;   /* dưới lớp phủ (55) & menu (60) */
+    padding: 6px calc(6px + var(--sal)) calc(6px + var(--sab)) calc(6px + var(--sar));
+    background: color-mix(in srgb, var(--surface) 86%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 1px solid var(--border);
+  }
+  .tabbar__item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px; min-height: 50px; padding: 6px 2px; border: none; background: none;
+    color: var(--text-3); font-family: inherit; font-size: 10.5px; font-weight: 600;
+    border-radius: 12px; text-decoration: none; transition: color .15s, background .15s;
+  }
+  .tabbar__item:hover, .tabbar__item:active { text-decoration: none; background: var(--surface-3); }
+  .tabbar__icon { font-size: 19px; line-height: 1; }
+  .tabbar__item.is-active { color: var(--brand); }
+  .tabbar__item.is-active .tabbar__icon { transform: translateY(-1px); }
+
+  /* Chừa chỗ cho thanh tab, tránh nội dung bị che */
+  .view { padding-bottom: calc(var(--tabbar-h) + var(--sab) + 22px); }
+  .app-footer { display: none; }          /* dòng chữ trang trí — bỏ trên điện thoại */
+  #menu-toggle { display: none; }          /* đã có nút "Thêm" ở thanh dưới */
+
+  /* Thanh trên: đẩy xuống dưới Dynamic Island */
+  .topbar {
+    height: auto; min-height: var(--topbar-h);
+    padding: calc(var(--sat) + 6px) calc(16px + var(--sar)) 6px calc(16px + var(--sal));
+  }
+  .topbar__title { font-size: 16px; }
+
+  /* Ngăn kéo menu: cũng phải tránh tai thỏ & thanh Home */
+  .sidebar { padding-top: var(--sat); padding-bottom: var(--sab); height: 100dvh; }
+
+  /* Vùng chạm tối thiểu 44px theo chuẩn Apple */
+  .btn { min-height: 46px; }
+  .btn--sm { min-height: 38px; }
+  .icon-btn { width: 44px; height: 44px; }
+
+  /* iOS tự phóng to trang khi ô nhập có cỡ chữ < 16px */
+  .input, input, textarea, select { font-size: 16px; }
+}
+
+/* ---------- CHẾ ĐỘ HỌC TẬP TRUNG ----------
+   Bật khi đang chạy vòng 60 giây: chỉ còn thanh tiến độ, thẻ học và nút
+   hành động. Mọi thứ khác (thanh trên/dưới, tiêu đề, streak, XP) đều ẩn. */
+body.is-studying .topbar,
+body.is-studying .tabbar,
+body.is-studying .app-footer,
+body.is-studying .daily-head { display: none !important; }
+
+body.is-studying .view {
+  padding-top: calc(var(--sat) + 10px);
+  padding-bottom: calc(var(--sab) + 18px);
+  max-width: 620px;
+}
+/* Nút hành động chính nằm trong tầm ngón cái, luôn thấy được */
+body.is-studying .daily-card { margin-bottom: 0; }
+
+/* Thanh công cụ khi học: tiến độ + đồng hồ + nút thoát */
+.study-bar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.study-exit {
+  flex: none; width: 34px; height: 34px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text-3); font-size: 15px; display: grid; place-items: center;
+}
+.study-exit:hover { color: var(--text); border-color: var(--border-strong); }
+
+@media (max-width: 760px) {
+  /* Thẻ học chiếm trọn bề ngang, chữ to dễ đọc khi cầm điện thoại */
+  body.is-studying .daily-card { padding: 22px 18px; border-radius: var(--r-xl); }
+  body.is-studying .daily-word { font-size: 42px; }
+  body.is-studying .daily-mean { font-size: 17px; }
+  body.is-studying .btn { min-height: 52px; font-size: 15.5px; }
+}
+
+/* ---------- Điện thoại rất cao (iPhone Pro Max) ---------- */
+@media (max-width: 480px) {
+  .view { padding-left: calc(16px + var(--sal)); padding-right: calc(16px + var(--sar)); }
+  .page-head h1 { font-size: 21px; }
+  .card { border-radius: var(--r-lg); }
+  .vocab-row { gap: 10px; padding: 12px; }
+  .vocab-term { font-size: 15.5px; }
+  /* Hàng nút cuộn ngang thay vì xuống dòng lộn xộn */
+  .chips-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .chips-scroll::-webkit-scrollbar { display: none; }
+  .chips-scroll > * { flex: none; }
+}
+
+/* ---------- Học tập trung trên điện thoại: căn giữa thẻ theo chiều dọc ---------- */
+@media (max-width: 760px) {
+  body.is-studying .daily-stage {
+    display: flex; flex-direction: column;
+    /* trừ vùng an toàn + thanh tiến độ để thẻ nằm giữa phần nhìn thấy */
+    min-height: calc(100dvh - var(--sat) - var(--sab) - 76px);
+  }
+  body.is-studying .daily-stage > .study-bar { flex: none; }
+  body.is-studying .daily-stage > .daily-card { margin-top: auto; margin-bottom: auto; }
+}
+
+/* Bỏ vệt xám khi chạm trên iOS + không cho chọn chữ nhầm khi bấm nhanh */
+a, button, .btn, .daily-opt, .daily-audio, .tabbar__item, .icon-btn {
+  -webkit-tap-highlight-color: transparent;
+}
+.daily-opt, .daily-audio, .tabbar__item { -webkit-user-select: none; user-select: none; }
+
+/* Mở menu trên điện thoại: khóa cuộn nền cho khỏi trôi */
+body.nav-open { overflow: hidden; }

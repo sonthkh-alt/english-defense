@@ -2,7 +2,7 @@
 <html lang="vi" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Lộ trình 12 tháng luyện tiếng Anh bảo vệ đề tài khoa học — trọng tâm NGHE & HỎI–ĐÁP. Học mỗi ngày, ghi lại tiến bộ." />
   <meta name="theme-color" content="#4f46e5" />
   <title>English Defense · Lộ trình bảo vệ đề tài bằng tiếng Anh</title>
@@ -11,6 +11,8 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-title" content="English Defense" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,6 +106,26 @@
       </footer>
     </div>
   </div>
+
+
+  <!-- Thanh điều hướng dưới (điện thoại) — đặt trong tầm ngón cái -->
+  <nav class="tabbar" id="tabbar" aria-label="Điều hướng nhanh">
+    <a class="tabbar__item" data-route="daily" href="#/daily">
+      <span class="tabbar__icon">⚡</span><span class="tabbar__label">Học 60s</span>
+    </a>
+    <a class="tabbar__item" data-route="today" href="#/today">
+      <span class="tabbar__icon">☀</span><span class="tabbar__label">Hôm nay</span>
+    </a>
+    <a class="tabbar__item" data-route="vocab" href="#/vocab">
+      <span class="tabbar__icon">✎</span><span class="tabbar__label">Từ vựng</span>
+    </a>
+    <a class="tabbar__item" data-route="questions" href="#/questions">
+      <span class="tabbar__icon">?</span><span class="tabbar__label">Câu hỏi</span>
+    </a>
+    <button class="tabbar__item" id="tabbar-more" type="button">
+      <span class="tabbar__icon">☰</span><span class="tabbar__label">Thêm</span>
+    </button>
+  </nav>
 
   <!-- Toast host -->
   <div id="toast-host" class="toast-host" aria-live="polite"></div>

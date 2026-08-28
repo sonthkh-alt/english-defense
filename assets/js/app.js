@@ -47,10 +47,16 @@
     }
     titleEl.textContent = route.title;
 
-    // active nav
+    // active nav (menu bên + thanh tab dưới)
     navEl.querySelectorAll(".nav__link").forEach((a) => {
       a.classList.toggle("is-active", a.dataset.route === name);
     });
+    const tabbar = document.getElementById("tabbar");
+    if (tabbar) tabbar.querySelectorAll(".tabbar__item").forEach((a) => {
+      a.classList.toggle("is-active", a.dataset.route === name);
+    });
+    // Rời trang thì luôn thoát chế độ học tập trung
+    document.body.classList.remove("is-studying");
 
     // day counter + streak
     updateChrome();
@@ -115,8 +121,8 @@
   /* ---------- Sidebar (mobile) ---------- */
   const sidebar = document.getElementById("sidebar");
   const scrim = document.getElementById("sidebar-scrim");
-  function openSidebar() { sidebar.classList.add("open"); scrim.classList.add("show"); }
-  function closeSidebar() { sidebar.classList.remove("open"); scrim.classList.remove("show"); }
+  function openSidebar() { sidebar.classList.add("open"); scrim.classList.add("show"); document.body.classList.add("nav-open"); }
+  function closeSidebar() { sidebar.classList.remove("open"); scrim.classList.remove("show"); document.body.classList.remove("nav-open"); }
 
   /* ---------- Wire up ---------- */
   function init() {
@@ -124,6 +130,8 @@
 
     document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
     document.getElementById("menu-toggle").addEventListener("click", openSidebar);
+    const more = document.getElementById("tabbar-more");
+    if (more) more.addEventListener("click", openSidebar);
     document.getElementById("sidebar-close").addEventListener("click", closeSidebar);
     scrim.addEventListener("click", closeSidebar);
 

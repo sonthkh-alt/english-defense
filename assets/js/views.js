@@ -136,11 +136,17 @@
     const pct = total ? Math.round((done / total) * 100) : 0;
     return h("div", { class: "bar", style: { height: "7px" } }, [h("div", { class: "bar__fill", style: { width: pct + "%" } })]);
   }
-  function dailyTop(i, total, timerEl) {
-    return h("div", { class: "daily-top" }, [
-      h("div", { style: { flex: 1, marginRight: "12px" } }, [progressBarNode(i, total)]),
-      h("div", { class: "row", style: { gap: "8px", alignItems: "center" } }, [timerEl, h("span", { class: "small muted", style: { whiteSpace: "nowrap" } }, "mục " + (i + 1) + "/" + total)]),
+  function dailyTop(i, total, timerEl, onExit) {
+    return h("div", { class: "daily-top study-bar" }, [
+      onExit ? h("button", { class: "study-exit", title: "Tạm nghỉ", "aria-label": "Tạm nghỉ", onClick: onExit }, "✕") : null,
+      h("div", { style: { flex: 1 } }, [progressBarNode(i, total)]),
+      h("div", { class: "row", style: { gap: "8px", alignItems: "center" } }, [timerEl, h("span", { class: "small muted", style: { whiteSpace: "nowrap" } }, (i + 1) + "/" + total)]),
     ]);
+  }
+
+  /* Chế độ học tập trung: ẩn thanh trên/dưới & tiêu đề để chỉ còn nội dung học */
+  function setStudying(on) {
+    try { document.body.classList.toggle("is-studying", !!on); } catch (e) {}
   }
 
   // Chạy bài học từ vị trí i, có điểm dừng ~60 giây; tiến độ được lưu
@@ -166,11 +172,13 @@
     }
     function render() {
       clearNode(stage);
-      stage.appendChild(dailyTop(i, total, timerEl));
+      setStudying(true);          // đang học → ẩn phần không liên quan
+      stage.appendChild(dailyTop(i, total, timerEl, () => { stop(); renderPause(stage, i, total); }));
       stage.appendChild(cardFor(cards[i], advance));
     }
     function showCheckpoint() {
       clearNode(stage);
+      setStudying(false);         // nghỉ giữa chừng → hiện lại điều hướng
       stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
         h("div", { class: "daily-burst" }, "⏱"),
         h("h2", { style: { margin: "6px 0" } }, "Đủ 60 giây rồi!"),
@@ -312,6 +320,7 @@
 
   function renderDayComplete(stage, total) {
     clearNode(stage);
+    setStudying(false);
     const streak = Store.dailyStreakDays();
     stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
       h("div", { class: "daily-burst" }, "🎉"),
@@ -335,6 +344,7 @@
 
   function renderPause(stage, i, total) {
     clearNode(stage);
+    setStudying(false);
     const streak = Store.dailyStreakDays();
     stage.appendChild(h("div", { class: "daily-card daily-done center" }, [
       h("div", { class: "daily-burst" }, "✅"),
