@@ -198,6 +198,36 @@
     return card;
   }
 
+  /* ---------- Minh họa & phiên âm cho từ vựng ----------
+     Thẻ hình minh họa = biểu tượng gợi nhớ nghĩa, đặt trên nền màu theo
+     CẤP ĐỘ của từ. Vẽ tại chỗ nên chạy offline, không cần tải ảnh.  */
+  function wordIcon(v, size) {
+    const meta = Store.vocabMeta ? Store.vocabMeta(v) : {};
+    const ic = meta.icon || "";
+    if (!ic) return null;
+    const color = "var(--" + (LEVEL_META[v.level] || "brand") + ")";
+    return h("div", {
+      class: "vocab-ic vocab-ic--" + (size || "sm"),
+      title: v.meaning || v.term,
+      style: {
+        "--ic-bg": "color-mix(in srgb, " + color + " 13%, transparent)",
+        "--ic-bd": "color-mix(in srgb, " + color + " 30%, transparent)",
+      },
+    }, ic);
+  }
+  function wordIpa(v) {
+    const meta = Store.vocabMeta ? Store.vocabMeta(v) : {};
+    return meta.ipa ? h("span", { class: "vocab-ipa" }, meta.ipa) : null;
+  }
+  function wordExampleViText(v) {
+    const meta = Store.vocabMeta ? Store.vocabMeta(v) : {};
+    return meta.exampleVi || "";
+  }
+  function wordExampleVi(v, cls) {
+    const t = wordExampleViText(v);
+    return t ? h("div", { class: cls || "vocab-ex-vi" }, "→ " + t) : null;
+  }
+
   // Nhãn độ khó gắn vào tiêu đề thẻ (để thấy rõ mạch dễ → khó)
   function diffSuffix(text) {
     if (typeof LESSONS === "undefined" || !LESSONS.diffLabel) return "";
@@ -207,12 +237,16 @@
   function cardFor(step, next) {
     if (step.type === "word") {
       const w = step.word;
+      const wIpa = wordIpa(w);
       return dailyCard("✎ Từ mới hôm nay" + (w.level ? " · Cấp " + w.level : ""), LEVEL_META[w.level] || "brand", [
+        wordIcon(w, "lg"),
         h("div", { class: "daily-word" }, w.term),
+        wIpa ? h("div", { class: "center", style: { marginTop: "4px" } }, [wIpa]) : null,
         w.pos ? h("div", { class: "daily-sub" }, w.pos) : null,
         bigAudio(w.term),
         w.meaning ? h("div", { class: "daily-mean" }, w.meaning) : null,
         w.example ? h("div", { class: "daily-ex" }, [audioBtn(w.example) || h("span"), h("span", null, "“" + w.example + "”")]) : null,
+        wordExampleVi(w, "vocab-ex-vi center"),
       ], "Tôi đã nghe & hiểu →", () => { Store.learnVocab(w.id); Store.addXp(5); next("Học từ mới: " + w.term); });
     }
     if (step.type === "quiz") {
@@ -1192,14 +1226,17 @@
         bar(Math.min(100, (learnedToday / 5) * 100)),
         h("div", { class: "mt-2", style: { display: "flex", flexDirection: "column", gap: "8px" } },
           suggest.map((v) => h("div", { class: "vocab-row", style: { margin: 0 } }, [
+            wordIcon(v, "sm"),
             audioBtn(v.term),
             h("div", { class: "flex-1", style: { minWidth: 0 } }, [
-              h("div", { class: "row", style: { gap: "7px", alignItems: "baseline" } }, [
+              h("div", { class: "row wrap", style: { gap: "7px", alignItems: "baseline" } }, [
                 h("span", { class: "vocab-term" }, v.term),
+                wordIpa(v),
                 v.pos ? h("span", { class: "vocab-pos" }, v.pos) : null,
               ]),
               v.meaning ? h("div", { class: "vocab-mean" }, v.meaning) : null,
               v.example ? h("div", { class: "vocab-ex" }, "“" + v.example + "”") : null,
+              wordExampleVi(v),
             ]),
             h("button", { class: "btn btn--accent btn--sm", title: "Đã học từ này", onClick: () => { Store.learnVocab(v.id); toast("+1 từ đã học 🎯", "accent"); reload(); } }, "✓ Học"),
           ]))),
@@ -1252,10 +1289,12 @@
     const boxColors = ["", "rose", "amber", "sky", "brand", "accent"];
     const inQueue = v.seeded && !v.learnedDate;
     return h("div", { class: "vocab-row" }, [
+      wordIcon(v, "sm"),
       audioBtn(v.term),
       h("div", { class: "flex-1", style: { minWidth: 0 } }, [
         h("div", { class: "row wrap", style: { gap: "7px", alignItems: "baseline" } }, [
           h("span", { class: "vocab-term" }, v.term),
+          wordIpa(v),
           v.pos ? h("span", { class: "vocab-pos" }, v.pos) : null,
           v.level ? h("span", { class: "badge badge--" + (LEVEL_META[v.level] || "brand"), title: levelName(v.level) }, "C" + v.level) : null,
           inQueue ? h("span", { class: "badge" }, "trong lộ trình")
@@ -1263,6 +1302,7 @@
         ]),
         v.meaning ? h("div", { class: "vocab-mean" }, v.meaning) : null,
         v.example ? h("div", { class: "vocab-ex" }, "“" + v.example + "”") : null,
+        wordExampleVi(v),
       ]),
       h("div", { class: "row", style: { gap: "6px" } }, [
         inQueue ? h("button", { class: "btn btn--accent btn--sm", title: "Học từ này", onClick: () => { Store.learnVocab(v.id); toast("+1 từ đã học 🎯", "accent"); reload(); } }, "✓ Học") : null,
@@ -1319,8 +1359,11 @@
       flipped = false;
       card.className = "flashcard";
       card.innerHTML = "";
+      const fIpa = wordIpa(v);
       card.appendChild(h("div", { class: "flash-face flash-face--front" }, [
+        wordIcon(v, "md"),
         h("div", { class: "fl-term" }, v.term),
+        fIpa ? h("div", { style: { marginTop: "2px" } }, [fIpa]) : null,
         v.pos ? h("div", { class: "fl-sub" }, v.pos) : null,
         audioBtn(v.term),
         h("div", { class: "flash-hint" }, "Nhấn để lật · " + (idx + 1) + "/" + deck.length),
@@ -1328,6 +1371,7 @@
       card.appendChild(h("div", { class: "flash-face flash-face--back" }, [
         h("div", { style: { fontWeight: 700, fontSize: "18px" } }, v.meaning || "(chưa có nghĩa)"),
         v.example ? h("div", { class: "small", style: { fontStyle: "italic", color: "var(--text-2)" } }, "“" + v.example + "”") : null,
+        wordExampleVi(v, "vocab-ex-vi center"),
         v.example ? audioBtn(v.example) : audioBtn(v.term),
         h("div", { class: "flash-hint" }, "Bạn nhớ được không?"),
       ]));

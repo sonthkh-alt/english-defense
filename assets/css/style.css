@@ -543,6 +543,24 @@ details[open] > .phase-lessons-summary::before { transform: rotate(90deg); }
 .vocab-pos { font-size: 11px; color: var(--text-3); font-style: italic; }
 .vocab-mean { font-size: 13.5px; color: var(--text-2); }
 .vocab-ex { font-size: 12.5px; color: var(--text-3); font-style: italic; margin-top: 3px; }
+.vocab-ex-vi { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
+
+/* ---------- Phiên âm & thẻ biểu tượng minh họa của từ ---------- */
+.vocab-ipa {
+  font-size: 12.5px; color: var(--text-3); font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  letter-spacing: .01em; white-space: nowrap;
+}
+/* Thẻ hình minh họa: emoji lớn trên nền màu theo nhóm nghĩa */
+.vocab-ic {
+  flex: none; display: grid; place-items: center; border-radius: var(--r-md);
+  background: var(--ic-bg, color-mix(in srgb, var(--brand) 12%, transparent));
+  border: 1px solid var(--ic-bd, color-mix(in srgb, var(--brand) 26%, transparent));
+  line-height: 1; user-select: none;
+}
+.vocab-ic--sm { width: 42px; height: 42px; font-size: 22px; }
+.vocab-ic--md { width: 64px; height: 64px; font-size: 34px; border-radius: var(--r-lg, 16px); }
+.vocab-ic--lg { width: 108px; height: 108px; font-size: 60px; border-radius: 22px; margin: 0 auto 10px; }
+@media (max-width: 480px) { .vocab-ic--lg { width: 92px; height: 92px; font-size: 50px; } }
 
 /* ---------- Flashcard ---------- */
 .flash-stage { perspective: 1400px; max-width: 520px; margin: 0 auto; }

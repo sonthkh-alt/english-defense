@@ -44,6 +44,7 @@
   }
 
   let state = load();
+  let seedByTerm = null;   // cache tra cứu SEED theo mặt chữ (vocabMeta)
 
   function load() {
     try {
@@ -330,6 +331,24 @@
       if (changed) persist();
     },
     vocabIsActive(v) { return !!v.learnedDate || !v.seeded; },
+    // Bổ sung phiên âm / biểu tượng / dịch câu ví dụ cho từ đã lưu từ trước
+    // (state cũ chưa có 3 trường này → tra ngược trong SEED theo mặt chữ)
+    vocabMeta(v) {
+      if (!v) return { ipa: "", icon: "", exampleVi: "" };
+      let seed = null;
+      if ((!v.ipa || !v.icon || !v.exampleVi) && typeof SEED !== "undefined" && SEED.VOCAB) {
+        if (!seedByTerm) {
+          seedByTerm = new Map();
+          SEED.VOCAB.forEach((s) => seedByTerm.set(String(s.t).toLowerCase(), s));
+        }
+        seed = seedByTerm.get(String(v.term).toLowerCase());
+      }
+      return {
+        ipa: v.ipa || (seed && seed.ipa) || "",
+        icon: v.icon || (seed && seed.ic) || "",
+        exampleVi: v.exampleVi || (seed && seed.ev) || "",
+      };
+    },
 
     // ----- questions -----
     // Trả về theo thứ tự DỄ → KHÓ (áp dụng cả cho câu đã lưu từ trước)
@@ -412,6 +431,7 @@
         if (existingTerms.has(term.toLowerCase())) return;
         state.vocab.push({
           id: uid(), term: term, pos: it.p || "", meaning: it.m || "", example: it.e || "",
+          ipa: it.ipa || "", icon: it.ic || "", exampleVi: it.ev || "",
           created: "", box: 1, lastReview: null, seeded: true,
           level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "",
           learnedDate: null,   // null = còn trong hàng đợi, chưa kích hoạt
