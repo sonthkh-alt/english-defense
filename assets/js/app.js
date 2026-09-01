@@ -5,17 +5,13 @@
   "use strict";
 
   const ROUTES = {
-    daily:     { title: "Học 60 giây", render: () => Views.daily() },
     dashboard: { title: "Bảng điều khiển", render: () => Views.dashboard() },
     roadmap:   { title: "Lộ trình 12 tháng", render: () => Views.roadmap() },
-    today:     { title: "Buổi học hôm nay", render: () => Views.today() },
-    journal:   { title: "Nhật ký & Chuỗi ngày", render: () => Views.journal() },
-    questions: { title: "Ngân hàng câu hỏi", render: () => Views.questions() },
-    vocab:     { title: "Sổ tay từ vựng", render: () => Views.vocab() },
-    rescue:    { title: "Câu cứu nguy", render: () => Views.rescue() },
-    resources: { title: "Tài nguyên & Nguồn", render: () => Views.resources() },
-    aitools:   { title: "Bộ công cụ AI", render: () => Views.aitools() },
-    progress:  { title: "Đo tiến bộ", render: () => Views.progress() },
+    vocab:     { title: "Từ vựng (FSRS)", render: () => Views.vocab() },
+    pron:      { title: "Phát âm", render: () => Views.pron() },
+    shadow:    { title: "Shadowing", render: () => Views.shadow() },
+    coach:     { title: "Luyện nói với AI", render: () => Views.coach() },
+    defense:   { title: "Mô phỏng bảo vệ", render: () => Views.defense() },
     settings:  { title: "Cài đặt", render: () => Views.settings() },
   };
 
@@ -25,19 +21,17 @@
 
   function currentRoute() {
     const hash = location.hash.replace(/^#\/?/, "");
-    const name = hash.split("/")[0] || "daily";
-    return ROUTES[name] ? name : "daily";
+    const name = hash.split("/")[0] || "dashboard";
+    return ROUTES[name] ? name : "dashboard";
   }
 
   function render() {
     const name = currentRoute();
     const route = ROUTES[name];
 
-    // top progress bar animation
     const pb = document.getElementById("topbar-progress");
     pb.style.opacity = "1"; pb.style.width = "40%";
 
-    // render view
     viewEl.innerHTML = "";
     try {
       viewEl.appendChild(route.render());
@@ -47,7 +41,6 @@
     }
     titleEl.textContent = route.title;
 
-    // active nav (menu bên + thanh tab dưới)
     navEl.querySelectorAll(".nav__link").forEach((a) => {
       a.classList.toggle("is-active", a.dataset.route === name);
     });
@@ -55,24 +48,16 @@
     if (tabbar) tabbar.querySelectorAll(".tabbar__item").forEach((a) => {
       a.classList.toggle("is-active", a.dataset.route === name);
     });
-    // Rời trang thì luôn thoát chế độ học tập trung
-    document.body.classList.remove("is-studying");
 
-    // day counter + streak
     updateChrome();
 
-    // finish progress bar
     requestAnimationFrame(() => {
       pb.style.width = "100%";
       setTimeout(() => { pb.style.opacity = "0"; pb.style.width = "0"; }, 320);
     });
 
-    // scroll top + focus
-    viewEl.scrollTo ? viewEl.scrollTo(0, 0) : (viewEl.scrollTop = 0);
     window.scrollTo(0, 0);
     document.title = route.title + " · English Defense";
-
-    // close mobile sidebar
     closeSidebar();
   }
 
@@ -89,11 +74,9 @@
   function updateChrome() {
     const dn = Store.dayNumber();
     const dc = document.getElementById("day-counter");
-    if (dn != null) { dc.textContent = "Ngày " + dn + " / 365"; dc.style.display = ""; }
+    if (dn != null) { dc.textContent = "Ngày " + dn + " · Tháng " + Store.currentMonth(); dc.style.display = ""; }
     else { dc.textContent = "Chưa bắt đầu"; }
-
-    const streak = Store.streak();
-    document.getElementById("streak-count").textContent = streak;
+    document.getElementById("streak-count").textContent = Store.streak();
   }
 
   /* ---------- Theme ---------- */
@@ -137,26 +120,25 @@
 
     global.addEventListener("hashchange", render);
 
-    // keyboard: quick nav (g then d/r/t...) — nhẹ nhàng, không bắt buộc
+    // phím tắt: g rồi d/r/v/p/s/c/m
     let gPressed = false;
     document.addEventListener("keydown", (e) => {
       if (e.target.matches("input, textarea, select")) return;
       if (e.key === "g") { gPressed = true; setTimeout(() => gPressed = false, 800); return; }
       if (gPressed) {
-        const map = { d: "dashboard", r: "roadmap", t: "today", j: "journal", q: "questions", v: "vocab", s: "settings" };
+        const map = { d: "dashboard", r: "roadmap", v: "vocab", p: "pron", s: "shadow", c: "coach", m: "defense" };
         if (map[e.key]) { location.hash = "#/" + map[e.key]; gPressed = false; }
       }
     });
 
-    // re-render chrome khi state đổi (streak badge realtime)
     Store.onChange(() => updateChrome());
 
-    if (!location.hash) location.hash = "#/daily";
+    if (!location.hash) location.hash = "#/dashboard";
     render();
     registerPWA();
   }
 
-  // ---- PWA: service worker + nút cài đặt ----
+  // ---- PWA ----
   let deferredPrompt = null;
   function registerPWA() {
     if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
@@ -171,7 +153,6 @@
     deferredPrompt.prompt();
     deferredPrompt.userChoice.finally(() => { deferredPrompt = null; });
   };
-  global.canInstallPWA = function () { return !!deferredPrompt; };
 
   global.App = { render, currentRoute };
 

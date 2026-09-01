@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Lộ trình 12 tháng luyện tiếng Anh bảo vệ đề tài khoa học — trọng tâm NGHE & HỎI–ĐÁP. Học mỗi ngày, ghi lại tiến bộ." />
+  <meta name="description" content="Ứng dụng học tiếng Anh cá nhân hóa 12 tháng — mục tiêu: trình bày luận văn và trả lời phản biện bằng tiếng Anh trước hội đồng. FSRS · Shadowing người thật · Phát âm máy chấm · Luyện nói với AI · Mô phỏng bảo vệ." />
   <meta name="theme-color" content="#4f46e5" />
-  <title>English Defense · Lộ trình bảo vệ đề tài bằng tiếng Anh</title>
+  <title>English Defense · Bảo vệ luận văn bằng tiếng Anh</title>
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <!-- Splash / progress bar -->
   <div id="topbar-progress" aria-hidden="true"></div>
 
   <div class="app-shell">
@@ -30,47 +29,36 @@
         <div class="brand-mark" aria-hidden="true">EN</div>
         <div class="brand-text">
           <strong>English Defense</strong>
-          <span>Bảo vệ đề tài · 12 tháng</span>
+          <span>Bảo vệ luận văn · 12 tháng</span>
         </div>
         <button class="sidebar__close" id="sidebar-close" aria-label="Đóng menu">✕</button>
       </div>
 
       <nav class="nav" id="nav">
-        <a class="nav__link nav__link--star" data-route="daily" href="#/daily">
-          <span class="nav__icon">⚡</span> Học 60 giây
-        </a>
         <a class="nav__link" data-route="dashboard" href="#/dashboard">
           <span class="nav__icon">◎</span> Bảng điều khiển
         </a>
         <a class="nav__link" data-route="roadmap" href="#/roadmap">
           <span class="nav__icon">◈</span> Lộ trình 12 tháng
         </a>
-        <a class="nav__link" data-route="today" href="#/today">
-          <span class="nav__icon">☀</span> Buổi học hôm nay
-        </a>
-        <a class="nav__link" data-route="journal" href="#/journal">
-          <span class="nav__icon">▤</span> Nhật ký &amp; Chuỗi ngày
-        </a>
-        <div class="nav__group">Kho luyện tập</div>
-        <a class="nav__link" data-route="questions" href="#/questions">
-          <span class="nav__icon">?</span> Ngân hàng câu hỏi
-        </a>
+        <div class="nav__group">Luyện tập hằng ngày</div>
         <a class="nav__link" data-route="vocab" href="#/vocab">
-          <span class="nav__icon">✎</span> Sổ tay từ vựng
+          <span class="nav__icon">✎</span> Từ vựng (FSRS)
         </a>
-        <a class="nav__link" data-route="rescue" href="#/rescue">
-          <span class="nav__icon">⛑</span> Câu cứu nguy
+        <a class="nav__link" data-route="pron" href="#/pron">
+          <span class="nav__icon">🎙</span> Phát âm
         </a>
-        <div class="nav__group">Tài nguyên</div>
-        <a class="nav__link" data-route="resources" href="#/resources">
-          <span class="nav__icon">📚</span> Tài nguyên &amp; Nguồn
+        <a class="nav__link" data-route="shadow" href="#/shadow">
+          <span class="nav__icon">🗣</span> Shadowing
         </a>
-        <a class="nav__link" data-route="aitools" href="#/aitools">
-          <span class="nav__icon">✦</span> Bộ công cụ AI
+        <div class="nav__group">Với AI</div>
+        <a class="nav__link" data-route="coach" href="#/coach">
+          <span class="nav__icon">✦</span> Luyện nói với AI
         </a>
-        <a class="nav__link" data-route="progress" href="#/progress">
-          <span class="nav__icon">▲</span> Đo tiến bộ
+        <a class="nav__link" data-route="defense" href="#/defense">
+          <span class="nav__icon">🎓</span> Mô phỏng bảo vệ
         </a>
+        <div class="nav__group"></div>
         <a class="nav__link" data-route="settings" href="#/settings">
           <span class="nav__icon">⚙</span> Cài đặt
         </a>
@@ -92,7 +80,7 @@
         <button class="icon-btn" id="menu-toggle" aria-label="Mở menu">☰</button>
         <div class="topbar__title" id="topbar-title">Bảng điều khiển</div>
         <div class="topbar__actions">
-          <div class="day-counter" id="day-counter" title="Ngày thứ mấy trong lộ trình"></div>
+          <div class="day-counter" id="day-counter" title="Vị trí trên lộ trình"></div>
           <button class="icon-btn" id="theme-toggle" aria-label="Đổi giao diện sáng/tối">◐</button>
         </div>
       </header>
@@ -101,26 +89,23 @@
 
       <footer class="app-footer">
         <span>Học hẹp · Học đều · Không ngày nào bằng không.</span>
-        <span class="dot">·</span>
-        <a href="ke-hoach-tieng-anh-bao-ve-de-tai.md" target="_blank" rel="noopener">Kế hoạch gốc</a>
       </footer>
     </div>
   </div>
 
-
-  <!-- Thanh điều hướng dưới (điện thoại) — đặt trong tầm ngón cái -->
+  <!-- Thanh điều hướng dưới (điện thoại) -->
   <nav class="tabbar" id="tabbar" aria-label="Điều hướng nhanh">
-    <a class="tabbar__item" data-route="daily" href="#/daily">
-      <span class="tabbar__icon">⚡</span><span class="tabbar__label">Học 60s</span>
-    </a>
-    <a class="tabbar__item" data-route="today" href="#/today">
-      <span class="tabbar__icon">☀</span><span class="tabbar__label">Hôm nay</span>
+    <a class="tabbar__item" data-route="dashboard" href="#/dashboard">
+      <span class="tabbar__icon">◎</span><span class="tabbar__label">Tổng quan</span>
     </a>
     <a class="tabbar__item" data-route="vocab" href="#/vocab">
       <span class="tabbar__icon">✎</span><span class="tabbar__label">Từ vựng</span>
     </a>
-    <a class="tabbar__item" data-route="questions" href="#/questions">
-      <span class="tabbar__icon">?</span><span class="tabbar__label">Câu hỏi</span>
+    <a class="tabbar__item" data-route="shadow" href="#/shadow">
+      <span class="tabbar__icon">🗣</span><span class="tabbar__label">Shadowing</span>
+    </a>
+    <a class="tabbar__item" data-route="defense" href="#/defense">
+      <span class="tabbar__icon">🎓</span><span class="tabbar__label">Mô phỏng</span>
     </a>
     <button class="tabbar__item" id="tabbar-more" type="button">
       <span class="tabbar__icon">☰</span><span class="tabbar__label">Thêm</span>
@@ -133,13 +118,21 @@
   <!-- Modal host -->
   <div id="modal-host" class="modal-host" aria-hidden="true"></div>
 
-  <!-- Scripts (classic, load-order matters; works over file:// and Pages) -->
-  <script src="assets/js/data.js"></script>
+  <!-- Scripts (classic, load-order matters; chạy được cả file:// và GitHub Pages) -->
+  <script src="assets/js/fsrs.js"></script>
   <script src="assets/js/seed.js"></script>
-  <script src="assets/js/lessons.js"></script>
+  <script src="assets/js/roadmap.js"></script>
+  <script src="assets/js/content.js"></script>
   <script src="assets/js/store.js"></script>
   <script src="assets/js/ui.js"></script>
-  <script src="assets/js/views.js"></script>
+  <script src="assets/js/rec.js"></script>
+  <script src="assets/js/ai.js"></script>
+  <script src="assets/js/views-core.js"></script>
+  <script src="assets/js/views-vocab.js"></script>
+  <script src="assets/js/views-pron.js"></script>
+  <script src="assets/js/views-shadow.js"></script>
+  <script src="assets/js/views-ai.js"></script>
+  <script src="assets/js/views-defense.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

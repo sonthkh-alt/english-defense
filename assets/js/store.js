@@ -1,475 +1,373 @@
 /* ============================================================
-   store.js — Lưu trạng thái người dùng vào localStorage
-   Tất cả dữ liệu học tập cá nhân nằm ở đây.
+   store.js — Trạng thái người dùng (localStorage) · schema v3
+   ------------------------------------------------------------
+   Mô hình dữ liệu:
+   • settings   — cài đặt (ngày bắt đầu, giọng đọc, API key AI…)
+   • cards[]    — thẻ từ vựng, mỗi thẻ 2 chiều FSRS:
+                  ev (Anh→Việt, nhận biết) · ve (Việt→Anh, truy hồi)
+   • sessions{} — nhật ký ngày học (phút, hoạt động) → streak
+   • stats{}    — số liệu theo ngày (ôn đúng/sai, điểm phát âm…)
+   • pron       — thống kê theo âm + lịch sử điểm
+   • shadow     — tiến độ shadowing
+   • sims[]     — lịch sử mô phỏng bảo vệ (điểm 5 tiêu chí)
+   • monthTests — kết quả bài kiểm tra đầu ra từng tháng
+   Di trú tự động từ schema cũ (english-defense::v1).
    ============================================================ */
 (function (global) {
   "use strict";
 
-  const KEY = "english-defense::v1";
-  const SCHEMA = 2;
-
-  function defaultState() {
-    return {
-      schema: SCHEMA,
-      settings: {
-        startDate: null,        // ISO yyyy-mm-dd — ngày bắt đầu lộ trình
-        theme: "light",
-        topic: "",              // tên đề tài của người dùng
-        name: "",
-        speechRate: 0.85,       // tốc độ đọc audio (0.7 chậm … 1.0 chuẩn)
-        voiceURI: "",           // giọng đọc ưa thích (Web Speech API)
-        humanAudio: false,      // mặc định: từ đơn dùng TTS (câu dùng gói OmniVoice). Bật để thử bản thu Dictionary API
-        omniPack: true,         // ưu tiên gói audio OmniVoice render sẵn (nếu có)
-      },
-      // sessions[yyyy-mm-dd] = { blocks:{listen:true,...}, minutes:Number, note:String }
-      sessions: {},
-      // vocab: [{id, term, pos, meaning, example, created, box(1..5), lastReview}]
-      vocab: [],
-      // questions[axisId] = [{id, en, vi, answer, mastery(0..3)}]
-      questions: {},
-      // rescue: câu cứu nguy tự thêm + trạng thái thuộc
-      rescueCustom: [],
-      rescueMastered: {},       // index/id -> true
-      // journal: [{id, date, title, body, mood}]
-      journal: [],
-      // phaseDone: {0:true,...}
-      phaseDone: {},
-      // recordings: [{id, date, kind, note}] — nhật ký ghi âm đo tiến bộ
-      recordings: [],
-      // đã nạp gói khởi động tháng 1 chưa
-      seeded: false,
-      // điểm kinh nghiệm (gamification)
-      xp: 0,
-    };
-  }
-
-  let state = load();
-  let seedByTerm = null;   // cache tra cứu SEED theo mặt chữ (vocabMeta)
-
-  function load() {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (!raw) return defaultState();
-      const parsed = JSON.parse(raw);
-      return migrate(parsed);
-    } catch (e) {
-      console.warn("Store load failed, resetting:", e);
-      return defaultState();
-    }
-  }
-
-  function migrate(s) {
-    const base = defaultState();
-    // shallow-merge để an toàn khi thêm field mới trong tương lai
-    const merged = Object.assign({}, base, s);
-    merged.settings = Object.assign({}, base.settings, s.settings || {});
-    merged.sessions = s.sessions || {};
-    merged.vocab = s.vocab || [];
-    merged.questions = s.questions || {};
-    merged.rescueCustom = s.rescueCustom || [];
-    merged.rescueMastered = s.rescueMastered || {};
-    merged.journal = s.journal || [];
-    merged.phaseDone = s.phaseDone || {};
-    merged.recordings = s.recordings || [];
-    merged.seeded = !!s.seeded;
-    merged.xp = s.xp || 0;
-    // Migrate schema 1→2: đưa từ đơn về TTS mặc định (OmniVoice đọc sai từ
-    // đơn → đã gỡ; Dictionary hiếm có audio). Chỉ ép MỘT lần, sau đó tôn
-    // trọng lựa chọn của người dùng.
-    if ((s.schema || 1) < 2) merged.settings.humanAudio = false;
-    merged.schema = SCHEMA;
-    return merged;
-  }
-
-  const listeners = new Set();
-  function persist() {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(state));
-    } catch (e) {
-      console.error("Persist failed:", e);
-    }
-    listeners.forEach((fn) => fn(state));
-  }
+  const KEY = "english-defense::v3";
+  const OLD_KEY = "english-defense::v1";
+  const SCHEMA = 3;
 
   /* ---------- Date helpers ---------- */
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
   function isoDate(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   function today() { return isoDate(new Date()); }
-  function parseISO(s) { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); }
-  function daysBetween(a, b) {
-    const MS = 86400000;
-    return Math.round((parseISO(b) - parseISO(a)) / MS);
+  function parseISO(s) { const [y, m, d] = String(s).split("-").map(Number); return new Date(y, m - 1, d); }
+  function daysBetween(a, b) { return Math.round((parseISO(b) - parseISO(a)) / 86400000); }
+
+  function defaultState() {
+    return {
+      schema: SCHEMA,
+      settings: {
+        startDate: null,
+        theme: "light",
+        name: "",
+        topic: "",           // tên đề tài
+        topicSummary: "",    // tóm tắt luận văn (cho AI sinh câu hỏi)
+        speechRate: 0.85,
+        voiceURI: "",
+        humanAudio: false,   // bản thu người thật (Dictionary API) cho từ đơn
+        omniPack: true,      // gói giọng OmniVoice render sẵn
+        apiKey: "",          // Anthropic API key (chỉ lưu cục bộ)
+        aiModel: "claude-sonnet-4-6",
+        newPerDayOverride: 0, // 0 = theo lộ trình tháng
+        dailyGoalMin: 50,
+      },
+      cards: [],       // xem newCardObj()
+      sessions: {},    // sessions[date] = {minutes, studied, acts:{vocab,pron,shadow,coach,defense}}
+      stats: {},       // stats[date] = {rev, ok, newC, pronSum, pronN}
+      pron: { phon: {}, history: [] },  // phon[ipa]={ok,n} · history=[{date,score,text}]
+      shadow: { done: {}, custom: [] }, // done[itemKey]={n,last} · custom=[{id,title,y|url,transcript}]
+      sims: [],        // [{id,date,mode,scores:{content,fluency,pron,vocab,strategy},avg,note,n}]
+      monthTests: {},  // monthTests[m] = {done, date, score}
+      coachLog: [],    // [{id,date,mode,turns}] — tóm tắt phiên nói với AI
+      seededVersion: 0,
+    };
   }
 
-  /* ---------- Public API ---------- */
+  function newCardObj(src) {
+    // src: {term,pos,meaning,ipa,icon,example,exampleVi,level,group,groupName}
+    return Object.assign({
+      id: uid(), term: "", pos: "", meaning: "", ipa: "", icon: "",
+      example: "", exampleVi: "", collocations: "", level: 2, group: "", groupName: "",
+      custom: false, suspended: false, created: today(),
+      ev: FSRS.newCard(today()), ve: FSRS.newCard(today()),
+      intro: null, // ISO ngày thẻ được đưa vào học (null = còn trong hàng đợi)
+    }, src || {});
+  }
+
+  /* ---------- load & migrate ---------- */
+  let state = load();
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) return migrate(JSON.parse(raw));
+      const old = localStorage.getItem(OLD_KEY);
+      if (old) return migrateV1(JSON.parse(old));
+      return seedFresh(defaultState());
+    } catch (e) {
+      console.warn("Store load failed, resetting:", e);
+      return seedFresh(defaultState());
+    }
+  }
+
+  function migrate(s) {
+    const base = defaultState();
+    const m = Object.assign({}, base, s);
+    m.settings = Object.assign({}, base.settings, s.settings || {});
+    m.pron = Object.assign({}, base.pron, s.pron || {});
+    m.shadow = Object.assign({}, base.shadow, s.shadow || {});
+    m.schema = SCHEMA;
+    return seedFresh(m);
+  }
+
+  // Di trú từ app cũ (v1): giữ settings, sessions (streak), chuyển vocab → cards
+  function migrateV1(old) {
+    const s = defaultState();
+    const os = old.settings || {};
+    ["startDate", "theme", "topic", "name", "speechRate", "voiceURI", "humanAudio", "omniPack"]
+      .forEach((k) => { if (os[k] !== undefined) s.settings[k] = os[k]; });
+    s.sessions = {};
+    Object.keys(old.sessions || {}).forEach((d) => {
+      const o = old.sessions[d];
+      s.sessions[d] = { minutes: o.minutes || 0, studied: !!(o.studied || o.daily60 ||
+        (o.blocks && Object.values(o.blocks).some(Boolean))), acts: {} };
+    });
+    // vocab cũ: hộp Leitner box(1..5) → stability ước lượng
+    const boxS = { 1: 0.5, 2: 1.5, 3: 4, 4: 10, 5: 21 };
+    (old.vocab || []).forEach((v) => {
+      const c = newCardObj({
+        term: v.term, pos: v.pos, meaning: v.meaning, ipa: v.ipa || "", icon: v.icon || "",
+        example: v.example || "", exampleVi: v.exampleVi || "",
+        level: v.level || 2, group: v.group || "", groupName: v.groupName || "",
+        custom: !v.seeded,
+      });
+      if (v.learnedDate || !v.seeded) {
+        c.intro = v.learnedDate || v.created || today();
+        const st = boxS[v.box || 1];
+        const f = { s: st, d: 5, due: FSRS.addDays(v.lastReview || today(), Math.round(st)),
+                    last: v.lastReview || null, reps: v.box || 1, lapses: 0, state: "review" };
+        c.ev = Object.assign({}, f); c.ve = Object.assign({}, f);
+      }
+      s.cards.push(c);
+    });
+    return seedFresh(s);
+  }
+
+  // Nạp SEED.VOCAB (274 từ) — idempotent, chỉ thêm từ chưa có
+  function seedFresh(s) {
+    if (typeof SEED === "undefined" || !SEED.VOCAB) return s;
+    const have = new Set(s.cards.map((c) => c.term.toLowerCase()));
+    SEED.VOCAB.forEach((it) => {
+      const t = String(it.t).trim();
+      if (have.has(t.toLowerCase())) return;
+      s.cards.push(newCardObj({
+        term: t, pos: it.p || "", meaning: it.m || "", ipa: it.ipa || "", icon: it.ic || "",
+        example: it.e || "", exampleVi: it.ev || "",
+        level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "",
+      }));
+      have.add(t.toLowerCase());
+    });
+    s.seededVersion = 1;
+    return s;
+  }
+
+  const listeners = new Set();
+  function persist() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); }
+    catch (e) { console.error("Persist failed:", e); }
+    listeners.forEach((fn) => fn(state));
+  }
+
+  function uid() {
+    return "id-" + Math.random().toString(36).slice(2, 9) + "-" + Date.now().toString(36);
+  }
+
+  /* ---------- daily stat helper ---------- */
+  function stat(date) {
+    date = date || today();
+    let st = state.stats[date];
+    if (!st) { st = { rev: 0, ok: 0, newC: 0, pronSum: 0, pronN: 0 }; state.stats[date] = st; }
+    return st;
+  }
+  function session(date) {
+    date = date || today();
+    let s = state.sessions[date];
+    if (!s) { s = { minutes: 0, studied: false, acts: {} }; state.sessions[date] = s; }
+    s.acts = s.acts || {};
+    return s;
+  }
+
+  /* ============================ API ============================ */
   const Store = {
     get: () => state,
     settings: () => state.settings,
-
     onChange(fn) { listeners.add(fn); return () => listeners.delete(fn); },
-
-    // ----- settings -----
     setSetting(k, v) { state.settings[k] = v; persist(); },
     ensureStartDate() {
       if (!state.settings.startDate) { state.settings.startDate = today(); persist(); }
       return state.settings.startDate;
     },
 
-    // ----- date info -----
+    /* ----- dates ----- */
     today, isoDate, parseISO, daysBetween,
     dayNumber() {
       if (!state.settings.startDate) return null;
       return daysBetween(state.settings.startDate, today()) + 1;
     },
-    // giai đoạn hiện tại dựa trên số ngày đã trôi qua.
-    // GĐ0 (tuần 1–2) và GĐ1 (tháng 1–3) chồng thời gian, nên dùng
-    // ngưỡng theo NGÀY, không theo tháng, để không nhập nhằng.
-    currentPhase() {
-      const dn = this.dayNumber();
-      const P = APP_DATA.PHASES;
-      if (dn == null) return P[0];
-      if (dn <= 14) return P[0];   // Tuần 1–2: Khởi động
-      if (dn <= 90) return P[1];   // Tháng 1–3
-      if (dn <= 180) return P[2];  // Tháng 4–6
-      if (dn <= 270) return P[3];  // Tháng 7–9
-      return P[4];                 // Tháng 10–12
-    },
+    currentMonth() { return ROADMAP.monthOf(this.dayNumber()); },
 
-    // ----- sessions (buổi học) -----
-    getSession(date) { return state.sessions[date || today()] || null; },
-    _session(date) {
-      date = date || today();
-      let s = state.sessions[date];
-      if (!s) { s = { blocks: {}, minutes: 0, note: "", steps: {}, texts: {} }; state.sessions[date] = s; }
-      s.blocks = s.blocks || {}; s.steps = s.steps || {}; s.texts = s.texts || {};
-      return s;
-    },
-
-    // ----- bài giảng: theo dõi từng BƯỚC trong mỗi block -----
-    getStep(date, block, key) {
-      const s = state.sessions[date || today()];
-      return !!(s && s.steps && s.steps[block] && s.steps[block][key]);
-    },
-    setStep(date, block, key, val) {
-      const s = this._session(date);
-      s.steps[block] = s.steps[block] || {};
-      s.steps[block][key] = !!val;
-      persist();
-    },
-    setBlockDone(date, id, val) {
-      const s = this._session(date);
-      s.blocks[id] = !!val;
-      persist();
-    },
-    getText(date, key) {
-      const s = state.sessions[date || today()];
-      return (s && s.texts && s.texts[key]) || "";
-    },
-    setText(date, key, val) {
-      const s = this._session(date);
-      s.texts[key] = val;
-      persist();
-    },
-    toggleBlock(date, blockId) {
-      date = date || today();
-      const s = state.sessions[date] || { blocks: {}, minutes: 0, note: "" };
-      s.blocks = s.blocks || {};
-      s.blocks[blockId] = !s.blocks[blockId];
-      state.sessions[date] = s;
-      persist();
-      return s;
-    },
-    setSessionNote(date, note) {
-      date = date || today();
-      const s = state.sessions[date] || { blocks: {}, minutes: 0, note: "" };
-      s.note = note;
-      state.sessions[date] = s;
-      persist();
-    },
-    logMinutes(date, minutes) {
-      date = date || today();
-      const s = state.sessions[date] || { blocks: {}, minutes: 0, note: "" };
-      s.minutes = minutes;
-      state.sessions[date] = s;
-      persist();
-    },
-    // đánh dấu học xong hôm nay tối thiểu (dùng cho streak khi bận)
-    markStudied(date) {
-      date = date || today();
-      const s = state.sessions[date] || { blocks: {}, minutes: 0, note: "" };
+    /* ----- sessions & streak ----- */
+    logActivity(act, minutes) {
+      const s = session();
       s.studied = true;
-      state.sessions[date] = s;
+      s.acts[act] = (s.acts[act] || 0) + 1;
+      if (minutes) s.minutes = (s.minutes || 0) + minutes;
       persist();
     },
-    // 1 ngày được tính "có học" nếu có ít nhất 1 block xong / minutes>0 / studied
     dayCounts(date) {
       const s = state.sessions[date];
-      if (!s) return false;
-      if (s.studied) return true;
-      if (s.minutes > 0) return true;
-      return s.blocks && Object.values(s.blocks).some(Boolean);
-    },
-    // tổng phút của 1 buổi (nếu chưa nhập tay thì cộng từ block hoàn thành)
-    sessionMinutes(date) {
-      const s = state.sessions[date];
-      if (!s) return 0;
-      if (s.minutes > 0) return s.minutes;
-      if (!s.blocks) return 0;
-      return APP_DATA.DAILY_BLOCKS.reduce((sum, b) => sum + (s.blocks[b.id] ? b.dur : 0), 0);
+      return !!(s && (s.studied || s.minutes > 0));
     },
     streak() {
-      // đếm ngược từ hôm nay
       let count = 0;
       const d = new Date();
-      // nếu hôm nay chưa học nhưng hôm qua có, vẫn tính chuỗi tới hôm qua
       if (!this.dayCounts(isoDate(d))) d.setDate(d.getDate() - 1);
-      while (this.dayCounts(isoDate(d))) {
-        count++;
-        d.setDate(d.getDate() - 1);
-      }
+      while (this.dayCounts(isoDate(d))) { count++; d.setDate(d.getDate() - 1); }
       return count;
+    },
+    totalMinutes() {
+      return Object.keys(state.sessions).reduce((sum, d) => sum + (state.sessions[d].minutes || 0), 0);
     },
     totalStudyDays() {
       return Object.keys(state.sessions).filter((d) => this.dayCounts(d)).length;
     },
-    totalMinutes() {
-      return Object.keys(state.sessions).reduce((sum, d) => sum + this.sessionMinutes(d), 0);
-    },
+    todayActs() { return session().acts; },
 
-    // ----- Học 60 giây (habit core) + gamification -----
-    isDailyDone(date) { const s = state.sessions[date || today()]; return !!(s && s.daily60); },
-    setDailyDone(date) {
-      const s = this._session(date);
-      if (!s.daily60) { s.daily60 = true; s.studied = true; persist(); }
-    },
-    // Bài học 60 giây theo NGÀY: học tiếp cho tới khi xong bài của ngày
-    day60(date) { const s = state.sessions[date || today()]; return (s && s.d60) || null; },
-    initDay60(date, wordIds) {
-      const s = this._session(date);
-      if (!s.d60) { s.d60 = { wordIds: wordIds || [], idx: 0, complete: false }; persist(); }
-      return s.d60;
-    },
-    day60Advance(date, total) {
-      const s = this._session(date);
-      if (!s.d60) s.d60 = { wordIds: [], idx: 0, complete: false };
-      s.d60.idx++;
-      if (total && s.d60.idx >= total) s.d60.complete = true;
-      persist();
-      return s.d60;
-    },
-    resetDay60(date) { const s = this._session(date); s.d60 = null; persist(); },
+    /* ----- CARDS / FSRS ----- */
+    cards: () => state.cards,
+    cardById(id) { return state.cards.find((c) => c.id === id); },
+    addCard(src) { const c = newCardObj(src); c.custom = true; c.intro = today(); state.cards.unshift(c); persist(); return c; },
+    updateCard(id, patch) { const c = this.cardById(id); if (c) { Object.assign(c, patch); persist(); } },
+    deleteCard(id) { state.cards = state.cards.filter((c) => c.id !== id); persist(); },
 
-    addXp(n) { state.xp = (state.xp || 0) + (n || 0); persist(); },
-    xp() { return state.xp || 0; },
-    level() { return Math.floor((state.xp || 0) / 100) + 1; },       // 100 XP mỗi cấp
-    xpInLevel() { return (state.xp || 0) % 100; },
-    dailyStreakDays() {
-      // số ngày liên tiếp đã hoàn thành "Học 60 giây"
-      let count = 0; const d = new Date();
-      if (!this.isDailyDone(isoDate(d))) d.setDate(d.getDate() - 1);
-      while (this.isDailyDone(isoDate(d))) { count++; d.setDate(d.getDate() - 1); }
-      return count;
-    },
-
-    // ----- phases -----
-    togglePhase(id) { state.phaseDone[id] = !state.phaseDone[id]; persist(); },
-    isPhaseDone(id) { return !!state.phaseDone[id]; },
-
-    // ----- vocab -----
-    addVocab({ term, pos, meaning, example }) {
-      const item = {
-        id: uid(), term: term.trim(), pos: (pos || "").trim(),
-        meaning: (meaning || "").trim(), example: (example || "").trim(),
-        created: today(), box: 1, lastReview: null,
-        seeded: false, level: 0, learnedDate: today(),
-      };
-      state.vocab.unshift(item);
-      persist();
-      return item;
-    },
-    updateVocab(id, patch) {
-      const v = state.vocab.find((x) => x.id === id);
-      if (v) { Object.assign(v, patch); persist(); }
-    },
-    deleteVocab(id) { state.vocab = state.vocab.filter((x) => x.id !== id); persist(); },
-    reviewVocab(id, remembered) {
-      const v = state.vocab.find((x) => x.id === id);
-      if (!v) return;
-      v.box = remembered ? Math.min(5, (v.box || 1) + 1) : 1;
-      v.lastReview = today();
-      persist();
-    },
-    // Số từ "học/kích hoạt" hôm nay (đếm chỉ tiêu 5 từ/ngày)
-    vocabLearnedToday() {
-      const t = today();
-      return state.vocab.filter((v) => v.learnedDate === t || v.created === t).length;
-    },
-    // Hàng đợi học: từ đã nạp nhưng CHƯA kích hoạt — luôn xếp DỄ → KHÓ
-    // (theo cấp 1→4; cùng cấp thì giữ thứ tự gốc trong gói)
-    vocabQueue(limit) {
-      const all = state.vocab.filter((v) => v.seeded && !v.learnedDate);
-      const idx = new Map(all.map((v, i) => [v.id, i]));
-      const q = all.slice().sort((a, b) =>
-        ((a.level || 2) - (b.level || 2)) || (idx.get(a.id) - idx.get(b.id)));
+    // Hàng đợi từ mới (chưa intro), lọc theo cấp cho phép của tháng
+    newQueue(limit) {
+      const m = ROADMAP.month(this.currentMonth());
+      const allowed = new Set(m.vocabLevels);
+      const q = state.cards
+        .filter((c) => !c.intro && !c.suspended && allowed.has(c.level || 2))
+        .sort((a, b) => (a.level - b.level));
       return limit ? q.slice(0, limit) : q;
     },
-    // Cấp độ đang học = cấp của từ đầu hàng đợi
-    currentVocabLevel() {
-      const q = this.vocabQueue();
-      if (!q.length) return null;
-      return q[0].level || 1;
+    newPerDay() {
+      const o = state.settings.newPerDayOverride | 0;
+      return o > 0 ? o : ROADMAP.month(this.currentMonth()).newPerDay;
     },
-    // Kích hoạt 1 từ vào diện đang học (tính vào chỉ tiêu hôm nay)
-    learnVocab(id) {
-      const v = state.vocab.find((x) => x.id === id);
-      if (v && !v.learnedDate) { v.learnedDate = today(); if (!v.box) v.box = 1; persist(); }
-    },
-    learnMany(ids) {
-      let changed = false;
+    newIntroducedToday() {
       const t = today();
-      ids.forEach((id) => { const v = state.vocab.find((x) => x.id === id); if (v && !v.learnedDate) { v.learnedDate = t; if (!v.box) v.box = 1; changed = true; } });
-      if (changed) persist();
+      return state.cards.filter((c) => c.intro === t).length;
     },
-    vocabIsActive(v) { return !!v.learnedDate || !v.seeded; },
-    // Bổ sung phiên âm / biểu tượng / dịch câu ví dụ cho từ đã lưu từ trước
-    // (state cũ chưa có 3 trường này → tra ngược trong SEED theo mặt chữ)
-    vocabMeta(v) {
-      if (!v) return { ipa: "", icon: "", exampleVi: "" };
-      let seed = null;
-      if ((!v.ipa || !v.icon || !v.exampleVi) && typeof SEED !== "undefined" && SEED.VOCAB) {
-        if (!seedByTerm) {
-          seedByTerm = new Map();
-          SEED.VOCAB.forEach((s) => seedByTerm.set(String(s.t).toLowerCase(), s));
-        }
-        seed = seedByTerm.get(String(v.term).toLowerCase());
+    introduceCard(id) {
+      const c = this.cardById(id);
+      if (c && !c.intro) { c.intro = today(); stat().newC++; persist(); }
+    },
+
+    // Thẻ đến hạn hôm nay: trả về [{card, dir}] — ưu tiên chiều Việt→Anh
+    dueQueue() {
+      const t = today();
+      const out = [];
+      state.cards.forEach((c) => {
+        if (!c.intro || c.suspended) return;
+        if (FSRS.isDue(c.ve, t)) out.push({ card: c, dir: "ve" });
+        if (FSRS.isDue(c.ev, t)) out.push({ card: c, dir: "ev" });
+      });
+      // trộn nhưng ưu tiên ve trước trong từng cặp; xáo theo id để interleave nhóm
+      out.sort((a, b) => (a.card.id + a.dir > b.card.id + b.dir ? 1 : -1));
+      return out;
+    },
+    dueCount() { return this.dueQueue().length; },
+
+    reviewCard(id, dir, rating) {
+      const c = this.cardById(id);
+      if (!c) return null;
+      c[dir] = FSRS.review(c[dir], rating, today(), daysBetween);
+      const st = stat();
+      st.rev++; if (rating >= 3) st.ok++;
+      persist();
+      return c[dir];
+    },
+    previewIntervals(id, dir) {
+      const c = this.cardById(id);
+      return c ? FSRS.previewIntervals(c[dir], today(), daysBetween) : null;
+    },
+
+    masteredCount() {
+      return state.cards.filter((c) => c.intro && FSRS.isMastered(c.ve)).length;
+    },
+    learningCount() { return state.cards.filter((c) => !!c.intro).length; },
+    // độ chính xác 7 ngày gần nhất (desirable difficulty: nhắm 70–80%)
+    recentAccuracy() {
+      let rev = 0, ok = 0;
+      for (let i = 0; i < 7; i++) {
+        const d = isoDate(new Date(Date.now() - i * 86400000));
+        const st = state.stats[d];
+        if (st) { rev += st.rev; ok += st.ok; }
       }
-      return {
-        ipa: v.ipa || (seed && seed.ipa) || "",
-        icon: v.icon || (seed && seed.ic) || "",
-        exampleVi: v.exampleVi || (seed && seed.ev) || "",
-      };
+      return rev ? Math.round((ok / rev) * 100) : null;
     },
 
-    // ----- questions -----
-    // Trả về theo thứ tự DỄ → KHÓ (áp dụng cả cho câu đã lưu từ trước)
-    getQuestions(axisId) {
-      const arr = state.questions[axisId] || [];
-      if (typeof LESSONS !== "undefined" && LESSONS.sortByDifficulty) {
-        return LESSONS.sortByDifficulty(arr, (q) => q.en || "");
+    /* ----- PRON ----- */
+    logPron(score, text, phonHits) {
+      const st = stat();
+      st.pronSum += score; st.pronN++;
+      state.pron.history.push({ date: today(), score: Math.round(score), text: String(text).slice(0, 60) });
+      if (state.pron.history.length > 400) state.pron.history = state.pron.history.slice(-400);
+      if (phonHits) {
+        Object.keys(phonHits).forEach((ipa) => {
+          const p = state.pron.phon[ipa] || (state.pron.phon[ipa] = { ok: 0, n: 0 });
+          p.ok += phonHits[ipa].ok; p.n += phonHits[ipa].n;
+        });
       }
-      return arr;
-    },
-    addQuestion(axisId, { en, vi, answer }) {
-      const arr = state.questions[axisId] || (state.questions[axisId] = []);
-      const item = { id: uid(), en: en.trim(), vi: (vi || "").trim(), answer: (answer || "").trim(), mastery: 0 };
-      arr.push(item);
-      persist();
-      return item;
-    },
-    updateQuestion(axisId, id, patch) {
-      const arr = state.questions[axisId] || [];
-      const q = arr.find((x) => x.id === id);
-      if (q) { Object.assign(q, patch); persist(); }
-    },
-    deleteQuestion(axisId, id) {
-      state.questions[axisId] = (state.questions[axisId] || []).filter((x) => x.id !== id);
       persist();
     },
-    cycleMastery(axisId, id) {
-      const arr = state.questions[axisId] || [];
-      const q = arr.find((x) => x.id === id);
-      if (q) { q.mastery = ((q.mastery || 0) + 1) % 4; persist(); }
-    },
-    questionStats() {
-      let total = 0, mastered = 0;
-      APP_DATA.QUESTION_AXES.forEach((ax) => {
-        const arr = state.questions[ax.id] || [];
-        total += arr.length;
-        mastered += arr.filter((q) => (q.mastery || 0) >= 3).length;
-      });
-      return { total, mastered };
+    pronAvg(days) {
+      days = days || 7;
+      const cut = isoDate(new Date(Date.now() - days * 86400000));
+      const h = state.pron.history.filter((x) => x.date >= cut);
+      if (!h.length) return null;
+      return Math.round(h.reduce((s, x) => s + x.score, 0) / h.length);
     },
 
-    // ----- rescue -----
-    toggleRescueMastered(key) { state.rescueMastered[key] = !state.rescueMastered[key]; persist(); },
-    addRescue({ en, vi }) {
-      const item = { id: uid(), en: en.trim(), vi: (vi || "").trim() };
-      state.rescueCustom.push(item);
-      persist();
-      return item;
+    /* ----- SHADOW ----- */
+    shadowDone(key) {
+      const d = state.shadow.done[key] || (state.shadow.done[key] = { n: 0, last: null });
+      d.n++; d.last = today(); persist();
     },
-    deleteRescue(id) { state.rescueCustom = state.rescueCustom.filter((x) => x.id !== id); persist(); },
+    shadowStat(key) { return state.shadow.done[key] || { n: 0, last: null }; },
+    addShadowCustom(item) { item.id = uid(); state.shadow.custom.push(item); persist(); return item; },
+    deleteShadowCustom(id) { state.shadow.custom = state.shadow.custom.filter((x) => x.id !== id); persist(); },
 
-    // ----- journal -----
-    addJournal({ title, body, mood }) {
-      const item = { id: uid(), date: today(), title: title.trim(), body: (body || "").trim(), mood: mood || "🙂" };
-      state.journal.unshift(item);
-      persist();
-      return item;
+    /* ----- SIMS (mô phỏng bảo vệ) ----- */
+    addSim(sim) {
+      sim.id = uid(); sim.date = today();
+      const sc = sim.scores || {};
+      const vals = ["content", "fluency", "pron", "vocab", "strategy"].map((k) => sc[k] || 0).filter(Boolean);
+      sim.avg = vals.length ? Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10 : 0;
+      state.sims.push(sim); persist(); return sim;
     },
-    deleteJournal(id) { state.journal = state.journal.filter((x) => x.id !== id); persist(); },
+    sims: () => state.sims,
 
-    // ----- recordings (đo tiến bộ) -----
-    addRecording({ kind, note }) {
-      const item = { id: uid(), date: today(), kind: kind || "weekly", note: (note || "").trim() };
-      state.recordings.unshift(item);
+    /* ----- coach log ----- */
+    logCoach(mode, turns) {
+      state.coachLog.push({ id: uid(), date: today(), mode, turns });
+      if (state.coachLog.length > 200) state.coachLog = state.coachLog.slice(-200);
       persist();
-      return item;
-    },
-    deleteRecording(id) { state.recordings = state.recordings.filter((x) => x.id !== id); persist(); },
-
-    // ----- gói khởi động tháng 1 -----
-    hasSeeded() { return !!state.seeded; },
-    // Nạp SEED: bỏ qua từ/câu đã tồn tại (idempotent). Trả về số lượng đã thêm.
-    importStarterPack() {
-      if (typeof SEED === "undefined") return { vocab: 0, questions: 0 };
-      let addedV = 0, addedQ = 0;
-      // vocab — created = "" để không tính vào chỉ tiêu "5 từ hôm nay"
-      const existingTerms = new Set(state.vocab.map((v) => v.term.toLowerCase()));
-      SEED.VOCAB.forEach((it) => {
-        const term = it.t.trim();
-        if (existingTerms.has(term.toLowerCase())) return;
-        state.vocab.push({
-          id: uid(), term: term, pos: it.p || "", meaning: it.m || "", example: it.e || "",
-          ipa: it.ipa || "", icon: it.ic || "", exampleVi: it.ev || "",
-          created: "", box: 1, lastReview: null, seeded: true,
-          level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "",
-          learnedDate: null,   // null = còn trong hàng đợi, chưa kích hoạt
-        });
-        existingTerms.add(term.toLowerCase());
-        addedV++;
-      });
-      // questions
-      APP_DATA.QUESTION_AXES.forEach((ax) => {
-        const seedList = (SEED.QUESTIONS[ax.id] || []);
-        const arr = state.questions[ax.id] || (state.questions[ax.id] = []);
-        const existingEn = new Set(arr.map((q) => q.en.toLowerCase()));
-        seedList.forEach((sq) => {
-          if (existingEn.has(sq.q.toLowerCase())) return;
-          arr.push({ id: uid(), en: sq.q, vi: sq.v || "", answer: sq.a || "", mastery: 0, seeded: true });
-          existingEn.add(sq.q.toLowerCase());
-          addedQ++;
-        });
-      });
-      state.seeded = true;
-      persist();
-      return { vocab: addedV, questions: addedQ };
     },
 
-    // ----- backup -----
+    /* ----- month tests ----- */
+    setMonthTest(m, score) { state.monthTests[m] = { done: true, date: today(), score: score == null ? null : score }; persist(); },
+    monthTest(m) { return state.monthTests[m] || null; },
+
+    // % hoàn thành tháng hiện tại (ngày trong tháng + bài kiểm tra đầu ra)
+    monthProgress() {
+      const dn = this.dayNumber();
+      if (dn == null) return 0;
+      const m = this.currentMonth();
+      const dayIn = Math.min(30, dn - Math.round((m - 1) * 30.4));
+      let p = (dayIn / 30) * 85;
+      if (this.monthTest(m)) p += 15;
+      return Math.min(100, Math.round(p));
+    },
+    // cảnh báo chậm tiến độ: số ngày học / số ngày đã trôi qua < 60%
+    behindSchedule() {
+      const dn = this.dayNumber();
+      if (dn == null || dn < 7) return false;
+      return this.totalStudyDays() / dn < 0.6;
+    },
+
+    /* ----- backup ----- */
     exportJSON() { return JSON.stringify(state, null, 2); },
     importJSON(text) {
       const parsed = JSON.parse(text);
-      state = migrate(parsed);
+      state = parsed.schema === SCHEMA ? migrate(parsed) : (parsed.schema ? migrate(parsed) : migrateV1(parsed));
       persist();
     },
-    reset() { state = defaultState(); persist(); },
+    reset() { state = seedFresh(defaultState()); persist(); },
   };
-
-  function uid() {
-    // không dùng Date.now trong scratchpad? đây là runtime trình duyệt nên OK
-    return "id-" + Math.random().toString(36).slice(2, 9) + "-" + (performance.now() | 0).toString(36);
-  }
 
   global.Store = Store;
 })(window);

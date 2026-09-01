@@ -1,118 +1,76 @@
-# 🎓 English Defense — Học tiếng Anh bảo vệ đề tài
+# 🎓 English Defense — Bảo vệ luận văn bằng tiếng Anh (12 tháng)
 
-> Website học tập cá nhân theo **lộ trình 12 tháng** để **thuyết trình và hỏi–đáp hoàn toàn bằng tiếng Anh** trước hội đồng khoa học. Trọng tâm: **NGHE** & **HỎI–ĐÁP** thời gian thực.
+> Ứng dụng web học tiếng Anh **cá nhân hóa** cho người học A2 (TOEIC ~350) với mục tiêu sau **12 tháng**: **trình bày luận văn 25 phút + trả lời phản biện trực tiếp** trước hội đồng khoa học — tương đương **CEFR B2 nói–nghe trong phạm vi chuyên ngành hẹp** (quản lý kinh tế · hành chính công · chính sách công · chuyển đổi số khu vực công).
 
-Một web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần server, không cần cài đặt**. Mọi dữ liệu học tập (tiến độ, từ vựng, câu hỏi, nhật ký) được lưu ngay trong trình duyệt của bạn và có thể **xuất/nhập file để sao lưu**.
+Web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần server, không cần cài đặt**. Dữ liệu học lưu cục bộ (localStorage + IndexedDB), **xuất/nhập file .json** để sao lưu. Cài được như **PWA**, các module không cần AI chạy **offline**.
 
-🔗 **Bản demo trực tuyến:** _(sẽ có sau khi bạn bật GitHub Pages — xem hướng dẫn bên dưới)_
+## ✨ 6 module chính
 
----
-
-## ✨ Tính năng
-
-| Trang | Chức năng |
+| Module | Chức năng |
 |---|---|
-| **⚡ Học 60 giây** *(màn hình chính)* | Vòng học siêu ngắn mỗi ngày: 1 từ mới (giọng người thật) → nghe chọn nghĩa → nói theo 1 câu → 1 câu bảo vệ. Có **streak, điểm XP, cấp độ, ăn mừng**. Đảm bảo ngày nào cũng học được ngay trong ~60 giây. Cài được như **app (PWA)**, chạy offline. |
-| **◎ Bảng điều khiển** | Tổng quan: ngày thứ mấy / 365, giai đoạn hiện tại, chuỗi ngày (streak), tổng thời lượng, tiến độ hôm nay bằng vòng tròn động. |
-| **◈ Lộ trình 12 tháng** | Timeline 5 giai đoạn; **nhấn giai đoạn để mở bài học/buổi học của giai đoạn đó**: video đúng cấp độ (dễ→khó), câu shadowing, đề nói, cấp từ vựng, các tháng — liên kết thẳng tới "Buổi học hôm nay". |
-| **☀ Buổi học hôm nay** | **Bài giảng tương tác** cho từng mục (Nghe · Shadowing · Từ vựng · Nói · Ôn): **video học thật nhúng sẵn** (BBC/VOA/CrashCourse/TED/MIT/Yale theo giai đoạn), các bước bắt buộc theo phương pháp sư phạm (pre-listening → nghe có phụ đề → nghe không phụ đề → chép câu). **Chỉ tính hoàn thành khi làm xong từng bước.** |
-| **▤ Nhật ký & Chuỗi ngày** | Bản đồ nhiệt (heatmap) 26 tuần, nhật ký học tập theo tâm trạng. |
-| **📚 Tài nguyên & Nguồn** | **Gói học đầy đủ 12 tháng** nạp 1 chạm: ~274 từ vựng + 130 câu hỏi + lộ trình 12 tháng theo tuần + kho câu thuyết trình/Q&A + luyện phát âm cho người Việt + nguồn học thuật uy tín. |
-| **? Ngân hàng câu hỏi** | 10 trục câu hỏi bảo vệ cố định, thêm câu + khung trả lời, theo dõi mức thành thạo, prompt AI sinh câu hỏi. |
-| **✎ Sổ tay từ vựng** | **Học theo lộ trình dễ→khó** (4 cấp độ bám 12 tháng), gợi ý 5 từ/ngày đúng cấp, **audio phát âm chuẩn** (🔊), flashcard hộp Leitner. |
-| **⛑ Câu cứu nguy** | Bộ câu "chữa cháy" khi chưa nghe rõ câu hỏi, đánh dấu thuộc lòng. |
-| **✦ Bộ công cụ AI** | Hướng dẫn dùng AI + prompt mẫu sẵn (hội đồng ảo, sửa văn nói, audio shadowing…). |
-| **▲ Đo tiến bộ** | Nhật ký ghi âm để so sánh theo thời gian, chỉ số khách quan, rủi ro & phương án. |
-| **⚙ Cài đặt** | Đặt ngày bắt đầu, tên đề tài, **sao lưu / khôi phục** dữ liệu (.json), giao diện sáng/tối. |
+| **◎ Bảng điều khiển** | Vị trí trên lộ trình 12 tháng, % tháng hiện tại, streak, tổng giờ học, biểu đồ tiến bộ (thẻ ôn/ngày · điểm phát âm · điểm mô phỏng), danh sách **việc hôm nay** (xen kẽ theo tháng), cảnh báo chậm tiến độ. |
+| **✎ Từ vựng (FSRS)** | 274 thẻ nạp sẵn (AWL + chuyên ngành, 4 cấp dễ→khó theo tháng), thuật toán **FSRS-4.5**, thẻ **2 chiều** (ưu tiên Việt→Anh), chế độ **NÓI TO** (nhận dạng giọng nói đối chiếu), đếm từ thuộc / mục tiêu 2.000. Luôn **truy hồi trước, xem đáp án sau**. |
+| **🎙 Phát âm** | Máy chấm theo TỪ (Web Speech API): xanh=đúng, đỏ=sai; bộ đọc đuôi -s/-ed, cụm phụ âm, trọng âm; **14 bộ minimal pairs** cho lỗi đặc thù người Việt; bảng **44 âm** kèm mẹo; theo dõi tiến bộ theo từng âm. |
+| **🗣 Shadowing** | Ưu tiên **nhại NGƯỜI THẬT** qua video bản xứ (VOA → BBC → CrashCourse → TED/LSE theo giai đoạn): quy trình 3 bước, chỉnh tốc độ, **lặp đoạn A–B**, ghi âm so với bản gốc, thêm video của riêng bạn (kèm transcript). Chế độ offline: câu mẫu **giọng OmniVoice render sẵn**. |
+| **✦ Luyện nói với AI** | Claude (`claude-sonnet-4-6`) làm giáo viên: nói (speech-to-text) → AI phản hồi + đọc to. 3 chế độ: hội thoại · **sửa lỗi** (ngữ pháp, từ học thuật) · **nhập vai hội đồng**. |
+| **🎓 Mô phỏng bảo vệ** | AI đọc tóm tắt luận văn → sinh câu hỏi theo **8 dạng** (phương pháp, dữ liệu, tính mới, hạn chế, ứng dụng, lý thuyết, đóng góp, hướng tiếp); hẹn giờ 25' trình bày + 3'/câu trả lời; chấm **5 tiêu chí** (nội dung · trôi chảy · phát âm · từ chuyên ngành · ứng xử) + 3 việc cần cải thiện + câu trả lời mẫu; lưu lịch sử so tiến bộ. Kèm **ngân hàng 130 câu** + khung trả lời, **luyện nghe câu hỏi đa giọng**, **câu cứu nguy**. |
 
-### Điểm mạnh thiết kế
-- 🔊 **Audio phát âm chuẩn** (3 lớp, tự chọn tốt nhất): (1) **gói giọng OmniVoice render sẵn** (TTS 600+ ngôn ngữ của k2-fsa, chất lượng cao, offline) khi có file; (2) **bản thu người bản xứ thật** (Free Dictionary API) cho từ đơn; (3) TTS **giọng neural/tự nhiên** với nhấn nhá. Render gói: xem [tools/omnivoice/](tools/omnivoice/README.md).
-- 🎙 **Shadowing 2 chế độ**: nhại **NGƯỜI THẬT** qua video người bản xứ (chuẩn nhất), hoặc câu mẫu giọng máy. Gợi ý dùng Microsoft Edge để có giọng "như người thật" miễn phí.
-- 🧗 **Học bám lộ trình**: từ vựng & câu hỏi phân 4 cấp độ, đi từ dễ đến khó theo đúng 12 tháng; mỗi ngày app gợi ý đúng 5 từ nên học.
-- 🎨 Giao diện hiện đại, **sáng/tối tự động**, responsive (điện thoại + máy tính).
-- 🔒 **Riêng tư tuyệt đối** — dữ liệu không rời khỏi máy bạn (localStorage).
-- ⚡ **Không phụ thuộc thư viện ngoài**, tải tức thì, hoạt động cả khi offline.
-- ♿ Hỗ trợ bàn phím (gõ `g` rồi `d/r/t/j/q/v/s` để chuyển trang nhanh).
+### Nguyên tắc sư phạm cài sẵn
+1. **Retrieval practice** — không bao giờ hiện đáp án trước.
+2. **Spaced repetition** — FSRS-4.5 cho toàn bộ thẻ.
+3. **Elaboration** — mỗi từ gắn câu ví dụ ngữ cảnh hành chính công + dịch.
+4. **Output-first** — từ tháng 2, buổi nào cũng có phần nói ra tiếng.
+5. **Interleaving** — "việc hôm nay" trộn nhiều loại bài theo tỷ trọng từng tháng.
+6. **Desirable difficulty** — theo dõi độ chính xác 7 ngày, gợi ý tăng/giảm lượng từ mới (vùng tối ưu 70–85%).
 
----
+### 🔊 Audio 3 lớp (giữ nguyên từ bản trước)
+1. **Gói giọng OmniVoice render sẵn** (`assets/audio/` + `manifest.json`, key = FNV-1a của câu) — 715 audio: 274 từ + 274 câu ví dụ + 130 câu hỏi + 37 câu thuyết trình/cứu nguy. Chất lượng cao, offline. Render thêm: xem [tools/omnivoice/](tools/omnivoice/README.md).
+2. **Bản thu người bản xứ** cho từ đơn (Free Dictionary API, bật trong Cài đặt).
+3. **TTS neural** của trình duyệt (fallback, có nhấn nhá theo mệnh đề).
 
-## 🚀 Cách sử dụng hàng ngày
-
-1. Mở website vào **buổi sáng sớm** (đúng khung giờ vàng của bạn).
-2. Vào **☀ Buổi học hôm nay**, làm lần lượt 5 phần theo khung 65 phút.
-3. Thêm **5 từ mới** ở Sổ tay, luyện flashcard các từ cũ.
-4. Từ giữa lộ trình: mỗi ngày luyện vài câu ở **Ngân hàng câu hỏi** + mock Q&A với AI.
-5. Cuối tuần: ghi **Nhật ký** + thêm 1 **bản thu** ở trang Đo tiến bộ để so sánh.
-6. **Không ngày nào bằng không** — ngày bận, bấm "🔥 Ngày bận — chỉ 10' lõi" để giữ chuỗi.
-
-> 💾 **Mẹo an toàn dữ liệu:** mỗi tuần vào **Cài đặt → Xuất dữ liệu** và lưu file `.json` vào Google Drive/OneDrive. Đổi máy thì "Nhập dữ liệu" để đồng bộ.
-
----
-
-## 🌐 Đưa lên internet với GitHub Pages (miễn phí)
-
-### Cách 1 — Deploy từ nhánh (đơn giản nhất, khuyên dùng)
-
-1. Tạo repository mới trên GitHub (ví dụ tên `english-defense`).
-2. Đẩy code lên (xem phần lệnh git bên dưới).
-3. Vào repo → **Settings** → **Pages**.
-4. Mục **Source**: chọn **Deploy from a branch**.
-5. Chọn nhánh **`main`** và thư mục **`/ (root)`** → **Save**.
-6. Chờ ~1 phút, website sẽ chạy tại:
-   `https://<tên-github-của-bạn>.github.io/english-defense/`
-
-### Cách 2 — GitHub Actions (tự động deploy mỗi lần push)
-
-Repo đã kèm sẵn workflow tại [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
-Chỉ cần vào **Settings → Pages → Source → GitHub Actions**. Từ đó mỗi lần `git push`, site tự cập nhật.
-
----
-
-## 💻 Đẩy code lên GitHub (lần đầu)
-
-```bash
-# Trong thư mục dự án (đã có sẵn git init & commit đầu tiên)
-git remote add origin https://github.com/<tên-github>/english-defense.git
-git branch -M main
-git push -u origin main
-```
-
-> Nếu chưa cài `git`, tải tại https://git-scm.com. Nếu muốn dùng `gh` (GitHub CLI) để tạo repo tự động: `gh repo create english-defense --public --source=. --push`.
-
-## 🖥️ Chạy thử tại máy (không cần internet)
-
-Chỉ cần **mở file `index.html`** bằng trình duyệt. Xong.
-
----
+## 🚀 Dùng hằng ngày (45–60 phút, chia 2–3 phiên)
+1. Mở **Bảng điều khiển** → làm lần lượt **Việc hôm nay**.
+2. Tối thiểu khi bận: ôn hết thẻ FSRS đến hạn (10').
+3. Cuối tháng: làm **bài kiểm tra đầu ra** trong Lộ trình và đánh dấu đạt.
+4. Mỗi tuần: **Cài đặt → Xuất dữ liệu** (.json) để sao lưu.
 
 ## 🗂️ Cấu trúc dự án
-
 ```
 English/
-├── index.html                      # Khung ứng dụng (shell)
+├── index.html                  # Shell + điều hướng
+├── sw.js                       # PWA offline
 ├── assets/
-│   ├── css/style.css               # Toàn bộ hệ thống thiết kế (sáng/tối)
-│   ├── favicon.svg                 # Biểu tượng
+│   ├── css/style.css           # Hệ thống thiết kế (sáng/tối)
+│   ├── audio/                  # Gói OmniVoice render sẵn + manifest.json
 │   └── js/
-│       ├── data.js                 # Nội dung lộ trình (10 trục câu hỏi, khung ngày…)
-│       ├── store.js                # Lưu trạng thái (localStorage) + sao lưu
-│       ├── ui.js                   # Tiện ích UI (toast, modal, vòng tiến độ…)
-│       ├── views.js                # Render tất cả các trang
-│       └── app.js                  # Router + giao diện sáng/tối + khởi tạo
-├── ke-hoach-tieng-anh-bao-ve-de-tai.md   # Kế hoạch gốc (nguồn nội dung)
-└── .github/workflows/deploy.yml    # Auto-deploy GitHub Pages (tuỳ chọn)
+│       ├── fsrs.js             # Thuật toán FSRS-4.5
+│       ├── seed.js             # 274 từ + 130 câu hỏi + 36 câu mẫu (dữ liệu gốc)
+│       ├── roadmap.js          # Lộ trình 12 tháng (mục tiêu, tuần, đầu ra, mix)
+│       ├── content.js          # 44 âm, minimal pairs, 8 dạng phản biện, thư viện shadowing
+│       ├── store.js            # Trạng thái (localStorage) + di trú v1→v3
+│       ├── ui.js               # DOM helper, toast/modal, engine audio 3 lớp
+│       ├── rec.js              # Ghi âm, nhận dạng giọng nói, chấm khớp từ, IndexedDB
+│       ├── ai.js               # Anthropic API (claude-sonnet-4-6) + prompt
+│       ├── views-core.js       # Dashboard · Lộ trình · Cài đặt
+│       ├── views-vocab.js      # Module Từ vựng
+│       ├── views-pron.js       # Module Phát âm
+│       ├── views-shadow.js     # Module Shadowing
+│       ├── views-ai.js         # Module Luyện nói với AI
+│       ├── views-defense.js    # Module Mô phỏng bảo vệ
+│       └── app.js              # Router + theme + PWA
+└── tools/
+    ├── omnivoice/              # Render gói giọng OmniVoice
+    ├── vocab/                  # Bổ sung IPA
+    └── test/smoke.js           # Kiểm tra khói (node tools/test/smoke.js)
 ```
 
----
-
-## 🛠️ Công nghệ
-
-- **HTML + CSS + JavaScript thuần** (vanilla) — không framework, không build step.
-- `localStorage` cho dữ liệu cá nhân; export/import JSON để sao lưu.
-- Font: Be Vietnam Pro + Lexend (Google Fonts).
+## 🛠️ Công nghệ & ghi chú
+- **HTML + CSS + JavaScript thuần** — không build step, chạy cả `file://` lẫn GitHub Pages.
+- **AI**: gọi thẳng `api.anthropic.com` từ trình duyệt (header `anthropic-dangerous-direct-browser-access`); API key nhập trong Cài đặt, **chỉ lưu trên máy bạn**.
+- Nhận dạng giọng nói cần **Chrome/Edge** (Web Speech API); iPhone: dùng Safari cho TTS, tính năng chấm phát âm hạn chế.
+- Deploy: đẩy lên GitHub → Settings → Pages → Deploy from branch `main` (đã kèm workflow trong `.github/workflows/`).
 
 ## 📜 Giấy phép
-
 Dự án cá nhân — tự do sử dụng và chỉnh sửa cho việc học của bạn.
 
 ---
