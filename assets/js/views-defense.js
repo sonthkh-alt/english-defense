@@ -108,9 +108,10 @@
     const t0 = Date.now();
 
     function speakQ(q) {
+      // giọng ngẫu nhiên mỗi câu (quen đa giọng) — đi qua ttsSpeak để có
+      // các bản vá voiceschanged/resume, không bị "bấm mà không ra tiếng"
       const v = voices.length ? voices[Math.floor(Math.random() * voices.length)] : null;
-      if (v) UI.Speech.testVoice(v, q, rate);
-      else UI.Speech.ttsSpeak(q, { rate });
+      UI.Speech.ttsSpeak(q, { rate: rate, voice: v || undefined });
     }
 
     function show() {
@@ -222,6 +223,8 @@
     const answers = []; // {q, a}
     let listener = null, timerId = null;
     const ANSWER_SECS = opts.n === 1 ? 240 : 180;
+    // rời trang bằng menu/hash → dừng đồng hồ + micro
+    if (global.App && App.onCleanup) App.onCleanup(() => cleanup());
 
     // Bước 0 (bảo vệ đầy đủ): hẹn giờ trình bày 25'
     if (opts.full && !opts._presented) {
@@ -240,8 +243,10 @@
         e.target.disabled = true;
         const el = root.querySelector("#pres-timer");
         const iv = setInterval(() => {
+          // người dùng rời trang → đồng hồ tự tắt, không chạy ngầm 25 phút
+          if (!el.isConnected) { clearInterval(iv); return; }
           left--;
-          el.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0");
+          el.textContent = UI.fmtSecs(left);
           if (left <= 0) { clearInterval(iv); UI.toast("Hết 25 phút — chuyển sang hỏi đáp"); opts._presented = true; runSim(root, questions, opts); }
         }, 1000);
         const skip = h("button", { class: "btn btn--accent mt-2", onClick: () => { clearInterval(iv); opts._presented = true; runSim(root, questions, opts); } }, "✓ Đã trình bày xong → hỏi–đáp");
@@ -274,7 +279,7 @@
       ]);
       root.appendChild(stage);
 
-      const timerEl = h("div", { class: "daily-timer" }, fmtSecs(ANSWER_SECS));
+      const timerEl = h("div", { class: "daily-timer" }, UI.fmtSecs(ANSWER_SECS));
       const status = h("div", { class: "small muted center" }, "Nhấn nút và TRẢ LỜI THÀNH TIẾNG (2–4 phút). Dùng câu cứu nguy nếu cần.");
       const transcript = h("div", { class: "small", style: { whiteSpace: "pre-wrap", minHeight: "40px" } }, "");
       const ctrl = h("div", { class: "row gap-sm center mt-1" });
@@ -289,29 +294,53 @@
         let left = ANSWER_SECS;
         timerId = setInterval(() => {
           left--;
-          timerEl.textContent = fmtSecs(left);
+          timerEl.textContent = UI.fmtSecs(left);
           if (left <= 0) stopAnswer();
         }, 1000);
-        let heard = "";
-        if (REC.STT.supported()) {
-          status.textContent = "🔴 Đang nghe câu trả lời…";
+        let heard = "", answerSoFar = "", stopRequested = false, restarts = 0;
+        function fullAnswer() { return (answerSoFar + " " + heard).trim(); }
+        function showTypeFallback(msg) {
+          status.textContent = msg;
+          const ta = h("textarea", { class: "textarea mt-1", rows: 3, placeholder: "Gõ lại ý chính câu trả lời của bạn (tiếng Anh)…" }, answerSoFar);
+          transcript.innerHTML = "";
+          transcript.appendChild(ta);
+          heard = ""; answerSoFar = "";
+          ta.oninput = () => { heard = ta.value; };
+          ta.focus();
+        }
+        function startListening() {
           listener = REC.STT.listen({
             continuous: true,
-            onPartial: (t) => { heard = t; transcript.textContent = t.slice(-300); },
-            onEnd: (err, finalText) => { listener = null; commit(finalText || heard); },
+            onPartial: (t) => { heard = t; transcript.textContent = fullAnswer().slice(-300); },
+            onEnd: (err, finalText) => {
+              listener = null;
+              answerSoFar = (answerSoFar + " " + (finalText || heard)).trim();
+              heard = "";
+              if (stopRequested) { commit(answerSoFar); return; }
+              // lỗi micro (hay gặp trên iOS) → chuyển sang gõ tay, giữ phần
+              // đã nghe được — KHÔNG tự nhảy sang câu tiếp
+              if (err || restarts++ > 30) {
+                showTypeFallback((err ? "Micro lỗi (" + err + ")" : "Micro dừng") + " — trả lời to rồi gõ/sửa ý chính vào ô dưới.");
+                return;
+              }
+              // STT tự ngắt khi bạn ngừng nói vài giây → nghe tiếp
+              startListening();
+            },
           });
+        }
+        if (REC.STT.supported()) {
+          status.textContent = "🔴 Đang nghe câu trả lời…";
+          startListening();
         } else {
-          status.textContent = "Không có nhận dạng giọng nói — trả lời to, xong gõ tóm tắt câu trả lời vào ô dưới.";
-          const ta = h("textarea", { class: "textarea mt-1", rows: 3, placeholder: "Gõ lại ý chính câu trả lời của bạn (tiếng Anh)…" });
-          transcript.appendChild(ta);
-          ta.oninput = () => { heard = ta.value; };
+          showTypeFallback("Không có nhận dạng giọng nói — trả lời to, xong gõ tóm tắt câu trả lời vào ô dưới.");
         }
         ctrl.appendChild(h("button", { class: "btn btn--danger", onClick: stopAnswer }, "■ Xong câu trả lời"));
 
         function stopAnswer() {
           clearInterval(timerId); timerId = null;
+          stopRequested = true;
           if (listener) { listener.stop(); } // commit sẽ chạy trong onEnd
-          else commit(heard);
+          else commit(fullAnswer());
         }
         function commit(text) {
           answers.push({ q: q.q, a: (text || "").trim() });
@@ -398,7 +427,6 @@
       if (timerId) { clearInterval(timerId); timerId = null; }
       if (listener) { const l = listener; listener = null; l.stop(); }
     }
-    function fmtSecs(x) { return Math.floor(x / 60) + ":" + String(x % 60).padStart(2, "0"); }
     showQ();
   }
 
@@ -432,12 +460,5 @@
     });
   }
 
-  function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+  const shuffle = UI.shuffle;
 })(window);

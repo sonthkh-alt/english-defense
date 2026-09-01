@@ -268,13 +268,14 @@
       } catch (e) { if (onFail) onFail(); return false; }
     }
     // TTS với NHẤN NHÁ: tách câu theo dấu câu → nhiều utterance → có ngắt nghỉ tự nhiên
+    // opts.voice: ép một giọng cụ thể (VD: luyện nghe đa giọng)
     function ttsSpeak(text, opts) {
       opts = opts || {};
       if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
       const doSpeak = () => {
         try {
           synth.cancel();
-          const v = pickVoice();
+          const v = opts.voice || pickVoice();
           const rate = opts.rate != null ? opts.rate
             : (global.Store && Store.settings && Store.settings().speechRate) || 0.85;
           const rr = Math.max(0.5, Math.min(1.2, rate));
@@ -325,21 +326,29 @@
       }
       toHumanOrTts();
     }
-    // Nghe thử MỘT giọng cụ thể (để chọn trong Cài đặt)
+    // Nghe thử MỘT giọng cụ thể (Cài đặt, luyện nghe đa giọng) — đi qua
+    // ttsSpeak để hưởng các bản vá voiceschanged/resume/nhấn nhá.
     function testVoice(voice, text, rate) {
-      if (!synth) { toast("Trình duyệt không hỗ trợ đọc audio"); return; }
-      try {
-        synth.cancel();
-        const u = new SpeechSynthesisUtterance(text || "Good morning. Thank you for the opportunity to present my research today.");
-        if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = "en-US"; }
-        u.rate = Math.max(0.5, Math.min(1.2, rate || (global.Store && Store.settings && Store.settings().speechRate) || 0.85));
-        u.pitch = 1.0;
-        synth.speak(u);
-      } catch (e) { toast("Không phát được audio"); }
+      ttsSpeak(text || "Good morning. Thank you for the opportunity to present my research today.",
+        { voice: voice, rate: rate });
     }
     loadPack(); // nạp manifest gói audio OmniVoice ngay khi khởi động (nếu có)
     return { supported: !!synth, speak, ttsSpeak, testVoice, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, loadPack, packHas, packCount, reload: load };
   })();
 
-  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
+  /* ---------- Tiện ích dùng chung ---------- */
+  function fmtSecs(x) {
+    x = Math.max(0, Math.floor(x));
+    return Math.floor(x / 60) + ":" + String(x % 60).padStart(2, "0");
+  }
+  function shuffle(arr) { // Fisher–Yates, trả về bản sao
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, fmtSecs, shuffle, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
 })(window);

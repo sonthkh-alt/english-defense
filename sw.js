@@ -1,26 +1,27 @@
 /* Service Worker — English Defense PWA
    Chiến lược: network-first cho HTML/JS/CSS (luôn cập nhật khi online),
    cache fallback để dùng được offline. */
-const CACHE = "english-defense-v4";
+const VERSION = "3.0.1"; // PHẢI khớp ?v= trong index.html
+const CACHE = "english-defense-v5-" + VERSION;
 const CORE = [
   "./",
   "./index.html",
-  "./assets/css/style.css",
-  "./assets/js/fsrs.js",
-  "./assets/js/seed.js",
-  "./assets/js/roadmap.js",
-  "./assets/js/content.js",
-  "./assets/js/store.js",
-  "./assets/js/ui.js",
-  "./assets/js/rec.js",
-  "./assets/js/ai.js",
-  "./assets/js/views-core.js",
-  "./assets/js/views-vocab.js",
-  "./assets/js/views-pron.js",
-  "./assets/js/views-shadow.js",
-  "./assets/js/views-ai.js",
-  "./assets/js/views-defense.js",
-  "./assets/js/app.js",
+  "./assets/css/style.css?v=" + VERSION,
+  "./assets/js/fsrs.js?v=" + VERSION,
+  "./assets/js/seed.js?v=" + VERSION,
+  "./assets/js/roadmap.js?v=" + VERSION,
+  "./assets/js/content.js?v=" + VERSION,
+  "./assets/js/store.js?v=" + VERSION,
+  "./assets/js/ui.js?v=" + VERSION,
+  "./assets/js/rec.js?v=" + VERSION,
+  "./assets/js/ai.js?v=" + VERSION,
+  "./assets/js/views-core.js?v=" + VERSION,
+  "./assets/js/views-vocab.js?v=" + VERSION,
+  "./assets/js/views-pron.js?v=" + VERSION,
+  "./assets/js/views-shadow.js?v=" + VERSION,
+  "./assets/js/views-ai.js?v=" + VERSION,
+  "./assets/js/views-defense.js?v=" + VERSION,
+  "./assets/js/app.js?v=" + VERSION,
   "./assets/favicon.svg",
   "./manifest.webmanifest",
 ];
@@ -51,6 +52,12 @@ self.addEventListener("fetch", (e) => {
         caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
         return res;
       })
-      .catch(() => caches.match(req).then((r) => r || caches.match("./index.html")))
+      .catch(() => caches.match(req).then((r) => {
+        if (r) return r;
+        // chỉ điều hướng trang mới rơi về index.html — KHÔNG trả HTML cho
+        // request JS/CSS (tránh "Unexpected token <" khi cache thiếu file)
+        if (req.mode === "navigate") return caches.match("./index.html");
+        return new Response("", { status: 504, statusText: "offline" });
+      }))
   );
 });

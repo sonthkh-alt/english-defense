@@ -1,8 +1,8 @@
 {
   "name": "English Defense — Học tiếng Anh bảo vệ đề tài",
   "short_name": "English Defense",
-  "description": "Học 60 giây mỗi ngày để thuyết trình và hỏi–đáp bằng tiếng Anh trước hội đồng.",
-  "start_url": "./index.html#/daily",
+  "description": "Lộ trình 12 tháng: thuyết trình luận văn và trả lời phản biện bằng tiếng Anh trước hội đồng.",
+  "start_url": "./index.html#/dashboard",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

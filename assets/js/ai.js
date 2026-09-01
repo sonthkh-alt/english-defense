@@ -14,10 +14,27 @@
   function ready() { return !!(Store.settings().apiKey || "").trim(); }
   function model() { return Store.settings().aiModel || "claude-sonnet-4-6"; }
 
+  // Cắt cửa sổ hội thoại hợp lệ cho Messages API: tối đa 16 lượt gần nhất,
+  // bắt đầu bằng user, vai xen kẽ (gộp các lượt cùng vai liên tiếp — xảy ra
+  // khi một request trước đó lỗi và không có câu trả lời của assistant).
+  function sanitizeMessages(messages) {
+    const win = messages.slice(-16);
+    while (win.length && win[0].role !== "user") win.shift();
+    const out = [];
+    win.forEach((m) => {
+      const last = out[out.length - 1];
+      if (last && last.role === m.role) last.content += "\n" + m.content;
+      else out.push({ role: m.role, content: m.content });
+    });
+    return out;
+  }
+
   // messages: [{role:"user"|"assistant", content:"..."}]
   async function chat(messages, system, maxTokens) {
     const key = (Store.settings().apiKey || "").trim();
     if (!key) throw new Error("Chưa có API key. Vào Cài đặt → nhập Anthropic API key.");
+    const msgs = sanitizeMessages(messages);
+    if (!msgs.length) throw new Error("Không có nội dung để gửi");
     let res;
     try {
       res = await fetch(API_URL, {
@@ -32,7 +49,7 @@
           model: model(),
           max_tokens: maxTokens || 1500,
           system: system || undefined,
-          messages: messages,
+          messages: msgs,
         }),
       });
     } catch (e) {

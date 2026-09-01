@@ -68,14 +68,7 @@
   function drillWords(d) {
     if (d.fromVocabLevel) {
       const pool = Store.cards().filter((c) => c.level === d.fromVocabLevel && !/\s/.test(c.term));
-      const pick = [];
-      const used = new Set();
-      while (pick.length < Math.min(20, pool.length)) {
-        const i = Math.floor(Math.random() * pool.length);
-        if (used.has(i)) continue;
-        used.add(i); pick.push(pool[i].term);
-      }
-      return pick;
+      return UI.shuffle(pool).slice(0, 20).map((c) => c.term);
     }
     // bỏ ký hiệu trọng âm viết hoa khi chấm
     return d.words.map((w) => w.toLowerCase());
@@ -102,6 +95,9 @@
     let idx = 0;
     const scores = [];
     const t0 = Date.now();
+    let curListener = null;
+    // rời trang giữa chừng → tắt micro
+    if (global.App && App.onCleanup) App.onCleanup(() => { if (curListener) { curListener.stop(); curListener = null; } });
     // gộp từ đơn thành nhóm 5 từ mỗi lượt cho đỡ vụn
     const isWords = units.length > 1 && units.every((u) => !/\s/.test(u));
     const chunks = [];
@@ -139,11 +135,18 @@
         status.textContent = "🔴 Đang nghe… đọc to, rõ, xong thì nhấn Dừng";
         const stopBtn = h("button", { class: "btn btn--danger", onClick: () => { if (listener) listener.stop(); } }, "■ Dừng");
         ctrl.appendChild(stopBtn);
-        listener = REC.STT.listen({
+        listener = curListener = REC.STT.listen({
           continuous: true,
           onPartial: (t) => { status.textContent = "Nghe được: " + t.slice(-80); },
           onEnd: (err, finalText) => {
-            listener = null;
+            listener = curListener = null;
+            // lỗi micro mà chưa nghe được gì → KHÔNG chấm 0%, cho thử lại
+            if (err && !finalText) {
+              status.textContent = "⚠ Micro lỗi (" + err + ") — kiểm tra quyền micro rồi thử lại";
+              ctrl.innerHTML = "";
+              ctrl.appendChild(h("button", { class: "btn btn--primary", onClick: start }, "↻ Thử lại"));
+              return;
+            }
             grade(finalText || "");
           },
         });

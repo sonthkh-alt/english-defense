@@ -25,7 +25,16 @@
     return ROUTES[name] ? name : "dashboard";
   }
 
+  // Dọn dẹp tài nguyên của view cũ (timer, micro, listener toàn cục)
+  // trước khi vẽ view mới — view đăng ký qua App.onCleanup(fn).
+  let cleanups = [];
+  function runCleanups() {
+    const list = cleanups; cleanups = [];
+    list.forEach((fn) => { try { fn(); } catch (e) {} });
+  }
+
   function render() {
+    runCleanups();
     const name = currentRoute();
     const route = ROUTES[name];
 
@@ -154,7 +163,7 @@
     deferredPrompt.userChoice.finally(() => { deferredPrompt = null; });
   };
 
-  global.App = { render, currentRoute };
+  global.App = { render, currentRoute, onCleanup: (fn) => cleanups.push(fn) };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();

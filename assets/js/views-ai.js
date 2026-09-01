@@ -58,6 +58,8 @@
     const msgs = [];      // [{role, content}]
     let busy = false, listener = null;
     const t0 = Date.now();
+    // rời trang bằng menu → tắt micro
+    if (global.App && App.onCleanup) App.onCleanup(() => { if (listener) { listener.stop(); listener = null; } });
 
     root.appendChild(h("div", { class: "between mt-1" }, [
       h("span", { class: "small", style: { fontWeight: 700 } }, mode.label),
@@ -108,7 +110,7 @@
       busy = true;
       const typing = addBubble("ai", "…");
       try {
-        const reply = await AI.chat(msgs.slice(-16), AI.coachSystem(mode.id), 800);
+        const reply = await AI.chat(msgs, AI.coachSystem(mode.id), 800);
         typing.remove();
         addBubble("ai", reply);
         msgs.push({ role: "assistant", content: reply });

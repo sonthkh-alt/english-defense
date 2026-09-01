@@ -49,7 +49,7 @@
           title: REC.STT.supported() ? "" : "Trình duyệt không hỗ trợ nhận dạng giọng nói (dùng Chrome/Edge)",
         }, "🎙 Ôn chế độ NÓI TO"),
         h("button", {
-          class: "btn " + (newQ.length ? "btn--ghost" : "btn--ghost"),
+          class: "btn btn--ghost",
           disabled: newQ.length ? null : "disabled",
           onClick: () => startLearnNew(root, newQ),
         }, "✚ Học " + newQ.length + " từ mới"),
@@ -120,7 +120,14 @@
     const t0 = Date.now();
     let sttStop = null;
 
+    // rời trang bằng menu/hash → tắt phím tắt 1–4 và micro
+    if (global.App && App.onCleanup) App.onCleanup(() => {
+      document.onkeydown = null;
+      if (sttStop) { sttStop.stop(); sttStop = null; }
+    });
+
     function finish() {
+      document.onkeydown = null;
       if (sttStop) { sttStop.stop(); sttStop = null; }
       Store.logActivity("vocab", Math.max(1, Math.round((Date.now() - t0) / 60000)));
       root.innerHTML = "";
@@ -208,12 +215,23 @@
       }
 
       if (speakMode && dir === "ve" && REC.STT.supported()) {
-        // chế độ NÓI TO: nghe người học nói từ, đối chiếu
+        // chế độ NÓI TO: nghe người học nói từ, đối chiếu.
+        // status nằm trong stage (không phải revealBox) để không bị
+        // reveal() xóa mất phản hồi "máy nghe được gì".
         const status = h("div", { class: "small muted center mt-1" }, "🎙 Đang nghe… nói từ tiếng Anh");
-        revealBox.appendChild(status);
+        stage.appendChild(status);
+        let revealed = false;
         sttStop = REC.STT.listen({
-          onFinal: (text) => {
+          onEnd: (err, text) => {
             sttStop = null;
+            if (revealed) return;
+            revealed = true;
+            if (err && !text) {
+              // micro bị chặn / lỗi (hay gặp trên iOS) → vẫn hiện đáp án
+              status.textContent = "Không nghe được (lỗi micro: " + err + ") — tự đối chiếu nhé";
+              reveal();
+              return;
+            }
             const said = REC.normWords(text).join(" ");
             const target = REC.normWords(c.term).join(" ");
             const ok = said.indexOf(target) >= 0;
@@ -222,7 +240,13 @@
             reveal(ok ? 3 : 1);
           },
         });
-        revealBox.appendChild(h("button", { class: "btn btn--ghost btn--sm mt-1", onClick: () => { if (sttStop) { sttStop.stop(); } } }, "Dừng nghe / hiện đáp án"));
+        revealBox.appendChild(h("button", {
+          class: "btn btn--ghost btn--sm mt-1",
+          onClick: () => {
+            if (sttStop) sttStop.stop();
+            else if (!revealed) { revealed = true; reveal(); }
+          },
+        }, "Dừng nghe / hiện đáp án"));
       } else {
         revealBox.appendChild(h("button", { class: "btn btn--primary btn--block", onClick: () => reveal() },
           dir === "ve" ? "Tôi đã nhớ ra / nói ra → Hiện đáp án" : "Hiện nghĩa"));
@@ -242,7 +266,11 @@
         h("button", { class: "btn btn--ghost btn--sm", onClick: () => renderHome(root) }, "← Quay lại"),
       ]),
     ]));
-    const search = h("input", { class: "input", placeholder: "Tìm từ / nghĩa…", onInput: (e) => renderList(e.target.value) });
+    let searchTimer = null;
+    const search = h("input", { class: "input", placeholder: "Tìm từ / nghĩa…", onInput: (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => renderList(e.target.value), 150);
+    } });
     root.appendChild(h("div", { class: "card" }, search));
     const listWrap = h("div");
     root.appendChild(listWrap);

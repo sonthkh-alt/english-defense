@@ -69,9 +69,11 @@ assert(Store.cards().length >= 270, 'Store: nạp sẵn ' + Store.cards().length
 assert(Store.dueCount() === 0, 'Store: chưa intro thẻ nào → 0 thẻ đến hạn');
 const nq = Store.newQueue(5);
 assert(nq.length === 5 && nq.every(x => x.level === 1), 'Store: hàng đợi từ mới tháng 1 chỉ cấp 1');
+assert(Store.newQueue(0).length === 0, 'Store: hết hạn mức (limit=0) → hàng đợi rỗng');
 Store.introduceCard(nq[0].id);
 assert(Store.dueCount() === 2, 'Store: intro 1 thẻ → 2 lượt đến hạn (2 chiều)');
 const q0 = Store.dueQueue()[0];
+assert(q0.dir === 've', 'Store: chiều Việt→Anh (truy hồi) được ôn TRƯỚC');
 Store.reviewCard(q0.card.id, q0.dir, 3);
 assert(Store.dueCount() === 1, 'Store: ôn 1 chiều → còn 1 lượt');
 Store.logActivity('vocab', 5);
@@ -82,6 +84,32 @@ assert(Store.currentMonth() >= 1 && ROADMAP.MONTHS.length === 12, 'Roadmap: 12 t
 const json = Store.exportJSON();
 Store.importJSON(json);
 assert(Store.cards().length >= 270 && Store.dueCount() === 1, 'Store: xuất/nhập JSON giữ nguyên trạng thái');
+
+// file hỏng → từ chối, không ghi đè
+let threw = false;
+try { Store.importJSON('{"foo": 1}'); } catch (e) { threw = true; }
+assert(threw && Store.cards().length >= 270, 'Store: file sao lưu sai định dạng bị TỪ CHỐI, dữ liệu còn nguyên');
+
+// di trú bản v1: giữ dữ liệu tự soạn, backfill IPA từ SEED, suy phút từ block
+const v1 = {
+  schema: 1,
+  settings: { startDate: '2026-01-01', humanAudio: true },
+  sessions: { '2026-01-02': { blocks: { listen: true, vocab: true }, minutes: 0 } },
+  vocab: [
+    { term: 'analyze', box: 3, learnedDate: '2026-01-02', seeded: true, lastReview: '2026-08-01' },
+    { term: 'myword', meaning: 'nghĩa riêng', box: 1, seeded: false, created: '2026-02-01' },
+  ],
+  questions: { method: [{ en: 'Why this method?', answer: 'my answer', mastery: 2 }] },
+  journal: [{ id: 'j1', title: 'ngày 1' }],
+};
+Store.importJSON(JSON.stringify(v1));
+assert(Store.get().legacy && Store.get().legacy.journal.length === 1 && Store.get().legacy.questions.method.length === 1,
+  'Di trú v1: nhật ký + câu trả lời tự soạn được giữ trong legacy');
+const az = Store.cards().find(c => c.term === 'analyze');
+assert(az && az.ipa && az.meaning && az.intro, 'Di trú v1: từ cũ thiếu IPA/nghĩa được tra ngược từ SEED (' + az.ipa + ')');
+assert(Store.cards().some(c => c.term === 'myword' && c.custom), 'Di trú v1: từ tự thêm được giữ');
+assert(Store.get().sessions['2026-01-02'].minutes === 26, 'Di trú v1: phút học suy từ 2 block cũ = 26');
+assert(Store.settings().humanAudio === false, 'Di trú v1: schema 1 → ép humanAudio=false (từ đơn dùng TTS)');
 
 /* ===== chấm điểm khớp từ ===== */
 const r1 = REC.scoreAgainst('The data show a clear upward trend', 'the data show a clear upward trend');
@@ -126,4 +154,14 @@ const html=fs.readFileSync(__dirname+'/../../index.html','utf8');
 assert(!html.includes('views.js"') && !html.includes('data.js') && !html.includes('lessons.js'), 'index.html không còn file cũ');
 const sw=fs.readFileSync(__dirname+'/../../sw.js','utf8');
 assert(sw.includes('views-defense.js') && sw.includes('fsrs.js'), 'sw.js cache các file mới');
+// version cache-bust phải đồng bộ giữa sw.js và index.html
+const swVer = (sw.match(/VERSION = "([^"]+)"/) || [])[1];
+const htmlVers = [...new Set([...html.matchAll(/\?v=([\w.]+)/g)].map(m => m[1]))];
+assert(swVer && htmlVers.length === 1 && htmlVers[0] === swVer,
+  'Version đồng bộ: sw.js VERSION=' + swVer + ' ↔ index.html ?v=' + htmlVers.join(','));
+// start_url trong manifest phải trỏ tới route có thật
+const mani = fs.readFileSync(__dirname+'/../../manifest.webmanifest','utf8');
+const startRoute = (JSON.parse(mani).start_url.match(/#\/(\w+)/) || [])[1];
+const appjs = fs.readFileSync(__dirname+'/../../assets/js/app.js','utf8');
+assert(startRoute && appjs.includes(startRoute + ':'), 'manifest start_url → route "' + startRoute + '" tồn tại trong router');
 console.log(process.exitCode ? '\nCÓ LỖI' : '\nTẤT CẢ ĐẠT ✓');

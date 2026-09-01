@@ -10,7 +10,7 @@
   const Rec = (function () {
     let mr = null, chunks = [], stream = null, t0 = 0;
     async function start() {
-      if (mr) stop();
+      if (mr) await stop(); // chờ recorder cũ đóng hẳn, tránh giết stream mới
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       chunks = [];
       const mime = MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "";
@@ -22,14 +22,15 @@
     function stop() {
       return new Promise((resolve) => {
         if (!mr) return resolve(null);
-        const rec = mr; mr = null;
+        const rec = mr, st = stream, myChunks = chunks;
+        mr = null; stream = null; // tách khỏi biến chung TRƯỚC khi chờ onstop
         rec.onstop = () => {
-          const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
+          const blob = new Blob(myChunks, { type: rec.mimeType || "audio/webm" });
           const secs = Math.round((Date.now() - t0) / 1000);
-          if (stream) { stream.getTracks().forEach((t) => t.stop()); stream = null; }
+          if (st) st.getTracks().forEach((t) => t.stop());
           resolve({ blob, url: URL.createObjectURL(blob), secs });
         };
-        try { rec.stop(); } catch (e) { resolve(null); }
+        try { rec.stop(); } catch (e) { if (st) st.getTracks().forEach((t) => t.stop()); resolve(null); }
       });
     }
     function isRecording() { return !!mr; }
@@ -38,19 +39,32 @@
   })();
 
   /* ---------------- Nhận dạng giọng nói (STT) ---------------- */
-  // STT.listen({onPartial,onFinal,onEnd,continuous}) → {stop}
+  // STT.listen({onPartial, onEnd(err, text), continuous}) → {stop}
+  // onEnd LUÔN được gọi đúng một lần (kể cả khi lỗi micro).
   const STT = (function () {
     const SR = global.SpeechRecognition || global.webkitSpeechRecognition;
     function supported() { return !!SR; }
     function listen(opts) {
       opts = opts || {};
-      if (!SR) { if (opts.onEnd) opts.onEnd("unsupported"); return { stop: () => {} }; }
+      if (!SR) {
+        // LUÔN gọi onEnd bất đồng bộ — để listen() trả về handle trước,
+        // tránh race "listener = listen(...)" ghi đè sau khi onEnd đã chạy
+        if (opts.onEnd) setTimeout(() => opts.onEnd("unsupported", ""), 0);
+        return { stop: () => {} };
+      }
       const r = new SR();
       r.lang = "en-US";
       r.continuous = !!opts.continuous;
       r.interimResults = true;
       r.maxAlternatives = 1;
-      let finalText = "", stopped = false;
+      let finalText = "", finished = false;
+      // Mọi lối ra (lỗi, kết thúc, start hỏng) đều qua đây — gọi ĐÚNG 1 lần,
+      // và luôn BẤT ĐỒNG BỘ để caller kịp giữ handle trả về từ listen()
+      function finish(err) {
+        if (finished) return;
+        finished = true;
+        if (opts.onEnd) setTimeout(() => opts.onEnd(err || null, finalText.trim()), 0);
+      }
       r.onresult = (e) => {
         let interim = "";
         for (let i = e.resultIndex; i < e.results.length; i++) {
@@ -58,14 +72,12 @@
           if (e.results[i].isFinal) finalText += t + " ";
           else interim += t;
         }
-        if (opts.onPartial) opts.onPartial((finalText + interim).trim());
+        if (opts.onPartial && !finished) opts.onPartial((finalText + interim).trim());
       };
-      r.onerror = (e) => { if (opts.onEnd && !stopped) { stopped = true; opts.onEnd(e.error, finalText.trim()); } };
-      r.onend = () => {
-        if (!stopped) { stopped = true; if (opts.onFinal) opts.onFinal(finalText.trim()); if (opts.onEnd) opts.onEnd(null, finalText.trim()); }
-      };
-      try { r.start(); } catch (e) { if (opts.onEnd) opts.onEnd("start-failed"); }
-      return { stop: () => { try { r.stop(); } catch (e) {} } };
+      r.onerror = (e) => finish(e.error || "error");
+      r.onend = () => finish(null);
+      try { r.start(); } catch (e) { finish("start-failed"); }
+      return { stop: () => { try { r.stop(); } catch (e) { finish(null); } } };
     }
     return { supported, listen };
   })();

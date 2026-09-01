@@ -74,7 +74,10 @@
       const stat = Store.shadowStat("vid:" + v.id);
       box.appendChild(h("a", {
         class: "task-row" + (s > st ? " task-row--locked" : ""), href: "javascript:;",
-        onClick: () => (v.y ? videoSession(root, v) : window.open(v.link, "_blank")),
+        onClick: () => {
+          if (s > st) UI.toast("Bài của giai đoạn " + s + " — khó hơn mức hiện tại, thử sức cũng tốt");
+          v.y ? videoSession(root, v) : window.open(v.link, "_blank");
+        },
       }, [
         h("span", { class: "task-row__icon" }, s < st ? "✓" : (s === st ? "▶" : "🔒")),
         h("span", { class: "task-row__label" }, [
@@ -113,7 +116,10 @@
       const stat = Store.shadowStat("sen:" + s);
       sbox.appendChild(h("a", {
         class: "task-row" + (s > st ? " task-row--locked" : ""), href: "javascript:;",
-        onClick: () => sentenceSession(root, s),
+        onClick: () => {
+          if (s > st) UI.toast("Bộ câu giai đoạn " + s + " — khó hơn mức hiện tại");
+          sentenceSession(root, s);
+        },
       }, [
         h("span", { class: "task-row__icon" }, s <= st ? "▶" : "🔒"),
         h("span", { class: "task-row__label" }, "Bộ câu giai đoạn " + s + " (6 câu)"),
@@ -121,6 +127,49 @@
       ]));
     }
     root.appendChild(sbox);
+
+    // --- Bản thu đã lưu (đo tiến bộ theo thời gian) ---
+    root.appendChild(U().sectionTitle("Bản thu đã lưu",
+      h("span", { class: "small muted" }, "so tiến bộ theo thời gian")));
+    const rbox = h("div", { class: "card", style: { padding: "6px 0" } },
+      h("div", { class: "small muted", style: { padding: "10px 18px" } }, "Đang tải…"));
+    root.appendChild(rbox);
+    let playUrl = null; // object URL đang phát — thu hồi khi phát bản khác
+    if (global.App && App.onCleanup) App.onCleanup(() => { if (playUrl) { URL.revokeObjectURL(playUrl); playUrl = null; } });
+    REC.Vault.list().then((recs) => {
+      rbox.innerHTML = "";
+      if (!recs.length) {
+        rbox.appendChild(h("div", { class: "small muted", style: { padding: "10px 18px" } },
+          "Chưa có bản thu nào. Trong phiên video, ghi âm rồi bấm 💾 Lưu bản thu — mỗi tuần lưu 1 bản để nghe lại và thấy mình tiến bộ."));
+        return;
+      }
+      recs.forEach((r) => {
+        const row = h("div", { class: "task-row" }, [
+          h("span", { class: "task-row__icon" }, "🎧"),
+          h("span", { class: "task-row__label" }, [
+            (r.note || "Bản thu"),
+            h("div", { class: "small muted" }, r.date + " · " + (r.secs || 0) + " giây"),
+          ]),
+          h("button", { class: "icon-btn", title: "Nghe", onClick: async () => {
+            const full = await REC.Vault.get(r.id);
+            if (!full || !full.blob) { UI.toast("Không đọc được bản thu"); return; }
+            if (playUrl) URL.revokeObjectURL(playUrl);
+            playUrl = URL.createObjectURL(full.blob);
+            let au = row.querySelector("audio");
+            if (!au) { au = h("audio", { controls: "controls", style: { width: "160px" } }); row.appendChild(au); }
+            au.src = playUrl; au.play();
+          } }, "▶"),
+          h("button", { class: "icon-btn", title: "Xóa", onClick: () => {
+            UI.confirmDialog({ title: "Xóa bản thu?", desc: (r.note || "") + " · " + r.date, confirmLabel: "Xóa", danger: true,
+              onConfirm: async () => { await REC.Vault.remove(r.id); home(root); } });
+          } }, "🗑"),
+        ]);
+        rbox.appendChild(row);
+      });
+    }).catch(() => {
+      rbox.innerHTML = "";
+      rbox.appendChild(h("div", { class: "small muted", style: { padding: "10px 18px" } }, "Trình duyệt không cho đọc kho bản thu."));
+    });
   }
 
   function addCustomModal(root) {
@@ -151,6 +200,15 @@
     root.innerHTML = "";
     const t0 = Date.now();
     let player = null, loopA = null, loopB = null, loopTimer = null, recObj = null;
+
+    // dọn tài nguyên (timer A–B, player, micro, blob) — gọi khi rời phiên
+    function dispose() {
+      clearInterval(loopTimer);
+      if (player) { player.destroy(); player = null; }
+      if (REC.Rec.isRecording()) REC.Rec.stop();
+      if (recObj) { URL.revokeObjectURL(recObj.url); recObj = null; }
+    }
+    if (global.App && App.onCleanup) App.onCleanup(dispose);
 
     root.appendChild(h("div", { class: "between mt-1" }, [
       h("span", { class: "small", style: { fontWeight: 600 } }, v.t),
@@ -207,9 +265,8 @@
     function setB() { loopB = player.time(); startLoop(); updateLoop(); }
     function updateLoop() {
       const el = ctrl.querySelector("#loop-status");
-      el.textContent = (loopA != null ? "A=" + fmt(loopA) : "chưa đặt") + (loopB != null ? " → B=" + fmt(loopB) : "");
+      el.textContent = (loopA != null ? "A=" + UI.fmtSecs(loopA) : "chưa đặt") + (loopB != null ? " → B=" + UI.fmtSecs(loopB) : "");
     }
-    function fmt(t) { return Math.floor(t / 60) + ":" + String(Math.floor(t % 60)).padStart(2, "0"); }
     function startLoop() {
       clearInterval(loopTimer);
       if (loopA == null || loopB == null || loopB <= loopA) return;
@@ -238,7 +295,12 @@
       if (!REC.Rec.isRecording()) {
         row.appendChild(h("button", { class: "btn btn--primary btn--sm", onClick: async () => { try { await REC.Rec.start(); renderRec(); } catch (e) { UI.toast("Không truy cập được micro"); } } }, "● Ghi âm"));
       } else {
-        row.appendChild(h("button", { class: "btn btn--danger btn--sm", onClick: async () => { recObj = await REC.Rec.stop(); renderRec(); } }, "■ Dừng"));
+        row.appendChild(h("button", { class: "btn btn--danger btn--sm", onClick: async () => {
+          const old = recObj;
+          recObj = await REC.Rec.stop();
+          if (old) URL.revokeObjectURL(old.url);
+          renderRec();
+        } }, "■ Dừng"));
         row.appendChild(h("span", { class: "small muted" }, "đang ghi — shadowing song song với video…"));
       }
       if (recObj) {
@@ -266,8 +328,7 @@
       }, "✓ Hoàn thành buổi shadowing")));
 
     function leave() {
-      clearInterval(loopTimer);
-      if (player) player.destroy();
+      dispose();
       home(root);
     }
   }
@@ -278,6 +339,13 @@
     let idx = 0, mode = 1; // 1 nghe · 2 nghe+đọc · 3 shadowing
     const t0 = Date.now();
     let recObj = null;
+    function discardRec() {
+      if (recObj) { URL.revokeObjectURL(recObj.url); recObj = null; }
+    }
+    if (global.App && App.onCleanup) App.onCleanup(() => {
+      if (REC.Rec.isRecording()) REC.Rec.stop();
+      discardRec();
+    });
 
     function show() {
       root.innerHTML = "";
@@ -324,8 +392,8 @@
       }
 
       root.appendChild(h("div", { class: "row gap-sm center mt-2" }, [
-        idx > 0 ? h("button", { class: "btn btn--ghost", onClick: () => { idx--; recObj = null; show(); } }, "← Trước") : null,
-        h("button", { class: "btn btn--primary", onClick: () => { idx++; recObj = null; show(); } }, "Câu tiếp →"),
+        idx > 0 ? h("button", { class: "btn btn--ghost", onClick: () => { idx--; discardRec(); show(); } }, "← Trước") : null,
+        h("button", { class: "btn btn--primary", onClick: () => { idx++; discardRec(); show(); } }, "Câu tiếp →"),
       ]));
       if (mode === 1) UI.speak(s.en);
     }

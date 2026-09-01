@@ -114,11 +114,20 @@
     return dt.getFullYear() + "-" + pad(dt.getMonth() + 1) + "-" + pad(dt.getDate());
   }
 
+  // Tạo trạng thái thẻ từ dữ liệu cũ (di trú hộp Leitner → FSRS).
+  // Giữ layout bản ghi thẻ là việc riêng của fsrs.js.
+  function fromLegacy(stabilityDays, lastReviewISO, reps, todayISO) {
+    const s = Math.max(0.1, stabilityDays || 0.5);
+    const last = lastReviewISO || todayISO;
+    return { s: s, d: 5, due: addDays(last, Math.round(s)), last: lastReviewISO || null,
+             reps: reps || 1, lapses: 0, state: "review" };
+  }
+
   // Thẻ có đến hạn hôm nay không?
   function isDue(card, todayISO) { return !card.due || card.due <= todayISO; }
 
   // "Đã thuộc" = stability ≥ 21 ngày (nhớ ổn định hơn 3 tuần)
   function isMastered(card) { return card.state === "review" && card.s >= 21; }
 
-  global.FSRS = { newCard, review, previewIntervals, isDue, isMastered, retrievability, addDays };
+  global.FSRS = { newCard, review, previewIntervals, isDue, isMastered, retrievability, addDays, fromLegacy };
 })(window);

@@ -94,36 +94,58 @@
     return seedFresh(m);
   }
 
-  // Di trú từ app cũ (v1): giữ settings, sessions (streak), chuyển vocab → cards
+  // Di trú từ app cũ (v1/v2): giữ settings, sessions (streak + phút học),
+  // chuyển vocab → cards (backfill IPA/icon/dịch từ SEED), và cất mọi dữ
+  // liệu tự soạn (câu hỏi, nhật ký, câu cứu nguy, xp) vào state.legacy để
+  // KHÔNG mất gì cả.
   function migrateV1(old) {
     const s = defaultState();
     const os = old.settings || {};
     ["startDate", "theme", "topic", "name", "speechRate", "voiceURI", "humanAudio", "omniPack"]
       .forEach((k) => { if (os[k] !== undefined) s.settings[k] = os[k]; });
+    // schema 1 chưa có lần ép humanAudio=false (từ đơn dùng TTS) → ép lại
+    if ((old.schema || 1) < 2) s.settings.humanAudio = false;
     s.sessions = {};
     Object.keys(old.sessions || {}).forEach((d) => {
       const o = old.sessions[d];
-      s.sessions[d] = { minutes: o.minutes || 0, studied: !!(o.studied || o.daily60 ||
-        (o.blocks && Object.values(o.blocks).some(Boolean))), acts: {} };
+      const nBlocks = o.blocks ? Object.values(o.blocks).filter(Boolean).length : 0;
+      s.sessions[d] = {
+        // app cũ suy phút từ block hoàn thành (~13'/block) khi không nhập tay
+        minutes: o.minutes || nBlocks * 13,
+        studied: !!(o.studied || o.daily60 || nBlocks > 0),
+        acts: {},
+      };
     });
-    // vocab cũ: hộp Leitner box(1..5) → stability ước lượng
+    // vocab cũ: hộp Leitner box(1..5) → stability ước lượng; tra ngược SEED
+    // để bổ sung IPA/icon/dịch cho từ lưu trước bản f18b792
     const boxS = { 1: 0.5, 2: 1.5, 3: 4, 4: 10, 5: 21 };
+    const seedByTerm = new Map();
+    if (typeof SEED !== "undefined" && SEED.VOCAB)
+      SEED.VOCAB.forEach((it) => seedByTerm.set(String(it.t).toLowerCase(), it));
     (old.vocab || []).forEach((v) => {
+      const sd = seedByTerm.get(String(v.term).toLowerCase()) || {};
       const c = newCardObj({
-        term: v.term, pos: v.pos, meaning: v.meaning, ipa: v.ipa || "", icon: v.icon || "",
-        example: v.example || "", exampleVi: v.exampleVi || "",
-        level: v.level || 2, group: v.group || "", groupName: v.groupName || "",
+        term: v.term, pos: v.pos || sd.p || "", meaning: v.meaning || sd.m || "",
+        ipa: v.ipa || sd.ipa || "", icon: v.icon || sd.ic || "",
+        example: v.example || sd.e || "", exampleVi: v.exampleVi || sd.ev || "",
+        level: v.level || sd.lvl || 2, group: v.group || sd.grp || "",
+        groupName: v.groupName || sd.grpName || "",
         custom: !v.seeded,
       });
       if (v.learnedDate || !v.seeded) {
         c.intro = v.learnedDate || v.created || today();
         const st = boxS[v.box || 1];
-        const f = { s: st, d: 5, due: FSRS.addDays(v.lastReview || today(), Math.round(st)),
-                    last: v.lastReview || null, reps: v.box || 1, lapses: 0, state: "review" };
-        c.ev = Object.assign({}, f); c.ve = Object.assign({}, f);
+        c.ev = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
+        c.ve = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
       }
       s.cards.push(c);
     });
+    // dữ liệu tự soạn của app cũ — giữ nguyên vẹn (kèm theo export/import)
+    s.legacy = {
+      questions: old.questions || {}, journal: old.journal || [],
+      rescueCustom: old.rescueCustom || [], rescueMastered: old.rescueMastered || {},
+      recordings: old.recordings || [], xp: old.xp || 0,
+    };
     return seedFresh(s);
   }
 
@@ -160,7 +182,7 @@
   function stat(date) {
     date = date || today();
     let st = state.stats[date];
-    if (!st) { st = { rev: 0, ok: 0, newC: 0, pronSum: 0, pronN: 0 }; state.stats[date] = st; }
+    if (!st) { st = { rev: 0, ok: 0, pronSum: 0, pronN: 0 }; state.stats[date] = st; }
     return st;
   }
   function session(date) {
@@ -224,14 +246,15 @@
     updateCard(id, patch) { const c = this.cardById(id); if (c) { Object.assign(c, patch); persist(); } },
     deleteCard(id) { state.cards = state.cards.filter((c) => c.id !== id); persist(); },
 
-    // Hàng đợi từ mới (chưa intro), lọc theo cấp cho phép của tháng
+    // Hàng đợi từ mới (chưa intro), lọc theo cấp cho phép của tháng.
+    // limit=0 nghĩa là HẾT hạn mức hôm nay → trả về rỗng.
     newQueue(limit) {
       const m = ROADMAP.month(this.currentMonth());
       const allowed = new Set(m.vocabLevels);
       const q = state.cards
         .filter((c) => !c.intro && !c.suspended && allowed.has(c.level || 2))
         .sort((a, b) => (a.level - b.level));
-      return limit ? q.slice(0, limit) : q;
+      return limit == null ? q : q.slice(0, Math.max(0, limit));
     },
     newPerDay() {
       const o = state.settings.newPerDayOverride | 0;
@@ -243,7 +266,7 @@
     },
     introduceCard(id) {
       const c = this.cardById(id);
-      if (c && !c.intro) { c.intro = today(); stat().newC++; persist(); }
+      if (c && !c.intro) { c.intro = today(); persist(); }
     },
 
     // Thẻ đến hạn hôm nay: trả về [{card, dir}] — ưu tiên chiều Việt→Anh
@@ -255,8 +278,10 @@
         if (FSRS.isDue(c.ve, t)) out.push({ card: c, dir: "ve" });
         if (FSRS.isDue(c.ev, t)) out.push({ card: c, dir: "ev" });
       });
-      // trộn nhưng ưu tiên ve trước trong từng cặp; xáo theo id để interleave nhóm
-      out.sort((a, b) => (a.card.id + a.dir > b.card.id + b.dir ? 1 : -1));
+      // xáo theo id để interleave nhóm; trong từng cặp, chiều Việt→Anh (ve,
+      // truy hồi — khó hơn) đứng TRƯỚC chiều Anh→Việt
+      const key = (x) => x.card.id + (x.dir === "ve" ? "0" : "1");
+      out.sort((a, b) => (key(a) > key(b) ? 1 : -1));
       return out;
     },
     dueCount() { return this.dueQueue().length; },
@@ -363,7 +388,11 @@
     exportJSON() { return JSON.stringify(state, null, 2); },
     importJSON(text) {
       const parsed = JSON.parse(text);
-      state = parsed.schema === SCHEMA ? migrate(parsed) : (parsed.schema ? migrate(parsed) : migrateV1(parsed));
+      // Bản v3 có mảng "cards"; bản cũ (schema 1–2) có mảng "vocab".
+      // File không có cả hai → từ chối, KHÔNG ghi đè dữ liệu hiện tại.
+      if (parsed && Array.isArray(parsed.cards)) state = migrate(parsed);
+      else if (parsed && Array.isArray(parsed.vocab)) state = migrateV1(parsed);
+      else throw new Error("File không đúng định dạng sao lưu English Defense");
       persist();
     },
     reset() { state = seedFresh(defaultState()); persist(); },
