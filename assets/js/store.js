@@ -77,10 +77,10 @@
       if (raw) return migrate(JSON.parse(raw));
       const old = localStorage.getItem(OLD_KEY);
       if (old) return migrateV1(JSON.parse(old));
-      return seedFresh(defaultState());
+      return defaultState();
     } catch (e) {
       console.warn("Store load failed, resetting:", e);
-      return seedFresh(defaultState());
+      return defaultState();
     }
   }
 
@@ -90,8 +90,11 @@
     m.settings = Object.assign({}, base.settings, s.settings || {});
     m.pron = Object.assign({}, base.pron, s.pron || {});
     m.shadow = Object.assign({}, base.shadow, s.shadow || {});
+    // v3.1: state chỉ giữ thẻ ĐÃ HỌC hoặc tự thêm — thẻ chưa học phục vụ
+    // thẳng từ SEED/SEED2 (giảm ~90% dung lượng ghi localStorage mỗi lần ôn)
+    m.cards = (s.cards || []).filter((c) => c.intro || c.custom);
     m.schema = SCHEMA;
-    return seedFresh(m);
+    return m;
   }
 
   // Di trú từ app cũ (v1/v2): giữ settings, sessions (streak + phút học),
@@ -132,12 +135,12 @@
         groupName: v.groupName || sd.grpName || "",
         custom: !v.seeded,
       });
-      if (v.learnedDate || !v.seeded) {
-        c.intro = v.learnedDate || v.created || today();
-        const st = boxS[v.box || 1];
-        c.ev = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
-        c.ve = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
-      }
+      // chỉ giữ thẻ đã học/tự thêm — thẻ seed chưa học lấy từ SEED khi cần
+      if (!v.learnedDate && v.seeded) return;
+      c.intro = v.learnedDate || v.created || today();
+      const st = boxS[v.box || 1];
+      c.ev = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
+      c.ve = FSRS.fromLegacy(st, v.lastReview, v.box || 1, today());
       s.cards.push(c);
     });
     // dữ liệu tự soạn của app cũ — giữ nguyên vẹn (kèm theo export/import)
@@ -146,25 +149,25 @@
       rescueCustom: old.rescueCustom || [], rescueMastered: old.rescueMastered || {},
       recordings: old.recordings || [], xp: old.xp || 0,
     };
-    return seedFresh(s);
+    return s;
   }
 
-  // Nạp SEED.VOCAB (274 từ) — idempotent, chỉ thêm từ chưa có
-  function seedFresh(s) {
-    if (typeof SEED === "undefined" || !SEED.VOCAB) return s;
-    const have = new Set(s.cards.map((c) => c.term.toLowerCase()));
-    SEED.VOCAB.forEach((it) => {
-      const t = String(it.t).trim();
-      if (have.has(t.toLowerCase())) return;
-      s.cards.push(newCardObj({
-        term: t, pos: it.p || "", meaning: it.m || "", ipa: it.ipa || "", icon: it.ic || "",
-        example: it.e || "", exampleVi: it.ev || "",
-        level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "",
-      }));
-      have.add(t.toLowerCase());
-    });
-    s.seededVersion = 1;
-    return s;
+  /* ---------- Kho từ gốc (SEED + SEED2, ~2.000 mục) ----------
+     KHÔNG nạp vào state — thẻ chưa học phục vụ thẳng từ đây; chỉ khi
+     người học "kích hoạt" thẻ mới được ghi vào state (nhẹ localStorage). */
+  let seedCache = null;
+  function seedEntries() {
+    if (seedCache) return seedCache;
+    const out = [];
+    [typeof SEED !== "undefined" && SEED.VOCAB, typeof SEED2 !== "undefined" && SEED2.VOCAB]
+      .forEach((arr) => { if (arr) arr.forEach((it) => out.push(it)); });
+    seedCache = out;
+    return out;
+  }
+  function pseudoCard(it) {
+    return { id: "seed:" + it.t, term: it.t, pos: it.p || "", meaning: it.m || "",
+             ipa: it.ipa || "", icon: it.ic || "", example: it.e || "", exampleVi: it.ev || "",
+             level: it.lvl || 2, group: it.grp || "", groupName: it.grpName || "", seedOnly: true };
   }
 
   const listeners = new Set();
@@ -246,15 +249,26 @@
     updateCard(id, patch) { const c = this.cardById(id); if (c) { Object.assign(c, patch); persist(); } },
     deleteCard(id) { state.cards = state.cards.filter((c) => c.id !== id); persist(); },
 
-    // Hàng đợi từ mới (chưa intro), lọc theo cấp cho phép của tháng.
-    // limit=0 nghĩa là HẾT hạn mức hôm nay → trả về rỗng.
+    // Hàng đợi từ mới: lấy từ kho SEED/SEED2 những mục CHƯA có trong state,
+    // lọc theo cấp cho phép của tháng. limit=0 = hết hạn mức → rỗng.
     newQueue(limit) {
+      if (limit === 0) return [];
       const m = ROADMAP.month(this.currentMonth());
       const allowed = new Set(m.vocabLevels);
-      const q = state.cards
-        .filter((c) => !c.intro && !c.suspended && allowed.has(c.level || 2))
+      const have = new Set(state.cards.map((c) => c.term.toLowerCase()));
+      const q = seedEntries()
+        .filter((it) => allowed.has(it.lvl || 2) && !have.has(String(it.t).toLowerCase()))
+        .map(pseudoCard)
         .sort((a, b) => (a.level - b.level));
       return limit == null ? q : q.slice(0, Math.max(0, limit));
+    },
+    // Toàn bộ kho từ để duyệt/tìm kiếm: thẻ đang học + thẻ chưa học từ seed
+    browseList() {
+      const have = new Set(state.cards.map((c) => c.term.toLowerCase()));
+      const rest = seedEntries()
+        .filter((it) => !have.has(String(it.t).toLowerCase()))
+        .map(pseudoCard);
+      return state.cards.concat(rest);
     },
     newPerDay() {
       const o = state.settings.newPerDayOverride | 0;
@@ -264,8 +278,22 @@
       const t = today();
       return state.cards.filter((c) => c.intro === t).length;
     },
-    introduceCard(id) {
-      const c = this.cardById(id);
+    // Kích hoạt thẻ mới. Nhận thẻ giả từ newQueue (seedOnly) → tạo thẻ thật
+    // trong state; hoặc nhận id thẻ đã tồn tại.
+    introduceCard(pc) {
+      if (pc && pc.seedOnly) {
+        if (state.cards.some((c) => c.term.toLowerCase() === pc.term.toLowerCase())) return;
+        const c = newCardObj({
+          term: pc.term, pos: pc.pos, meaning: pc.meaning, ipa: pc.ipa, icon: pc.icon,
+          example: pc.example, exampleVi: pc.exampleVi,
+          level: pc.level, group: pc.group, groupName: pc.groupName,
+        });
+        c.intro = today();
+        state.cards.push(c);
+        persist();
+        return;
+      }
+      const c = this.cardById(pc && pc.id ? pc.id : pc);
       if (c && !c.intro) { c.intro = today(); persist(); }
     },
 

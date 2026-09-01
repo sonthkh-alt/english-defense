@@ -1,0 +1,84 @@
+abide by|v.phr.|tuân theo|All units abide by the charter.|Mọi đơn vị tuân theo quy chế.|Q
+account holder|n.|chủ tài khoản|Each agency is an account holder.|Mỗi cơ quan là một chủ tài khoản.|M
+accrual accounting|n.|kế toán dồn tích|Accrual accounting shows true costs.|Kế toán dồn tích phản ánh đúng chi phí.|M
+action plan|n.|kế hoạch hành động|Each ministry drafts an action plan.|Mỗi bộ soạn một kế hoạch hành động.|N
+adaptive|adj.|thích ứng|Adaptive management fits uncertainty.|Quản lý thích ứng phù hợp với bất định.|K
+administrative unit|n.|đơn vị hành chính|Administrative units were merged.|Các đơn vị hành chính được sáp nhập.|N
+advisory opinion|n.|ý kiến tư vấn|The court gave an advisory opinion.|Tòa đưa ra ý kiến tư vấn.|N
+allocate funds|v.phr.|bố trí kinh phí|The council allocated funds for repairs.|Hội đồng bố trí kinh phí sửa chữa.|Q
+annual report|n.|báo cáo thường niên|The annual report is audited.|Báo cáo thường niên được kiểm toán.|N
+anti-corruption|adj.|phòng chống tham nhũng|Anti-corruption efforts intensified.|Nỗ lực phòng chống tham nhũng được đẩy mạnh.|N
+applicable|adj.|có thể áp dụng|The rule is applicable nationwide.|Quy định áp dụng trên toàn quốc.|K
+appointment|n.|bổ nhiệm; cuộc hẹn|The appointment followed open competition.|Việc bổ nhiệm qua thi tuyển công khai.|N
+asset recovery|n.|thu hồi tài sản|Asset recovery reached record levels.|Thu hồi tài sản đạt mức kỷ lục.|N
+at the discretion of|prep.phr.|theo quyền tự quyết của|Waivers are at the discretion of the director.|Miễn trừ theo quyền tự quyết của giám đốc.|Q
+capacity constraint|n.|hạn chế năng lực|Capacity constraints slow rollout.|Hạn chế năng lực làm chậm triển khai.|N
+capital call|n.|đợt gọi vốn|The fund made a capital call.|Quỹ thực hiện một đợt gọi vốn.|M
+case management|n.|quản lý vụ việc|Case management software tracks files.|Phần mềm quản lý vụ việc theo dõi hồ sơ.|N
+cash flow|n.|dòng tiền|Cash flow forecasts guide borrowing.|Dự báo dòng tiền định hướng vay nợ.|M
+chain of custody|n.|chuỗi lưu giữ chứng cứ|The chain of custody was preserved.|Chuỗi lưu giữ chứng cứ được bảo toàn.|N
+civic engagement|n.|sự tham gia công dân|Civic engagement rose with open data.|Sự tham gia công dân tăng cùng dữ liệu mở.|N
+civil society|n.|xã hội dân sự|Civil society monitors spending.|Xã hội dân sự giám sát chi tiêu.|N
+climate adaptation|n.|thích ứng khí hậu|Climate adaptation tops coastal plans.|Thích ứng khí hậu đứng đầu kế hoạch ven biển.|M
+climate resilience|n.|chống chịu khí hậu|Climate resilience is costed in.|Chi phí chống chịu khí hậu được tính vào.|M
+co-financing|n.|đồng tài trợ|Co-financing spreads the risk.|Đồng tài trợ chia sẻ rủi ro.|M
+common good|n.|lợi ích chung|Policy serves the common good.|Chính sách phục vụ lợi ích chung.|K
+comparably|adv.|một cách tương đương|Costs are comparably low.|Chi phí thấp một cách tương đương.|K
+competitiveness index|n.|chỉ số năng lực cạnh tranh|The competitiveness index ranks provinces.|Chỉ số năng lực cạnh tranh xếp hạng các tỉnh.|M
+consolidated report|n.|báo cáo hợp nhất|A consolidated report covers all funds.|Báo cáo hợp nhất bao quát mọi quỹ.|M
+cost estimate|n.|khái toán chi phí|The cost estimate doubled after review.|Khái toán chi phí tăng gấp đôi sau thẩm định.|M
+cross-cutting|adj.|liên ngành, xuyên suốt|Gender is a cross-cutting issue.|Bình đẳng giới là vấn đề xuyên suốt.|K
+debt burden|n.|gánh nặng nợ|The debt burden is manageable.|Gánh nặng nợ trong tầm kiểm soát.|M
+digital platform economy|n.|kinh tế nền tảng số|The digital platform economy needs new rules.|Kinh tế nền tảng số cần luật chơi mới.|M
+dispute settlement|n.|giải quyết tranh chấp|Dispute settlement moved online.|Giải quyết tranh chấp chuyển sang trực tuyến.|N
+early warning|n.|cảnh báo sớm|Early warning systems flag risks.|Hệ thống cảnh báo sớm phát hiện rủi ro.|N
+economic corridor|n.|hành lang kinh tế|The economic corridor links three provinces.|Hành lang kinh tế nối ba tỉnh.|M
+enabling environment|n.|môi trường thuận lợi|Reform creates an enabling environment.|Cải cách tạo môi trường thuận lợi.|M
+exit strategy|n.|chiến lược rút lui|Every subsidy needs an exit strategy.|Mọi khoản trợ cấp cần chiến lược rút lui.|M
+external audit|n.|kiểm toán độc lập bên ngoài|An external audit was commissioned.|Một cuộc kiểm toán độc lập được thuê thực hiện.|M
+fiduciary|adj.|ủy thác (trách nhiệm)|Fiduciary duties bind fund managers.|Trách nhiệm ủy thác ràng buộc người quản lý quỹ.|M
+fiscal capacity|n.|năng lực tài khóa|Fiscal capacity differs across provinces.|Năng lực tài khóa khác nhau giữa các tỉnh.|M
+fit for purpose|adj.phr.|phù hợp mục đích|The system is fit for purpose.|Hệ thống phù hợp với mục đích sử dụng.|Q
+gatekeeping|n.|kiểm soát cửa ngõ|Gatekeeping delays approvals.|Kiểm soát cửa ngõ làm chậm phê duyệt.|N
+governance indicator|n.|chỉ báo quản trị|Governance indicators improved.|Các chỉ báo quản trị được cải thiện.|N
+green procurement|n.|mua sắm công xanh|Green procurement favors recycled goods.|Mua sắm công xanh ưu tiên hàng tái chế.|N
+harmonize|v.|hài hòa hóa|Standards were harmonized regionally.|Tiêu chuẩn được hài hòa hóa trong khu vực.|K
+impact assessment|n.|đánh giá tác động|An impact assessment precedes the law.|Đánh giá tác động đi trước đạo luật.|P
+in charge of|prep.phr.|phụ trách|She is in charge of the portal.|Bà ấy phụ trách cổng dịch vụ.|Q
+in-service training|n.|bồi dưỡng tại chức|In-service training upgrades skills.|Bồi dưỡng tại chức nâng cấp kỹ năng.|N
+insourcing|n.|tự thực hiện (thay thuê ngoài)|Insourcing cut IT costs.|Tự thực hiện giúp giảm chi phí CNTT.|N
+inter-provincial|adj.|liên tỉnh|Inter-provincial roads need one owner.|Đường liên tỉnh cần một đầu mối chịu trách nhiệm.|N
+internal audit|n.|kiểm toán nội bộ|Internal audit reports to the board.|Kiểm toán nội bộ báo cáo lãnh đạo.|M
+job creation|n.|tạo việc làm|Job creation tops the agenda.|Tạo việc làm đứng đầu nghị trình.|M
+knowledge transfer|n.|chuyển giao tri thức|Knowledge transfer ends the project well.|Chuyển giao tri thức khép lại dự án trọn vẹn.|K
+last mile|n.|chặng cuối|The last mile of delivery is hardest.|Chặng cuối của cung ứng là khó nhất.|N
+legal aid|n.|trợ giúp pháp lý|Legal aid serves poor litigants.|Trợ giúp pháp lý phục vụ người nghèo.|N
+lesson-drawing|n.|rút bài học|Lesson-drawing from Korea shaped the plan.|Việc rút bài học từ Hàn Quốc định hình kế hoạch.|K
+management information system|n.|hệ thống thông tin quản lý|The management information system tracks KPIs.|Hệ thống thông tin quản lý theo dõi KPI.|N
+multi-year budgeting|n.|ngân sách trung hạn nhiều năm|Multi-year budgeting aids planning.|Ngân sách nhiều năm hỗ trợ lập kế hoạch.|M
+mystery shopper|n.|khách hàng bí mật|Mystery shoppers test service quality.|Khách hàng bí mật kiểm tra chất lượng dịch vụ.|N
+national assembly|n.|quốc hội|The National Assembly amended the law.|Quốc hội sửa đổi đạo luật.|N
+office term|n.|nhiệm kỳ công tác|Reforms outlast one office term.|Cải cách kéo dài hơn một nhiệm kỳ.|N
+on-the-job training|n.|đào tạo qua công việc|On-the-job training beats classrooms.|Đào tạo qua công việc hiệu quả hơn lớp học.|N
+outcome indicator|n.|chỉ số kết quả|Outcome indicators beat output counts.|Chỉ số kết quả tốt hơn đếm đầu việc.|P
+peer learning|n.|học hỏi đồng cấp|Peer learning links provinces.|Học hỏi đồng cấp kết nối các tỉnh.|K
+performance contract|n.|hợp đồng theo kết quả|Directors sign performance contracts.|Giám đốc ký hợp đồng theo kết quả.|N
+policy brief|n.|bản tóm tắt chính sách|A policy brief summarizes the thesis.|Một bản tóm tắt chính sách cô đọng luận án.|P
+policy dialogue|n.|đối thoại chính sách|Policy dialogue engaged businesses.|Đối thoại chính sách thu hút doanh nghiệp.|N
+public disclosure|n.|công khai thông tin|Public disclosure is mandatory.|Công khai thông tin là bắt buộc.|N
+public trust|n.|niềm tin công chúng|Public trust rose five points.|Niềm tin công chúng tăng năm điểm.|N
+quality control|n.|kiểm soát chất lượng|Quality control caught the errors.|Kiểm soát chất lượng phát hiện sai sót.|N
+regulatory sandbox|n.|cơ chế thử nghiệm có kiểm soát|A regulatory sandbox tests fintech.|Cơ chế thử nghiệm có kiểm soát dành cho fintech.|N
+result-oriented|adj.|hướng kết quả|A result-oriented culture emerged.|Văn hóa hướng kết quả hình thành.|N
+risk assessment|n.|đánh giá rủi ro|Risk assessment guides inspections.|Đánh giá rủi ro định hướng thanh tra.|P
+service coverage|n.|độ bao phủ dịch vụ|Service coverage reached ninety-five percent.|Độ bao phủ dịch vụ đạt chín mươi lăm phần trăm.|N
+shared services|n.|dịch vụ dùng chung|Shared services cut overheads.|Dịch vụ dùng chung giảm chi phí chung.|N
+single window|n.|cơ chế một cửa liên thông|The single window links customs agencies.|Cơ chế một cửa liên thông kết nối các cơ quan hải quan.|N
+spending review|n.|rà soát chi tiêu định kỳ|A spending review found savings.|Đợt rà soát chi tiêu tìm ra khoản tiết kiệm.|M
+succession planning|n.|quy hoạch kế cận|Succession planning fills key posts.|Quy hoạch kế cận chuẩn bị cho các vị trí chủ chốt.|N
+sunset clause|n.|điều khoản hết hiệu lực|The sunset clause forces review.|Điều khoản hết hiệu lực buộc phải rà soát lại.|N
+supreme audit institution|n.|cơ quan kiểm toán tối cao|The supreme audit institution reports to parliament.|Cơ quan kiểm toán tối cao báo cáo quốc hội.|N
+think tank|n.|viện nghiên cứu chính sách|A think tank drafted the proposal.|Một viện nghiên cứu chính sách soạn đề xuất.|K
+value for citizens|n.phr.|giá trị cho người dân|Reforms must create value for citizens.|Cải cách phải tạo giá trị cho người dân.|Q
+whole-of-government|adj.|toàn chính phủ|A whole-of-government approach is needed.|Cần cách tiếp cận toàn chính phủ.|N
+zero-based budgeting|n.|ngân sách từ số không|Zero-based budgeting challenges old lines.|Ngân sách từ số không thách thức các khoản chi cũ.|M

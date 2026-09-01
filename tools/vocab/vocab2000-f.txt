@@ -1,0 +1,138 @@
+research design|n.|thiết kế nghiên cứu|The research design combines two methods.|Thiết kế nghiên cứu kết hợp hai phương pháp.|P
+research question|n.|câu hỏi nghiên cứu|Each chapter answers one research question.|Mỗi chương trả lời một câu hỏi nghiên cứu.|P
+research objective|n.|mục tiêu nghiên cứu|The research objectives are listed in chapter one.|Mục tiêu nghiên cứu nêu ở chương một.|P
+literature review|n.|tổng quan tài liệu|The literature review identifies a gap.|Tổng quan tài liệu chỉ ra một khoảng trống.|P
+research gap|n.|khoảng trống nghiên cứu|My study fills a research gap.|Nghiên cứu của tôi lấp một khoảng trống.|P
+conceptual framework|n.|khung khái niệm|The conceptual framework links five factors.|Khung khái niệm liên kết năm yếu tố.|P
+theoretical framework|n.|khung lý thuyết|The theoretical framework draws on agency theory.|Khung lý thuyết dựa trên lý thuyết ủy quyền.|P
+unit of analysis|n.|đơn vị phân tích|The unit of analysis is the district.|Đơn vị phân tích là cấp huyện.|P
+operationalize|v.|thao tác hóa (khái niệm)|We operationalize trust with three items.|Chúng tôi thao tác hóa niềm tin bằng ba câu hỏi.|P
+measurement|n.|đo lường|Measurement error biases estimates.|Sai số đo lường làm lệch ước lượng.|P
+construct|n.|khái niệm đo lường|Each construct has four indicators.|Mỗi khái niệm có bốn chỉ báo.|P
+construct validity|n.|giá trị khái niệm|Factor analysis supports construct validity.|Phân tích nhân tố ủng hộ giá trị khái niệm.|P
+internal validity|n.|giá trị nội tại|Randomization strengthens internal validity.|Ngẫu nhiên hóa củng cố giá trị nội tại.|P
+external validity|n.|giá trị ngoại suy|External validity is limited to one province.|Khả năng ngoại suy giới hạn trong một tỉnh.|P
+content validity|n.|giá trị nội dung|Experts assessed content validity.|Chuyên gia thẩm định giá trị nội dung.|P
+face validity|n.|giá trị bề mặt|The scale has good face validity.|Thang đo có giá trị bề mặt tốt.|P
+test-retest reliability|n.|độ tin cậy kiểm tra lại|Test-retest reliability was high.|Độ tin cậy đo lặp lại ở mức cao.|P
+internal consistency|n.|độ nhất quán nội tại|Alpha indicates internal consistency.|Hệ số alpha thể hiện độ nhất quán nội tại.|P
+Cronbach's alpha|n.|hệ số Cronbach alpha|Cronbach's alpha exceeded 0.8.|Hệ số Cronbach alpha vượt 0,8.|P
+effect size|n.|độ lớn tác động|Report effect sizes, not only p-values.|Hãy báo cáo độ lớn tác động, không chỉ p-value.|P
+statistical power|n.|lực thống kê|Small samples reduce statistical power.|Mẫu nhỏ làm giảm lực thống kê.|P
+sample size|n.|cỡ mẫu|The sample size is 420 respondents.|Cỡ mẫu là 420 người trả lời.|P
+sampling frame|n.|khung mẫu|The registry served as the sampling frame.|Sổ đăng ký được dùng làm khung mẫu.|P
+response rate|n.|tỷ lệ phản hồi|The response rate reached 78 percent.|Tỷ lệ phản hồi đạt 78 phần trăm.|P
+nonresponse bias|n.|thiên lệch không phản hồi|We test for nonresponse bias.|Chúng tôi kiểm tra thiên lệch do không phản hồi.|P
+selection bias|n.|thiên lệch chọn mẫu|Selection bias threatens the comparison.|Thiên lệch chọn mẫu đe dọa phép so sánh.|P
+recall bias|n.|thiên lệch hồi tưởng|Recall bias affects survey answers.|Thiên lệch hồi tưởng ảnh hưởng câu trả lời khảo sát.|P
+social desirability bias|n.|thiên lệch trả lời cho đẹp|Sensitive questions invite social desirability bias.|Câu hỏi nhạy cảm dễ gây thiên lệch trả lời cho đẹp.|P
+attrition|n.|hao hụt mẫu|Attrition was below five percent.|Hao hụt mẫu dưới năm phần trăm.|P
+outlier|n.|giá trị ngoại lai|Outliers were winsorized.|Giá trị ngoại lai được xử lý winsorize.|P
+missing data|n.|dữ liệu khuyết|Missing data were imputed.|Dữ liệu khuyết được nội suy.|P
+imputation|n.|nội suy dữ liệu|Multiple imputation preserved the sample.|Nội suy bội giữ nguyên cỡ mẫu.|P
+data cleaning|n.|làm sạch dữ liệu|Data cleaning took two weeks.|Làm sạch dữ liệu mất hai tuần.|P
+dummy variable|n.|biến giả|A dummy variable marks urban districts.|Một biến giả đánh dấu các quận đô thị.|P
+categorical variable|n.|biến phân loại|Region is a categorical variable.|Vùng là một biến phân loại.|P
+continuous variable|n.|biến liên tục|Income is treated as continuous.|Thu nhập được coi là biến liên tục.|P
+ordinal scale|n.|thang thứ bậc|Satisfaction uses an ordinal scale.|Mức hài lòng dùng thang thứ bậc.|P
+Likert scale|n.|thang Likert|Items use a five-point Likert scale.|Các câu hỏi dùng thang Likert năm mức.|P
+pilot test|n.|khảo sát thử|A pilot test refined the questionnaire.|Khảo sát thử giúp hoàn thiện bảng hỏi.|P
+baseline survey|n.|khảo sát đầu kỳ|The baseline survey ran in 2022.|Khảo sát đầu kỳ tiến hành năm 2022.|P
+endline survey|n.|khảo sát cuối kỳ|The endline survey measures change.|Khảo sát cuối kỳ đo lường thay đổi.|P
+difference-in-differences|n.|phương pháp khác biệt kép|Difference-in-differences estimates the impact.|Phương pháp khác biệt kép ước lượng tác động.|P
+regression discontinuity|n.|hồi quy gián đoạn|Regression discontinuity exploits the cutoff.|Hồi quy gián đoạn khai thác ngưỡng phân bổ.|P
+propensity score matching|n.|ghép cặp điểm xu hướng|Propensity score matching balances groups.|Ghép cặp điểm xu hướng cân bằng hai nhóm.|P
+fixed effects|n.|hiệu ứng cố định|Province fixed effects absorb differences.|Hiệu ứng cố định cấp tỉnh hấp thụ khác biệt.|P
+random effects|n.|hiệu ứng ngẫu nhiên|A Hausman test rejected random effects.|Kiểm định Hausman bác mô hình hiệu ứng ngẫu nhiên.|P
+robustness check|n.|kiểm định tính vững|Robustness checks support the result.|Các kiểm định tính vững ủng hộ kết quả.|P
+sensitivity analysis|n.|phân tích độ nhạy|Sensitivity analysis varies key assumptions.|Phân tích độ nhạy thay đổi các giả định chính.|P
+multicollinearity|n.|đa cộng tuyến|VIF values rule out multicollinearity.|Giá trị VIF loại trừ đa cộng tuyến.|P
+heteroskedasticity|n.|phương sai thay đổi|Robust errors address heteroskedasticity.|Sai số chuẩn vững xử lý phương sai thay đổi.|P
+autocorrelation|n.|tự tương quan|Autocorrelation is common in time series.|Tự tương quan thường gặp trong chuỗi thời gian.|P
+standard error|n.|sai số chuẩn|Standard errors are clustered by district.|Sai số chuẩn được gộp cụm theo huyện.|P
+t-test|n.|kiểm định t|A t-test compares the two means.|Kiểm định t so sánh hai giá trị trung bình.|P
+chi-square test|n.|kiểm định chi bình phương|A chi-square test checks independence.|Kiểm định chi bình phương xét tính độc lập.|P
+analysis of variance|n.|phân tích phương sai (ANOVA)|Analysis of variance compares three groups.|Phân tích phương sai so sánh ba nhóm.|P
+degrees of freedom|n.|bậc tự do|Degrees of freedom equal n minus k.|Bậc tự do bằng n trừ k.|P
+R-squared|n.|hệ số xác định|The R-squared is 0.62.|Hệ số xác định là 0,62.|P
+goodness of fit|n.|độ phù hợp mô hình|Goodness of fit is acceptable.|Độ phù hợp của mô hình ở mức chấp nhận được.|P
+model specification|n.|thiết lập mô hình|Model specification follows theory.|Thiết lập mô hình bám theo lý thuyết.|P
+omitted variable bias|n.|thiên lệch do thiếu biến|Omitted variable bias may remain.|Thiên lệch do thiếu biến có thể vẫn còn.|P
+reverse causality|n.|nhân quả ngược|Reverse causality is a threat here.|Nhân quả ngược là một nguy cơ ở đây.|P
+spurious correlation|n.|tương quan giả|A third factor creates spurious correlation.|Một yếu tố thứ ba tạo tương quan giả.|P
+mediating variable|n.|biến trung gian|Trust acts as a mediating variable.|Niềm tin đóng vai trò biến trung gian.|P
+moderating variable|n.|biến điều tiết|Firm size is a moderating variable.|Quy mô doanh nghiệp là biến điều tiết.|P
+interaction term|n.|biến tương tác|The interaction term is significant.|Biến tương tác có ý nghĩa thống kê.|P
+lagged variable|n.|biến trễ|We include a lagged variable.|Chúng tôi đưa vào một biến trễ.|P
+natural experiment|n.|thí nghiệm tự nhiên|The reform provides a natural experiment.|Cuộc cải cách tạo ra một thí nghiệm tự nhiên.|P
+quasi-experiment|n.|bán thí nghiệm|A quasi-experiment compares two cohorts.|Bán thí nghiệm so sánh hai nhóm.|P
+randomized controlled trial|n.|thử nghiệm ngẫu nhiên có đối chứng|A randomized controlled trial is not feasible here.|Thử nghiệm ngẫu nhiên có đối chứng không khả thi ở đây.|P
+ethics approval|n.|phê duyệt đạo đức nghiên cứu|Ethics approval was obtained.|Nghiên cứu đã được phê duyệt đạo đức.|P
+informed consent|n.|đồng ý sau khi được thông tin|Informed consent was collected in writing.|Người tham gia ký đồng ý sau khi được giải thích.|P
+anonymity|n.|khuyết danh|Anonymity encourages honest answers.|Khuyết danh khuyến khích trả lời trung thực.|P
+confidentiality|n.|bảo mật thông tin|Confidentiality of records is guaranteed.|Bảo mật hồ sơ được bảo đảm.|P
+coding scheme|n.|sơ đồ mã hóa|The coding scheme has ten categories.|Sơ đồ mã hóa gồm mười nhóm.|P
+codebook|n.|sổ tay mã hóa|Two coders followed the codebook.|Hai người mã hóa theo sổ tay chung.|P
+intercoder reliability|n.|độ tin cậy giữa người mã hóa|Intercoder reliability reached 0.85.|Độ tin cậy giữa người mã hóa đạt 0,85.|P
+transcription|n.|gỡ băng|Transcription preserved local terms.|Bản gỡ băng giữ nguyên từ ngữ địa phương.|P
+content analysis|n.|phân tích nội dung|Content analysis covered 200 documents.|Phân tích nội dung bao quát 200 văn bản.|P
+grounded theory|n.|lý thuyết nền tảng (từ dữ liệu)|Grounded theory guided the coding.|Lý thuyết nền tảng dẫn dắt việc mã hóa.|P
+case selection|n.|chọn trường hợp|Case selection follows a most-different logic.|Chọn trường hợp theo logic khác biệt nhất.|P
+comparative case study|n.|nghiên cứu so sánh trường hợp|A comparative case study of three cities.|Nghiên cứu so sánh ba thành phố.|P
+process tracing|n.|truy vết quá trình|Process tracing reveals the mechanism.|Truy vết quá trình làm lộ cơ chế tác động.|P
+participant observation|n.|quan sát tham dự|Participant observation lasted three months.|Quan sát tham dự kéo dài ba tháng.|P
+semi-structured interview|n.|phỏng vấn bán cấu trúc|We ran 25 semi-structured interviews.|Chúng tôi thực hiện 25 cuộc phỏng vấn bán cấu trúc.|P
+in-depth interview|n.|phỏng vấn sâu|In-depth interviews lasted an hour each.|Mỗi cuộc phỏng vấn sâu kéo dài một giờ.|P
+key informant|n.|người cung cấp thông tin chủ chốt|Key informants included two directors.|Người cung cấp thông tin chủ chốt gồm hai giám đốc.|P
+snowball sampling|n.|chọn mẫu quả cầu tuyết|Snowball sampling reached hidden groups.|Chọn mẫu quả cầu tuyết tiếp cận nhóm khó gặp.|P
+convenience sampling|n.|chọn mẫu thuận tiện|Convenience sampling limits inference.|Chọn mẫu thuận tiện hạn chế suy luận.|P
+cluster sampling|n.|chọn mẫu theo cụm|Cluster sampling cut travel costs.|Chọn mẫu theo cụm giảm chi phí đi lại.|P
+systematic sampling|n.|chọn mẫu hệ thống|Systematic sampling picked every tenth file.|Chọn mẫu hệ thống lấy mỗi hồ sơ thứ mười.|P
+quota sampling|n.|chọn mẫu định mức|Quota sampling mirrored the population.|Chọn mẫu định mức phản chiếu cơ cấu dân số.|P
+census data|n.|dữ liệu tổng điều tra|Census data anchor the weights.|Dữ liệu tổng điều tra làm gốc cho trọng số.|P
+secondary analysis|n.|phân tích dữ liệu thứ cấp|Secondary analysis used ministry records.|Phân tích thứ cấp dùng hồ sơ của bộ.|P
+meta-analysis|n.|phân tích tổng hợp|A meta-analysis pooled 40 studies.|Phân tích tổng hợp gộp 40 nghiên cứu.|P
+systematic review|n.|tổng quan hệ thống|The systematic review followed PRISMA.|Tổng quan hệ thống theo chuẩn PRISMA.|P
+citation|n.|trích dẫn|Every claim needs a citation.|Mỗi luận điểm cần có trích dẫn.|P
+plagiarism|n.|đạo văn|Plagiarism checks are mandatory.|Kiểm tra đạo văn là bắt buộc.|P
+peer review|n.|bình duyệt|Peer review improved the paper.|Bình duyệt giúp bài báo tốt hơn.|P
+unit root test|n.|kiểm định nghiệm đơn vị|Unit root tests precede the model.|Kiểm định nghiệm đơn vị đi trước mô hình.|P
+cointegration|n.|đồng tích hợp|Cointegration implies a long-run link.|Đồng tích hợp hàm ý quan hệ dài hạn.|P
+granger causality|n.|nhân quả Granger|Granger causality runs one way.|Nhân quả Granger chỉ theo một chiều.|P
+forecast|n./v.|dự báo|The model forecasts revenue well.|Mô hình dự báo nguồn thu khá tốt.|P
+scenario analysis|n.|phân tích kịch bản|Scenario analysis covers three paths.|Phân tích kịch bản xét ba hướng đi.|P
+benchmarking|n.|đối sánh chuẩn|Benchmarking compares provinces.|Đối sánh chuẩn so sánh các tỉnh.|P
+composite index|n.|chỉ số tổng hợp|The composite index has four pillars.|Chỉ số tổng hợp gồm bốn trụ cột.|P
+weighting|n.|gán trọng số|Weighting follows expert judgment.|Trọng số dựa trên ý kiến chuyên gia.|P
+normalization|n.|chuẩn hóa (dữ liệu)|Normalization puts scores on one scale.|Chuẩn hóa đưa điểm về cùng một thang.|P
+factor analysis|n.|phân tích nhân tố|Factor analysis reduced 20 items to 4.|Phân tích nhân tố rút 20 mục còn 4.|P
+principal component|n.|thành phần chính|The first principal component dominates.|Thành phần chính thứ nhất chiếm ưu thế.|P
+structural equation modeling|n.|mô hình phương trình cấu trúc|Structural equation modeling tests the paths.|Mô hình phương trình cấu trúc kiểm định các đường dẫn.|P
+descriptive analysis|n.|phân tích mô tả|Descriptive analysis comes first.|Phân tích mô tả đi trước.|P
+inferential statistics|n.|thống kê suy luận|Inferential statistics generalize the results.|Thống kê suy luận khái quát hóa kết quả.|P
+confidence level|n.|độ tin cậy (thống kê)|We use a 95 percent confidence level.|Chúng tôi dùng độ tin cậy 95 phần trăm.|P
+margin of error|n.|biên sai số|The margin of error is three points.|Biên sai số là ba điểm.|P
+significance level|n.|mức ý nghĩa|The significance level is set at 0.05.|Mức ý nghĩa được đặt ở 0,05.|P
+one-tailed test|n.|kiểm định một phía|A one-tailed test fits the hypothesis.|Kiểm định một phía phù hợp với giả thuyết.|P
+median|n.|trung vị|The median income is lower than the mean.|Thu nhập trung vị thấp hơn trung bình.|P
+mean|n.|giá trị trung bình|The mean score rose over time.|Điểm trung bình tăng theo thời gian.|P
+variance|n.|phương sai|Variance differs across groups.|Phương sai khác nhau giữa các nhóm.|P
+percentile|n.|bách phân vị|The district is in the top percentile.|Huyện nằm ở bách phân vị cao nhất.|P
+distribution|n.|phân phối|The distribution is skewed right.|Phân phối lệch phải.|P
+skewness|n.|độ lệch (phân phối)|Skewness suggests a long tail.|Độ lệch cho thấy đuôi phân phối dài.|P
+correlation matrix|n.|ma trận tương quan|The correlation matrix flags overlap.|Ma trận tương quan cảnh báo trùng lặp.|P
+scatter plot|n.|biểu đồ phân tán|The scatter plot shows a positive slope.|Biểu đồ phân tán cho thấy độ dốc dương.|P
+regression line|n.|đường hồi quy|The regression line fits well.|Đường hồi quy khớp dữ liệu tốt.|P
+error term|n.|phần dư (sai số)|The error term captures noise.|Phần dư thu nhận nhiễu.|P
+estimator|n.|ước lượng viên (thống kê)|The estimator is unbiased.|Ước lượng không thiên lệch.|P
+identification strategy|n.|chiến lược nhận diện (nhân quả)|Our identification strategy uses a cutoff.|Chiến lược nhận diện dùng một ngưỡng.|P
+exogenous|adj.|ngoại sinh|The shock is plausibly exogenous.|Cú sốc có thể coi là ngoại sinh.|P
+endogenous|adj.|nội sinh|Policy choice is endogenous.|Lựa chọn chính sách mang tính nội sinh.|P
+proxy variable|n.|biến đại diện|Night lights proxy for activity.|Ánh sáng đêm đại diện cho hoạt động kinh tế.|P
+measurement invariance|n.|tính bất biến đo lường|We test measurement invariance across groups.|Chúng tôi kiểm định tính bất biến đo lường giữa các nhóm.|P
+data triangulation|n.|đối chiếu nhiều nguồn dữ liệu|Data triangulation strengthens claims.|Đối chiếu nhiều nguồn củng cố luận điểm.|P
+member checking|n.|kiểm chứng với người tham gia|Member checking validated the themes.|Kiểm chứng với người tham gia xác nhận các chủ đề.|P
+reflexivity|n.|tính phản tư|Reflexivity notes the researcher's role.|Tính phản tư ghi nhận vai trò của người nghiên cứu.|P
+generalize|v.|khái quát hóa|Results generalize with caution.|Kết quả chỉ nên khái quát hóa thận trọng.|P
+replicate|v.|tái lập (nghiên cứu)|Others can replicate our steps.|Người khác có thể tái lập các bước của chúng tôi.|P
+pre-registration|n.|đăng ký trước nghiên cứu|Pre-registration reduces bias.|Đăng ký trước làm giảm thiên lệch.|P

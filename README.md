@@ -9,11 +9,11 @@ Web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần server,
 | Module | Chức năng |
 |---|---|
 | **◎ Bảng điều khiển** | Vị trí trên lộ trình 12 tháng, % tháng hiện tại, streak, tổng giờ học, biểu đồ tiến bộ (thẻ ôn/ngày · điểm phát âm · điểm mô phỏng), danh sách **việc hôm nay** (xen kẽ theo tháng), cảnh báo chậm tiến độ. |
-| **✎ Từ vựng (FSRS)** | 274 thẻ nạp sẵn (AWL + chuyên ngành, 4 cấp dễ→khó theo tháng), thuật toán **FSRS-4.5**, thẻ **2 chiều** (ưu tiên Việt→Anh), chế độ **NÓI TO** (nhận dạng giọng nói đối chiếu), đếm từ thuộc / mục tiêu 2.000. Luôn **truy hồi trước, xem đáp án sau**. |
+| **✎ Từ vựng (FSRS)** | **2.007 mục** nạp sẵn (AWL 1–10 · kinh tế & chính sách · hành chính công & chuyển đổi số · phương pháp nghiên cứu · collocation · câu chức năng; 4 cấp dễ→khó theo tháng), thuật toán **FSRS-4.5**, thẻ **2 chiều** (ưu tiên Việt→Anh), chế độ **NÓI TO** (nhận dạng giọng nói đối chiếu), đếm từ thuộc / mục tiêu 2.000. Luôn **truy hồi trước, xem đáp án sau**. |
 | **🎙 Phát âm** | Máy chấm theo TỪ (Web Speech API): xanh=đúng, đỏ=sai; bộ đọc đuôi -s/-ed, cụm phụ âm, trọng âm; **14 bộ minimal pairs** cho lỗi đặc thù người Việt; bảng **44 âm** kèm mẹo; theo dõi tiến bộ theo từng âm. |
 | **🗣 Shadowing** | Ưu tiên **nhại NGƯỜI THẬT** qua video bản xứ (VOA → BBC → CrashCourse → TED/LSE theo giai đoạn): quy trình 3 bước, chỉnh tốc độ, **lặp đoạn A–B**, ghi âm so với bản gốc, thêm video của riêng bạn (kèm transcript). Chế độ offline: câu mẫu **giọng OmniVoice render sẵn**. |
-| **✦ Luyện nói với AI** | Claude (`claude-sonnet-4-6`) làm giáo viên: nói (speech-to-text) → AI phản hồi + đọc to. 3 chế độ: hội thoại · **sửa lỗi** (ngữ pháp, từ học thuật) · **nhập vai hội đồng**. |
-| **🎓 Mô phỏng bảo vệ** | AI đọc tóm tắt luận văn → sinh câu hỏi theo **8 dạng** (phương pháp, dữ liệu, tính mới, hạn chế, ứng dụng, lý thuyết, đóng góp, hướng tiếp); hẹn giờ 25' trình bày + 3'/câu trả lời; chấm **5 tiêu chí** (nội dung · trôi chảy · phát âm · từ chuyên ngành · ứng xử) + 3 việc cần cải thiện + câu trả lời mẫu; lưu lịch sử so tiến bộ. Kèm **ngân hàng 130 câu** + khung trả lời, **luyện nghe câu hỏi đa giọng**, **câu cứu nguy**. |
+| **✦ Luyện nói với AI** | Phương án chính: **GEMINI** (miễn phí) — app sinh prompt chứa hồ sơ + vị trí lộ trình + tiến độ, bạn dán vào Gemini để luyện (4 chế độ: kế hoạch tuần · hội thoại · sửa lỗi · nhập vai hội đồng). Tùy chọn: chat ngay trong app qua Anthropic API. |
+| **🎓 Mô phỏng bảo vệ** | Với **Gemini**: prompt mô phỏng đầy đủ (sinh câu hỏi 8 dạng, hỏi từng câu, chấm 5 tiêu chí); hoặc mô phỏng trong app có bấm giờ + ghi transcript rồi nhờ Gemini chấm. AI đọc tóm tắt luận văn → sinh câu hỏi theo **8 dạng** (phương pháp, dữ liệu, tính mới, hạn chế, ứng dụng, lý thuyết, đóng góp, hướng tiếp); hẹn giờ 25' trình bày + 3'/câu trả lời; chấm **5 tiêu chí** (nội dung · trôi chảy · phát âm · từ chuyên ngành · ứng xử) + 3 việc cần cải thiện + câu trả lời mẫu; lưu lịch sử so tiến bộ. Kèm **ngân hàng 130 câu** + khung trả lời, **luyện nghe câu hỏi đa giọng**, **câu cứu nguy**. |
 
 ### Nguyên tắc sư phạm cài sẵn
 1. **Retrieval practice** — không bao giờ hiện đáp án trước.
@@ -45,6 +45,8 @@ English/
 │   └── js/
 │       ├── fsrs.js             # Thuật toán FSRS-4.5
 │       ├── seed.js             # 274 từ + 130 câu hỏi + 36 câu mẫu (dữ liệu gốc)
+│       ├── seed2.js            # +1.733 mục (sinh từ tools/vocab/build_seed2.py)
+│       ├── prompts.js          # Sinh prompt cho Gemini (coach, mô phỏng, kế hoạch tuần)
 │       ├── roadmap.js          # Lộ trình 12 tháng (mục tiêu, tuần, đầu ra, mix)
 │       ├── content.js          # 44 âm, minimal pairs, 8 dạng phản biện, thư viện shadowing
 │       ├── store.js            # Trạng thái (localStorage) + di trú v1→v3

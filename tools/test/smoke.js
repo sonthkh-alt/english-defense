@@ -37,12 +37,14 @@ function assert(cond,msg){ console.log((cond?'✓ ':'✗ LỖI: ')+msg); if(!con
 
 require('../../assets/js/fsrs.js');
 require('../../assets/js/seed.js');
+require('../../assets/js/seed2.js');
 require('../../assets/js/roadmap.js');
 require('../../assets/js/content.js');
 require('../../assets/js/store.js');
 require('../../assets/js/ui.js');
 require('../../assets/js/rec.js');
 require('../../assets/js/ai.js');
+require('../../assets/js/prompts.js');
 require('../../assets/js/views-core.js');
 require('../../assets/js/views-vocab.js');
 require('../../assets/js/views-pron.js');
@@ -65,13 +67,16 @@ const prev = FSRS.previewIntervals(FSRS.newCard(t), t, Store.daysBetween);
 assert(prev[4] >= prev[3] && prev[3] >= prev[2], 'FSRS: khoảng cách Dễ ≥ Nhớ ≥ Khó (' + [prev[1],prev[2],prev[3],prev[4]].join('/') + ')');
 
 /* ===== Store ===== */
-assert(Store.cards().length >= 270, 'Store: nạp sẵn ' + Store.cards().length + ' thẻ từ SEED');
+assert(Store.browseList().length >= 2000, 'Kho từ: ' + Store.browseList().length + ' mục (SEED + SEED2, mục tiêu ~2000)');
+assert(Store.cards().length === 0, 'Store: state khởi đầu KHÔNG chứa thẻ chưa học (nhẹ localStorage)');
 assert(Store.dueCount() === 0, 'Store: chưa intro thẻ nào → 0 thẻ đến hạn');
 const nq = Store.newQueue(5);
 assert(nq.length === 5 && nq.every(x => x.level === 1), 'Store: hàng đợi từ mới tháng 1 chỉ cấp 1');
 assert(Store.newQueue(0).length === 0, 'Store: hết hạn mức (limit=0) → hàng đợi rỗng');
-Store.introduceCard(nq[0].id);
-assert(Store.dueCount() === 2, 'Store: intro 1 thẻ → 2 lượt đến hạn (2 chiều)');
+Store.introduceCard(nq[0]);
+assert(Store.cards().length === 1 && Store.dueCount() === 2, 'Store: intro 1 thẻ → vào state + 2 lượt đến hạn (2 chiều)');
+Store.introduceCard(nq[0]); // gọi lặp không tạo trùng
+assert(Store.cards().length === 1, 'Store: intro lặp không tạo thẻ trùng');
 const q0 = Store.dueQueue()[0];
 assert(q0.dir === 've', 'Store: chiều Việt→Anh (truy hồi) được ôn TRƯỚC');
 Store.reviewCard(q0.card.id, q0.dir, 3);
@@ -83,12 +88,12 @@ assert(Store.currentMonth() >= 1 && ROADMAP.MONTHS.length === 12, 'Roadmap: 12 t
 // export/import giữ nguyên dữ liệu
 const json = Store.exportJSON();
 Store.importJSON(json);
-assert(Store.cards().length >= 270 && Store.dueCount() === 1, 'Store: xuất/nhập JSON giữ nguyên trạng thái');
+assert(Store.cards().length === 1 && Store.dueCount() === 1, 'Store: xuất/nhập JSON giữ nguyên trạng thái');
 
 // file hỏng → từ chối, không ghi đè
 let threw = false;
 try { Store.importJSON('{"foo": 1}'); } catch (e) { threw = true; }
-assert(threw && Store.cards().length >= 270, 'Store: file sao lưu sai định dạng bị TỪ CHỐI, dữ liệu còn nguyên');
+assert(threw && Store.cards().length === 1, 'Store: file sao lưu sai định dạng bị TỪ CHỐI, dữ liệu còn nguyên');
 
 // di trú bản v1: giữ dữ liệu tự soạn, backfill IPA từ SEED, suy phút từ block
 const v1 = {
@@ -118,6 +123,17 @@ const r2 = REC.scoreAgainst('The data show a clear upward trend', 'the data a tr
 assert(r2.score > 30 && r2.score < 80 && r2.marks.some(m => !m.ok), 'Chấm: khớp một phần = ' + r2.score + '%, có từ đỏ');
 const r3 = REC.scoreAgainst('costs increased in 2020', 'costs increased in twenty twenty');
 assert(r3.marks[0].ok, 'Chấm: chuẩn hóa chữ thường/dấu câu hoạt động');
+
+/* ===== PROMPTS cho Gemini ===== */
+const pCoach = PROMPTS.coach('committee');
+assert(pCoach.includes('THÀNH VIÊN HỘI ĐỒNG') && pCoach.includes('Tháng ') && pCoach.includes('QUY TẮC'),
+  'PROMPTS: prompt hội đồng chứa vai + vị trí lộ trình + quy tắc');
+assert(PROMPTS.weekly().includes('7 NGÀY'), 'PROMPTS: prompt kế hoạch tuần');
+assert(PROMPTS.defenseGen(8).includes('8') && PROMPTS.defenseGen(8).includes('phản biện'),
+  'PROMPTS: prompt sinh câu hỏi mô phỏng');
+const pScore = PROMPTS.defenseScore([{ q: 'Why this method?', a: 'Because it fits.' }]);
+assert(pScore.includes('Why this method?') && pScore.includes('Because it fits.') && pScore.includes('tiêu chí'),
+  'PROMPTS: prompt chấm điểm kèm transcript + 5 tiêu chí');
 
 /* ===== nội dung ===== */
 // câu shadowing & câu cứu nguy phải có audio trong gói OmniVoice
@@ -149,7 +165,7 @@ assert(bankN >= 100, 'Content: ngân hàng ' + bankN + ' câu hỏi từ SEED');
 /* ===== index.html & sw.js ===== */
 const fs=require('fs');
 const html=fs.readFileSync(__dirname+'/../../index.html','utf8');
-['fsrs.js','roadmap.js','content.js','rec.js','ai.js','views-core.js','views-vocab.js','views-pron.js','views-shadow.js','views-ai.js','views-defense.js']
+['fsrs.js','seed2.js','roadmap.js','content.js','rec.js','ai.js','prompts.js','views-core.js','views-vocab.js','views-pron.js','views-shadow.js','views-ai.js','views-defense.js']
   .forEach(f => assert(html.includes(f), 'index.html nạp ' + f));
 assert(!html.includes('views.js"') && !html.includes('data.js') && !html.includes('lessons.js'), 'index.html không còn file cũ');
 const sw=fs.readFileSync(__dirname+'/../../sw.js','utf8');

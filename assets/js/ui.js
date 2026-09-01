@@ -336,6 +336,26 @@
     return { supported: !!synth, speak, ttsSpeak, testVoice, fetchWordAudio, englishVoices, rankedVoices, pickVoice, voiceQuality, loadPack, packHas, packCount, reload: load };
   })();
 
+  /* ---------- Sao chép vào clipboard (kèm fallback iOS/file://) ---------- */
+  function copy(text, okMsg) {
+    const done = () => toast(okMsg || "Đã sao chép — dán vào Gemini", "accent");
+    const fallback = () => {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        done();
+      } catch (e) { toast("Không sao chép được — hãy bôi đen và copy thủ công"); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else fallback();
+  }
+
   /* ---------- Tiện ích dùng chung ---------- */
   function fmtSecs(x) {
     x = Math.max(0, Math.floor(x));
@@ -350,5 +370,5 @@
     return a;
   }
 
-  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, fmtSecs, shuffle, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
+  global.UI = { h, esc, toast, modal, confirmDialog, ring, bar, prettyDate, shortDate, fmtSecs, shuffle, copy, appendChildren, WD, MO, Speech, speak: (t, o) => Speech.speak(t, o) };
 })(window);

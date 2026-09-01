@@ -1,0 +1,274 @@
+abolish|v.|bãi bỏ|The fee was abolished in 2024.|Khoản phí bị bãi bỏ năm 2024.|N
+absorb|v.|hấp thụ|The fund absorbs revenue shocks.|Quỹ hấp thụ các cú sốc nguồn thu.|K
+accelerate|v.|đẩy nhanh|The decree accelerated disbursement.|Nghị định đẩy nhanh giải ngân.|K
+accessibility|n.|khả năng tiếp cận|Accessibility of services matters most.|Khả năng tiếp cận dịch vụ là quan trọng nhất.|N
+accommodate|v.|đáp ứng, dung nạp|The plan accommodates future growth.|Quy hoạch dung nạp tăng trưởng tương lai.|K
+accomplish|v.|hoàn thành|The unit accomplished its mission.|Đơn vị hoàn thành nhiệm vụ.|K
+accordance|n.|sự phù hợp (in accordance with)|Payments follow in accordance with the law.|Việc chi trả tuân theo quy định pháp luật.|K
+accountability framework|n.|khung trách nhiệm giải trình|The accountability framework names owners.|Khung trách nhiệm giải trình chỉ rõ người chịu trách nhiệm.|N
+adoption rate|n.|tỷ lệ áp dụng|The adoption rate of e-services doubled.|Tỷ lệ dùng dịch vụ điện tử tăng gấp đôi.|N
+advisory|adj.|tư vấn|An advisory board reviews plans.|Một hội đồng tư vấn thẩm định kế hoạch.|K
+affordability|n.|khả năng chi trả|Housing affordability is falling.|Khả năng chi trả nhà ở đang giảm.|M
+aftermath|n.|hậu quả sau biến cố|In the aftermath of the crisis, rules changed.|Sau khủng hoảng, luật lệ thay đổi.|K
+agenda|n.|nghị trình|Reform tops the agenda.|Cải cách đứng đầu nghị trình.|K
+aging population|n.|dân số già hóa|An aging population strains pensions.|Dân số già hóa gây áp lực lên lương hưu.|M
+allowance|n.|phụ cấp|Regional allowances attract staff.|Phụ cấp vùng thu hút nhân lực.|N
+ambition|n.|tham vọng, khát vọng|The strategy shows high ambition.|Chiến lược thể hiện khát vọng lớn.|K
+amendment|n.|điều khoản sửa đổi|The amendment passed narrowly.|Điều khoản sửa đổi được thông qua sít sao.|N
+anonymize|v.|ẩn danh hóa|Records were anonymized before sharing.|Hồ sơ được ẩn danh hóa trước khi chia sẻ.|P
+applicant|n.|người nộp hồ sơ|Applicants track files online.|Người nộp hồ sơ theo dõi trực tuyến.|N
+appraise|v.|thẩm định|Projects are appraised independently.|Dự án được thẩm định độc lập.|M
+arbitrate|v.|phân xử|A council arbitrates disputes.|Một hội đồng phân xử tranh chấp.|N
+archive|n./v.|kho lưu trữ|Files move to the archive after five years.|Hồ sơ chuyển vào lưu trữ sau năm năm.|N
+assess needs|v.phr.|đánh giá nhu cầu|We assessed needs before budgeting.|Chúng tôi đánh giá nhu cầu trước khi lập ngân sách.|Q
+asset management|n.|quản lý tài sản|Asset management software tracks land.|Phần mềm quản lý tài sản theo dõi đất đai.|N
+attain the goal|v.phr.|đạt mục tiêu|The city attained its housing goal.|Thành phố đạt mục tiêu nhà ở.|Q
+austere|adj.|khắc khổ, thắt lưng buộc bụng|Austere budgets cut services.|Ngân sách khắc khổ cắt giảm dịch vụ.|M
+authorize|v.|cho phép, phê chuẩn|The council authorized the loan.|Hội đồng phê chuẩn khoản vay.|N
+autonomy|n.|quyền tự chủ|Universities gained financial autonomy.|Các trường đại học được tự chủ tài chính.|N
+average out|v.phr.|tính trung bình|Gains average out at three percent.|Mức lợi trung bình khoảng ba phần trăm.|Q
+backbone|n.|xương sống|SMEs are the backbone of the economy.|Doanh nghiệp nhỏ và vừa là xương sống nền kinh tế.|M
+bargaining power|n.|vị thế mặc cả|Workers lack bargaining power.|Người lao động thiếu vị thế mặc cả.|M
+benefit-cost ratio|n.|tỷ số lợi ích chi phí|The benefit-cost ratio exceeds two.|Tỷ số lợi ích trên chi phí vượt hai.|M
+bidding document|n.|hồ sơ mời thầu|Bidding documents are posted online.|Hồ sơ mời thầu được đăng công khai.|N
+blueprint|n.|bản thiết kế tổng thể|The blueprint guides digital reform.|Bản thiết kế tổng thể dẫn dắt cải cách số.|K
+bottleneck analysis|n.|phân tích điểm nghẽn|Bottleneck analysis found three delays.|Phân tích điểm nghẽn tìm ra ba khâu chậm.|P
+breakdown|n.|phân tách; sự cố|The breakdown by sector is shown here.|Phân tách theo ngành được trình bày ở đây.|K
+budget allocation|n.|phân bổ ngân sách|Budget allocation follows a formula.|Phân bổ ngân sách theo công thức.|M
+budget cycle|n.|chu trình ngân sách|The budget cycle starts in June.|Chu trình ngân sách bắt đầu từ tháng Sáu.|M
+buffer|n.|vùng đệm|Reserves act as a fiscal buffer.|Dự trữ đóng vai trò vùng đệm tài khóa.|M
+burden sharing|n.|chia sẻ gánh nặng|Burden sharing between levels is contested.|Chia sẻ gánh nặng giữa các cấp còn tranh cãi.|M
+capital city|n.|thủ đô|The capital city pilots new services.|Thủ đô thí điểm dịch vụ mới.|N
+capstone|n.|dấu mốc hoàn thiện|The law is the capstone of reform.|Đạo luật là dấu mốc hoàn thiện của cải cách.|K
+carve out|v.phr.|dành riêng|Funds were carved out for maintenance.|Kinh phí được dành riêng cho bảo trì.|Q
+cascade|v.|truyền xuống theo tầng|Targets cascade to each unit.|Chỉ tiêu truyền xuống từng đơn vị.|K
+ceiling|n.|mức trần|A ceiling caps overtime pay.|Mức trần khống chế tiền làm thêm giờ.|M
+certified copy|n.|bản sao chứng thực|Certified copies are no longer required.|Không còn yêu cầu bản sao chứng thực.|N
+chair|v./n.|chủ trì; chủ tọa|The vice minister chaired the session.|Thứ trưởng chủ trì phiên họp.|K
+checkpoint|n.|điểm kiểm soát|Each stage has a quality checkpoint.|Mỗi công đoạn có một điểm kiểm soát chất lượng.|K
+citizen-centric|adj.|lấy người dân làm trung tâm|Design must be citizen-centric.|Thiết kế phải lấy người dân làm trung tâm.|N
+clarity|n.|sự rõ ràng|Legal clarity attracts investors.|Sự rõ ràng pháp lý thu hút đầu tư.|K
+classified|adj.|mật (tài liệu)|Classified files follow separate rules.|Tài liệu mật theo quy định riêng.|N
+clearance|n.|sự thông quan; phê duyệt|Customs clearance takes hours, not days.|Thông quan mất vài giờ thay vì vài ngày.|N
+coalition|n.|liên minh|A reform coalition emerged.|Một liên minh cải cách hình thành.|K
+collateral|n.|tài sản thế chấp|Small firms lack collateral.|Doanh nghiệp nhỏ thiếu tài sản thế chấp.|M
+collective|adj.|tập thể|Collective decisions dilute accountability.|Quyết định tập thể làm loãng trách nhiệm.|K
+committee|n.|hội đồng, ủy ban|The committee has five members.|Hội đồng gồm năm thành viên.|K
+comparator|n.|đối tượng so sánh|Thailand serves as a comparator.|Thái Lan được dùng làm đối tượng so sánh.|P
+compile statistics|v.phr.|tổng hợp số liệu|The office compiles monthly statistics.|Cục tổng hợp số liệu hằng tháng.|Q
+comprehensive plan|n.phr.|quy hoạch tổng thể|The comprehensive plan runs to 2050.|Quy hoạch tổng thể kéo dài tới 2050.|Q
+concerted effort|n.phr.|nỗ lực đồng bộ|Reform needs a concerted effort.|Cải cách cần nỗ lực đồng bộ.|Q
+condition precedent|n.|điều kiện tiên quyết|Funding has conditions precedent.|Khoản tài trợ có các điều kiện tiên quyết.|M
+confidential|adj.|bảo mật|Responses remain confidential.|Câu trả lời được giữ bảo mật.|P
+configuration|n.|cấu hình|The system configuration was updated.|Cấu hình hệ thống được cập nhật.|N
+congestion|n.|ùn tắc|Congestion pricing is debated.|Phí chống ùn tắc đang được tranh luận.|M
+consolidate|v.|hợp nhất, củng cố|Districts were consolidated.|Các huyện được hợp nhất.|N
+constituency|n.|khu vực cử tri; nhóm ủng hộ|Reform needs a constituency.|Cải cách cần một nhóm ủng hộ.|K
+consultation paper|n.|tài liệu tham vấn|A consultation paper invited comments.|Tài liệu tham vấn mời góp ý.|N
+contractor|n.|nhà thầu|The contractor missed the deadline.|Nhà thầu trễ tiến độ.|N
+contribution margin|n.|biên đóng góp|Each service has a contribution margin.|Mỗi dịch vụ có một biên đóng góp.|M
+coordination failure|n.|thất bại phối hợp|Coordination failure delayed relief.|Thất bại phối hợp làm chậm cứu trợ.|M
+cornerstone|n.|nền tảng, hòn đá tảng|Trust is the cornerstone of governance.|Niềm tin là hòn đá tảng của quản trị.|K
+cost driver|n.|yếu tố đội chi phí|Land is the main cost driver.|Đất đai là yếu tố đội chi phí chính.|M
+cost-sharing|n.|đồng chi trả|Cost-sharing applies to health services.|Đồng chi trả áp dụng trong y tế.|M
+counterpart|n.|đối tác tương ứng|We met our provincial counterparts.|Chúng tôi gặp các đối tác cấp tỉnh.|K
+credibility|n.|độ tin cậy, uy tín|Policy credibility anchors expectations.|Uy tín chính sách neo giữ kỳ vọng.|K
+crisis management|n.|quản lý khủng hoảng|Crisis management plans were tested.|Kế hoạch quản lý khủng hoảng được diễn tập.|N
+criterion-based|adj.|dựa trên tiêu chí|Selection is criterion-based.|Việc lựa chọn dựa trên tiêu chí.|P
+cross-border|adj.|xuyên biên giới|Cross-border trade rebounded.|Thương mại xuyên biên giới phục hồi.|M
+cross-check|v.|đối chiếu chéo|Figures were cross-checked with banks.|Số liệu được đối chiếu chéo với ngân hàng.|P
+crowdsource|v.|huy động cộng đồng|The city crowdsources pothole reports.|Thành phố huy động dân báo ổ gà.|N
+cumulative|adj.|tích lũy, cộng dồn|The cumulative effect is large.|Tác động cộng dồn là lớn.|P
+cutoff|n.|ngưỡng phân định|The cutoff is an income of five million.|Ngưỡng phân định là thu nhập năm triệu.|P
+cyclical|adj.|có tính chu kỳ|Revenues are highly cyclical.|Nguồn thu có tính chu kỳ cao.|M
+data-driven|adj.|dựa trên dữ liệu|Data-driven decisions beat intuition.|Quyết định dựa trên dữ liệu thắng cảm tính.|N
+deadline|n.|hạn chót|The filing deadline was extended.|Hạn chót nộp hồ sơ được gia hạn.|K
+deadweight loss|n.|tổn thất vô ích|Taxes create deadweight loss.|Thuế tạo tổn thất vô ích.|M
+decision rights|n.|quyền quyết định|Decision rights were clarified.|Quyền quyết định được làm rõ.|N
+default|n.|vỡ nợ; mặc định|The firm defaulted on its loan.|Doanh nghiệp vỡ nợ khoản vay.|M
+deliverable|n.|sản phẩm bàn giao|Each phase has clear deliverables.|Mỗi giai đoạn có sản phẩm bàn giao rõ ràng.|K
+demographic|adj./n.|nhân khẩu học|Demographic change reshapes demand.|Biến động nhân khẩu tái định hình nhu cầu.|M
+deposit|n.|tiền gửi; khoản đặt cọc|Deposits grew despite low rates.|Tiền gửi vẫn tăng dù lãi suất thấp.|M
+depreciation|n.|khấu hao; mất giá|Depreciation is underfunded.|Khấu hao chưa được bố trí đủ.|M
+deputy|n.|cấp phó|The deputy director signs routine files.|Phó giám đốc ký hồ sơ thường quy.|N
+deregulate|v.|bãi bỏ quản chế|The sector was deregulated.|Ngành này được bãi bỏ quản chế.|M
+designate|v.|chỉ định|A focal point was designated.|Một đầu mối được chỉ định.|K
+deterrent|n.|yếu tố răn đe|Heavy fines act as a deterrent.|Mức phạt nặng có tác dụng răn đe.|N
+diagnostic|n./adj.|chẩn đoán|A governance diagnostic was run.|Một đợt chẩn đoán quản trị được thực hiện.|P
+disclose|v.|công khai, công bố|Officials must disclose assets.|Cán bộ phải công khai tài sản.|N
+discretion|n.|quyền tự quyết|Excessive discretion invites abuse.|Quyền tự quyết quá rộng dễ bị lạm dụng.|N
+dismiss|v.|bác; miễn nhiệm|The appeal was dismissed.|Kháng nghị bị bác.|N
+dissemination|n.|phổ biến (kết quả)|Dissemination workshops reached 40 provinces.|Hội thảo phổ biến tới 40 tỉnh.|P
+divergence|n.|sự phân kỳ|Regional divergence widened.|Sự phân kỳ giữa các vùng nới rộng.|M
+diversify|v.|đa dạng hóa|Provinces diversify revenue sources.|Các tỉnh đa dạng hóa nguồn thu.|M
+dividend|n.|cổ tức; lợi ích|The digital dividend is real.|Lợi ích số là có thật.|M
+donor|n.|nhà tài trợ|Donors co-funded the survey.|Các nhà tài trợ đồng tài trợ khảo sát.|M
+double-count|v.|tính trùng|Avoid double-counting benefits.|Tránh tính trùng lợi ích.|P
+downturn|n.|đợt suy giảm|The downturn cut tax receipts.|Đợt suy giảm làm hụt số thu thuế.|M
+draft|n./v.|dự thảo|The draft is open for comments.|Dự thảo đang lấy ý kiến.|N
+durable|adj.|bền vững, lâu bền|Reforms must be durable.|Cải cách phải bền vững.|K
+dynamic|adj.|năng động, động|The private sector is dynamic.|Khu vực tư nhân rất năng động.|K
+earmark|v.|dành riêng (ngân sách)|Funds are earmarked for maintenance.|Kinh phí được dành riêng cho bảo trì.|M
+efficiency gain|n.phr.|mức tăng hiệu quả|Efficiency gains paid for the system.|Mức tăng hiệu quả bù đắp chi phí hệ thống.|Q
+eligibility|n.|điều kiện thụ hưởng|Eligibility rules were simplified.|Điều kiện thụ hưởng được đơn giản hóa.|N
+eligible|adj.|đủ điều kiện|Eligible households get support.|Hộ đủ điều kiện nhận hỗ trợ.|N
+embed|v.|gắn chặt vào|Evaluation is embedded in the program.|Đánh giá được gắn chặt vào chương trình.|K
+empower|v.|trao quyền|The law empowers commune leaders.|Luật trao quyền cho lãnh đạo xã.|N
+endorse|v.|tán thành, phê chuẩn|The board endorsed the plan.|Ban lãnh đạo tán thành kế hoạch.|K
+enterprise|n.|doanh nghiệp|Household enterprises dominate retail.|Hộ kinh doanh chi phối bán lẻ.|M
+entitlement|n.|quyền thụ hưởng|Entitlements are defined by law.|Quyền thụ hưởng do luật định.|N
+escalate|v.|leo thang; trình lên|Unresolved cases escalate upward.|Vụ việc chưa xử lý được trình lên cấp trên.|K
+exchange|n./v.|trao đổi|Data exchange is automatic.|Trao đổi dữ liệu diễn ra tự động.|K
+exemption|n.|miễn (thuế, phí)|Tax exemptions favor high-tech firms.|Miễn thuế ưu tiên doanh nghiệp công nghệ cao.|M
+expedite|v.|đẩy nhanh|A task force expedites big projects.|Tổ công tác đẩy nhanh các dự án lớn.|K
+expropriation|n.|thu hồi (đất, tài sản)|Expropriation requires fair compensation.|Thu hồi đất đòi hỏi bồi thường thỏa đáng.|M
+extension|n.|gia hạn; khuyến nông|An extension was granted once.|Việc gia hạn chỉ được chấp thuận một lần.|K
+facilitator|n.|người điều phối|A facilitator ran the workshop.|Một điều phối viên dẫn dắt hội thảo.|K
+feasibility|n.|tính khả thi|Feasibility depends on funding.|Tính khả thi phụ thuộc nguồn vốn.|K
+fee schedule|n.|biểu phí|The fee schedule is posted publicly.|Biểu phí được niêm yết công khai.|N
+fieldwork|n.|khảo sát thực địa|Fieldwork lasted three months.|Khảo sát thực địa kéo dài ba tháng.|P
+finalize|v.|hoàn tất|The report was finalized in June.|Báo cáo được hoàn tất vào tháng Sáu.|K
+first-mover|n.|người đi đầu|The province is a first-mover in AI.|Tỉnh là người đi đầu về AI.|K
+flagship|adj./n.|chủ lực, đầu tàu|The portal is the flagship project.|Cổng dịch vụ là dự án chủ lực.|K
+focal point|n.|đầu mối|Each agency names a focal point.|Mỗi cơ quan cử một đầu mối.|N
+follow-up|n.|bước tiếp nối|A follow-up survey is planned.|Một khảo sát tiếp nối được lên kế hoạch.|P
+forecast error|n.|sai số dự báo|Forecast errors shrank over time.|Sai số dự báo thu hẹp theo thời gian.|P
+formalize|v.|chính thức hóa|Street vendors were formalized.|Người bán hàng rong được chính thức hóa.|M
+fraud|n.|gian lận|Analytics detect claim fraud.|Phân tích dữ liệu phát hiện gian lận hồ sơ.|N
+frontline|adj.|tuyến đầu|Frontline staff need support.|Cán bộ tuyến đầu cần được hỗ trợ.|N
+gatekeeper|n.|người gác cổng|Gatekeepers can extract rents.|Người gác cổng có thể trục lợi.|N
+grassroots|adj./n.|cơ sở (cấp thấp nhất)|Grassroots democracy was strengthened.|Dân chủ cơ sở được tăng cường.|N
+grievance|n.|khiếu nại, bức xúc|Land grievances dominate petitions.|Khiếu nại đất đai chiếm đa số đơn thư.|N
+guardrail|n.|hàng rào bảo vệ|Fiscal guardrails limit borrowing.|Hàng rào tài khóa giới hạn vay nợ.|M
+handbook|n.|sổ tay|A handbook guides new staff.|Sổ tay hướng dẫn cán bộ mới.|K
+handover|n.|bàn giao|The handover of records was smooth.|Việc bàn giao hồ sơ diễn ra suôn sẻ.|K
+hardship|n.|hoàn cảnh khó khăn|Hardship allowances support remote staff.|Phụ cấp khó khăn hỗ trợ cán bộ vùng xa.|N
+headcount|n.|số biên chế|The headcount was frozen.|Biên chế bị đóng băng.|N
+headline figure|n.phr.|con số nổi bật|The headline figure hides variation.|Con số nổi bật che giấu sự phân tán.|Q
+homogeneous|adj.|đồng nhất|The sample is not homogeneous.|Mẫu không đồng nhất.|P
+horizon|n.|tầm nhìn thời gian|The planning horizon is ten years.|Tầm thời gian quy hoạch là mười năm.|K
+in-kind|adj.|bằng hiện vật|In-kind support includes rice.|Hỗ trợ hiện vật gồm gạo.|M
+inclusive|adj.|bao trùm|Growth must be inclusive.|Tăng trưởng phải bao trùm.|M
+incremental|adj.|tiệm tiến, tăng dần|Change was incremental, not radical.|Thay đổi mang tính tiệm tiến, không đột phá.|K
+incumbent|n./adj.|người đương nhiệm|Incumbents resist restructuring.|Người đương nhiệm phản đối tái cơ cấu.|N
+inflow|n.|dòng vào|Capital inflows surged.|Dòng vốn vào tăng vọt.|M
+insolvency|n.|mất khả năng thanh toán|Insolvency rules were modernized.|Quy định phá sản được hiện đại hóa.|M
+inspection|n.|cuộc thanh tra|Unannounced inspections increased.|Thanh tra đột xuất tăng lên.|N
+intact|adj.|nguyên vẹn|Core functions remain intact.|Chức năng cốt lõi vẫn nguyên vẹn.|K
+intake|n.|tiếp nhận (hồ sơ)|Digital intake reduced errors.|Tiếp nhận số hóa giảm sai sót.|N
+interim|adj.|tạm thời, giữa kỳ|An interim report was issued.|Báo cáo giữa kỳ được ban hành.|K
+irreversible|adj.|không thể đảo ngược|Digitization is irreversible.|Số hóa là không thể đảo ngược.|K
+joint venture|n.|liên doanh|The port is a joint venture.|Cảng là một liên doanh.|M
+judiciary|n.|hệ thống tư pháp|An independent judiciary matters.|Tư pháp độc lập rất quan trọng.|N
+lag|n./v.|độ trễ; tụt hậu|Policy effects appear with a lag.|Tác động chính sách xuất hiện có độ trễ.|P
+landmark|adj./n.|mang tính bước ngoặt|A landmark ruling changed practice.|Một phán quyết bước ngoặt thay đổi thực tiễn.|K
+lawful|adj.|hợp pháp|Only lawful requests are processed.|Chỉ yêu cầu hợp pháp mới được xử lý.|N
+layoff|n.|cắt giảm nhân sự|Layoffs were avoided through attrition.|Tránh được cắt giảm nhờ giảm tự nhiên.|M
+lead time|n.|thời gian chuẩn bị|Procurement lead time fell.|Thời gian chuẩn bị đấu thầu giảm.|N
+legitimacy|n.|tính chính danh|Participation boosts legitimacy.|Sự tham gia củng cố tính chính danh.|N
+lifecycle|n.|vòng đời|We manage assets across their lifecycle.|Chúng tôi quản lý tài sản theo vòng đời.|K
+literacy|n.|khả năng đọc viết; hiểu biết|Financial literacy is low.|Hiểu biết tài chính còn thấp.|K
+litigation|n.|kiện tụng|Litigation over land is rising.|Kiện tụng đất đai gia tăng.|N
+livelihood|n.|sinh kế|Resettlement affects livelihoods.|Tái định cư ảnh hưởng sinh kế.|M
+lobby|v./n.|vận động hành lang|Industry lobbied against the tax.|Ngành hàng vận động chống lại sắc thuế.|K
+logistics hub|n.|trung tâm logistics|The province plans a logistics hub.|Tỉnh quy hoạch một trung tâm logistics.|M
+loophole|n.|kẽ hở (pháp lý)|The amendment closed a loophole.|Điều khoản sửa đổi bịt một kẽ hở.|N
+mainstream|v./adj.|chính thống; lồng ghép|Climate risk was mainstreamed into planning.|Rủi ro khí hậu được lồng ghép vào quy hoạch.|K
+mandatory|adj.|bắt buộc|E-invoicing is mandatory.|Hóa đơn điện tử là bắt buộc.|N
+manpower|n.|nhân lực|Manpower shortages delay projects.|Thiếu nhân lực làm chậm dự án.|N
+mapping|n.|sơ đồ hóa|Process mapping revealed overlaps.|Sơ đồ hóa quy trình lộ ra chồng chéo.|P
+mismatch|n.|sự lệch pha|A skills mismatch persists.|Lệch pha kỹ năng vẫn tồn tại.|M
+mitigate|v.|giảm nhẹ|Buffers mitigate revenue shocks.|Vùng đệm giảm nhẹ cú sốc nguồn thu.|K
+modality|n.|phương thức thực hiện|Delivery modalities vary by region.|Phương thức triển khai khác nhau theo vùng.|K
+modernize|v.|hiện đại hóa|Treasury systems were modernized.|Hệ thống kho bạc được hiện đại hóa.|N
+momentum|n.|đà, động lượng|Reform momentum must be kept.|Phải giữ đà cải cách.|K
+mobility|n.|dịch chuyển|Labor mobility rose after reform.|Dịch chuyển lao động tăng sau cải cách.|M
+multilateral|adj.|đa phương|Multilateral banks co-finance roads.|Ngân hàng đa phương đồng tài trợ đường sá.|M
+municipal bond|n.|trái phiếu đô thị|Municipal bonds fund the metro.|Trái phiếu đô thị tài trợ tuyến metro.|M
+notarize|v.|công chứng|Contracts no longer need notarizing.|Hợp đồng không còn phải công chứng.|N
+notification|n.|thông báo|Automatic notifications reduce visits.|Thông báo tự động giảm số lần đi lại.|N
+obligation|n.|nghĩa vụ|Reporting obligations were eased.|Nghĩa vụ báo cáo được nới nhẹ.|N
+onboarding|n.|hội nhập nhân sự mới|Onboarding now takes one week.|Hội nhập nhân sự mới nay chỉ mất một tuần.|N
+operationalize the plan|v.phr.|đưa kế hoạch vào vận hành|Decrees operationalize the strategy.|Các nghị định đưa chiến lược vào vận hành.|Q
+outreach|n.|truyền thông tiếp cận|Outreach campaigns raised awareness.|Chiến dịch tiếp cận nâng cao nhận thức.|N
+overhaul|n./v.|đại tu, cải tổ|The pay system needs an overhaul.|Hệ thống tiền lương cần được cải tổ.|K
+oversee|v.|giám sát chung|The council oversees spending.|Hội đồng giám sát chi tiêu.|N
+paperwork|n.|giấy tờ|Paperwork fell by seventy percent.|Giấy tờ giảm bảy mươi phần trăm.|N
+pathway|n.|lộ trình, con đường|We map pathways to net zero.|Chúng tôi vạch lộ trình tới phát thải ròng bằng không.|K
+penalty|n.|chế tài phạt|Late payment carries a penalty.|Nộp chậm bị phạt.|N
+pension|n.|lương hưu|Pension reform is unavoidable.|Cải cách lương hưu là không thể tránh.|M
+phased approach|n.phr.|cách làm theo giai đoạn|A phased approach reduces risk.|Cách làm theo giai đoạn giảm rủi ro.|Q
+portfolio|n.|danh mục|The investment portfolio was reviewed.|Danh mục đầu tư được rà soát.|M
+preferential|adj.|ưu đãi|Preferential credit targets agriculture.|Tín dụng ưu đãi hướng vào nông nghiệp.|M
+prerequisite|n.|điều kiện tiên quyết|Data quality is a prerequisite.|Chất lượng dữ liệu là điều kiện tiên quyết.|K
+prevalence|n.|mức độ phổ biến|The prevalence of informality is high.|Mức độ phi chính thức còn cao.|P
+proactive|adj.|chủ động|Agencies should be proactive.|Cơ quan nên chủ động.|K
+probation|n.|thời gian tập sự|New hires serve one year of probation.|Người mới tập sự một năm.|N
+procurement plan|n.|kế hoạch đấu thầu|The procurement plan was published.|Kế hoạch đấu thầu được công bố.|N
+profile|n.|hồ sơ đặc điểm|We profile the poorest communes.|Chúng tôi lập hồ sơ các xã nghèo nhất.|P
+projection|n.|dự phóng|Debt projections look manageable.|Dự phóng nợ ở mức kiểm soát được.|P
+proportional|adj.|tương xứng, theo tỷ lệ|Penalties are proportional to harm.|Chế tài tương xứng với mức độ vi phạm.|K
+prudent|adj.|thận trọng|Prudent borrowing kept debt low.|Vay nợ thận trọng giữ nợ ở mức thấp.|M
+public opinion|n.|dư luận|Public opinion shifted quickly.|Dư luận thay đổi nhanh chóng.|K
+quorum|n.|số đại biểu tối thiểu|The meeting lacked a quorum.|Cuộc họp không đủ số đại biểu tối thiểu.|N
+ratify|v.|phê chuẩn (hiệp định)|Parliament ratified the treaty.|Quốc hội phê chuẩn hiệp định.|N
+readiness|n.|mức độ sẵn sàng|Digital readiness varies widely.|Mức độ sẵn sàng số rất khác nhau.|N
+realistic|adj.|thực tế|Targets must be realistic.|Chỉ tiêu phải thực tế.|K
+reallocate|v.|phân bổ lại|Savings were reallocated to health.|Khoản tiết kiệm được phân bổ lại cho y tế.|M
+reconcile|v.|đối chiếu; dung hòa|Accounts are reconciled monthly.|Sổ sách được đối chiếu hằng tháng.|M
+redress|n.|khắc phục, đền bù|Citizens seek redress through courts.|Người dân tìm sự đền bù qua tòa án.|N
+refund|n./v.|hoàn trả|Tax refunds were accelerated.|Hoàn thuế được đẩy nhanh.|M
+registry|n.|sổ đăng ký, cơ sở dữ liệu gốc|The business registry is online.|Sổ đăng ký doanh nghiệp đã trực tuyến.|N
+reallocation|n.|sự phân bổ lại|Reallocation favored primary care.|Việc phân bổ lại ưu tiên y tế cơ sở.|M
+remedy|n.|biện pháp khắc phục|The law provides remedies.|Luật quy định các biện pháp khắc phục.|N
+renewal|n.|sự gia hạn; đổi mới|License renewal is automatic.|Gia hạn giấy phép diễn ra tự động.|N
+reshuffle|n./v.|cải tổ nhân sự|A cabinet reshuffle followed.|Một đợt cải tổ nội các diễn ra sau đó.|K
+resign|v.|từ chức|The director resigned.|Vị giám đốc đã từ chức.|K
+retention|n.|giữ chân (nhân sự); giữ lại|Staff retention improved with pay reform.|Giữ chân nhân sự cải thiện nhờ cải cách lương.|N
+retrofit|v.|cải tạo nâng cấp|Old offices were retrofitted.|Trụ sở cũ được cải tạo nâng cấp.|K
+rollout|n.|triển khai diện rộng|The national rollout took two years.|Triển khai toàn quốc mất hai năm.|N
+safeguard|n./v.|biện pháp bảo vệ|Safeguards protect personal data.|Các biện pháp bảo vệ dữ liệu cá nhân.|N
+scrutiny|n.|sự soi xét|Big projects face public scrutiny.|Dự án lớn chịu sự soi xét của công chúng.|N
+self-assessment|n.|tự đánh giá|Tax self-assessment is standard.|Tự khai tự nộp thuế là chuẩn mực.|N
+severance|n.|trợ cấp thôi việc|Severance packages eased downsizing.|Trợ cấp thôi việc làm dịu tinh giản.|N
+shortfall|n.|mức hụt|A revenue shortfall forced cuts.|Hụt thu buộc phải cắt giảm.|M
+sluggish|adj.|trì trệ|Disbursement remains sluggish.|Giải ngân vẫn trì trệ.|M
+snapshot|n.|lát cắt hiện trạng|The survey is a snapshot of 2025.|Khảo sát là lát cắt hiện trạng năm 2025.|P
+solicit|v.|mời (góp ý, hồ sơ)|Comments were solicited widely.|Góp ý được mời rộng rãi.|K
+stagnate|v.|đình trệ|Wages stagnated for years.|Tiền lương đình trệ nhiều năm.|M
+standardize|v.|chuẩn hóa|Forms were standardized nationwide.|Biểu mẫu được chuẩn hóa toàn quốc.|N
+steering committee|n.|ban chỉ đạo|A steering committee meets monthly.|Ban chỉ đạo họp hằng tháng.|N
+stipulate|v.|quy định rõ|The law stipulates a 15-day limit.|Luật quy định rõ thời hạn 15 ngày.|N
+streamlined|adj.|tinh gọn|A streamlined process cut steps.|Quy trình tinh gọn giảm số bước.|N
+stress test|n.|kiểm tra sức chịu đựng|Banks undergo stress tests.|Ngân hàng trải qua kiểm tra sức chịu đựng.|M
+subcontract|v.|thầu phụ|Parts were subcontracted locally.|Một số phần việc được thầu phụ tại chỗ.|M
+subnational|adj.|dưới cấp quốc gia|Subnational debt is capped.|Nợ của chính quyền địa phương bị khống chế trần.|M
+superior|n./adj.|cấp trên; vượt trội|Reports go to the direct superior.|Báo cáo gửi cấp trên trực tiếp.|K
+surcharge|n.|phụ phí|A congestion surcharge was proposed.|Một khoản phụ phí chống ùn tắc được đề xuất.|M
+synergy|n.|cộng hưởng|Mergers created synergies.|Sáp nhập tạo hiệu ứng cộng hưởng.|K
+takeaway|n.|điểm rút ra|The main takeaway is simple.|Điểm rút ra chính rất đơn giản.|K
+tenure|n.|nhiệm kỳ; quyền sử dụng|Land tenure security encourages investment.|An toàn quyền sử dụng đất khuyến khích đầu tư.|M
+testify|v.|làm chứng, điều trần|Experts testified before the council.|Chuyên gia điều trần trước hội đồng.|N
+tier|n.|cấp, tầng|Vietnam has multiple government tiers.|Việt Nam có nhiều cấp chính quyền.|N
+timeline|n.|mốc thời gian|The timeline slipped by a quarter.|Mốc thời gian trượt mất một quý.|K
+toll|n.|phí đường bộ; thiệt hại|Tolls repay the highway loans.|Phí đường bộ hoàn trả vốn vay cao tốc.|M
+tranche|n.|đợt giải ngân|The second tranche was released.|Đợt giải ngân thứ hai được thực hiện.|M
+transitional|adj.|chuyển tiếp|Transitional rules apply this year.|Quy định chuyển tiếp áp dụng trong năm nay.|N
+turnover|n.|doanh thu; luân chuyển|Staff turnover is high in IT units.|Luân chuyển nhân sự cao ở bộ phận CNTT.|M
+unanimous|adj.|nhất trí|The vote was unanimous.|Cuộc biểu quyết đạt nhất trí.|K
+underfunded|adj.|thiếu kinh phí|Maintenance is chronically underfunded.|Bảo trì thiếu kinh phí kinh niên.|M
+underserved|adj.|chưa được phục vụ tốt|Underserved areas get priority.|Vùng thiệt thòi được ưu tiên.|N
+unlock|v.|khai mở|Reform unlocks private capital.|Cải cách khai mở vốn tư nhân.|K
+upgrade|v./n.|nâng cấp|The system was upgraded overnight.|Hệ thống được nâng cấp trong đêm.|K
+uphold|v.|giữ vững, y án|The court upheld the fine.|Tòa giữ nguyên mức phạt.|N
+uptake|n.|mức độ đón nhận|Uptake of e-services is rising.|Mức độ dùng dịch vụ điện tử đang tăng.|N
+utility|n.|dịch vụ thiết yếu; độ thỏa dụng|Utilities are regulated monopolies.|Dịch vụ thiết yếu là độc quyền có quản chế.|M
+vacancy|n.|vị trí khuyết|Vacancies remain unfilled.|Nhiều vị trí khuyết chưa được bổ sung.|N
+verdict|n.|phán quyết|The verdict set a precedent.|Phán quyết tạo tiền lệ.|N
+vet|v.|thẩm tra|Candidates are vetted carefully.|Ứng viên được thẩm tra kỹ.|N
+viability|n.|tính khả thi bền vững|Financial viability was proven.|Tính khả thi tài chính đã được chứng minh.|K
+volatile|adj.|biến động mạnh|Land revenue is volatile.|Nguồn thu từ đất biến động mạnh.|M
+waiver|n.|sự miễn trừ|A fee waiver helps poor students.|Miễn phí giúp học sinh nghèo.|N
+watchdog|n.|cơ quan giám sát độc lập|The press acts as a watchdog.|Báo chí đóng vai trò giám sát.|N
+workforce|n.|lực lượng lao động|The workforce is aging.|Lực lượng lao động đang già hóa.|M
+workload|n.|khối lượng công việc|Workload doubled after the merger.|Khối lượng công việc tăng gấp đôi sau sáp nhập.|N

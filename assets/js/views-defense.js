@@ -169,18 +169,35 @@
   /* ================= MÔ PHỎNG ================= */
   function simHome(root) {
     const s = Store.settings();
+
+    // --- Phương án chính: mô phỏng với GEMINI (miễn phí) ---
     root.appendChild(h("div", { class: "card" }, [
-      h("div", { style: { fontWeight: 700 } }, "🎓 Mô phỏng bảo vệ"),
+      h("div", { style: { fontWeight: 700 } }, "✦ Mô phỏng với Gemini (khuyên dùng, miễn phí)"),
       h("p", { class: "small muted" },
-        "AI đọc tóm tắt luận văn của bạn, sinh câu hỏi phản biện theo 8 dạng, bạn trả lời bằng LỜI NÓI trong thời gian giới hạn, AI chấm 5 tiêu chí (nội dung · trôi chảy · phát âm · từ chuyên ngành · ứng xử)."),
+        "App tạo sẵn prompt chứa hồ sơ + vị trí lộ trình + tóm tắt luận văn của bạn. Dán vào Gemini: Gemini sinh câu hỏi phản biện 8 dạng, hỏi TỪNG câu, góp ý sau mỗi câu trả lời và chấm 5 tiêu chí cuối phiên. Trên điện thoại hãy dùng micro/đàm thoại của app Gemini để NÓI."),
       !s.topicSummary ? h("div", { class: "callout callout--amber" }, [
         h("div", { class: "callout__icon" }, "📝"),
-        h("div", { class: "small" }, ["Chưa có tóm tắt luận văn. ", h("a", { href: "#/settings" }, "Vào Cài đặt"), " dán tóm tắt (tiếng Việt hoặc Anh) để AI sinh câu hỏi sát đề tài."]),
+        h("div", { class: "small" }, ["Chưa có tóm tắt luận văn — ", h("a", { href: "#/settings" }, "vào Cài đặt"), " dán tóm tắt (Việt/Anh) để prompt kèm sẵn nội dung. Chưa có thì bạn tự dán tóm tắt vào Gemini sau prompt."]),
       ]) : null,
-      !AI.ready() ? h("div", { class: "callout callout--amber mt-1" }, [
-        h("div", { class: "callout__icon" }, "🔑"),
-        h("div", { class: "small" }, ["Chưa có API key — vẫn luyện được với NGÂN HÀNG 130 câu có sẵn (tự chấm). ", h("a", { href: "#/settings" }, "Thêm key"), " để AI sinh câu hỏi mới và chấm điểm."]),
-      ]) : null,
+      h("div", { class: "row gap-sm mt-1", style: { flexWrap: "wrap" } }, [
+        h("button", { class: "btn btn--primary", onClick: () => UI.copy(PROMPTS.defenseGen(8)) }, "📋 Sao chép prompt mô phỏng (8 câu)"),
+        h("a", { class: "btn btn--accent", href: "https://gemini.google.com/app", target: "_blank", rel: "noopener" }, "Mở Gemini ↗"),
+        h("button", {
+          class: "btn btn--ghost",
+          onClick: () => {
+            Store.logActivity("defense", 25);
+            UI.toast("Đã tính buổi mô phỏng hôm nay ✓ (+25 phút)", "accent");
+            App.render();
+          },
+        }, "✓ Đã mô phỏng xong với Gemini"),
+      ]),
+    ]));
+
+    // --- Mô phỏng ngay trong app (bấm giờ thật + ghi transcript) ---
+    root.appendChild(h("div", { class: "card" }, [
+      h("div", { style: { fontWeight: 700 } }, "🎓 Mô phỏng trong app (bấm giờ như thật)"),
+      h("p", { class: "small muted" },
+        "Nghe câu hỏi → trả lời thành tiếng trong 3 phút, máy ghi transcript. Xong phiên: có Anthropic key thì AI chấm ngay; KHÔNG có key thì bấm nút sao chép transcript để nhờ Gemini chấm 5 tiêu chí — rồi tự lưu điểm vào lịch sử."),
       h("div", { class: "row gap-sm mt-2", style: { flexWrap: "wrap" } }, [
         h("button", { class: "btn btn--primary", onClick: () => startSim(root, { n: 1 }) }, "⚡ 1 câu bất ngờ (3 phút)"),
         h("button", { class: "btn btn--primary", onClick: () => startSim(root, { n: 5 }) }, "▶ Phiên 5 câu"),
@@ -401,8 +418,19 @@
       root.innerHTML = "";
       const sliders = {};
       const box = h("div", { class: "card" }, [
-        h("div", { style: { fontWeight: 700 } }, "Tự chấm điểm (không có AI)"),
-        h("p", { class: "small muted" }, "Nghe lại trong đầu phần trả lời của bạn và chấm trung thực 1–10 từng tiêu chí."),
+        h("div", { style: { fontWeight: 700 } }, "Chấm điểm phiên vừa luyện"),
+        h("div", { class: "callout callout--accent" }, [
+          h("div", { class: "callout__icon" }, "✦"),
+          h("div", { class: "small" }, [
+            h("strong", null, "Nhờ Gemini chấm (khuyên dùng): "),
+            "bấm nút dưới — app đã gói transcript " + answers.length + " câu hỏi–trả lời của bạn kèm hướng dẫn chấm 5 tiêu chí. Dán vào Gemini, nhận điểm + câu trả lời mẫu, rồi quay lại đây nhập điểm để lưu lịch sử.",
+            h("div", { class: "row gap-sm mt-1", style: { flexWrap: "wrap" } }, [
+              h("button", { class: "btn btn--primary btn--sm", onClick: () => UI.copy(PROMPTS.defenseScore(answers)) }, "📋 Sao chép transcript + prompt chấm"),
+              h("a", { class: "btn btn--ghost btn--sm", href: "https://gemini.google.com/app", target: "_blank", rel: "noopener" }, "Mở Gemini ↗"),
+            ]),
+          ]),
+        ]),
+        h("p", { class: "small muted mt-1" }, "Nhập điểm Gemini chấm (hoặc tự chấm trung thực) 1–10 từng tiêu chí:"),
       ]);
       CRIT.forEach(([k, label]) => {
         const val = h("strong", null, "5");

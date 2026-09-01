@@ -1,0 +1,135 @@
+absolute poverty|n.|nghèo tuyệt đối|Absolute poverty fell below five percent.|Nghèo tuyệt đối giảm xuống dưới năm phần trăm.|M
+allocative efficiency|n.|hiệu quả phân bổ|Markets improve allocative efficiency.|Thị trường cải thiện hiệu quả phân bổ.|M
+asymmetric information|n.|thông tin bất cân xứng|Asymmetric information causes market failure.|Thông tin bất cân xứng gây thất bại thị trường.|M
+balance of payments|n.|cán cân thanh toán|The balance of payments improved.|Cán cân thanh toán được cải thiện.|M
+bailout|n.|gói giải cứu|The bailout raised moral hazard concerns.|Gói giải cứu dấy lên lo ngại rủi ro đạo đức.|M
+barrier to entry|n.|rào cản gia nhập|High fees are a barrier to entry.|Phí cao là rào cản gia nhập thị trường.|M
+black market|n.|thị trường chợ đen|Price caps fueled the black market.|Trần giá tiếp sức cho chợ đen.|M
+budget ceiling|n.|trần ngân sách|Ministries must respect the budget ceiling.|Các bộ phải tuân thủ trần ngân sách.|M
+budget execution|n.|chấp hành ngân sách|Budget execution was slow this year.|Việc chấp hành ngân sách năm nay còn chậm.|M
+business cycle|n.|chu kỳ kinh tế|Revenues follow the business cycle.|Nguồn thu biến động theo chu kỳ kinh tế.|M
+capital market|n.|thị trường vốn|Deep capital markets fund infrastructure.|Thị trường vốn sâu tài trợ hạ tầng.|M
+cash transfer|n.|chuyển tiền mặt (trợ cấp)|Cash transfers reach poor households.|Trợ cấp tiền mặt đến được hộ nghèo.|M
+central bank|n.|ngân hàng trung ương|The central bank raised interest rates.|Ngân hàng trung ương nâng lãi suất.|M
+collective action|n.|hành động tập thể|Collective action problems block reform.|Bài toán hành động tập thể cản trở cải cách.|M
+comparative advantage|n.|lợi thế so sánh|The region has a comparative advantage in rice.|Vùng này có lợi thế so sánh về lúa gạo.|M
+concession|n.|nhượng quyền; nhượng bộ|The port operates under a concession.|Cảng vận hành theo hợp đồng nhượng quyền.|M
+conditionality|n.|điều kiện ràng buộc (khoản vay)|Loan conditionality shaped the reform.|Điều kiện khoản vay định hình cải cách.|M
+consumer price index|n.|chỉ số giá tiêu dùng|The consumer price index rose four percent.|Chỉ số giá tiêu dùng tăng bốn phần trăm.|M
+contingency fund|n.|quỹ dự phòng|A contingency fund covers disasters.|Quỹ dự phòng chi cho thiên tai.|M
+cost recovery|n.|thu hồi chi phí|Water pricing aims at cost recovery.|Giá nước hướng tới thu hồi chi phí.|M
+crowding out|n.|hiệu ứng lấn át|Public borrowing may crowd out private investment.|Vay nợ công có thể lấn át đầu tư tư nhân.|M
+current account|n.|tài khoản vãng lai|The current account is in surplus.|Tài khoản vãng lai đang thặng dư.|M
+debt ceiling|n.|trần nợ|Parliament sets the public debt ceiling.|Quốc hội ấn định trần nợ công.|M
+debt service|n.|nghĩa vụ trả nợ|Debt service consumes a fifth of revenue.|Nghĩa vụ trả nợ ngốn một phần năm nguồn thu.|M
+deregulation|n.|nới lỏng quản chế|Deregulation lowered entry costs.|Nới lỏng quản chế giảm chi phí gia nhập.|M
+devaluation|n.|phá giá tiền tệ|Devaluation boosted exports.|Phá giá tiền tệ thúc đẩy xuất khẩu.|M
+diminishing returns|n.|hiệu suất giảm dần|Investment shows diminishing returns.|Đầu tư cho thấy hiệu suất giảm dần.|M
+disposable income|n.|thu nhập khả dụng|Tax cuts raise disposable income.|Giảm thuế làm tăng thu nhập khả dụng.|M
+economies of scale|n.|lợi thế quy mô|Shared services create economies of scale.|Dịch vụ dùng chung tạo lợi thế quy mô.|M
+emerging market|n.|thị trường mới nổi|Capital flows into emerging markets.|Dòng vốn chảy vào các thị trường mới nổi.|M
+exchange rate regime|n.|cơ chế tỷ giá|The exchange rate regime is managed.|Cơ chế tỷ giá là thả nổi có quản lý.|M
+excise tax|n.|thuế tiêu thụ đặc biệt|Excise taxes apply to tobacco.|Thuế tiêu thụ đặc biệt áp lên thuốc lá.|M
+expenditure review|n.|rà soát chi tiêu|A public expenditure review found waste.|Đợt rà soát chi tiêu công phát hiện lãng phí.|M
+fiscal deficit|n.|thâm hụt tài khóa|The fiscal deficit widened to five percent.|Thâm hụt tài khóa nới rộng lên năm phần trăm.|M
+fiscal discipline|n.|kỷ luật tài khóa|Fiscal discipline anchors stability.|Kỷ luật tài khóa neo giữ ổn định.|M
+fiscal incidence|n.|tác động phân phối của tài khóa|Fiscal incidence analysis shows who benefits.|Phân tích tác động tài khóa cho biết ai hưởng lợi.|M
+fiscal stimulus|n.|kích thích tài khóa|Fiscal stimulus supported recovery.|Kích thích tài khóa hỗ trợ phục hồi.|M
+foreign direct investment|n.|đầu tư trực tiếp nước ngoài|Foreign direct investment creates jobs.|FDI tạo việc làm.|M
+free rider|n.|kẻ hưởng lợi không đóng góp|Public goods attract free riders.|Hàng hóa công thu hút kẻ đi nhờ.|M
+gross national income|n.|tổng thu nhập quốc dân|Gross national income per capita doubled.|GNI bình quân đầu người tăng gấp đôi.|M
+household survey|n.|khảo sát hộ gia đình|The household survey runs every two years.|Khảo sát hộ gia đình tiến hành hai năm một lần.|M
+implicit subsidy|n.|trợ cấp ngầm|Cheap land is an implicit subsidy.|Đất giá rẻ là một khoản trợ cấp ngầm.|M
+import substitution|n.|thay thế nhập khẩu|Import substitution failed in many countries.|Chiến lược thay thế nhập khẩu thất bại ở nhiều nước.|M
+income distribution|n.|phân phối thu nhập|Income distribution worsened slightly.|Phân phối thu nhập xấu đi đôi chút.|M
+informal economy|n.|kinh tế phi chính thức|The informal economy employs millions.|Kinh tế phi chính thức tạo việc làm cho hàng triệu người.|M
+institutional capacity|n.|năng lực thể chế|Reform requires institutional capacity.|Cải cách đòi hỏi năng lực thể chế.|M
+interest subsidy|n.|cấp bù lãi suất|The program offers an interest subsidy.|Chương trình cấp bù lãi suất.|M
+labor productivity|n.|năng suất lao động|Labor productivity grew five percent.|Năng suất lao động tăng năm phần trăm.|M
+land use right|n.|quyền sử dụng đất|Land use rights can be transferred.|Quyền sử dụng đất có thể chuyển nhượng.|M
+living standard|n.|mức sống|Living standards improved steadily.|Mức sống cải thiện đều đặn.|M
+lump-sum|adj.|một cục, trọn gói|A lump-sum grant funds each commune.|Mỗi xã nhận một khoản trọn gói.|M
+macro stability|n.|ổn định vĩ mô|Macro stability underpins growth.|Ổn định vĩ mô làm nền cho tăng trưởng.|M
+means testing|n.|thẩm tra gia cảnh|Means testing targets the poorest.|Thẩm tra gia cảnh nhắm tới nhóm nghèo nhất.|M
+medium-term plan|n.|kế hoạch trung hạn|The medium-term plan guides spending.|Kế hoạch trung hạn định hướng chi tiêu.|M
+minimum wage|n.|lương tối thiểu|The minimum wage rose six percent.|Lương tối thiểu tăng sáu phần trăm.|M
+moral hazard|n.|rủi ro đạo đức|Guarantees create moral hazard.|Bảo lãnh tạo rủi ro đạo đức.|M
+multiplier effect|n.|hiệu ứng số nhân|Public works have a multiplier effect.|Đầu tư công có hiệu ứng số nhân.|M
+natural monopoly|n.|độc quyền tự nhiên|Water supply is a natural monopoly.|Cấp nước là một độc quyền tự nhiên.|M
+off-budget|adj.|ngoài ngân sách|Off-budget funds reduce transparency.|Các quỹ ngoài ngân sách làm giảm minh bạch.|M
+oversight body|n.|cơ quan giám sát|An oversight body reviews contracts.|Một cơ quan giám sát rà soát các hợp đồng.|M
+per capita|adj.|bình quân đầu người|Income per capita reached 5,000 dollars.|Thu nhập bình quân đầu người đạt 5.000 đô la.|M
+performance indicator|n.|chỉ số hiệu quả|Each unit reports performance indicators.|Mỗi đơn vị báo cáo chỉ số hiệu quả.|M
+policy instrument|n.|công cụ chính sách|Taxes are a powerful policy instrument.|Thuế là một công cụ chính sách mạnh.|M
+policy mix|n.|phối hợp chính sách|The policy mix balanced growth and stability.|Phối hợp chính sách cân bằng tăng trưởng và ổn định.|M
+price control|n.|kiểm soát giá|Price controls caused shortages.|Kiểm soát giá gây thiếu hụt.|M
+price elasticity|n.|độ co giãn theo giá|Demand shows low price elasticity.|Cầu có độ co giãn theo giá thấp.|M
+progressive tax|n.|thuế lũy tiến|A progressive tax reduces inequality.|Thuế lũy tiến giảm bất bình đẳng.|M
+property tax|n.|thuế tài sản|Property tax funds local services.|Thuế tài sản nuôi dịch vụ địa phương.|M
+public investment|n.|đầu tư công|Public investment focuses on transport.|Đầu tư công tập trung vào giao thông.|M
+public-private partnership|n.|đối tác công tư|The highway is a public-private partnership.|Tuyến cao tốc là dự án đối tác công tư.|M
+purchasing power|n.|sức mua|Inflation eroded purchasing power.|Lạm phát bào mòn sức mua.|M
+redistribution|n.|tái phân phối|Transfers enable redistribution.|Chuyển giao ngân sách giúp tái phân phối.|M
+regressive tax|n.|thuế lũy thoái|A flat fee acts like a regressive tax.|Phí đồng mức có tính lũy thoái.|M
+regulatory burden|n.|gánh nặng quản chế|The survey measures regulatory burden.|Khảo sát đo lường gánh nặng quản chế.|M
+regulatory impact assessment|n.|đánh giá tác động quy định|Each decree needs a regulatory impact assessment.|Mỗi nghị định cần đánh giá tác động quy định.|M
+rent-seeking|n.|trục lợi chính sách|Licensing invites rent-seeking.|Cơ chế cấp phép mời gọi trục lợi.|M
+reserve fund|n.|quỹ dự trữ|The reserve fund cushions shocks.|Quỹ dự trữ làm đệm cho các cú sốc.|M
+revenue sharing|n.|phân chia nguồn thu|Revenue sharing favors poor provinces.|Phân chia nguồn thu ưu tiên tỉnh nghèo.|M
+shadow price|n.|giá mờ|We estimate a shadow price for time.|Chúng tôi ước lượng giá mờ cho thời gian.|M
+social insurance|n.|bảo hiểm xã hội|Social insurance covers formal workers.|Bảo hiểm xã hội bao phủ lao động chính thức.|M
+state-owned enterprise|n.|doanh nghiệp nhà nước|State-owned enterprises are being equitized.|Doanh nghiệp nhà nước đang được cổ phần hóa.|M
+structural reform|n.|cải cách cơ cấu|Structural reform lifts long-run growth.|Cải cách cơ cấu nâng tăng trưởng dài hạn.|M
+tax administration|n.|quản lý thuế|E-invoices modernized tax administration.|Hóa đơn điện tử hiện đại hóa quản lý thuế.|M
+tax compliance|n.|tuân thủ thuế|Simple rules raise tax compliance.|Quy định đơn giản nâng mức tuân thủ thuế.|M
+tax incentive|n.|ưu đãi thuế|Tax incentives attract investors.|Ưu đãi thuế thu hút nhà đầu tư.|M
+tax revenue|n.|số thu thuế|Tax revenue grew with the economy.|Số thu thuế tăng cùng nền kinh tế.|M
+trade balance|n.|cán cân thương mại|The trade balance turned positive.|Cán cân thương mại chuyển sang thặng dư.|M
+trade liberalization|n.|tự do hóa thương mại|Trade liberalization cut tariffs.|Tự do hóa thương mại cắt giảm thuế quan.|M
+transaction cost|n.|chi phí giao dịch|Digitization cuts transaction costs.|Số hóa cắt giảm chi phí giao dịch.|M
+unemployment benefit|n.|trợ cấp thất nghiệp|Unemployment benefits were extended.|Trợ cấp thất nghiệp được kéo dài.|M
+value added tax|n.|thuế giá trị gia tăng|The value added tax rate is ten percent.|Thuế suất giá trị gia tăng là mười phần trăm.|M
+wage bill|n.|quỹ lương|The public wage bill keeps rising.|Quỹ lương khu vực công tiếp tục tăng.|M
+windfall|n.|khoản thu bất ngờ|Oil windfalls should be saved.|Nguồn thu dầu mỏ bất ngờ nên được tiết kiệm.|M
+fiscal year|n.|năm tài khóa|The fiscal year ends in December.|Năm tài khóa kết thúc vào tháng Mười Hai.|M
+audit finding|n.|kết luận kiểm toán|Audit findings must be addressed.|Kết luận kiểm toán phải được xử lý.|M
+budget transparency|n.|minh bạch ngân sách|Budget transparency scores improved.|Điểm minh bạch ngân sách được cải thiện.|M
+capital budget|n.|ngân sách đầu tư|The capital budget funds new roads.|Ngân sách đầu tư chi cho đường mới.|M
+recurrent budget|n.|ngân sách thường xuyên|Salaries dominate the recurrent budget.|Lương chiếm phần lớn ngân sách thường xuyên.|M
+budget overrun|n.|vượt dự toán|The project had a large budget overrun.|Dự án vượt dự toán lớn.|M
+competitive bidding|n.|đấu thầu cạnh tranh|Competitive bidding lowers prices.|Đấu thầu cạnh tranh làm giảm giá.|M
+cost overrun|n.|đội chi phí|Cost overruns delayed the metro.|Đội chi phí làm chậm tuyến metro.|M
+feasibility study|n.|nghiên cứu khả thi|The feasibility study took one year.|Nghiên cứu khả thi mất một năm.|M
+counterpart fund|n.|vốn đối ứng|The province lacked counterpart funds.|Tỉnh thiếu vốn đối ứng.|M
+disbursement rate|n.|tỷ lệ giải ngân|The disbursement rate reached ninety percent.|Tỷ lệ giải ngân đạt chín mươi phần trăm.|M
+public asset|n.|tài sản công|Public assets must be registered.|Tài sản công phải được đăng ký.|M
+asset declaration|n.|kê khai tài sản|Officials file annual asset declarations.|Cán bộ kê khai tài sản hằng năm.|M
+conflict of interest|n.|xung đột lợi ích|Rules on conflict of interest were tightened.|Quy định về xung đột lợi ích được siết chặt.|M
+petty corruption|n.|tham nhũng vặt|Petty corruption hurts the poor most.|Tham nhũng vặt gây hại nhất cho người nghèo.|M
+integrity system|n.|hệ thống liêm chính|A national integrity system is emerging.|Hệ thống liêm chính quốc gia đang hình thành.|M
+whistleblower|n.|người tố giác|Whistleblowers need legal protection.|Người tố giác cần được pháp luật bảo vệ.|M
+sanction|n./v.|chế tài; xử phạt|Sanctions apply to late filing.|Chế tài áp dụng với nộp chậm.|M
+liability|n.|nghĩa vụ nợ; trách nhiệm|Hidden liabilities emerged in audits.|Nghĩa vụ nợ ẩn lộ ra khi kiểm toán.|M
+solvency|n.|khả năng thanh toán dài hạn|The fund faces solvency risks.|Quỹ đối mặt rủi ro mất khả năng thanh toán.|M
+liquidity|n.|thanh khoản|Liquidity dried up in the crisis.|Thanh khoản cạn kiệt trong khủng hoảng.|M
+credit rating|n.|xếp hạng tín nhiệm|The credit rating was upgraded.|Xếp hạng tín nhiệm được nâng lên.|M
+risk premium|n.|phần bù rủi ro|The risk premium on bonds fell.|Phần bù rủi ro trái phiếu giảm.|M
+inflation targeting|n.|lạm phát mục tiêu|The bank adopted inflation targeting.|Ngân hàng trung ương áp dụng lạm phát mục tiêu.|M
+capital flight|n.|tháo chạy vốn|Uncertainty triggered capital flight.|Bất định châm ngòi tháo chạy vốn.|M
+exchange control|n.|kiểm soát ngoại hối|Exchange controls were relaxed.|Kiểm soát ngoại hối được nới lỏng.|M
+remittance|n.|kiều hối|Remittances exceed foreign aid.|Kiều hối vượt viện trợ nước ngoài.|M
+official development assistance|n.|viện trợ phát triển chính thức|Official development assistance is declining.|Viện trợ phát triển chính thức đang giảm.|M
+concessional loan|n.|vay ưu đãi|Concessional loans carry low interest.|Vay ưu đãi có lãi suất thấp.|M
+debt restructuring|n.|tái cơ cấu nợ|Debt restructuring bought time.|Tái cơ cấu nợ giúp có thêm thời gian.|M
+fiscal risk|n.|rủi ro tài khóa|SOEs are a source of fiscal risk.|Doanh nghiệp nhà nước là một nguồn rủi ro tài khóa.|M
+budget hearing|n.|điều trần ngân sách|Citizens attend budget hearings.|Người dân dự các buổi điều trần ngân sách.|M
+citizen budget|n.|ngân sách công dân|A citizen budget explains spending simply.|Ngân sách công dân giải thích chi tiêu một cách dễ hiểu.|M
+participatory budgeting|n.|ngân sách có sự tham gia|Participatory budgeting empowers wards.|Ngân sách có sự tham gia trao quyền cho phường.|M
+fiscal federalism|n.|liên bang tài khóa|Fiscal federalism theory guides transfers.|Lý thuyết liên bang tài khóa định hướng chuyển giao.|M
+own-source revenue|n.|nguồn thu tự có|Cities need more own-source revenue.|Đô thị cần thêm nguồn thu tự có.|M
+unfunded mandate|n.|nhiệm vụ không kèm kinh phí|Unfunded mandates strain districts.|Nhiệm vụ giao mà không kèm kinh phí gây quá tải cho huyện.|M
+expenditure assignment|n.|phân định nhiệm vụ chi|Expenditure assignment is unclear.|Phân định nhiệm vụ chi chưa rõ ràng.|M
+equalization grant|n.|trợ cấp cân đối|Equalization grants narrow gaps.|Trợ cấp cân đối thu hẹp chênh lệch.|M
+block grant|n.|khoản cấp trọn gói|Block grants give local flexibility.|Cấp trọn gói cho địa phương sự linh hoạt.|M
+matching grant|n.|khoản cấp đối ứng|Matching grants reward local effort.|Khoản cấp đối ứng thưởng cho nỗ lực địa phương.|M
+earmarked fund|n.|khoản kinh phí có địa chỉ|Earmarked funds limit discretion.|Kinh phí có địa chỉ hạn chế quyền chủ động.|M

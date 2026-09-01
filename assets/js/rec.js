@@ -129,9 +129,12 @@
   const TRACKED = ["θ","ð","z","s","ʃ","ʒ","tʃ","dʒ","v","l","iː","ɪ","uː","ʊ","æ","ə","ɜː","əʊ"];
   let ipaMap = null;
   function ipaOf(word) {
-    if (!ipaMap && typeof SEED !== "undefined" && SEED.VOCAB) {
+    if (!ipaMap) {
       ipaMap = new Map();
-      SEED.VOCAB.forEach((v) => { if (v.ipa) ipaMap.set(String(v.t).toLowerCase(), v.ipa); });
+      [typeof SEED !== "undefined" && SEED.VOCAB, typeof SEED2 !== "undefined" && SEED2.VOCAB]
+        .forEach((arr) => {
+          if (arr) arr.forEach((v) => { if (v.ipa) ipaMap.set(String(v.t).toLowerCase(), v.ipa); });
+        });
     }
     return (ipaMap && ipaMap.get(String(word).toLowerCase())) || "";
   }

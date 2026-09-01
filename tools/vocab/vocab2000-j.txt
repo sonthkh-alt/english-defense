@@ -1,0 +1,266 @@
+articulate|v.|diễn đạt rành mạch|The plan articulates a clear vision.|Kế hoạch diễn đạt một tầm nhìn rõ ràng.|K
+ascertain|v.|xác minh, làm rõ|We ascertain the facts first.|Trước hết chúng tôi làm rõ sự việc.|K
+augment|v.|bổ sung, gia tăng|Grants augment local revenue.|Các khoản tài trợ bổ sung nguồn thu địa phương.|K
+avert|v.|ngăn chặn (điều xấu)|Early action averted a crisis.|Hành động sớm ngăn được khủng hoảng.|K
+bolster|v.|củng cố|Reserves bolster confidence.|Dự trữ củng cố niềm tin.|K
+compel|v.|buộc phải|The ruling compels disclosure.|Phán quyết buộc phải công khai.|K
+concede|v.|thừa nhận (miễn cưỡng)|I concede that the sample is small.|Tôi thừa nhận mẫu còn nhỏ.|K
+corroborate|v.|củng cố thêm (bằng chứng)|Interviews corroborate the numbers.|Phỏng vấn củng cố thêm các con số.|P
+curtail|v.|cắt giảm|Travel budgets were curtailed.|Kinh phí công tác bị cắt giảm.|K
+delineate|v.|phân định rõ|The law delineates responsibilities.|Luật phân định rõ trách nhiệm.|K
+discern|v.|nhận thấy|We discern a clear pattern.|Chúng tôi nhận thấy một quy luật rõ.|K
+dispel|v.|xua tan|Facts dispel the rumor.|Sự thật xua tan tin đồn.|K
+elucidate|v.|làm sáng rõ|The case elucidates the mechanism.|Trường hợp này làm sáng rõ cơ chế.|K
+encompass|v.|bao trùm|The index encompasses four areas.|Chỉ số bao trùm bốn lĩnh vực.|K
+envisage|v.|hình dung, dự kiến|The plan envisages two phases.|Kế hoạch dự kiến hai giai đoạn.|K
+exacerbate|v.|làm trầm trọng thêm|Delays exacerbate costs.|Chậm trễ làm chi phí trầm trọng thêm.|K
+foresee|v.|lường trước|We foresee three risks.|Chúng tôi lường trước ba rủi ro.|K
+grapple with|v.phr.|vật lộn với|Cities grapple with congestion.|Các đô thị vật lộn với ùn tắc.|Q
+harness|v.|khai thác, tận dụng|We harness data for planning.|Chúng tôi tận dụng dữ liệu cho quy hoạch.|K
+hinder|v.|cản trở|Poor data hinder evaluation.|Dữ liệu kém cản trở việc đánh giá.|K
+impede|v.|kìm hãm|Fragmentation impedes reform.|Sự phân mảnh kìm hãm cải cách.|K
+incur|v.|phát sinh (chi phí)|Firms incur compliance costs.|Doanh nghiệp phát sinh chi phí tuân thủ.|K
+necessitate|v.|đòi hỏi phải|Aging necessitates pension reform.|Già hóa đòi hỏi cải cách lương hưu.|K
+overstate|v.|nói quá|Reports may overstate progress.|Báo cáo có thể nói quá tiến độ.|K
+understate|v.|nói giảm|Official data understate informality.|Số liệu chính thức nói giảm mức phi chính thức.|K
+perpetuate|v.|duy trì kéo dài (điều xấu)|Subsidies perpetuate inefficiency.|Trợ cấp kéo dài sự kém hiệu quả.|K
+pinpoint|v.|chỉ ra chính xác|The audit pinpointed the leak.|Kiểm toán chỉ ra chính xác chỗ thất thoát.|K
+postulate|v.|đặt định đề|The theory postulates rational agents.|Lý thuyết đặt định đề về chủ thể duy lý.|P
+presuppose|v.|giả định trước|Reform presupposes political will.|Cải cách giả định trước quyết tâm chính trị.|K
+rectify|v.|khắc phục, sửa sai|Errors were rectified promptly.|Sai sót được khắc phục kịp thời.|K
+reiterate|v.|nhắc lại, tái khẳng định|Let me reiterate the main point.|Cho phép tôi nhắc lại ý chính.|K
+scrutinize|v.|soi xét kỹ|Auditors scrutinized every contract.|Kiểm toán soi kỹ từng hợp đồng.|K
+stem from|v.phr.|bắt nguồn từ|Delays stem from unclear rules.|Chậm trễ bắt nguồn từ quy định thiếu rõ ràng.|Q
+substantiate|v.|chứng thực|Evidence substantiates the claim.|Bằng chứng chứng thực luận điểm.|P
+supplant|v.|thay thế hoàn toàn|Apps supplant paper queues.|Ứng dụng thay thế xếp hàng giấy.|K
+surpass|v.|vượt qua|Results surpassed expectations.|Kết quả vượt kỳ vọng.|K
+transcend|v.|vượt lên trên|The issue transcends one ministry.|Vấn đề vượt phạm vi một bộ.|K
+underlie|v.|nằm bên dưới, là nền của|Incentives underlie behavior.|Cơ chế khuyến khích là nền của hành vi.|K
+validate|v.|kiểm chứng, xác nhận giá trị|The scale was validated locally.|Thang đo được kiểm chứng trong nước.|P
+yield|v./n.|mang lại; lợi suất|The reform yielded savings.|Cải cách mang lại khoản tiết kiệm.|K
+ambiguous|adj.|mơ hồ|Ambiguous wording invites disputes.|Câu chữ mơ hồ mời gọi tranh chấp.|K
+cogent|adj.|thuyết phục, chặt chẽ|She made a cogent argument.|Bà ấy đưa ra lập luận chặt chẽ.|K
+compelling|adj.|thuyết phục mạnh|The evidence is compelling.|Bằng chứng rất thuyết phục.|K
+conducive|adj.|thuận lợi cho|A stable environment is conducive to investment.|Môi trường ổn định thuận lợi cho đầu tư.|K
+credible|adj.|đáng tin|A credible plan needs numbers.|Kế hoạch đáng tin cần có con số.|K
+cumbersome|adj.|cồng kềnh|The old process was cumbersome.|Quy trình cũ rất cồng kềnh.|K
+detrimental|adj.|có hại|Uncertainty is detrimental to growth.|Bất định có hại cho tăng trưởng.|K
+discernible|adj.|có thể nhận thấy|A discernible shift occurred.|Một chuyển dịch có thể nhận thấy đã diễn ra.|K
+elusive|adj.|khó nắm bắt|Consensus remains elusive.|Đồng thuận vẫn khó đạt.|K
+exhaustive|adj.|cặn kẽ, đầy đủ|An exhaustive list is impossible.|Một danh sách đầy đủ tuyệt đối là bất khả thi.|K
+far-reaching|adj.|sâu rộng|The law has far-reaching effects.|Đạo luật có tác động sâu rộng.|K
+granular|adj.|chi tiết đến từng hạt|We need granular data by ward.|Cần dữ liệu chi tiết đến cấp phường.|P
+imminent|adj.|cận kề|A deadline is imminent.|Hạn chót đã cận kề.|K
+impartial|adj.|vô tư, không thiên vị|An impartial review was ordered.|Một cuộc rà soát vô tư được yêu cầu.|K
+imperative|adj./n.|cấp thiết|Digitization is an imperative.|Số hóa là một yêu cầu cấp thiết.|K
+indispensable|adj.|không thể thiếu|Local knowledge is indispensable.|Hiểu biết địa phương là không thể thiếu.|K
+intricate|adj.|rắc rối, phức tạp|Intergovernmental finance is intricate.|Tài chính liên cấp rất phức tạp.|K
+meticulous|adj.|tỉ mỉ|Meticulous records aided the audit.|Hồ sơ tỉ mỉ hỗ trợ kiểm toán.|K
+noteworthy|adj.|đáng chú ý|One noteworthy case is Da Nang.|Một trường hợp đáng chú ý là Đà Nẵng.|K
+overarching|adj.|bao trùm|The overarching goal is trust.|Mục tiêu bao trùm là niềm tin.|K
+paramount|adj.|tối quan trọng|Data security is paramount.|An toàn dữ liệu là tối quan trọng.|K
+pertinent|adj.|sát hợp|That is a pertinent question.|Đó là câu hỏi rất sát hợp.|K
+pragmatic|adj.|thực dụng, thực tế|A pragmatic approach won out.|Cách tiếp cận thực tế đã thắng thế.|K
+pressing|adj.|bức thiết|Housing is a pressing issue.|Nhà ở là vấn đề bức thiết.|K
+prone|adj.|dễ bị|Manual entry is prone to error.|Nhập liệu thủ công dễ sai sót.|K
+quantifiable|adj.|có thể lượng hóa|Benefits must be quantifiable.|Lợi ích phải lượng hóa được.|P
+salient|adj.|nổi bật|The salient fact is the cost gap.|Điểm nổi bật là chênh lệch chi phí.|K
+stringent|adj.|nghiêm ngặt|Stringent checks slow approval.|Kiểm tra nghiêm ngặt làm chậm phê duyệt.|K
+tenable|adj.|đứng vững được|That position is no longer tenable.|Quan điểm đó không còn đứng vững.|K
+untenable|adj.|không thể đứng vững|The old model became untenable.|Mô hình cũ trở nên không thể duy trì.|K
+vague|adj.|mơ hồ, chung chung|Vague targets invite gaming.|Chỉ tiêu chung chung dễ bị lách.|K
+conjecture|n.|phỏng đoán|That remains a conjecture.|Điều đó vẫn chỉ là phỏng đoán.|P
+discourse|n.|diễn ngôn|Policy discourse shifted to quality.|Diễn ngôn chính sách chuyển sang chất lượng.|K
+nexus|n.|mối liên kết trung tâm|The land-finance nexus is risky.|Mối liên kết đất đai - tài chính tiềm ẩn rủi ro.|K
+impetus|n.|cú hích|The crisis gave impetus to reform.|Khủng hoảng tạo cú hích cho cải cách.|K
+hindrance|n.|vật cản|Silos are a hindrance to sharing.|Cát cứ dữ liệu là vật cản cho chia sẻ.|K
+drawback|n.|nhược điểm|Each option has drawbacks.|Phương án nào cũng có nhược điểm.|K
+pitfall|n.|cạm bẫy|Avoid common survey pitfalls.|Tránh các cạm bẫy khảo sát thường gặp.|P
+merit|n.|ưu điểm; thực tài|The proposal has merit.|Đề xuất có ưu điểm.|K
+shortcoming|n.|thiếu sót|We list three shortcomings.|Chúng tôi nêu ba thiếu sót.|K
+facet|n.|khía cạnh|Every facet was examined.|Mọi khía cạnh đều được xem xét.|K
+tenet|n.|nguyên lý cốt lõi|Subsidiarity is a core tenet.|Nguyên tắc bổ trợ là nguyên lý cốt lõi.|K
+corollary|n.|hệ luận|A corollary is higher local demand.|Hệ luận là nhu cầu địa phương cao hơn.|K
+ramification|n.|hệ lụy|Legal ramifications were studied.|Các hệ lụy pháp lý đã được nghiên cứu.|K
+repercussion|n.|dư chấn, hệ quả|The default had repercussions.|Vụ vỡ nợ gây nhiều dư chấn.|K
+output gap|n.|chênh lệch sản lượng|The output gap turned positive.|Chênh lệch sản lượng chuyển dương.|M
+potential output|n.|sản lượng tiềm năng|Growth exceeds potential output.|Tăng trưởng vượt sản lượng tiềm năng.|M
+total factor productivity|n.|năng suất nhân tố tổng hợp|Total factor productivity drives long-run growth.|Năng suất nhân tố tổng hợp dẫn dắt tăng trưởng dài hạn.|M
+terms of trade|n.|tỷ giá thương mại|Terms of trade improved for exporters.|Tỷ giá thương mại cải thiện cho nhà xuất khẩu.|M
+real interest rate|n.|lãi suất thực|Real interest rates turned negative.|Lãi suất thực chuyển âm.|M
+digital economy|n.|kinh tế số|The digital economy tops twenty percent of GDP.|Kinh tế số vượt hai mươi phần trăm GDP.|M
+gig economy|n.|kinh tế việc làm tự do|The gig economy lacks social insurance.|Kinh tế việc làm tự do thiếu bảo hiểm xã hội.|M
+circular economy|n.|kinh tế tuần hoàn|The park adopts a circular economy model.|Khu công nghiệp áp dụng mô hình kinh tế tuần hoàn.|M
+green growth|n.|tăng trưởng xanh|Green growth guides the strategy.|Tăng trưởng xanh định hướng chiến lược.|M
+carbon tax|n.|thuế các-bon|A carbon tax is under study.|Thuế các-bon đang được nghiên cứu.|M
+emission|n.|phát thải|Emissions per unit of GDP fell.|Phát thải trên mỗi đơn vị GDP giảm.|M
+climate finance|n.|tài chính khí hậu|Climate finance funds adaptation.|Tài chính khí hậu tài trợ thích ứng.|M
+user fee|n.|phí người dùng|User fees fund maintenance.|Phí người dùng nuôi bảo trì.|M
+land auction|n.|đấu giá đất|Land auctions raise transparency.|Đấu giá đất tăng minh bạch.|M
+land valuation|n.|định giá đất|Land valuation follows market prices.|Định giá đất theo giá thị trường.|M
+zoning|n.|phân khu chức năng|Zoning rules limit density.|Quy định phân khu giới hạn mật độ.|M
+master plan|n.|quy hoạch chung|The master plan was revised.|Quy hoạch chung được điều chỉnh.|M
+industrial park|n.|khu công nghiệp|The industrial park is fully leased.|Khu công nghiệp đã được lấp đầy.|M
+special economic zone|n.|đặc khu kinh tế|Special economic zones test new rules.|Đặc khu kinh tế thử nghiệm luật chơi mới.|M
+land value capture|n.|thu lại giá trị đất tăng thêm|Land value capture funds the metro.|Thu lại giá trị đất tăng thêm tài trợ metro.|M
+poverty line|n.|chuẩn nghèo|The poverty line was updated.|Chuẩn nghèo được cập nhật.|M
+near-poor|adj./n.|cận nghèo|Near-poor households get partial support.|Hộ cận nghèo nhận hỗ trợ một phần.|M
+multidimensional poverty|n.|nghèo đa chiều|Multidimensional poverty counts services.|Nghèo đa chiều tính cả dịch vụ.|M
+Gini coefficient|n.|hệ số Gini|The Gini coefficient stayed flat.|Hệ số Gini gần như không đổi.|M
+social assistance|n.|trợ giúp xã hội|Social assistance reaches the elderly.|Trợ giúp xã hội đến với người cao tuổi.|M
+pension fund|n.|quỹ hưu trí|The pension fund needs reform.|Quỹ hưu trí cần cải cách.|M
+payroll tax|n.|thuế trên quỹ lương|Payroll taxes fund insurance.|Thuế trên quỹ lương nuôi các quỹ bảo hiểm.|M
+personal income tax|n.|thuế thu nhập cá nhân|Personal income tax thresholds rose.|Ngưỡng thuế thu nhập cá nhân được nâng.|M
+corporate income tax|n.|thuế thu nhập doanh nghiệp|Corporate income tax fell to twenty percent.|Thuế thu nhập doanh nghiệp giảm còn hai mươi phần trăm.|M
+tax bracket|n.|bậc thuế|Fewer tax brackets simplify filing.|Ít bậc thuế giúp kê khai đơn giản.|M
+tax audit|n.|thanh tra thuế|Risk-based tax audits are efficient.|Thanh tra thuế theo rủi ro rất hiệu quả.|M
+informal employment|n.|việc làm phi chính thức|Informal employment is shrinking slowly.|Việc làm phi chính thức thu hẹp chậm.|M
+underemployment|n.|thiếu việc làm|Rural underemployment persists.|Thiếu việc làm ở nông thôn vẫn tồn tại.|M
+labor force participation|n.|tỷ lệ tham gia lực lượng lao động|Female labor force participation is high.|Tỷ lệ nữ tham gia lao động ở mức cao.|M
+collective bargaining|n.|thương lượng tập thể|Collective bargaining sets factory wages.|Thương lượng tập thể định lương nhà máy.|M
+trade union|n.|công đoàn|The trade union negotiated benefits.|Công đoàn thương lượng phúc lợi.|M
+unemployment rate|n.|tỷ lệ thất nghiệp|The unemployment rate stayed near two percent.|Tỷ lệ thất nghiệp quanh mức hai phần trăm.|M
+vocational training|n.|đào tạo nghề|Vocational training matches factory needs.|Đào tạo nghề khớp nhu cầu nhà máy.|M
+brain drain|n.|chảy máu chất xám|Brain drain hits remote provinces.|Chảy máu chất xám ảnh hưởng tỉnh xa.|M
+demographic dividend|n.|lợi tức dân số|The demographic dividend is ending.|Lợi tức dân số đang khép lại.|M
+urbanization|n.|đô thị hóa|Urbanization outpaces infrastructure.|Đô thị hóa nhanh hơn hạ tầng.|M
+resettlement|n.|tái định cư|Resettlement sites need services.|Khu tái định cư cần dịch vụ.|M
+food security|n.|an ninh lương thực|Food security shaped rice policy.|An ninh lương thực định hình chính sách lúa gạo.|M
+supply shock|n.|cú sốc cung|A supply shock lifted prices.|Cú sốc cung đẩy giá lên.|M
+demand shock|n.|cú sốc cầu|The pandemic was a demand shock.|Đại dịch là một cú sốc cầu.|M
+stagflation|n.|đình lạm|Stagflation is the worst case.|Đình lạm là kịch bản xấu nhất.|M
+overheating|n.|quá nóng (kinh tế)|Credit signals overheating.|Tín dụng phát tín hiệu quá nóng.|M
+credit growth|n.|tăng trưởng tín dụng|Credit growth was capped.|Tăng trưởng tín dụng bị khống chế.|M
+nonperforming loan|n.|nợ xấu|Nonperforming loans were resolved.|Nợ xấu được xử lý.|M
+capital adequacy|n.|an toàn vốn|Banks meet capital adequacy rules.|Ngân hàng đáp ứng chuẩn an toàn vốn.|M
+deposit insurance|n.|bảo hiểm tiền gửi|Deposit insurance calms savers.|Bảo hiểm tiền gửi trấn an người gửi tiền.|M
+financial inclusion|n.|tài chính toàn diện|Mobile money drives financial inclusion.|Tiền di động thúc đẩy tài chính toàn diện.|M
+microfinance|n.|tài chính vi mô|Microfinance serves rural women.|Tài chính vi mô phục vụ phụ nữ nông thôn.|M
+fintech|n.|công nghệ tài chính|Fintech firms partner with banks.|Công ty fintech hợp tác với ngân hàng.|M
+cashless payment|n.|thanh toán không tiền mặt|Cashless payments dominate cities.|Thanh toán không tiền mặt phổ biến ở đô thị.|M
+official dispatch|n.|công văn|An official dispatch set the deadline.|Một công văn ấn định thời hạn.|N
+meeting minutes|n.|biên bản họp|Meeting minutes are filed digitally.|Biên bản họp được lưu số.|N
+terms of reference|n.|điều khoản tham chiếu|The terms of reference define scope.|Điều khoản tham chiếu xác định phạm vi.|N
+memorandum of understanding|n.|biên bản ghi nhớ|A memorandum of understanding was signed.|Một biên bản ghi nhớ được ký kết.|N
+service level agreement|n.|thỏa thuận mức dịch vụ|The service level agreement sets response times.|Thỏa thuận mức dịch vụ ấn định thời gian phản hồi.|N
+task force|n.|tổ công tác|A task force handles big projects.|Tổ công tác xử lý các dự án lớn.|N
+working group|n.|nhóm công tác|The working group meets weekly.|Nhóm công tác họp hằng tuần.|N
+project management unit|n.|ban quản lý dự án|The project management unit was audited.|Ban quản lý dự án được kiểm toán.|N
+org chart|n.|sơ đồ tổ chức|The org chart was flattened.|Sơ đồ tổ chức được làm phẳng.|N
+apparatus|n.|bộ máy|The apparatus was streamlined.|Bộ máy được tinh gọn.|N
+term of office|n.|nhiệm kỳ|The term of office is five years.|Nhiệm kỳ kéo dài năm năm.|N
+staff rotation|n.|luân chuyển cán bộ|Staff rotation curbs corruption.|Luân chuyển cán bộ hạn chế tham nhũng.|N
+secondment|n.|biệt phái|A secondment to the ministry taught me a lot.|Đợt biệt phái lên bộ dạy tôi nhiều điều.|N
+disciplinary action|n.|xử lý kỷ luật|Disciplinary action followed the audit.|Xử lý kỷ luật diễn ra sau kiểm toán.|N
+reprimand|n./v.|khiển trách|A reprimand was issued.|Một quyết định khiển trách được ban hành.|N
+demotion|n.|giáng chức|Demotion is rare in practice.|Giáng chức hiếm khi xảy ra trên thực tế.|N
+commendation|n.|khen thưởng|The team received a commendation.|Tập thể được khen thưởng.|N
+administrative violation|n.|vi phạm hành chính|Administrative violations are fined.|Vi phạm hành chính bị xử phạt.|N
+merit pay|n.|lương theo thành tích|Merit pay pilots showed promise.|Thí điểm lương theo thành tích cho kết quả hứa hẹn.|N
+salary scale|n.|thang bảng lương|The salary scale was compressed.|Thang bảng lương bị nén.|N
+budget estimate|n.|dự toán ngân sách|Budget estimates are due in July.|Dự toán ngân sách phải nộp trong tháng Bảy.|N
+final settlement|n.|quyết toán|The final settlement was approved.|Báo cáo quyết toán được phê duyệt.|N
+expenditure norm|n.|định mức chi|Expenditure norms lag behind prices.|Định mức chi tụt hậu so với giá cả.|N
+procurement package|n.|gói thầu|The procurement package was split.|Gói thầu bị chia nhỏ.|N
+bid opening|n.|mở thầu|Bid opening is livestreamed.|Việc mở thầu được phát trực tiếp.|N
+contract award|n.|trao hợp đồng|The contract award was contested.|Việc trao hợp đồng bị khiếu nại.|N
+project appraisal|n.|thẩm định dự án|Project appraisal takes sixty days.|Thẩm định dự án mất sáu mươi ngày.|N
+investment decision|n.|quyết định đầu tư|The investment decision was delayed.|Quyết định đầu tư bị trì hoãn.|N
+site clearance|n.|giải phóng mặt bằng|Site clearance is the slowest step.|Giải phóng mặt bằng là khâu chậm nhất.|N
+public notice|n.|thông báo công khai|A public notice announced the change.|Một thông báo công khai công bố thay đổi.|N
+official gazette|n.|công báo|Laws appear in the official gazette.|Luật được đăng trên công báo.|N
+effective date|n.|ngày hiệu lực|The effective date is January first.|Ngày hiệu lực là mùng một tháng Một.|N
+grace period|n.|thời gian ân hạn|A grace period eases transition.|Thời gian ân hạn giúp chuyển tiếp êm.|N
+appeal|n./v.|khiếu nại, kháng cáo|The firm filed an appeal.|Doanh nghiệp nộp đơn khiếu nại.|N
+lawsuit|n.|vụ kiện|The lawsuit lasted two years.|Vụ kiện kéo dài hai năm.|N
+enforcement of judgment|n.|thi hành án|Enforcement of judgment remains weak.|Thi hành án vẫn còn yếu.|N
+conciliation|n.|hòa giải (hành chính)|Conciliation settled most cases.|Hòa giải giải quyết phần lớn vụ việc.|N
+cohort|n.|đoàn hệ, nhóm cùng đặc điểm|We follow one cohort of firms.|Chúng tôi theo dõi một đoàn hệ doanh nghiệp.|P
+control variable|n.|biến kiểm soát|Control variables include firm size.|Biến kiểm soát gồm quy mô doanh nghiệp.|P
+covariate|n.|biến đồng hành|Covariates were balanced at baseline.|Các biến đồng hành cân bằng ở đầu kỳ.|P
+balance test|n.|kiểm định cân bằng|Balance tests passed for all groups.|Kiểm định cân bằng đạt ở mọi nhóm.|P
+placebo test|n.|kiểm định giả dược|A placebo test rules out trends.|Kiểm định giả dược loại trừ xu hướng sẵn có.|P
+falsification test|n.|kiểm định phản chứng|Falsification tests support causality.|Kiểm định phản chứng ủng hộ quan hệ nhân quả.|P
+weak instrument|n.|biến công cụ yếu|Weak instruments bias estimates.|Biến công cụ yếu làm lệch ước lượng.|P
+first stage|n.|hồi quy bước một|The first stage is strong.|Hồi quy bước một cho kết quả mạnh.|P
+reduced form|n.|dạng rút gọn|The reduced form shows the total effect.|Dạng rút gọn thể hiện tác động tổng.|P
+marginal effect|n.|tác động biên|Marginal effects are reported.|Các tác động biên được báo cáo.|P
+average treatment effect|n.|tác động can thiệp bình quân|The average treatment effect is positive.|Tác động can thiệp bình quân là dương.|P
+intention to treat|n.|phân tích theo phân bổ ban đầu|Intention to treat preserves randomization.|Phân tích theo phân bổ ban đầu bảo toàn tính ngẫu nhiên.|P
+survey weight|n.|trọng số khảo sát|Survey weights correct the sample.|Trọng số khảo sát hiệu chỉnh mẫu.|P
+stratification|n.|phân tầng (mẫu)|Stratification ensured coverage.|Phân tầng bảo đảm độ phủ.|P
+enumerator|n.|điều tra viên|Enumerators were trained for a week.|Điều tra viên được tập huấn một tuần.|P
+respondent|n.|người trả lời|Respondents remain anonymous.|Người trả lời được ẩn danh.|P
+pretest|n.|khảo sát thử nghiệm trước|A pretest caught confusing items.|Khảo sát thử phát hiện câu hỏi gây nhầm.|P
+logit model|n.|mô hình logit|A logit model fits binary outcomes.|Mô hình logit phù hợp biến nhị phân.|P
+probit model|n.|mô hình probit|The probit model gives similar results.|Mô hình probit cho kết quả tương tự.|P
+pooled regression|n.|hồi quy gộp|Pooled regression ignores heterogeneity.|Hồi quy gộp bỏ qua tính dị biệt.|P
+survival analysis|n.|phân tích sống sót|Survival analysis models firm exit.|Phân tích sống sót mô hình hóa việc doanh nghiệp rời thị trường.|P
+cluster analysis|n.|phân tích cụm|Cluster analysis groups provinces.|Phân tích cụm nhóm các tỉnh.|P
+machine learning|n.|học máy|Machine learning flags risky claims.|Học máy cảnh báo hồ sơ rủi ro.|P
+text mining|n.|khai phá văn bản|Text mining scans citizen feedback.|Khai phá văn bản quét phản hồi người dân.|P
+spatial analysis|n.|phân tích không gian|Spatial analysis maps service gaps.|Phân tích không gian lập bản đồ khoảng trống dịch vụ.|P
+geographic information system|n.|hệ thống thông tin địa lý (GIS)|A geographic information system supports planning.|Hệ thống GIS hỗ trợ quy hoạch.|P
+causal mechanism|n.|cơ chế nhân quả|We unpack the causal mechanism.|Chúng tôi mổ xẻ cơ chế nhân quả.|P
+path dependence|n.|sự phụ thuộc lộ trình|Path dependence locks in old systems.|Phụ thuộc lộ trình níu giữ hệ thống cũ.|P
+audit trail|n.|dấu vết kiểm toán|Every change leaves an audit trail.|Mọi thay đổi đều để lại dấu vết kiểm toán.|P
+validity threat|n.|nguy cơ với tính giá trị|We list validity threats openly.|Chúng tôi nêu công khai các nguy cơ với tính giá trị.|P
+thick description|n.|mô tả dày|Thick description conveys context.|Mô tả dày truyền tải bối cảnh.|P
+pose a challenge|v.phr.|đặt ra thách thức|Data gaps pose a challenge.|Khoảng trống dữ liệu đặt ra thách thức.|Q
+meet the deadline|v.phr.|kịp hạn chót|The team met the deadline.|Nhóm đã kịp hạn chót.|Q
+miss the deadline|v.phr.|trễ hạn chót|Two units missed the deadline.|Hai đơn vị trễ hạn.|Q
+keep track of|v.phr.|theo dõi sát|We keep track of every file.|Chúng tôi theo dõi sát từng hồ sơ.|Q
+take stock of|v.phr.|kiểm điểm, rà soát lại|Mid-year we take stock of progress.|Giữa năm chúng tôi rà soát lại tiến độ.|Q
+set the stage for|v.phr.|tạo tiền đề cho|The pilot set the stage for the law.|Thí điểm tạo tiền đề cho đạo luật.|Q
+lay the groundwork|v.phr.|đặt nền móng|Standards lay the groundwork for sharing.|Chuẩn hóa đặt nền móng cho chia sẻ.|Q
+put in place|v.phr.|thiết lập, đưa vào áp dụng|Safeguards were put in place.|Các biện pháp bảo vệ được thiết lập.|Q
+put forward|v.phr.|đề xuất|Three options were put forward.|Ba phương án được đề xuất.|Q
+roll out|v.phr.|triển khai rộng|The service was rolled out nationwide.|Dịch vụ được triển khai toàn quốc.|Q
+phase out|v.phr.|loại bỏ dần|Fuel subsidies were phased out.|Trợ giá nhiên liệu được loại bỏ dần.|Q
+phase in|v.phr.|áp dụng dần|The tax is phased in over three years.|Sắc thuế được áp dụng dần trong ba năm.|Q
+opt for|v.phr.|chọn|Most users opt for the app.|Đa số người dùng chọn ứng dụng.|Q
+adhere to|v.phr.|tuân thủ chặt|We adhere to research ethics.|Chúng tôi tuân thủ chặt đạo đức nghiên cứu.|Q
+refrain from|v.phr.|kiềm chế không làm|Officials refrain from commenting.|Cán bộ kiềm chế không bình luận.|Q
+resort to|v.phr.|phải dùng đến|Firms resort to informal channels.|Doanh nghiệp phải dùng đến kênh phi chính thức.|Q
+embark on|v.phr.|bắt tay vào|The city embarked on smart planning.|Thành phố bắt tay vào quy hoạch thông minh.|Q
+culminate in|v.phr.|lên tới đỉnh điểm là|Talks culminated in an agreement.|Đàm phán kết lại bằng một thỏa thuận.|Q
+hinge on|v.phr.|phụ thuộc quyết định vào|Success hinges on leadership.|Thành công phụ thuộc quyết định vào lãnh đạo.|Q
+boil down to|v.phr.|quy về|It boils down to incentives.|Vấn đề quy về cơ chế khuyến khích.|Q
+amount to|v.phr.|tương đương với|Losses amount to one percent of GDP.|Thiệt hại tương đương một phần trăm GDP.|Q
+translate into|v.phr.|chuyển hóa thành|Plans must translate into action.|Kế hoạch phải chuyển hóa thành hành động.|Q
+factor in|v.phr.|tính gộp vào|Factor in maintenance costs.|Hãy tính gộp chi phí bảo trì.|Q
+iron out|v.phr.|tháo gỡ (vướng mắc)|Remaining issues were ironed out.|Các vướng mắc còn lại được tháo gỡ.|Q
+spell out|v.phr.|nêu tường minh|The decree spells out each step.|Nghị định nêu tường minh từng bước.|Q
+map out|v.phr.|vạch ra|We mapped out a five-year path.|Chúng tôi vạch ra lộ trình năm năm.|Q
+single out|v.phr.|chỉ riêng ra|The report singles out procurement.|Báo cáo chỉ riêng khâu đấu thầu.|Q
+rule out|v.phr.|loại trừ|We cannot rule out reverse causality.|Không thể loại trừ nhân quả ngược.|Q
+follow up on|v.phr.|bám sát xử lý tiếp|We follow up on every complaint.|Chúng tôi bám sát xử lý từng phản ánh.|Q
+build on|v.phr.|kế thừa, phát huy|The law builds on pilot lessons.|Đạo luật kế thừa bài học thí điểm.|Q
+draw up|v.phr.|soạn lập|A roadmap was drawn up.|Một lộ trình được soạn lập.|Q
+step up|v.phr.|đẩy mạnh|Inspections were stepped up.|Thanh tra được đẩy mạnh.|Q
+scale down|v.phr.|thu hẹp quy mô|The project was scaled down.|Dự án bị thu hẹp quy mô.|Q
+cut back|v.phr.|cắt giảm|Agencies cut back on travel.|Các cơ quan cắt giảm công tác phí.|Q
+set aside|v.phr.|để dành; gác lại|Funds were set aside for risks.|Kinh phí được để dành cho rủi ro.|Q
+carry weight|v.phr.|có trọng lượng|Expert views carry weight.|Ý kiến chuyên gia có trọng lượng.|Q
+take effect|v.phr.|bắt đầu có hiệu lực|The rule takes effect in July.|Quy định bắt đầu có hiệu lực từ tháng Bảy.|Q
+in effect|adv.phr.|trên thực tế; đang hiệu lực|The cap is, in effect, a tax.|Mức trần trên thực tế là một loại thuế.|Q
+at stake|adv.phr.|đang bị đặt cược|Public trust is at stake.|Niềm tin công chúng đang bị đặt cược.|Q
+across the board|adv.phr.|trên mọi phương diện|Fees fell across the board.|Phí giảm đồng loạt.|Q
+case in point|n.phr.|ví dụ điển hình|Da Nang is a case in point.|Đà Nẵng là ví dụ điển hình.|Q
+food for thought|n.phr.|điều đáng suy ngẫm|The question gives food for thought.|Câu hỏi gợi nhiều điều đáng suy ngẫm.|Q
+double-edged sword|n.phr.|con dao hai lưỡi|Discretion is a double-edged sword.|Quyền tự quyết là con dao hai lưỡi.|Q
+tip of the iceberg|n.phr.|phần nổi của tảng băng|Reported cases are the tip of the iceberg.|Số vụ được báo cáo chỉ là phần nổi của tảng băng.|Q
+Could you elaborate on that point, please?|sent.|Thầy/cô có thể nói rõ hơn ý đó không ạ?|Could you elaborate on that point, please?|Thầy/cô có thể nói rõ hơn ý đó được không ạ?|R
+Let me rephrase my answer more precisely.|sent.|Cho phép tôi diễn đạt lại câu trả lời chính xác hơn.|Let me rephrase my answer more precisely.|Cho phép tôi diễn đạt lại câu trả lời một cách chính xác hơn.|R
+That distinction is important; thank you for raising it.|sent.|Sự phân biệt đó rất quan trọng; cảm ơn thầy/cô đã nêu.|That distinction is important; thank you for raising it.|Sự phân biệt đó rất quan trọng; cảm ơn thầy/cô đã nêu ra.|R
+My answer has a short version and a longer version.|sent.|Câu trả lời của tôi có bản ngắn và bản đầy đủ.|My answer has a short version and a longer version.|Câu trả lời của tôi có một bản ngắn và một bản đầy đủ hơn.|R
+I measured this variable in two different ways.|sent.|Tôi đo biến này theo hai cách khác nhau.|I measured this variable in two different ways.|Tôi đã đo biến này theo hai cách khác nhau.|R
+Both approaches give the same conclusion.|sent.|Cả hai cách tiếp cận cho cùng kết luận.|Both approaches give the same conclusion.|Cả hai cách tiếp cận đều cho cùng một kết luận.|R
+This finding holds across all three provinces.|sent.|Phát hiện này đúng ở cả ba tỉnh.|This finding holds across all three provinces.|Phát hiện này đúng ở cả ba tỉnh nghiên cứu.|R
+The mechanism works through better information.|sent.|Cơ chế tác động thông qua thông tin tốt hơn.|The mechanism works through better information.|Cơ chế tác động vận hành thông qua thông tin tốt hơn.|R
+I distinguish correlation from causation carefully.|sent.|Tôi phân biệt cẩn thận tương quan và nhân quả.|I distinguish correlation from causation carefully.|Tôi phân biệt cẩn thận giữa tương quan và nhân quả.|R
+Allow me to defend this choice of method.|sent.|Cho phép tôi bảo vệ lựa chọn phương pháp này.|Allow me to defend this choice of method.|Cho phép tôi bảo vệ lựa chọn phương pháp này.|R
+The committee's feedback will improve the final thesis.|sent.|Góp ý của hội đồng sẽ giúp luận án hoàn thiện hơn.|The committee's feedback will improve the final thesis.|Góp ý của hội đồng sẽ giúp bản luận án cuối cùng tốt hơn.|R
+I have prepared additional slides for detailed questions.|sent.|Tôi đã chuẩn bị slide phụ cho các câu hỏi chi tiết.|I have prepared additional slides for detailed questions.|Tôi đã chuẩn bị các slide bổ sung cho những câu hỏi chi tiết.|R
+May I check whether my answer addressed your question?|sent.|Cho tôi hỏi câu trả lời đã đúng ý thầy/cô chưa ạ?|May I check whether my answer addressed your question?|Cho phép tôi kiểm tra xem câu trả lời đã đáp ứng câu hỏi của thầy/cô chưa ạ?|R
+I will revise the thesis according to your comments.|sent.|Tôi sẽ chỉnh sửa luận án theo góp ý của quý thầy cô.|I will revise the thesis according to your comments.|Tôi sẽ chỉnh sửa luận án theo các góp ý của quý thầy cô.|R

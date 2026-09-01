@@ -1,0 +1,125 @@
+administrative procedure|n.|thủ tục hành chính|Administrative procedures were simplified.|Thủ tục hành chính đã được đơn giản hóa.|N
+administrative reform|n.|cải cách hành chính|Administrative reform is a national program.|Cải cách hành chính là một chương trình quốc gia.|N
+one-stop shop|n.|bộ phận một cửa|The one-stop shop cut waiting times.|Bộ phận một cửa rút ngắn thời gian chờ.|N
+civil servant|n.|công chức|Civil servants receive annual appraisal.|Công chức được đánh giá hằng năm.|N
+civil service|n.|nền công vụ|The civil service is being professionalized.|Nền công vụ đang được chuyên nghiệp hóa.|N
+public servant|n.|người làm việc công|Public servants must declare assets.|Người làm việc công phải kê khai tài sản.|N
+merit-based|adj.|dựa trên thực tài|Merit-based promotion motivates staff.|Bổ nhiệm theo thực tài tạo động lực cho cán bộ.|N
+seniority|n.|thâm niên|Pay still depends on seniority.|Lương vẫn phụ thuộc thâm niên.|N
+payroll|n.|bảng lương|The payroll was digitized.|Bảng lương đã được số hóa.|N
+downsizing|n.|tinh giản biên chế|Downsizing reduced staff by ten percent.|Tinh giản biên chế giảm mười phần trăm nhân sự.|N
+staffing norm|n.|định mức biên chế|Staffing norms are under review.|Định mức biên chế đang được rà soát.|N
+job description|n.|bản mô tả công việc|Each position has a job description.|Mỗi vị trí có bản mô tả công việc.|N
+competency framework|n.|khung năng lực|A competency framework guides training.|Khung năng lực định hướng đào tạo.|N
+performance appraisal|n.|đánh giá kết quả công việc|Performance appraisal is often formalistic.|Đánh giá kết quả công việc thường còn hình thức.|N
+key performance indicator|n.|chỉ số đo lường hiệu quả (KPI)|Each department tracks key performance indicators.|Mỗi sở theo dõi các KPI.|N
+service standard|n.|chuẩn dịch vụ|Service standards are posted publicly.|Chuẩn dịch vụ được niêm yết công khai.|N
+service delivery|n.|cung ứng dịch vụ|Service delivery improved after the merger.|Cung ứng dịch vụ cải thiện sau sáp nhập.|N
+citizen satisfaction|n.|sự hài lòng của người dân|Citizen satisfaction is surveyed yearly.|Sự hài lòng của người dân được khảo sát hằng năm.|N
+citizen engagement|n.|sự tham gia của người dân|Citizen engagement legitimizes policy.|Sự tham gia của người dân tạo tính chính danh cho chính sách.|N
+public consultation|n.|tham vấn công chúng|Drafts undergo public consultation.|Dự thảo được đưa ra tham vấn công chúng.|N
+grievance mechanism|n.|cơ chế khiếu nại|A grievance mechanism handles complaints.|Cơ chế khiếu nại xử lý phản ánh.|N
+petition|n.|đơn kiến nghị, khiếu nại|Petitions are tracked online.|Đơn thư được theo dõi trực tuyến.|N
+red tape|n.|thủ tục rườm rà|Cutting red tape helps small firms.|Cắt giảm thủ tục rườm rà giúp doanh nghiệp nhỏ.|N
+sub-license|n.|giấy phép con|Hundreds of sub-licenses were abolished.|Hàng trăm giấy phép con bị bãi bỏ.|N
+decree|n.|nghị định|The decree takes effect in July.|Nghị định có hiệu lực từ tháng Bảy.|N
+circular|n.|thông tư|A circular guides implementation.|Một thông tư hướng dẫn thực hiện.|N
+resolution|n.|nghị quyết|The resolution sets the 2030 vision.|Nghị quyết đặt tầm nhìn 2030.|N
+directive|n.|chỉ thị|A directive urged faster disbursement.|Chỉ thị đôn đốc giải ngân nhanh hơn.|N
+statute|n.|đạo luật|The statute defines agency powers.|Đạo luật xác định thẩm quyền cơ quan.|N
+bylaw|n.|quy chế, văn bản dưới luật|Bylaws must not contradict the law.|Văn bản dưới luật không được trái luật.|N
+promulgate|v.|ban hành|The law was promulgated last month.|Luật được ban hành tháng trước.|N
+come into force|phr.|có hiệu lực|The rule comes into force next year.|Quy định có hiệu lực từ năm sau.|Q
+legal framework|n.|khung pháp lý|The legal framework for data is new.|Khung pháp lý về dữ liệu còn mới.|N
+rule of law|n.|pháp quyền|The rule of law protects investors.|Pháp quyền bảo vệ nhà đầu tư.|N
+due process|n.|trình tự công bằng|Sanctions must follow due process.|Xử phạt phải theo đúng trình tự.|N
+administrative court|n.|tòa hành chính|Citizens sued in administrative court.|Người dân khởi kiện ra tòa hành chính.|N
+jurisdiction|n.|thẩm quyền tài phán|The case falls under provincial jurisdiction.|Vụ việc thuộc thẩm quyền cấp tỉnh.|N
+decentralize|v.|phân cấp, phân quyền|Health services were decentralized.|Dịch vụ y tế được phân cấp.|N
+devolution|n.|trao quyền xuống dưới|Devolution empowers communes.|Trao quyền làm mạnh cấp xã.|N
+deconcentration|n.|tản quyền|Deconcentration moves offices, not power.|Tản quyền chuyển văn phòng, không chuyển quyền.|N
+subsidiarity|n.|nguyên tắc bổ trợ|Subsidiarity assigns tasks to the lowest level able.|Nguyên tắc bổ trợ giao việc cho cấp thấp nhất đủ khả năng.|N
+local government|n.|chính quyền địa phương|Local governments deliver most services.|Chính quyền địa phương cung ứng phần lớn dịch vụ.|N
+people's committee|n.|ủy ban nhân dân|The people's committee issued the plan.|Ủy ban nhân dân ban hành kế hoạch.|N
+people's council|n.|hội đồng nhân dân|The people's council approves the budget.|Hội đồng nhân dân phê chuẩn ngân sách.|N
+commune|n.|xã|Each commune has a one-stop desk.|Mỗi xã có một bàn một cửa.|N
+ward|n.|phường|Wards manage local registration.|Phường quản lý đăng ký cư trú.|N
+province|n.|tỉnh|Provinces compete for investment.|Các tỉnh cạnh tranh thu hút đầu tư.|N
+municipality|n.|thành phố (đơn vị hành chính)|The municipality runs the bus system.|Thành phố vận hành hệ thống xe buýt.|N
+mandate letter|n.|văn bản giao nhiệm vụ|Each director receives a mandate letter.|Mỗi giám đốc nhận văn bản giao nhiệm vụ.|N
+chain of command|n.|hệ thống chỉ huy|The chain of command is clear.|Hệ thống chỉ huy rõ ràng.|N
+span of control|n.|phạm vi quản lý|A wide span of control burdens managers.|Phạm vi quản lý rộng gây quá tải cho lãnh đạo.|N
+line ministry|n.|bộ chủ quản|Line ministries set sector policy.|Bộ chủ quản định chính sách ngành.|N
+inter-agency|adj.|liên cơ quan|An inter-agency task force was formed.|Một tổ công tác liên cơ quan được lập.|N
+vertical accountability|n.|trách nhiệm giải trình dọc|Elections create vertical accountability.|Bầu cử tạo trách nhiệm giải trình theo chiều dọc.|N
+horizontal accountability|n.|trách nhiệm giải trình ngang|Audits provide horizontal accountability.|Kiểm toán tạo trách nhiệm giải trình theo chiều ngang.|N
+social accountability|n.|giám sát xã hội|Scorecards enable social accountability.|Phiếu chấm điểm giúp giám sát xã hội.|N
+answerability|n.|nghĩa vụ giải trình|Answerability requires open data.|Nghĩa vụ giải trình đòi hỏi dữ liệu mở.|N
+public hearing|n.|phiên điều trần công khai|A public hearing reviewed the project.|Một phiên điều trần công khai xem xét dự án.|N
+open government|n.|chính phủ mở|Open government builds trust.|Chính phủ mở xây dựng niềm tin.|N
+freedom of information|n.|tự do thông tin|Freedom of information requests rose.|Yêu cầu tiếp cận thông tin tăng lên.|N
+e-government|n.|chính phủ điện tử|E-government rankings improved.|Thứ hạng chính phủ điện tử được cải thiện.|N
+digital government|n.|chính phủ số|Digital government goes beyond e-forms.|Chính phủ số vượt xa biểu mẫu điện tử.|N
+digital transformation|n.|chuyển đổi số|Digital transformation is a decade-long journey.|Chuyển đổi số là hành trình cả thập kỷ.|N
+digitize|v.|số hóa (tài liệu)|Old records were digitized.|Hồ sơ cũ đã được số hóa.|N
+digitalize|v.|số hóa (quy trình)|We digitalized the entire workflow.|Chúng tôi số hóa toàn bộ luồng công việc.|N
+online public service|n.|dịch vụ công trực tuyến|Online public services reached level four.|Dịch vụ công trực tuyến đạt mức độ bốn.|N
+national public service portal|n.|cổng dịch vụ công quốc gia|The national public service portal integrates procedures.|Cổng dịch vụ công quốc gia tích hợp các thủ tục.|N
+digital identity|n.|định danh số|Digital identity enables secure login.|Định danh số cho phép đăng nhập an toàn.|N
+electronic identification|n.|định danh điện tử|Electronic identification replaced paper ID checks.|Định danh điện tử thay kiểm tra giấy tờ.|N
+digital signature|n.|chữ ký số|Contracts accept digital signatures.|Hợp đồng chấp nhận chữ ký số.|N
+digital literacy|n.|năng lực số|Digital literacy training targets elders.|Đào tạo năng lực số hướng tới người cao tuổi.|N
+digital divide|n.|khoảng cách số|The digital divide excludes remote areas.|Khoảng cách số bỏ lại vùng sâu vùng xa.|N
+interoperability|n.|khả năng liên thông|Interoperability standards connect databases.|Chuẩn liên thông kết nối các cơ sở dữ liệu.|N
+data sharing|n.|chia sẻ dữ liệu|Data sharing needs clear rules.|Chia sẻ dữ liệu cần quy định rõ.|N
+open data|n.|dữ liệu mở|Open data fuels civic apps.|Dữ liệu mở nuôi các ứng dụng công dân.|N
+big data|n.|dữ liệu lớn|Big data improves traffic management.|Dữ liệu lớn cải thiện quản lý giao thông.|N
+data governance|n.|quản trị dữ liệu|Data governance assigns ownership.|Quản trị dữ liệu phân định quyền sở hữu.|N
+data protection|n.|bảo vệ dữ liệu|Data protection law passed in 2023.|Luật bảo vệ dữ liệu thông qua năm 2023.|N
+privacy|n.|quyền riêng tư|Privacy concerns slow data sharing.|Lo ngại riêng tư làm chậm chia sẻ dữ liệu.|N
+cybersecurity|n.|an ninh mạng|Cybersecurity spending doubled.|Chi cho an ninh mạng tăng gấp đôi.|N
+cloud computing|n.|điện toán đám mây|Agencies migrate to cloud computing.|Các cơ quan chuyển lên điện toán đám mây.|N
+legacy system|n.|hệ thống cũ|Legacy systems block integration.|Hệ thống cũ cản trở tích hợp.|N
+platform|n.|nền tảng|The payment platform serves all provinces.|Nền tảng thanh toán phục vụ mọi tỉnh thành.|N
+application programming interface|n.|giao diện lập trình (API)|APIs expose registry data safely.|API mở dữ liệu đăng ký một cách an toàn.|N
+automation|n.|tự động hóa|Automation cut processing time by half.|Tự động hóa giảm nửa thời gian xử lý.|N
+artificial intelligence|n.|trí tuệ nhân tạo|Artificial intelligence flags risky files.|Trí tuệ nhân tạo cảnh báo hồ sơ rủi ro.|N
+chatbot|n.|trợ lý ảo|A chatbot answers routine questions.|Trợ lý ảo trả lời các câu hỏi thường gặp.|N
+biometric|adj.|sinh trắc học|Biometric checks prevent fraud.|Kiểm tra sinh trắc học ngăn gian lận.|N
+smart city|n.|đô thị thông minh|The smart city center monitors floods.|Trung tâm đô thị thông minh giám sát ngập lụt.|N
+sensor|n.|cảm biến|Sensors track air quality.|Cảm biến theo dõi chất lượng không khí.|N
+dashboard|n.|bảng điều khiển số|The mayor reviews a live dashboard.|Lãnh đạo xem bảng điều khiển thời gian thực.|N
+digital skills|n.|kỹ năng số|Digital skills gaps persist among staff.|Khoảng trống kỹ năng số vẫn tồn tại trong đội ngũ.|N
+change resistance|n.|kháng cự thay đổi|Change resistance slowed adoption.|Kháng cự thay đổi làm chậm việc áp dụng.|N
+user-centered design|n.|thiết kế lấy người dùng làm trung tâm|User-centered design simplifies forms.|Thiết kế lấy người dùng làm trung tâm giúp đơn giản biểu mẫu.|N
+process reengineering|n.|tái thiết kế quy trình|Process reengineering precedes digitization.|Tái thiết kế quy trình đi trước số hóa.|N
+paperless|adj.|không giấy tờ|The office went fully paperless.|Văn phòng vận hành hoàn toàn không giấy tờ.|N
+e-invoice|n.|hóa đơn điện tử|E-invoices are now mandatory.|Hóa đơn điện tử nay là bắt buộc.|N
+e-payment|n.|thanh toán điện tử|E-payment covers most fees.|Thanh toán điện tử áp dụng cho hầu hết loại phí.|N
+digital archive|n.|lưu trữ số|The digital archive preserves records.|Kho lưu trữ số bảo quản hồ sơ.|N
+turnaround time|n.|thời gian xử lý|Turnaround time fell to three days.|Thời gian xử lý giảm còn ba ngày.|N
+backlog|n.|hồ sơ tồn đọng|The backlog was cleared in a month.|Hồ sơ tồn đọng được xử lý hết trong một tháng.|N
+caseload|n.|khối lượng hồ sơ|Caseloads doubled after the merger.|Khối lượng hồ sơ tăng gấp đôi sau sáp nhập.|N
+help desk|n.|bộ phận hỗ trợ|The help desk logs every call.|Bộ phận hỗ trợ ghi nhận mọi cuộc gọi.|N
+hotline|n.|đường dây nóng|The hotline runs around the clock.|Đường dây nóng hoạt động suốt ngày đêm.|N
+service window|n.|quầy tiếp nhận|Service windows open at seven.|Quầy tiếp nhận mở lúc bảy giờ.|N
+queue management|n.|quản lý hàng chờ|Queue management reduced crowding.|Quản lý hàng chờ giảm ùn ứ.|N
+citizen charter|n.|hiến chương công dân|The citizen charter lists service pledges.|Hiến chương công dân liệt kê cam kết dịch vụ.|N
+code of conduct|n.|quy tắc ứng xử|The code of conduct bans gifts.|Quy tắc ứng xử cấm nhận quà.|N
+conflict resolution|n.|giải quyết xung đột|Mediation aids conflict resolution.|Hòa giải hỗ trợ giải quyết xung đột.|N
+institutional reform|n.|cải cách thể chế|Institutional reform underlies growth.|Cải cách thể chế là nền của tăng trưởng.|N
+policy coherence|n.|tính nhất quán chính sách|Policy coherence avoids contradictions.|Tính nhất quán chính sách tránh mâu thuẫn.|N
+policy cycle|n.|chu trình chính sách|Evaluation closes the policy cycle.|Đánh giá khép kín chu trình chính sách.|N
+agenda setting|n.|thiết lập nghị trình|Media influence agenda setting.|Truyền thông ảnh hưởng việc thiết lập nghị trình.|N
+policy formulation|n.|hoạch định chính sách|Evidence informs policy formulation.|Bằng chứng phục vụ hoạch định chính sách.|N
+policy adoption|n.|thông qua chính sách|Policy adoption requires council approval.|Thông qua chính sách cần hội đồng phê chuẩn.|N
+policy evaluation|n.|đánh giá chính sách|Policy evaluation should be independent.|Đánh giá chính sách nên độc lập.|N
+policy diffusion|n.|lan tỏa chính sách|Policy diffusion spreads good models.|Lan tỏa chính sách nhân rộng mô hình tốt.|N
+pilot|v./n.|thí điểm|The model was piloted in two wards.|Mô hình được thí điểm ở hai phường.|N
+scale up|phr.|nhân rộng|Successful pilots are scaled up.|Thí điểm thành công được nhân rộng.|Q
+evidence-based policy|n.|chính sách dựa trên bằng chứng|Evidence-based policy needs good data.|Chính sách dựa trên bằng chứng cần dữ liệu tốt.|N
+policy window|n.|cửa sổ chính sách|The crisis opened a policy window.|Khủng hoảng mở ra một cửa sổ chính sách.|N
+street-level bureaucrat|n.|công chức tuyến đầu|Street-level bureaucrats shape outcomes.|Công chức tuyến đầu định hình kết quả.|N
+implementation gap|n.|khoảng cách thực thi|An implementation gap persists.|Khoảng cách giữa chính sách và thực thi vẫn tồn tại.|N
+compliance cost|n.|chi phí tuân thủ|Compliance costs fell sharply.|Chi phí tuân thủ giảm mạnh.|N
+administrative burden|n.|gánh nặng hành chính|The survey measures administrative burden.|Khảo sát đo lường gánh nặng hành chính.|N

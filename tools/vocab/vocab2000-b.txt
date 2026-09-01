@@ -1,0 +1,206 @@
+alternative|n./adj.|phương án thay thế|We considered two alternatives.|Chúng tôi cân nhắc hai phương án thay thế.|K
+circumstance|n.|hoàn cảnh|Under these circumstances, delay is likely.|Trong hoàn cảnh này, chậm trễ là khó tránh.|K
+compensation|n.|bồi thường; đãi ngộ|Compensation for land was too low.|Mức bồi thường đất quá thấp.|K
+considerably|adv.|một cách đáng kể|Costs fell considerably after digitization.|Chi phí giảm đáng kể sau số hóa.|K
+constrain|v.|ràng buộc, hạn chế|Tight budgets constrain local action.|Ngân sách eo hẹp ràng buộc hành động địa phương.|K
+convene|v.|triệu tập|The council convened an urgent meeting.|Hội đồng triệu tập một cuộc họp khẩn.|K
+coordinate|v.|phối hợp|Ministries must coordinate their plans.|Các bộ phải phối hợp kế hoạch với nhau.|K
+corporation|n.|tập đoàn, công ty|State corporations are being restructured.|Các tập đoàn nhà nước đang được tái cơ cấu.|K
+criterion|n.|tiêu chí (số ít)|Cost is only one criterion.|Chi phí chỉ là một tiêu chí.|K
+deduction|n.|khấu trừ; suy luận|Tax deductions encourage investment.|Khấu trừ thuế khuyến khích đầu tư.|K
+demonstration|n.|sự chứng minh; trình diễn|A pilot serves as a demonstration.|Mô hình thí điểm đóng vai trò trình diễn.|K
+disproportionate|adj.|không tương xứng|The burden is disproportionate for small firms.|Gánh nặng không tương xứng với doanh nghiệp nhỏ.|K
+duration|n.|thời lượng, thời gian kéo dài|The duration of the process was cut in half.|Thời gian xử lý được rút ngắn một nửa.|K
+emphasis|n.|sự nhấn mạnh|The plan places emphasis on quality.|Kế hoạch đặt trọng tâm vào chất lượng.|K
+ensure-compliance|phr.|bảo đảm tuân thủ|Inspections ensure compliance with the law.|Thanh tra bảo đảm việc tuân thủ pháp luật.|Q
+excluded-group|phr.|nhóm bị loại trừ|The policy reaches previously excluded groups.|Chính sách vươn tới các nhóm trước đây bị bỏ sót.|Q
+framework-law|phr.|luật khung|A framework law guides implementation.|Một luật khung định hướng việc thực hiện.|Q
+fundamental|adj.|căn bản, nền tảng|Trust is fundamental to reform.|Niềm tin là nền tảng của cải cách.|K
+furthermore|adv.|hơn nữa|Furthermore, the data confirm this view.|Hơn nữa, dữ liệu xác nhận nhận định này.|K
+guideline|n.|hướng dẫn, chỉ dẫn|New guidelines were issued to provinces.|Hướng dẫn mới được ban hành cho các tỉnh.|K
+identical|adj.|giống hệt|The two procedures are nearly identical.|Hai quy trình gần như giống hệt nhau.|K
+ideology|n.|hệ tư tưởng|Policy reflects the prevailing ideology.|Chính sách phản ánh hệ tư tưởng chủ đạo.|K
+immigration|n.|nhập cư|Immigration shaped the urban labor force.|Nhập cư định hình lực lượng lao động đô thị.|K
+incidence|n.|tỷ lệ xảy ra; phạm vi chịu thuế|The incidence of poverty declined.|Tỷ lệ nghèo đã giảm.|K
+incorporate|v.|đưa vào, tích hợp|Feedback was incorporated into the draft.|Góp ý đã được đưa vào dự thảo.|K
+initiative|n.|sáng kiến|The e-government initiative saves time.|Sáng kiến chính phủ điện tử tiết kiệm thời gian.|K
+instruct|v.|chỉ đạo, hướng dẫn|Staff were instructed to digitize records.|Cán bộ được chỉ đạo số hóa hồ sơ.|K
+integrate|v.|tích hợp, hội nhập|Databases must be integrated.|Các cơ sở dữ liệu phải được tích hợp.|K
+intense|adj.|gay gắt, mạnh|Competition for funds is intense.|Cạnh tranh nguồn vốn rất gay gắt.|K
+interval|n.|khoảng (thời gian/giá trị)|Data were collected at monthly intervals.|Dữ liệu được thu thập theo từng tháng.|K
+intervene|v.|can thiệp|The state intervened to stabilize prices.|Nhà nước can thiệp để bình ổn giá.|K
+intervention|n.|biện pháp can thiệp|The intervention reduced dropout rates.|Biện pháp can thiệp giảm tỷ lệ bỏ học.|K
+invoke|v.|viện dẫn|The agency invoked emergency powers.|Cơ quan viện dẫn thẩm quyền khẩn cấp.|K
+isolate|v.|cô lập, tách riêng|We isolate the effect of the policy.|Chúng tôi tách riêng tác động của chính sách.|K
+minimize|v.|tối thiểu hóa|The design minimizes compliance costs.|Thiết kế giúp tối thiểu hóa chi phí tuân thủ.|K
+ministry|n.|bộ (cơ quan)|The ministry oversees the sector.|Bộ giám sát toàn ngành.|K
+negate|v.|phủ nhận, làm mất tác dụng|Inflation negated the wage increase.|Lạm phát làm mất tác dụng của đợt tăng lương.|K
+nevertheless|adv.|tuy vậy|Nevertheless, gaps remain.|Tuy vậy, khoảng trống vẫn còn.|K
+notion|n.|khái niệm, quan niệm|The notion of good governance is broad.|Khái niệm quản trị tốt khá rộng.|K
+obvious|adj.|hiển nhiên|The benefits are obvious.|Lợi ích là hiển nhiên.|K
+option|n.|lựa chọn|Citizens now have an online option.|Người dân nay có lựa chọn trực tuyến.|K
+overall|adj./adv.|tổng thể|Overall, the reform succeeded.|Về tổng thể, cải cách đã thành công.|K
+overlap|v./n.|chồng chéo|Functions overlap across agencies.|Chức năng chồng chéo giữa các cơ quan.|K
+philosophy|n.|triết lý|Our philosophy is citizen-centered service.|Triết lý của chúng tôi là phục vụ lấy người dân làm trung tâm.|K
+precise|adj.|chính xác|We need precise definitions.|Chúng ta cần các định nghĩa chính xác.|K
+predict|v.|dự báo|The model predicts revenue well.|Mô hình dự báo nguồn thu khá tốt.|K
+principal|adj./n.|chủ yếu; hiệu trưởng|The principal cause is underfunding.|Nguyên nhân chủ yếu là thiếu kinh phí.|K
+prohibit|v.|nghiêm cấm|The law prohibits informal fees.|Luật nghiêm cấm các khoản phí không chính thức.|K
+publication|n.|ấn phẩm, việc công bố|Publication of budgets builds trust.|Việc công bố ngân sách xây dựng niềm tin.|K
+random|adj.|ngẫu nhiên|Households were chosen at random.|Các hộ được chọn ngẫu nhiên.|K
+reinforce|v.|củng cố|Training reinforces new practices.|Đào tạo củng cố các thực hành mới.|K
+reluctant|adj.|miễn cưỡng, ngần ngại|Officials are reluctant to share data.|Cán bộ ngần ngại chia sẻ dữ liệu.|K
+restore|v.|khôi phục|The reform restored public trust.|Cải cách khôi phục niềm tin công chúng.|K
+revise|v.|sửa đổi|The decree was revised twice.|Nghị định đã được sửa đổi hai lần.|K
+schedule|n./v.|lịch trình; xếp lịch|The project is behind schedule.|Dự án chậm so với lịch trình.|K
+specify|v.|nêu rõ|The contract specifies clear deadlines.|Hợp đồng nêu rõ thời hạn.|K
+sphere|n.|phạm vi, lĩnh vực|Digitalization affects every sphere.|Số hóa ảnh hưởng mọi lĩnh vực.|K
+subsequent|adj.|sau đó, kế tiếp|Subsequent reforms went further.|Các cải cách sau đó đi xa hơn.|K
+sum|n.|tổng; khoản tiền|A large sum was allocated.|Một khoản tiền lớn đã được phân bổ.|K
+undertake|v.|đảm nhận, tiến hành|We undertook a province-wide survey.|Chúng tôi tiến hành khảo sát toàn tỉnh.|K
+welfare-state|phr.|nhà nước phúc lợi|The welfare state faces fiscal pressure.|Nhà nước phúc lợi đối mặt áp lực tài khóa.|Q
+whereas|conj.|trong khi (đối lập)|Urban areas grew, whereas rural areas lagged.|Đô thị tăng trưởng, trong khi nông thôn tụt lại.|K
+abandon|v.|từ bỏ|The plan was abandoned due to costs.|Kế hoạch bị từ bỏ vì chi phí.|K
+accompany|v.|đi kèm|Reform must be accompanied by training.|Cải cách phải đi kèm với đào tạo.|K
+accumulate|v.|tích lũy|Debts accumulated over a decade.|Nợ tích lũy suốt một thập kỷ.|K
+adapt|v.|thích ứng, điều chỉnh|Local units adapt the model to their context.|Đơn vị địa phương điều chỉnh mô hình theo bối cảnh.|K
+adequate|adj.|đầy đủ, thỏa đáng|Funding is not adequate.|Kinh phí chưa thỏa đáng.|K
+adjust|v.|điều chỉnh|Targets were adjusted mid-year.|Chỉ tiêu được điều chỉnh giữa năm.|K
+advocate|v./n.|ủng hộ, cổ vũ|Experts advocate performance budgeting.|Chuyên gia cổ vũ lập ngân sách theo kết quả.|K
+alter|v.|thay đổi|The ruling altered the incentives.|Phán quyết làm thay đổi các động lực.|K
+amend|v.|sửa đổi (luật)|The law was amended in 2024.|Luật được sửa đổi năm 2024.|K
+annual|adj.|hằng năm|The annual report is public.|Báo cáo hằng năm được công khai.|K
+apparent|adj.|rõ ràng, có vẻ|The gap is apparent in the data.|Khoảng cách thể hiện rõ trong dữ liệu.|K
+approximate|adj./v.|xấp xỉ|The approximate cost is two billion.|Chi phí xấp xỉ hai tỷ.|K
+attain|v.|đạt tới|The city attained upper-income status.|Thành phố đạt tới mức thu nhập cao hơn.|K
+attitude|n.|thái độ|Attitudes toward risk differ.|Thái độ với rủi ro là khác nhau.|K
+attribute|v./n.|quy cho; thuộc tính|We attribute the change to the reform.|Chúng tôi quy sự thay đổi cho cải cách.|K
+behalf|n.|thay mặt|I speak on behalf of my agency.|Tôi phát biểu thay mặt cơ quan mình.|K
+bond|n.|trái phiếu; liên kết|The city issued municipal bonds.|Thành phố phát hành trái phiếu đô thị.|K
+brief|adj./n.|ngắn gọn; bản tóm tắt|I will give a brief overview.|Tôi sẽ trình bày tổng quan ngắn gọn.|K
+bulk|n.|phần lớn|The bulk of spending goes to salaries.|Phần lớn chi tiêu dành cho lương.|K
+cease|v.|chấm dứt|The subsidy will cease next year.|Khoản trợ cấp sẽ chấm dứt vào năm tới.|K
+coherent|adj.|mạch lạc, nhất quán|We need a coherent strategy.|Chúng ta cần một chiến lược nhất quán.|K
+coincide|v.|trùng hợp|The spike coincided with the tax cut.|Cú tăng vọt trùng với đợt giảm thuế.|K
+collapse|v./n.|sụp đổ|Confidence collapsed during the crisis.|Niềm tin sụp đổ trong khủng hoảng.|K
+commodity|n.|hàng hóa (cơ bản)|Commodity prices are volatile.|Giá hàng hóa cơ bản biến động mạnh.|K
+complement|v.|bổ trợ|Private clinics complement public hospitals.|Phòng khám tư bổ trợ cho bệnh viện công.|K
+comprehensive|adj.|toàn diện|A comprehensive review is needed.|Cần một cuộc rà soát toàn diện.|K
+conceive|v.|hình dung, khởi xướng|The program was conceived in 2020.|Chương trình được khởi xướng năm 2020.|K
+concurrent|adj.|đồng thời|Concurrent reforms strained capacity.|Các cải cách đồng thời gây quá tải năng lực.|K
+confer|v.|trao (quyền); hội ý|The law confers new powers on provinces.|Luật trao quyền mới cho các tỉnh.|K
+confine|v.|giới hạn|The study is confined to one province.|Nghiên cứu giới hạn trong một tỉnh.|K
+confirm|v.|xác nhận|The audit confirmed the findings.|Kiểm toán xác nhận các phát hiện.|K
+conflict|n.|xung đột|There is a conflict of interest.|Có xung đột lợi ích ở đây.|K
+consult|v.|tham vấn|The ministry consulted the public.|Bộ đã tham vấn công chúng.|K
+contact|n./v.|liên hệ|Citizens contact the hotline daily.|Người dân liên hệ đường dây nóng hằng ngày.|K
+contemporary|adj.|đương đại|Contemporary governance relies on data.|Quản trị đương đại dựa vào dữ liệu.|K
+contradict|v.|mâu thuẫn với|The two reports contradict each other.|Hai báo cáo mâu thuẫn nhau.|K
+contrary|adj.|trái ngược|Contrary to expectations, costs fell.|Trái với kỳ vọng, chi phí đã giảm.|K
+controversy|n.|tranh cãi|The project sparked controversy.|Dự án gây tranh cãi.|K
+convert|v.|chuyển đổi|Paper records were converted to digital.|Hồ sơ giấy được chuyển đổi sang số.|K
+convince|v.|thuyết phục|The evidence convinced the committee.|Bằng chứng đã thuyết phục hội đồng.|K
+cooperate|v.|hợp tác|Districts cooperate on waste management.|Các quận hợp tác về quản lý rác thải.|K
+decade|n.|thập kỷ|Reform took a full decade.|Cải cách mất trọn một thập kỷ.|K
+decline|v./n.|suy giảm|Poverty declined sharply.|Tỷ lệ nghèo giảm mạnh.|K
+denote|v.|biểu thị|The asterisk denotes significance.|Dấu sao biểu thị mức ý nghĩa.|K
+depress|v.|kìm hãm, làm giảm|High taxes depress consumption.|Thuế cao kìm hãm tiêu dùng.|K
+detect|v.|phát hiện|The system detects duplicate claims.|Hệ thống phát hiện hồ sơ trùng lặp.|K
+deviate|v.|lệch khỏi|Actual spending deviated from the plan.|Chi tiêu thực tế lệch khỏi kế hoạch.|K
+devote|v.|dành cho|A chapter is devoted to limitations.|Một chương được dành cho phần hạn chế.|K
+differentiate|v.|phân biệt|We differentiate two types of transfers.|Chúng tôi phân biệt hai loại chuyển giao.|K
+dimension|n.|chiều cạnh|Equity is a key dimension of policy.|Công bằng là một chiều cạnh then chốt.|K
+diminish|v.|giảm bớt|Returns diminish over time.|Lợi suất giảm dần theo thời gian.|K
+discrete|adj.|rời rạc|We model discrete choices.|Chúng tôi mô hình hóa các lựa chọn rời rạc.|K
+displace|v.|thay chỗ, di dời|The dam displaced many households.|Đập thủy điện khiến nhiều hộ phải di dời.|K
+dispose|v.|xử lý, thanh lý|Assets were disposed of transparently.|Tài sản được thanh lý minh bạch.|K
+dramatic|adj.|mạnh mẽ, ngoạn mục|There was a dramatic fall in wait times.|Thời gian chờ giảm ngoạn mục.|K
+elimination|n.|việc xóa bỏ|The elimination of fees helped the poor.|Việc xóa bỏ phí giúp người nghèo.|K
+empirical-evidence|phr.|bằng chứng thực nghiệm|Empirical evidence supports this claim.|Bằng chứng thực nghiệm ủng hộ luận điểm này.|Q
+enhance|v.|nâng cao|Digital tools enhance transparency.|Công cụ số nâng cao tính minh bạch.|K
+enormous|adj.|khổng lồ|The informal sector is enormous.|Khu vực phi chính thức có quy mô khổng lồ.|K
+equip|v.|trang bị|Offices were equipped with new systems.|Các văn phòng được trang bị hệ thống mới.|K
+equivalent|adj./n.|tương đương|The fine is equivalent to one month of income.|Mức phạt tương đương một tháng thu nhập.|K
+erode|v.|xói mòn|Inflation erodes real wages.|Lạm phát xói mòn tiền lương thực tế.|K
+evolve|v.|tiến hóa, phát triển dần|The role of the state has evolved.|Vai trò của nhà nước đã thay đổi dần.|K
+exceed|v.|vượt quá|Spending exceeded the ceiling.|Chi tiêu vượt trần cho phép.|K
+exhibit|v.|thể hiện|The data exhibit a clear pattern.|Dữ liệu thể hiện một quy luật rõ.|K
+expansion|n.|sự mở rộng|The expansion of services continues.|Việc mở rộng dịch vụ vẫn tiếp tục.|K
+exploit|v.|khai thác|We exploit a natural experiment.|Chúng tôi khai thác một thí nghiệm tự nhiên.|K
+extract|v.|trích xuất|Data were extracted from the registry.|Dữ liệu được trích xuất từ hệ thống đăng ký.|K
+fluctuate|v.|dao động|Revenues fluctuate with commodity prices.|Nguồn thu dao động theo giá hàng hóa.|K
+forthcoming|adj.|sắp tới|Details are in a forthcoming report.|Chi tiết nằm trong báo cáo sắp công bố.|K
+generate|v.|tạo ra|Tourism generates local revenue.|Du lịch tạo nguồn thu địa phương.|K
+generation|n.|thế hệ|The next generation expects digital services.|Thế hệ tiếp theo kỳ vọng dịch vụ số.|K
+globe|n.|toàn cầu|Cities across the globe face this issue.|Các thành phố trên toàn cầu đối mặt vấn đề này.|K
+hypothesis-testing|phr.|kiểm định giả thuyết|Hypothesis testing follows standard steps.|Kiểm định giả thuyết theo các bước chuẩn.|Q
+identifiable|adj.|có thể nhận diện|Costs must be identifiable in the budget.|Chi phí phải nhận diện được trong ngân sách.|K
+inevitable|adj.|không thể tránh|Some resistance is inevitable.|Một số phản kháng là không thể tránh.|K
+infer|v.|suy luận|We cannot infer causality here.|Không thể suy luận quan hệ nhân quả ở đây.|K
+insert|v.|chèn vào|A new clause was inserted.|Một điều khoản mới được bổ sung.|K
+inspect|v.|thanh tra, kiểm tra|Teams inspect schools quarterly.|Các đoàn thanh tra trường học hằng quý.|K
+integral|adj.|không thể tách rời|Feedback is integral to the process.|Phản hồi là phần không thể tách rời của quy trình.|K
+intermediate|adj.|trung gian|Intermediate outcomes are measured yearly.|Kết quả trung gian được đo hằng năm.|K
+implicit|adj.|ngầm định|There is an implicit subsidy here.|Ở đây có một khoản trợ cấp ngầm.|K
+induce|v.|thúc đẩy, gây ra|Incentives induce better reporting.|Cơ chế khuyến khích thúc đẩy báo cáo tốt hơn.|K
+liberal|adj.|tự do, thông thoáng|A more liberal licensing regime helps startups.|Cơ chế cấp phép thông thoáng hơn giúp khởi nghiệp.|K
+license|n./v.|giấy phép; cấp phép|Business licenses are issued online.|Giấy phép kinh doanh được cấp trực tuyến.|K
+likewise|adv.|tương tự|Likewise, small districts struggle.|Tương tự, các huyện nhỏ cũng gặp khó.|K
+manipulate|v.|thao túng; xử lý|Figures were manipulated to hide losses.|Số liệu bị thao túng để che giấu thua lỗ.|K
+mature|adj./v.|trưởng thành; đáo hạn|The bond matures in ten years.|Trái phiếu đáo hạn sau mười năm.|K
+mediate|v.|làm trung gian, trung gian hóa|Trust mediates the policy effect.|Niềm tin đóng vai trò trung gian cho tác động chính sách.|K
+medium|n./adj.|phương tiện; trung bình|Radio remains an important medium.|Phát thanh vẫn là một kênh quan trọng.|K
+migrate|v.|di cư|Workers migrate to the south.|Lao động di cư vào phía Nam.|K
+military|adj./n.|quân sự|Military spending is excluded from the analysis.|Chi quốc phòng không thuộc phạm vi phân tích.|K
+minimal|adj.|tối thiểu|The extra cost is minimal.|Chi phí phát sinh là tối thiểu.|K
+mutual|adj.|lẫn nhau|Cooperation requires mutual trust.|Hợp tác đòi hỏi tin cậy lẫn nhau.|K
+nonetheless|adv.|dù vậy|Nonetheless, the trend is positive.|Dù vậy, xu hướng vẫn tích cực.|K
+offset|v.|bù trừ|Gains offset the initial costs.|Lợi ích bù trừ chi phí ban đầu.|K
+ongoing|adj.|đang diễn ra|Reform is an ongoing process.|Cải cách là một quá trình liên tục.|K
+panel|n.|hội đồng; dữ liệu bảng|A panel of experts reviewed the plan.|Một hội đồng chuyên gia đã thẩm định kế hoạch.|K
+paradigm|n.|hệ hình, mô thức|Digital government is a new paradigm.|Chính phủ số là một mô thức mới.|K
+parallel|adj./n.|song song; điểm tương đồng|We ran two pilots in parallel.|Chúng tôi chạy song song hai thí điểm.|K
+passive|adj.|bị động|Citizens should not be passive recipients.|Người dân không nên là người thụ hưởng bị động.|K
+persist|v.|dai dẳng, kéo dài|Regional gaps persist.|Chênh lệch vùng miền vẫn dai dẳng.|K
+portion|n.|phần|A portion of revenue is retained locally.|Một phần nguồn thu được giữ lại địa phương.|K
+pose|v.|đặt ra (vấn đề)|Aging poses fiscal challenges.|Già hóa dân số đặt ra thách thức tài khóa.|K
+practitioner|n.|người thực hành, người làm nghề|Practitioners value simple tools.|Người làm thực tiễn coi trọng công cụ đơn giản.|K
+predominant|adj.|chiếm ưu thế|Agriculture is predominant in the region.|Nông nghiệp chiếm ưu thế trong vùng.|K
+preliminary|adj.|sơ bộ|These are preliminary results.|Đây là các kết quả sơ bộ.|K
+presume|v.|giả định trước|We presume honest reporting.|Chúng tôi giả định việc báo cáo là trung thực.|K
+prospect|n.|triển vọng|Growth prospects remain strong.|Triển vọng tăng trưởng vẫn vững.|K
+protocol|n.|quy chuẩn, giao thức|The survey followed a strict protocol.|Khảo sát tuân theo quy chuẩn nghiêm ngặt.|K
+qualitative-data|phr.|dữ liệu định tính|Qualitative data enrich the analysis.|Dữ liệu định tính làm giàu phân tích.|Q
+radical|adj.|triệt để|Radical restructuring was avoided.|Việc tái cơ cấu triệt để đã được tránh.|K
+refine|v.|tinh chỉnh|The model was refined after feedback.|Mô hình được tinh chỉnh sau góp ý.|K
+regulate|v.|điều tiết, quản lý|The state regulates utility prices.|Nhà nước điều tiết giá dịch vụ thiết yếu.|K
+release|v./n.|công bố; giải ngân|Funds were released late.|Kinh phí được giải ngân muộn.|K
+relax|v.|nới lỏng|Entry rules were relaxed.|Quy định gia nhập được nới lỏng.|K
+restrain|v.|kiềm chế|Spending growth must be restrained.|Phải kiềm chế đà tăng chi tiêu.|K
+retain|v.|giữ lại|Provinces retain half of the revenue.|Các tỉnh giữ lại một nửa nguồn thu.|K
+reverse|v./n.|đảo ngược|The court reversed the decision.|Tòa án đảo ngược quyết định.|K
+simulate|v.|mô phỏng|We simulate three policy scenarios.|Chúng tôi mô phỏng ba kịch bản chính sách.|K
+so-called|adj.|cái gọi là|The so-called sunset clause expired.|Điều khoản hoàng hôn đã hết hiệu lực.|K
+solely|adv.|chỉ, duy nhất|Success depends not solely on money.|Thành công không chỉ phụ thuộc vào tiền.|K
+somewhat|adv.|phần nào|Results are somewhat mixed.|Kết quả phần nào trái chiều.|K
+submit|v.|nộp, trình|Reports are submitted quarterly.|Báo cáo được trình hằng quý.|K
+successor|n.|người kế nhiệm|His successor continued the reform.|Người kế nhiệm ông tiếp tục cải cách.|K
+supplement|v./n.|bổ sung|Grants supplement local budgets.|Các khoản tài trợ bổ sung ngân sách địa phương.|K
+suspend|v.|đình chỉ|The project was suspended for review.|Dự án bị đình chỉ để rà soát.|K
+tape|n.|băng ghi; thủ tục|Red tape discourages investors.|Thủ tục rườm rà làm nản lòng nhà đầu tư.|K
+temporary|adj.|tạm thời|The measure is temporary.|Biện pháp này chỉ là tạm thời.|K
+trace|v.|truy vết, lần theo|We trace the funds through the system.|Chúng tôi lần theo dòng tiền trong hệ thống.|K
+transform|v.|chuyển đổi, biến đổi|Digitalization transforms service delivery.|Số hóa biến đổi việc cung ứng dịch vụ.|K
+transit|n.|quá cảnh; giao thông công cộng|Public transit needs subsidies.|Giao thông công cộng cần trợ giá.|K
+trigger|v./n.|kích hoạt, châm ngòi|The crisis triggered emergency spending.|Khủng hoảng châm ngòi chi tiêu khẩn cấp.|K
+ultimately|adv.|rốt cuộc|Ultimately, citizens judge the results.|Rốt cuộc, người dân là người đánh giá kết quả.|K
+undergo|v.|trải qua|The sector underwent deep change.|Ngành đã trải qua thay đổi sâu sắc.|K
+uniform|adj.|đồng nhất|Rules are uniform across provinces.|Quy định đồng nhất giữa các tỉnh.|K
+unify|v.|thống nhất|The portal unifies all services.|Cổng dịch vụ thống nhất mọi thủ tục.|K
+utilize|v.|sử dụng|Funds were fully utilized.|Kinh phí được sử dụng hết.|K
+via|prep.|thông qua|Payments are made via the portal.|Thanh toán được thực hiện qua cổng dịch vụ.|K
+violate|v.|vi phạm|The firm violated procurement rules.|Doanh nghiệp vi phạm quy định đấu thầu.|K
+virtually|adv.|hầu như|Virtually all districts joined.|Hầu như tất cả các huyện đều tham gia.|K
+visible|adj.|hữu hình, thấy được|Results must be visible to citizens.|Kết quả phải hữu hình với người dân.|K
+voluntary|adj.|tự nguyện|Participation is voluntary.|Việc tham gia là tự nguyện.|K
+widespread|adj.|phổ biến, lan rộng|The practice is widespread.|Thực hành này rất phổ biến.|K

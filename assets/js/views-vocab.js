@@ -101,7 +101,7 @@
         h("button", { class: "btn btn--ghost", onClick: () => { idx++; show(); } }, "Bỏ qua"),
         h("button", {
           class: "btn btn--primary", onClick: () => {
-            Store.introduceCard(c.id);
+            Store.introduceCard(c);
             UI.speak(c.term);
             idx++; show();
           },
@@ -260,7 +260,7 @@
   function renderBrowse(root) {
     root.innerHTML = "";
     root.appendChild(h("div", { class: "between mt-1" }, [
-      h("h2", { class: "section-title" }, "Kho từ (" + Store.cards().length + ")"),
+      h("h2", { class: "section-title" }, "Kho từ (" + Store.browseList().length + ")"),
       h("div", { class: "row gap-sm" }, [
         h("button", { class: "btn btn--primary btn--sm", onClick: () => addCardModal(root) }, "✚ Thêm từ"),
         h("button", { class: "btn btn--ghost btn--sm", onClick: () => renderHome(root) }, "← Quay lại"),
@@ -278,7 +278,7 @@
     function renderList(q) {
       listWrap.innerHTML = "";
       q = (q || "").toLowerCase().trim();
-      let cards = Store.cards();
+      let cards = Store.browseList();
       if (q) cards = cards.filter((c) => c.term.toLowerCase().includes(q) || c.meaning.toLowerCase().includes(q));
       const groups = new Map();
       cards.forEach((c) => {

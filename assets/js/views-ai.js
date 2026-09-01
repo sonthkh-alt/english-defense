@@ -1,45 +1,131 @@
 /* ============================================================
-   views-ai.js — Module 4: Luyện nói với AI (Speaking Coach)
+   views-ai.js — Module 4: Luyện nói với AI
    ------------------------------------------------------------
-   Người học NÓI (speech-to-text) → Claude phản hồi văn bản +
-   đọc to (TTS). 3 chế độ: hội thoại · sửa lỗi · nhập vai hội đồng.
+   Phương án chính: dùng GEMINI AI (miễn phí) — app sinh sẵn
+   PROMPT chứa đầy đủ hồ sơ + vị trí lộ trình + số liệu tiến độ;
+   người học sao chép → dán vào Gemini → luyện nói (Gemini app
+   trên điện thoại có đàm thoại giọng nói rất tốt).
+   Tùy chọn: trò chuyện ngay trong app qua Anthropic API (cần key).
    ============================================================ */
 (function (global) {
   "use strict";
   const Views = global.Views = global.Views || {};
   const { h } = UI;
 
-  const MODES = [
-    { id: "talk", label: "💬 Hội thoại", desc: "Trò chuyện học thuật tự nhiên — AI hỏi từng câu, nhẹ nhàng sửa bằng cách nhắc lại đúng." },
-    { id: "correct", label: "✏ Sửa lỗi", desc: "AI chỉ ra tối đa 3 lỗi mỗi lượt (ngữ pháp, từ chưa chuẩn học thuật) + gợi ý cách nói trang trọng hơn." },
-    { id: "committee", label: "🎓 Nhập vai hội đồng", desc: "AI đóng vai giáo sư phản biện, hỏi xoáy về nghiên cứu của bạn — mỗi lần một câu." },
+  const GEMINI_URL = "https://gemini.google.com/app";
+
+  const PROMPT_CARDS = [
+    { id: "weekly", icon: "🧭", label: "Kế hoạch tuần + bài tập hôm nay",
+      desc: "Gemini đánh giá tiến độ của bạn, lập kế hoạch 7 ngày bám lộ trình và giao ngay 1 bài nói.",
+      build: () => PROMPTS.weekly() },
+    { id: "talk", icon: "💬", label: "Hội thoại học thuật",
+      desc: "Trò chuyện về công việc/nghiên cứu — Gemini hỏi từng câu, sửa nhẹ bằng cách nhắc lại đúng.",
+      build: () => PROMPTS.coach("talk") },
+    { id: "correct", icon: "✏", label: "Sửa lỗi từng câu",
+      desc: "Bạn nói/gõ từng đoạn — Gemini chỉ tối đa 3 lỗi, gợi ý cách diễn đạt học thuật hơn.",
+      build: () => PROMPTS.coach("correct") },
+    { id: "committee", icon: "🎓", label: "Nhập vai hội đồng phản biện",
+      desc: "Gemini đóng vai giáo sư, hỏi xoáy 8 dạng câu hỏi, nhận xét sau từng câu trả lời.",
+      build: () => PROMPTS.coach("committee") },
   ];
 
   Views.coach = function () {
     const root = h("div");
-    if (!AI.ready()) {
-      root.appendChild(needKey());
-      return root;
-    }
-    picker(root);
+    home(root);
     return root;
   };
 
-  function needKey() {
-    return h("div", { class: "card callout callout--amber" }, [
-      h("div", { class: "callout__icon" }, "🔑"),
-      h("div", null, [
-        h("div", { style: { fontWeight: 700 } }, "Cần Anthropic API key"),
-        h("p", { class: "small muted" }, "Module này gọi Claude làm giáo viên hội thoại. Nhập API key trong Cài đặt (chỉ lưu trên máy bạn). Các module Từ vựng / Phát âm / Shadowing vẫn dùng được không cần AI."),
-        h("a", { class: "btn btn--primary btn--sm", href: "#/settings" }, "→ Mở Cài đặt"),
+  function home(root) {
+    root.innerHTML = "";
+
+    // Hướng dẫn 4 bước
+    root.appendChild(h("div", { class: "card callout" }, [
+      h("div", { class: "callout__icon" }, "✦"),
+      h("div", { class: "small" }, [
+        h("strong", null, "Cách luyện với Gemini (miễn phí): "),
+        "① chọn chế độ dưới đây và bấm Sao chép — prompt đã chứa sẵn hồ sơ, vị trí lộ trình tháng " +
+        Store.currentMonth() + " và số liệu tiến độ của bạn → ② mở Gemini, dán vào → ③ luyện — trên điện thoại hãy dùng ",
+        h("strong", null, "micro / chế độ đàm thoại của app Gemini"),
+        " để NÓI thay vì gõ → ④ xong quay lại đây bấm \"Đã luyện xong\" để tính vào chuỗi ngày học.",
       ]),
-    ]);
+    ]));
+
+    // Các thẻ prompt
+    PROMPT_CARDS.forEach((p) => {
+      root.appendChild(h("div", { class: "card" }, [
+        h("div", { class: "between" }, [
+          h("div", { style: { minWidth: 0 } }, [
+            h("div", { style: { fontWeight: 700 } }, p.icon + " " + p.label),
+            h("div", { class: "small muted" }, p.desc),
+          ]),
+          h("div", { class: "row gap-sm", style: { flexShrink: 0 } }, [
+            h("button", { class: "btn btn--ghost btn--sm", onClick: () => previewPrompt(p) }, "Xem"),
+            h("button", { class: "btn btn--primary btn--sm", onClick: () => UI.copy(p.build()) }, "📋 Sao chép"),
+          ]),
+        ]),
+      ]));
+    });
+
+    // Hàng hành động
+    root.appendChild(h("div", { class: "card" }, [
+      h("div", { class: "row gap-sm", style: { flexWrap: "wrap" } }, [
+        h("a", { class: "btn btn--accent", href: GEMINI_URL, target: "_blank", rel: "noopener" }, "Mở Gemini ↗"),
+        h("button", {
+          class: "btn btn--primary",
+          onClick: () => {
+            Store.logCoach("gemini", 1);
+            Store.logActivity("coach", 15);
+            UI.toast("Đã tính buổi luyện nói hôm nay ✓ (+15 phút)", "accent");
+            App.render();
+          },
+        }, "✓ Đã luyện xong với Gemini"),
+      ]),
+      h("p", { class: "small muted mb-0 mt-1" },
+        "Mẹo: trong Gemini, mỗi buổi chỉ cần dán prompt MỘT lần rồi luyện tiếp trong cùng cuộc trò chuyện. Sang buổi mới nên sao chép prompt mới — số liệu tiến độ được cập nhật theo ngày."),
+    ]));
+
+    // Tùy chọn: chat ngay trong app (Anthropic)
+    root.appendChild(h("div", { class: "card" }, [
+      h("div", { class: "between" }, [
+        h("div", null, [
+          h("div", { style: { fontWeight: 700 } }, "Trò chuyện ngay trong app (tùy chọn)"),
+          h("div", { class: "small muted" }, AI.ready()
+            ? "Dùng Anthropic API (" + AI.model() + ") — nói bằng micro, AI trả lời và đọc to."
+            : "Cần Anthropic API key (nhập trong Cài đặt). Không bắt buộc — Gemini ở trên là đủ."),
+        ]),
+        AI.ready()
+          ? h("button", { class: "btn btn--primary btn--sm", onClick: () => pickInApp(root) }, "Bắt đầu")
+          : h("a", { class: "btn btn--ghost btn--sm", href: "#/settings" }, "Cài đặt"),
+      ]),
+    ]));
   }
 
-  function picker(root) {
+  function previewPrompt(p) {
+    const text = p.build();
+    const ta = h("textarea", { class: "textarea", rows: 14, readonly: "readonly", style: { fontSize: ".8rem" } }, text);
+    UI.modal({
+      title: p.label,
+      body: ta,
+      actions: [
+        { label: "Đóng", variant: "ghost" },
+        { label: "📋 Sao chép", variant: "primary", onClick: () => { UI.copy(text); } },
+      ],
+    });
+  }
+
+  /* ============ Chat trong app (Anthropic — tùy chọn) ============ */
+  const MODES = [
+    { id: "talk", label: "💬 Hội thoại", desc: "Trò chuyện học thuật tự nhiên — AI hỏi từng câu, nhẹ nhàng sửa bằng cách nhắc lại đúng." },
+    { id: "correct", label: "✏ Sửa lỗi", desc: "AI chỉ ra tối đa 3 lỗi mỗi lượt + gợi ý cách nói trang trọng hơn." },
+    { id: "committee", label: "🎓 Nhập vai hội đồng", desc: "AI đóng vai giáo sư phản biện, hỏi xoáy về nghiên cứu của bạn." },
+  ];
+
+  function pickInApp(root) {
     root.innerHTML = "";
-    root.appendChild(h("p", { class: "small muted mt-1" },
-      "Chọn chế độ. Nói bằng micro (khuyên dùng) hoặc gõ. AI trả lời ngắn ở mức B1 để bạn theo kịp, và đọc to câu trả lời."));
+    root.appendChild(h("div", { class: "between mt-1" }, [
+      h("span", { class: "small", style: { fontWeight: 700 } }, "Chat trong app"),
+      h("button", { class: "btn btn--ghost btn--sm", onClick: () => home(root) }, "← Quay lại"),
+    ]));
     MODES.forEach((m) => {
       root.appendChild(h("div", { class: "card" }, [
         h("div", { class: "between" }, [
@@ -139,7 +225,7 @@
         Store.logActivity("coach", Math.max(2, Math.round((Date.now() - t0) / 60000)));
         UI.toast("Đã ghi nhận buổi nói " + turns + " lượt ✓", "accent");
       }
-      picker(root);
+      home(root);
     }
   }
 })(window);

@@ -1,0 +1,123 @@
+collect data|v.phr.|thu thập dữ liệu|We collected data in two rounds.|Chúng tôi thu thập dữ liệu qua hai đợt.|Q
+draw a conclusion|v.phr.|rút ra kết luận|We draw three conclusions.|Chúng tôi rút ra ba kết luận.|Q
+address a question|v.phr.|giải đáp một câu hỏi|Let me address that question directly.|Tôi xin giải đáp thẳng câu hỏi đó.|Q
+raise a concern|v.phr.|nêu quan ngại|The committee raised a valid concern.|Hội đồng nêu một quan ngại xác đáng.|Q
+conduct a survey|v.phr.|tiến hành khảo sát|We conducted a survey of 400 citizens.|Chúng tôi tiến hành khảo sát 400 người dân.|Q
+test a hypothesis|v.phr.|kiểm định giả thuyết|We test the hypothesis with panel data.|Chúng tôi kiểm định giả thuyết bằng dữ liệu bảng.|Q
+review the literature|v.phr.|tổng quan tài liệu|Chapter two reviews the literature.|Chương hai tổng quan tài liệu.|Q
+fill a gap|v.phr.|lấp khoảng trống|This study fills an important gap.|Nghiên cứu này lấp một khoảng trống quan trọng.|Q
+make a contribution|v.phr.|đóng góp|The thesis makes three contributions.|Luận văn có ba đóng góp.|Q
+provide evidence|v.phr.|cung cấp bằng chứng|The data provide strong evidence.|Dữ liệu cung cấp bằng chứng vững chắc.|Q
+support the argument|v.phr.|ủng hộ lập luận|The findings support my argument.|Các phát hiện ủng hộ lập luận của tôi.|Q
+challenge the assumption|v.phr.|thách thức giả định|New data challenge that assumption.|Dữ liệu mới thách thức giả định đó.|Q
+reach a consensus|v.phr.|đạt đồng thuận|Stakeholders reached a consensus.|Các bên đạt được đồng thuận.|Q
+play a role|v.phr.|đóng vai trò|Institutions play a central role.|Thể chế đóng vai trò trung tâm.|Q
+take into account|v.phr.|tính đến|We take regional gaps into account.|Chúng tôi tính đến chênh lệch vùng miền.|Q
+shed light on|v.phr.|làm sáng tỏ|The case sheds light on the mechanism.|Trường hợp này làm sáng tỏ cơ chế.|Q
+give rise to|v.phr.|làm nảy sinh|Ambiguity gives rise to disputes.|Sự mơ hồ làm nảy sinh tranh chấp.|Q
+account for|v.phr.|giải thích; chiếm|Salaries account for most spending.|Lương chiếm phần lớn chi tiêu.|Q
+be consistent with|v.phr.|nhất quán với|Results are consistent with theory.|Kết quả nhất quán với lý thuyết.|Q
+be attributed to|v.phr.|được quy cho|The gain is attributed to reform.|Mức cải thiện được quy cho cải cách.|Q
+in line with|prep.phr.|phù hợp với|Findings are in line with prior work.|Phát hiện phù hợp với nghiên cứu trước.|Q
+with respect to|prep.phr.|đối với, xét về|With respect to costs, the pilot did well.|Xét về chi phí, thí điểm đạt kết quả tốt.|Q
+in terms of|prep.phr.|xét theo|In terms of speed, the portal wins.|Xét theo tốc độ, cổng dịch vụ vượt trội.|Q
+on the basis of|prep.phr.|trên cơ sở|Grants are set on the basis of need.|Khoản cấp được xác định trên cơ sở nhu cầu.|Q
+as a result of|prep.phr.|do, vì|Delays fell as a result of digitization.|Chậm trễ giảm do số hóa.|Q
+in the context of|prep.phr.|trong bối cảnh|In the context of Vietnam, this matters.|Trong bối cảnh Việt Nam, điều này rất quan trọng.|Q
+in comparison with|prep.phr.|so với|In comparison with 2020, costs halved.|So với năm 2020, chi phí giảm một nửa.|Q
+for the purpose of|prep.phr.|nhằm mục đích|Data were merged for the purpose of analysis.|Dữ liệu được gộp nhằm mục đích phân tích.|Q
+to a large extent|adv.phr.|ở mức độ lớn|Success depends to a large extent on leadership.|Thành công phụ thuộc phần lớn vào lãnh đạo.|Q
+to some extent|adv.phr.|ở một mức độ nào đó|I agree to some extent.|Tôi đồng ý ở một mức độ nào đó.|Q
+carry out research|v.phr.|thực hiện nghiên cứu|We carried out field research.|Chúng tôi thực hiện nghiên cứu thực địa.|Q
+implement a policy|v.phr.|thực thi chính sách|Provinces implement the policy differently.|Các tỉnh thực thi chính sách khác nhau.|Q
+formulate a policy|v.phr.|hoạch định chính sách|Evidence helps formulate better policy.|Bằng chứng giúp hoạch định chính sách tốt hơn.|Q
+evaluate a program|v.phr.|đánh giá chương trình|An independent team evaluated the program.|Một nhóm độc lập đánh giá chương trình.|Q
+allocate resources|v.phr.|phân bổ nguồn lực|We must allocate resources efficiently.|Phải phân bổ nguồn lực một cách hiệu quả.|Q
+mobilize resources|v.phr.|huy động nguồn lực|Cities mobilize resources from land.|Đô thị huy động nguồn lực từ đất đai.|Q
+strengthen capacity|v.phr.|tăng cường năng lực|Training strengthens local capacity.|Đào tạo tăng cường năng lực địa phương.|Q
+streamline procedures|v.phr.|tinh gọn thủ tục|The decree streamlines procedures.|Nghị định tinh gọn thủ tục.|Q
+simplify processes|v.phr.|đơn giản hóa quy trình|We simplified the licensing process.|Chúng tôi đơn giản hóa quy trình cấp phép.|Q
+enhance transparency|v.phr.|nâng cao minh bạch|Open data enhance transparency.|Dữ liệu mở nâng cao minh bạch.|Q
+promote accountability|v.phr.|thúc đẩy trách nhiệm giải trình|Audits promote accountability.|Kiểm toán thúc đẩy trách nhiệm giải trình.|Q
+combat corruption|v.phr.|phòng chống tham nhũng|E-payment helps combat corruption.|Thanh toán điện tử giúp phòng chống tham nhũng.|Q
+foster innovation|v.phr.|nuôi dưỡng đổi mới|Sandboxes foster innovation.|Cơ chế thử nghiệm nuôi dưỡng đổi mới.|Q
+boost productivity|v.phr.|thúc đẩy năng suất|Automation boosts productivity.|Tự động hóa thúc đẩy năng suất.|Q
+stimulate growth|v.phr.|kích thích tăng trưởng|Public investment stimulates growth.|Đầu tư công kích thích tăng trưởng.|Q
+curb inflation|v.phr.|kiềm chế lạm phát|Tight policy curbed inflation.|Chính sách thắt chặt kiềm chế lạm phát.|Q
+reduce inequality|v.phr.|giảm bất bình đẳng|Transfers reduce inequality.|Chuyển giao ngân sách giảm bất bình đẳng.|Q
+alleviate poverty|v.phr.|giảm nghèo|Microcredit helps alleviate poverty.|Tín dụng vi mô giúp giảm nghèo.|Q
+create jobs|v.phr.|tạo việc làm|Small firms create most jobs.|Doanh nghiệp nhỏ tạo phần lớn việc làm.|Q
+attract investment|v.phr.|thu hút đầu tư|Clear rules attract investment.|Luật chơi rõ ràng thu hút đầu tư.|Q
+raise revenue|v.phr.|tăng nguồn thu|Property taxes raise stable revenue.|Thuế tài sản mang lại nguồn thu ổn định.|Q
+balance the budget|v.phr.|cân đối ngân sách|The city balanced its budget.|Thành phố cân đối được ngân sách.|Q
+cut spending|v.phr.|cắt giảm chi tiêu|The plan cuts recurrent spending.|Kế hoạch cắt giảm chi thường xuyên.|Q
+meet the target|v.phr.|đạt chỉ tiêu|The province met the growth target.|Tỉnh đạt chỉ tiêu tăng trưởng.|Q
+set a target|v.phr.|đặt chỉ tiêu|The plan sets an ambitious target.|Kế hoạch đặt chỉ tiêu tham vọng.|Q
+monitor progress|v.phr.|theo dõi tiến độ|A dashboard monitors progress.|Bảng điều khiển theo dõi tiến độ.|Q
+issue a license|v.phr.|cấp giấy phép|Licenses are issued within five days.|Giấy phép được cấp trong năm ngày.|Q
+grant approval|v.phr.|cấp phê duyệt|The council granted approval.|Hội đồng đã cấp phê duyệt.|Q
+submit a report|v.phr.|nộp báo cáo|Units submit reports quarterly.|Các đơn vị nộp báo cáo hằng quý.|Q
+draft a law|v.phr.|soạn thảo luật|The ministry drafted a new law.|Bộ soạn thảo một luật mới.|Q
+enforce regulations|v.phr.|thực thi quy định|Inspectors enforce regulations.|Thanh tra thực thi quy định.|Q
+comply with rules|v.phr.|tuân thủ quy định|Most firms comply with the rules.|Đa số doanh nghiệp tuân thủ quy định.|Q
+hold accountable|v.phr.|buộc chịu trách nhiệm|Voters hold leaders accountable.|Cử tri buộc lãnh đạo chịu trách nhiệm.|Q
+delegate authority|v.phr.|ủy quyền|Directors delegate authority downward.|Giám đốc ủy quyền xuống cấp dưới.|Q
+build consensus|v.phr.|xây dựng đồng thuận|Workshops build consensus.|Hội thảo xây dựng đồng thuận.|Q
+build trust|v.phr.|xây dựng niềm tin|Delivery builds public trust.|Kết quả thực tế xây dựng niềm tin công chúng.|Q
+bridge the gap|v.phr.|thu hẹp khoảng cách|Training bridges the skills gap.|Đào tạo thu hẹp khoảng cách kỹ năng.|Q
+pave the way|v.phr.|mở đường|The pilot paves the way for scale-up.|Thí điểm mở đường cho nhân rộng.|Q
+bear the cost|v.phr.|gánh chi phí|Small firms bear the cost of compliance.|Doanh nghiệp nhỏ gánh chi phí tuân thủ.|Q
+reap the benefits|v.phr.|gặt hái lợi ích|Citizens reap the benefits of reform.|Người dân gặt hái lợi ích từ cải cách.|Q
+weigh the trade-offs|v.phr.|cân nhắc đánh đổi|Policymakers weigh the trade-offs.|Nhà hoạch định cân nhắc các đánh đổi.|Q
+strike a balance|v.phr.|tìm điểm cân bằng|We must strike a balance between speed and safety.|Phải tìm điểm cân bằng giữa tốc độ và an toàn.|Q
+draw on experience|v.phr.|vận dụng kinh nghiệm|The design draws on Korean experience.|Thiết kế vận dụng kinh nghiệm Hàn Quốc.|Q
+learn lessons|v.phr.|rút bài học|We learned lessons from the failure.|Chúng tôi rút bài học từ thất bại.|Q
+best-practice model|n.phr.|mô hình thực hành tốt|The ward is a best-practice model.|Phường này là mô hình thực hành tốt.|Q
+lessons learned|n.phr.|bài học kinh nghiệm|The report lists lessons learned.|Báo cáo liệt kê các bài học kinh nghiệm.|Q
+root cause|n.phr.|nguyên nhân gốc rễ|We analyze the root causes of delay.|Chúng tôi phân tích nguyên nhân gốc rễ của chậm trễ.|Q
+driving force|n.phr.|động lực chính|Exports are the driving force of growth.|Xuất khẩu là động lực chính của tăng trưởng.|Q
+turning point|n.phr.|bước ngoặt|The 2020 law was a turning point.|Luật năm 2020 là một bước ngoặt.|Q
+vicious circle|n.phr.|vòng luẩn quẩn|Low pay creates a vicious circle.|Lương thấp tạo vòng luẩn quẩn.|Q
+level playing field|n.phr.|sân chơi bình đẳng|Reform creates a level playing field.|Cải cách tạo sân chơi bình đẳng.|Q
+win-win solution|n.phr.|giải pháp cùng thắng|The deal is a win-win solution.|Thỏa thuận là giải pháp cùng thắng.|Q
+bottom-up approach|n.phr.|cách tiếp cận từ dưới lên|Planning uses a bottom-up approach.|Quy hoạch dùng cách tiếp cận từ dưới lên.|Q
+top-down approach|n.phr.|cách tiếp cận từ trên xuống|A purely top-down approach fails.|Cách tiếp cận thuần túy từ trên xuống dễ thất bại.|Q
+short-term gain|n.phr.|lợi ích ngắn hạn|Avoid chasing short-term gains.|Tránh chạy theo lợi ích ngắn hạn.|Q
+long-term vision|n.phr.|tầm nhìn dài hạn|The strategy sets a long-term vision.|Chiến lược đặt tầm nhìn dài hạn.|Q
+in the short run|prep.phr.|trong ngắn hạn|Costs rise in the short run.|Chi phí tăng trong ngắn hạn.|Q
+in the long run|prep.phr.|trong dài hạn|Reform pays off in the long run.|Cải cách sinh lợi trong dài hạn.|Q
+at the margin|prep.phr.|ở phần biên|Decisions are made at the margin.|Quyết định được đưa ra ở phần biên.|Q
+per se|adv.|tự thân nó|Size per se is not the problem.|Quy mô tự thân nó không phải vấn đề.|Q
+ceteris paribus|adv.|các yếu tố khác không đổi|Ceteris paribus, demand falls as prices rise.|Các yếu tố khác không đổi, giá tăng thì cầu giảm.|Q
+vice versa|adv.|và ngược lại|Trust supports compliance, and vice versa.|Niềm tin hỗ trợ tuân thủ, và ngược lại.|Q
+inter alia|adv.|trong số đó có|The law covers, inter alia, data sharing.|Luật điều chỉnh, trong số đó có việc chia sẻ dữ liệu.|Q
+status quo|n.|hiện trạng|Many prefer the status quo.|Nhiều người muốn giữ hiện trạng.|Q
+de facto|adj.|trên thực tế|The agency is the de facto regulator.|Cơ quan này trên thực tế là nhà quản chế.|Q
+de jure|adj.|trên pháp lý|De jure powers differ from practice.|Thẩm quyền trên giấy khác với thực tế.|Q
+ad hoc|adj.|tùy nghi, lâm thời|An ad hoc committee was formed.|Một ủy ban lâm thời được thành lập.|Q
+caveat|n.|lưu ý, điều dè chừng|One caveat concerns data quality.|Một lưu ý liên quan chất lượng dữ liệu.|Q
+threshold effect|n.phr.|hiệu ứng ngưỡng|We detect a threshold effect.|Chúng tôi phát hiện hiệu ứng ngưỡng.|Q
+ripple effect|n.phr.|hiệu ứng lan tỏa|The closure had ripple effects.|Việc đóng cửa gây hiệu ứng lan truyền.|Q
+knock-on effect|n.phr.|hiệu ứng dây chuyền|Delays have knock-on effects downstream.|Chậm trễ gây hiệu ứng dây chuyền phía sau.|Q
+side effect|n.phr.|tác dụng phụ|The cap had unintended side effects.|Mức trần gây tác dụng phụ ngoài ý muốn.|Q
+unintended consequence|n.phr.|hệ quả ngoài ý muốn|Every rule has unintended consequences.|Quy định nào cũng có hệ quả ngoài ý muốn.|Q
+policy implication|n.phr.|hàm ý chính sách|The findings carry policy implications.|Các phát hiện mang hàm ý chính sách.|Q
+practical implication|n.phr.|hàm ý thực tiễn|Practical implications are discussed last.|Hàm ý thực tiễn được bàn ở phần cuối.|Q
+empirical study|n.phr.|nghiên cứu thực nghiệm|Few empirical studies exist in Vietnam.|Ít nghiên cứu thực nghiệm tại Việt Nam.|Q
+seminal work|n.phr.|công trình nền móng|Ostrom's seminal work guides us.|Công trình nền móng của Ostrom dẫn dắt chúng tôi.|Q
+body of literature|n.phr.|khối tài liệu nghiên cứu|A growing body of literature agrees.|Ngày càng nhiều nghiên cứu đồng thuận.|Q
+point of departure|n.phr.|điểm xuất phát|This model is our point of departure.|Mô hình này là điểm xuất phát của chúng tôi.|Q
+frame of reference|n.phr.|hệ quy chiếu|We adopt a governance frame of reference.|Chúng tôi dùng hệ quy chiếu quản trị.|Q
+line of reasoning|n.phr.|mạch lập luận|Follow my line of reasoning.|Xin theo dõi mạch lập luận của tôi.|Q
+burden of proof|n.phr.|nghĩa vụ chứng minh|The burden of proof lies with the claimant.|Nghĩa vụ chứng minh thuộc về bên yêu cầu.|Q
+margin for error|n.phr.|dư địa cho sai sót|There is little margin for error.|Có rất ít dư địa cho sai sót.|Q
+room for improvement|n.phr.|dư địa cải thiện|There is room for improvement in speed.|Vẫn còn dư địa cải thiện về tốc độ.|Q
+in a nutshell|adv.phr.|tóm gọn lại|In a nutshell, incentives matter.|Tóm gọn lại, cơ chế khuyến khích là quan trọng.|Q
+on the one hand|adv.phr.|một mặt|On the one hand, costs fell.|Một mặt, chi phí đã giảm.|Q
+on the other hand|adv.phr.|mặt khác|On the other hand, risks rose.|Mặt khác, rủi ro lại tăng.|Q
+by contrast|adv.phr.|ngược lại|By contrast, rural areas lagged.|Ngược lại, nông thôn tụt hậu.|Q
+in particular|adv.phr.|đặc biệt là|Small firms, in particular, benefited.|Đặc biệt, doanh nghiệp nhỏ được hưởng lợi.|Q
+in general|adv.phr.|nhìn chung|In general, satisfaction improved.|Nhìn chung, mức hài lòng tăng.|Q
+above all|adv.phr.|trên hết|Above all, trust must be earned.|Trên hết, niềm tin phải được gây dựng.|Q
+as far as I know|adv.phr.|theo tôi được biết|As far as I know, no prior study did this.|Theo tôi được biết, chưa nghiên cứu nào làm điều này.|Q
+to the best of my knowledge|adv.phr.|trong hiểu biết tốt nhất của tôi|To the best of my knowledge, this is the first such study.|Trong hiểu biết của tôi, đây là nghiên cứu đầu tiên như vậy.|Q

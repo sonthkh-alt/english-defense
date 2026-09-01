@@ -277,10 +277,14 @@
     ]));
 
     // AI
-    root.appendChild(sectionTitle("AI (Anthropic API)"));
+    root.appendChild(sectionTitle("AI"));
     root.appendChild(h("div", { class: "card" }, [
+      h("p", { class: "small" }, [
+        h("strong", null, "Phương án chính: Gemini AI (miễn phí, không cần cài gì). "),
+        "Vào trang Luyện nói với AI hoặc Mô phỏng bảo vệ → bấm Sao chép prompt → dán vào Gemini. Prompt đã chứa hồ sơ, lộ trình và tiến độ của bạn.",
+      ]),
       h("p", { class: "small muted" },
-        "Dùng cho Module Luyện nói với AI và Mô phỏng bảo vệ. Key chỉ lưu trên máy bạn (localStorage), gửi thẳng tới api.anthropic.com — không qua máy chủ trung gian. Tạo key tại console.anthropic.com."),
+        "Tùy chọn thêm (không bắt buộc): nhập Anthropic API key để trò chuyện và chấm điểm NGAY TRONG app. Key chỉ lưu trên máy bạn (localStorage), gửi thẳng tới api.anthropic.com — không qua máy chủ trung gian."),
       field("Anthropic API key", h("input", { class: "input", type: "password", placeholder: "sk-ant-…", value: s.apiKey, onChange: (e) => Store.setSetting("apiKey", e.target.value.trim()) })),
       field("Model", h("input", { class: "input", value: s.aiModel || "claude-sonnet-4-6", onChange: (e) => Store.setSetting("aiModel", e.target.value.trim() || "claude-sonnet-4-6") })),
       h("button", {

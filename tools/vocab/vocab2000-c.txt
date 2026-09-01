@@ -1,0 +1,155 @@
+abstract|n./adj.|tóm tắt; trừu tượng|The abstract summarizes the thesis.|Phần tóm tắt khái quát luận văn.|L
+accurate|adj.|chính xác|Accurate records support planning.|Hồ sơ chính xác hỗ trợ công tác kế hoạch.|L
+acknowledge|v.|thừa nhận, ghi nhận|I acknowledge this limitation.|Tôi thừa nhận hạn chế này.|L
+aggregate-demand|phr.|tổng cầu|Stimulus lifts aggregate demand.|Kích thích kinh tế nâng tổng cầu.|Q
+albeit|conj.|dù rằng|Progress is real, albeit slow.|Tiến bộ là có thật, dù còn chậm.|L
+assemble|v.|tập hợp|We assembled a unique dataset.|Chúng tôi tập hợp một bộ dữ liệu độc đáo.|L
+assign|v.|phân công, gán|Tasks are assigned by the director.|Nhiệm vụ do giám đốc phân công.|L
+attach|v.|đính kèm, gắn với|Conditions are attached to the grant.|Khoản tài trợ đi kèm điều kiện.|L
+behavior|n.|hành vi|Tax behavior responds to enforcement.|Hành vi nộp thuế phản ứng với việc cưỡng chế.|L
+bias-free|adj.|không thiên lệch|No survey is fully bias-free.|Không khảo sát nào hoàn toàn không thiên lệch.|L
+capable|adj.|có năng lực|The unit is capable of rapid delivery.|Đơn vị có năng lực triển khai nhanh.|L
+capture|v.|nắm bắt, ghi nhận|The index captures service quality.|Chỉ số ghi nhận chất lượng dịch vụ.|L
+cite|v.|trích dẫn|We cite official statistics.|Chúng tôi trích dẫn số liệu chính thức.|L
+clause|n.|điều khoản|The sunset clause limits duration.|Điều khoản hết hiệu lực giới hạn thời gian áp dụng.|L
+compile|v.|tổng hợp, biên soạn|Data were compiled from ten sources.|Dữ liệu được tổng hợp từ mười nguồn.|L
+conceal|v.|che giấu|Losses were concealed for years.|Thua lỗ bị che giấu nhiều năm.|L
+concentrate|v.|tập trung|Poverty concentrates in remote areas.|Nghèo đói tập trung ở vùng sâu vùng xa.|L
+confirm-findings|phr.|xác nhận phát hiện|Robustness checks confirm the findings.|Các kiểm định vững xác nhận phát hiện.|Q
+coordination mechanism|phr.|cơ chế phối hợp|A coordination mechanism was set up.|Một cơ chế phối hợp đã được thiết lập.|Q
+crucial|adj.|then chốt|Timing is crucial for reform.|Thời điểm là yếu tố then chốt của cải cách.|L
+currency|n.|tiền tệ|The currency remained stable.|Đồng tiền vẫn ổn định.|L
+denial|n.|sự từ chối, phủ nhận|Denial of service must be justified.|Việc từ chối giải quyết phải có lý do.|L
+dispute|n./v.|tranh chấp|Land disputes are common.|Tranh chấp đất đai khá phổ biến.|L
+distort|v.|bóp méo|Subsidies can distort prices.|Trợ cấp có thể bóp méo giá cả.|L
+diverse|adj.|đa dạng|The sample is diverse by region.|Mẫu đa dạng theo vùng miền.|L
+domain|n.|lĩnh vực, miền|Health is a priority domain.|Y tế là lĩnh vực ưu tiên.|L
+domestic|adj.|trong nước|Domestic investment is rising.|Đầu tư trong nước đang tăng.|L
+edit|v.|biên tập|The report was edited for clarity.|Báo cáo được biên tập cho rõ ràng.|L
+enhance-capacity|phr.|nâng cao năng lực|Training enhances staff capacity.|Đào tạo nâng cao năng lực cán bộ.|Q
+estate|n.|bất động sản; khu|Real estate taxes fund cities.|Thuế bất động sản nuôi các đô thị.|L
+exceed-target|phr.|vượt chỉ tiêu|Revenue exceeded the annual target.|Nguồn thu vượt chỉ tiêu năm.|Q
+expertise|n.|chuyên môn|We lack digital expertise.|Chúng ta thiếu chuyên môn về số.|L
+explicit-goal|phr.|mục tiêu tường minh|The decree states an explicit goal.|Nghị định nêu một mục tiêu tường minh.|Q
+federal|adj.|liên bang|Federal systems differ from unitary ones.|Hệ thống liên bang khác hệ thống đơn nhất.|L
+fee|n.|phí, lệ phí|Service fees were cut by half.|Phí dịch vụ được giảm một nửa.|L
+flexible|adj.|linh hoạt|Budget rules should be flexible.|Quy tắc ngân sách nên linh hoạt.|L
+gender|n.|giới|Gender gaps in pay remain.|Chênh lệch lương theo giới vẫn còn.|L
+ignorance|n.|sự thiếu hiểu biết|Ignorance of the rules is common.|Việc không nắm quy định khá phổ biến.|L
+incentive-scheme|phr.|cơ chế khuyến khích|The incentive scheme rewards results.|Cơ chế khuyến khích thưởng theo kết quả.|Q
+incline|v.|nghiêng về|I incline to the second explanation.|Tôi nghiêng về cách giải thích thứ hai.|L
+index|n.|chỉ số|The PAPI index measures governance.|Chỉ số PAPI đo lường quản trị.|L
+inhibit|v.|kìm hãm|Uncertainty inhibits investment.|Bất định kìm hãm đầu tư.|L
+initiate|v.|khởi động|The province initiated a pilot.|Tỉnh khởi động một thí điểm.|L
+input|n.|đầu vào|Inputs alone do not guarantee outcomes.|Riêng đầu vào không bảo đảm kết quả.|L
+instruct-officials|phr.|chỉ đạo cán bộ|The chairman instructed officials to act.|Chủ tịch chỉ đạo cán bộ hành động.|Q
+intelligence|n.|thông tin; trí tuệ|Artificial intelligence assists screening.|Trí tuệ nhân tạo hỗ trợ sàng lọc hồ sơ.|L
+interfere|v.|can thiệp (tiêu cực)|Politics should not interfere with audits.|Chính trị không nên can thiệp vào kiểm toán.|L
+interpretation|n.|cách diễn giải|Two interpretations are possible.|Có thể có hai cách diễn giải.|L
+interview-data|phr.|dữ liệu phỏng vấn|Interview data reveal hidden costs.|Dữ liệu phỏng vấn hé lộ chi phí ẩn.|Q
+justification|n.|căn cứ, sự biện minh|Each expense needs justification.|Mỗi khoản chi cần có căn cứ.|L
+lecture|n.|bài giảng|The lecture covered fiscal policy.|Bài giảng bàn về chính sách tài khóa.|L
+levy|v./n.|đánh (thuế); khoản thu|A new levy on land was proposed.|Một khoản thu mới trên đất được đề xuất.|L
+liable|adj.|chịu trách nhiệm pháp lý|The agency is liable for damages.|Cơ quan phải chịu trách nhiệm bồi thường.|L
+logic|n.|logic, lập luận|The logic of the model is simple.|Logic của mô hình khá đơn giản.|L
+margin|n.|biên; lề|Profit margins are thin.|Biên lợi nhuận khá mỏng.|L
+mode|n.|phương thức|Online is now the main mode of delivery.|Trực tuyến nay là phương thức cung ứng chính.|L
+modify|v.|điều chỉnh, sửa đổi|The formula was modified in 2023.|Công thức được điều chỉnh năm 2023.|L
+motive|n.|động cơ|The motive behind the reform is efficiency.|Động cơ của cải cách là hiệu quả.|L
+neutral|adj.|trung lập|Auditors must remain neutral.|Kiểm toán viên phải giữ trung lập.|L
+nonprofit|adj./n.|phi lợi nhuận|Nonprofits deliver some services.|Tổ chức phi lợi nhuận cung ứng một số dịch vụ.|L
+notwithstanding|prep.|bất chấp|Notwithstanding delays, the goal was met.|Bất chấp chậm trễ, mục tiêu vẫn đạt.|L
+overseas|adj./adv.|nước ngoài|Overseas remittances support consumption.|Kiều hối hỗ trợ tiêu dùng.|L
+persistent|adj.|dai dẳng|Persistent deficits raise debt.|Thâm hụt dai dẳng làm tăng nợ.|L
+phase|n.|giai đoạn|Phase two begins next year.|Giai đoạn hai bắt đầu năm tới.|L
+predictable|adj.|có thể dự đoán|Transfers should be predictable.|Các khoản chuyển giao cần có tính dự đoán được.|L
+presumption|n.|sự suy đoán, giả định|The presumption of good faith applies.|Nguyên tắc suy đoán thiện chí được áp dụng.|L
+prime|adj.|hàng đầu|Job creation is the prime objective.|Tạo việc làm là mục tiêu hàng đầu.|L
+priority|n.|ưu tiên|Health is a top priority.|Y tế là ưu tiên hàng đầu.|L
+qualify|v.|đủ điều kiện|Poor households qualify for support.|Hộ nghèo đủ điều kiện nhận hỗ trợ.|L
+rational|adj.|duy lý, hợp lý|We assume rational behavior.|Chúng tôi giả định hành vi duy lý.|L
+recover|v.|phục hồi|The economy recovered quickly.|Nền kinh tế phục hồi nhanh.|L
+refine-model|phr.|tinh chỉnh mô hình|We refine the model with new data.|Chúng tôi tinh chỉnh mô hình bằng dữ liệu mới.|Q
+regional-disparity|phr.|chênh lệch vùng miền|Regional disparities widened slightly.|Chênh lệch vùng miền nới rộng đôi chút.|Q
+reign|n./v.|thời kỳ chi phối|Paper forms reigned for decades.|Biểu mẫu giấy thống trị hàng chục năm.|L
+rigid|adj.|cứng nhắc|Rigid norms slow adaptation.|Định mức cứng nhắc làm chậm thích ứng.|L
+route|n.|lộ trình, tuyến|The reform route was gradual.|Lộ trình cải cách mang tính tiệm tiến.|L
+scenario|n.|kịch bản|We model a worst-case scenario.|Chúng tôi mô hình hóa kịch bản xấu nhất.|L
+scheme|n.|chương trình, cơ chế|The insurance scheme covers farmers.|Chương trình bảo hiểm bao phủ nông dân.|L
+sole|adj.|duy nhất|Price is not the sole factor.|Giá không phải yếu tố duy nhất.|L
+stress|v./n.|nhấn mạnh; áp lực|I stress the role of institutions.|Tôi nhấn mạnh vai trò của thể chế.|L
+subordinate|adj./n.|cấp dưới|Subordinate units report monthly.|Đơn vị cấp dưới báo cáo hằng tháng.|L
+sustain|v.|duy trì bền vững|Growth must be sustained over decades.|Tăng trưởng phải được duy trì qua nhiều thập kỷ.|L
+team|n.|nhóm, đội|A cross-agency team was formed.|Một nhóm liên cơ quan được thành lập.|L
+temporary-measure|phr.|biện pháp tạm thời|The cap is a temporary measure.|Mức trần chỉ là biện pháp tạm thời.|Q
+tense|adj.|căng thẳng|Negotiations grew tense.|Đàm phán trở nên căng thẳng.|L
+terminate|v.|chấm dứt|The contract was terminated early.|Hợp đồng bị chấm dứt trước hạn.|L
+theme|n.|chủ đề|Three themes emerged from coding.|Ba chủ đề nổi lên khi mã hóa dữ liệu.|L
+thereby|adv.|qua đó|Fees were cut, thereby helping firms.|Phí được giảm, qua đó hỗ trợ doanh nghiệp.|L
+uneven|adj.|không đồng đều|Progress is uneven across regions.|Tiến bộ không đồng đều giữa các vùng.|L
+vehicle|n.|phương tiện, công cụ|Bonds are a vehicle for financing.|Trái phiếu là công cụ huy động vốn.|L
+version|n.|phiên bản|The final version was approved.|Phiên bản cuối đã được phê duyệt.|L
+virtual|adj.|ảo, trực tuyến|Virtual meetings cut travel costs.|Họp trực tuyến giảm chi phí đi lại.|L
+visual|adj.|trực quan|Visual dashboards aid decisions.|Bảng điều khiển trực quan hỗ trợ ra quyết định.|L
+vision|n.|tầm nhìn|The vision extends to 2045.|Tầm nhìn kéo dài đến năm 2045.|L
+adjacent|adj.|liền kề|Adjacent provinces share the river.|Các tỉnh liền kề chia sẻ dòng sông.|L
+akin|adj.|tương tự như|The scheme is akin to a voucher.|Cơ chế này tương tự một phiếu hỗ trợ.|L
+analogous|adj.|tương đồng|An analogous case exists in Thailand.|Có trường hợp tương đồng ở Thái Lan.|L
+anticipate|v.|dự liệu|We anticipate strong resistance.|Chúng tôi dự liệu sự phản kháng mạnh.|L
+appendix|n.|phụ lục|Details are in the appendix.|Chi tiết nằm ở phụ lục.|L
+arbitrary|adj.|tùy tiện|Arbitrary fines undermine trust.|Phạt tùy tiện làm xói mòn niềm tin.|L
+automate|v.|tự động hóa|Routine checks were automated.|Các bước kiểm tra thường quy được tự động hóa.|L
+cluster|n./v.|cụm; phân cụm|Firms cluster near ports.|Doanh nghiệp tụ cụm gần cảng.|L
+commence|v.|bắt đầu|The program commenced in June.|Chương trình bắt đầu vào tháng Sáu.|L
+compatible|adj.|tương thích|The systems are not compatible.|Các hệ thống không tương thích với nhau.|L
+compromise|n./v.|thỏa hiệp|The final text was a compromise.|Văn bản cuối là một thỏa hiệp.|L
+conform|v.|tuân theo|Reports must conform to the template.|Báo cáo phải theo đúng mẫu.|L
+contemplate|v.|cân nhắc|The ministry contemplates a merger.|Bộ đang cân nhắc việc sáp nhập.|L
+convince-committee|phr.|thuyết phục hội đồng|Strong data convince the committee.|Dữ liệu vững chắc thuyết phục hội đồng.|Q
+depict|v.|mô tả, khắc họa|Figure 2 depicts the trend.|Hình 2 mô tả xu hướng.|L
+devise|v.|nghĩ ra, thiết kế|We devised a simple scoring rule.|Chúng tôi thiết kế một quy tắc chấm điểm đơn giản.|L
+dilemma|n.|thế lưỡng nan|Regulators face a dilemma.|Nhà quản lý đối mặt thế lưỡng nan.|L
+duplicate|v./n.|trùng lặp|Functions duplicate across levels.|Chức năng trùng lặp giữa các cấp.|L
+elicit|v.|khơi gợi, thu thập|Interviews elicit honest views.|Phỏng vấn khơi gợi ý kiến chân thực.|L
+eventual|adj.|cuối cùng, rốt cuộc|The eventual outcome was positive.|Kết cục sau cùng là tích cực.|L
+exemplify|v.|minh chứng điển hình|This case exemplifies good practice.|Trường hợp này là minh chứng điển hình cho thực hành tốt.|L
+forgo|v.|từ bỏ, bỏ qua|The city forwent short-term revenue.|Thành phố chấp nhận bỏ qua nguồn thu ngắn hạn.|L
+format|n.|định dạng|Data come in an open format.|Dữ liệu ở định dạng mở.|L
+founded|adj.|có cơ sở|The concern is well founded.|Mối lo ngại này là có cơ sở.|L
+hierarchical|adj.|có tính thứ bậc|Decision-making is hierarchical.|Việc ra quyết định mang tính thứ bậc.|L
+incompatible|adj.|không tương thích|The goals are not incompatible.|Các mục tiêu không hề mâu thuẫn nhau.|L
+infrastructure-gap|phr.|khoảng trống hạ tầng|The infrastructure gap widens costs.|Khoảng trống hạ tầng làm đội chi phí.|Q
+inherent|adj.|cố hữu|Risk is inherent in innovation.|Rủi ro là cố hữu trong đổi mới.|L
+insight|n.|hiểu biết sâu|Interviews provide rich insights.|Phỏng vấn mang lại hiểu biết sâu sắc.|L
+integrity|n.|liêm chính; tính toàn vẹn|Public integrity is measurable.|Liêm chính công vụ có thể đo lường.|L
+intrinsic|adj.|nội tại|Motivation has an intrinsic component.|Động lực có cấu phần nội tại.|L
+mandate|n./v.|nhiệm vụ được giao; bắt buộc|The agency has a clear mandate.|Cơ quan có nhiệm vụ được giao rõ ràng.|L
+mediation|n.|hòa giải|Mediation resolved the dispute.|Hòa giải đã giải quyết tranh chấp.|L
+metaphor|n.|ẩn dụ|The one-door metaphor is popular.|Ẩn dụ một cửa rất phổ biến.|L
+mount|v.|gia tăng; tổ chức|Pressure is mounting for reform.|Áp lực cải cách đang gia tăng.|L
+nominal|adj.|danh nghĩa|Nominal wages rose faster than real wages.|Lương danh nghĩa tăng nhanh hơn lương thực tế.|L
+offsetting|adj.|mang tính bù trừ|There are offsetting effects.|Có những tác động bù trừ nhau.|L
+overlap-function|phr.|chồng chéo chức năng|Overlapping functions waste resources.|Chồng chéo chức năng gây lãng phí nguồn lực.|Q
+pilot-program|phr.|chương trình thí điểm|The pilot program ran in five districts.|Chương trình thí điểm chạy ở năm huyện.|Q
+plausible|adj.|hợp lý, khả tín|A plausible explanation exists.|Có một cách giải thích khả tín.|L
+preclude|v.|loại trừ khả năng|Data limits preclude causal claims.|Giới hạn dữ liệu loại trừ khẳng định nhân quả.|L
+provision|n.|điều khoản; sự cung ứng|Service provision improved.|Việc cung ứng dịch vụ được cải thiện.|L
+provoke|v.|gây ra, kích động|The fee hike provoked protests.|Đợt tăng phí gây phản ứng.|L
+quantify|v.|lượng hóa|We quantify the time savings.|Chúng tôi lượng hóa mức tiết kiệm thời gian.|L
+refute|v.|bác bỏ (bằng chứng cứ)|The data refute that claim.|Dữ liệu bác bỏ luận điểm đó.|L
+renew|v.|gia hạn, làm mới|Licenses are renewed online.|Giấy phép được gia hạn trực tuyến.|L
+revoke|v.|thu hồi|The permit was revoked.|Giấy phép đã bị thu hồi.|L
+rhetoric|n.|tu từ, lời lẽ|Reform rhetoric must match action.|Lời lẽ cải cách phải đi đôi với hành động.|L
+scope of the study|n.|phạm vi nghiên cứu|That question is beyond the scope of my study.|Câu hỏi đó nằm ngoài phạm vi nghiên cứu của tôi.|Q
+simultaneous|adj.|đồng thời|Simultaneous shocks hit the budget.|Các cú sốc đồng thời tác động lên ngân sách.|L
+stance|n.|lập trường|The ministry softened its stance.|Bộ đã mềm hóa lập trường.|L
+strive|v.|nỗ lực|We strive for citizen satisfaction.|Chúng tôi nỗ lực vì sự hài lòng của người dân.|L
+supervise|v.|giám sát|Inspectors supervise construction.|Thanh tra giám sát việc xây dựng.|L
+tackle|v.|xử lý, đối phó|The plan tackles congestion.|Kế hoạch xử lý ùn tắc.|L
+tangible|adj.|hữu hình|Citizens want tangible benefits.|Người dân muốn lợi ích hữu hình.|L
+undermine|v.|làm suy yếu|Corruption undermines legitimacy.|Tham nhũng làm suy yếu tính chính danh.|L
+underpin|v.|làm nền tảng cho|Data underpin every decision.|Dữ liệu làm nền tảng cho mọi quyết định.|L
+verify|v.|xác minh|Claims are verified against records.|Hồ sơ được xác minh với dữ liệu gốc.|L
+viable|adj.|khả thi (bền vững)|The model is financially viable.|Mô hình khả thi về tài chính.|L
+warrant|v.|đáng để, biện minh cho|The results warrant further study.|Kết quả đáng để nghiên cứu thêm.|L
+whereby|adv.|theo đó|A scheme whereby fees fund maintenance.|Một cơ chế theo đó phí nuôi việc bảo trì.|L

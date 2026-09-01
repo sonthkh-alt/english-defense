@@ -67,7 +67,7 @@
 
   function drillWords(d) {
     if (d.fromVocabLevel) {
-      const pool = Store.cards().filter((c) => c.level === d.fromVocabLevel && !/\s/.test(c.term));
+      const pool = Store.browseList().filter((c) => c.level === d.fromVocabLevel && !/\s/.test(c.term));
       return UI.shuffle(pool).slice(0, 20).map((c) => c.term);
     }
     // bỏ ký hiệu trọng âm viết hoa khi chấm
