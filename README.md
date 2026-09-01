@@ -24,7 +24,7 @@ Web app tĩnh, chạy trực tiếp trên trình duyệt, **không cần server,
 6. **Desirable difficulty** — theo dõi độ chính xác 7 ngày, gợi ý tăng/giảm lượng từ mới (vùng tối ưu 70–85%).
 
 ### 🔊 Audio 3 lớp (giữ nguyên từ bản trước)
-1. **Gói giọng OmniVoice render sẵn** (`assets/audio/` + `manifest.json`, key = FNV-1a của câu) — 715 audio: 274 từ + 274 câu ví dụ + 130 câu hỏi + 37 câu thuyết trình/cứu nguy. Chất lượng cao, offline. Render thêm: xem [tools/omnivoice/](tools/omnivoice/README.md).
+1. **Gói giọng OmniVoice render sẵn** (`assets/audio/` + `manifest.json`, key = FNV-1a của câu) — **2.173 audio**: toàn bộ câu ví dụ của 2.007 mục từ vựng + 130 câu hỏi phản biện + câu thuyết trình/chức năng/cứu nguy (render bằng GPU cục bộ, ~228MB). Chất lượng cao, offline. Render thêm: xem [tools/omnivoice/](tools/omnivoice/README.md).
 2. **Bản thu người bản xứ** cho từ đơn (Free Dictionary API, bật trong Cài đặt).
 3. **TTS neural** của trình duyệt (fallback, có nhấn nhá theo mệnh đề).
 
